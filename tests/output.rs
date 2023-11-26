@@ -31,7 +31,7 @@ macro_rules! test_c {
                     "-fno-discard-value-names",
                     concat!("testdata/", stringify!($name), ".c"),
                     "-o",
-                    concat!("/tmp/auto-isa/", stringify!($name), ".ll"),
+                    concat!("testdata/", stringify!($name), ".ll"),
                 ])
                 .status()
                 .unwrap()
@@ -43,7 +43,7 @@ macro_rules! test_c {
                     "--load-pass-plugin=target/debug/libauto_isa.so",
                     "--passes=auto-isa",
                     "-disable-output",
-                    concat!("/tmp/auto-isa/", stringify!($name), ".ll"),
+                    concat!("testdata/", stringify!($name), ".ll"),
                 ])
                 .stdout(Stdio::piped())
                 .spawn()
