@@ -1,6 +1,7 @@
 #![feature(exit_status_error)]
 
 use std::{
+    env,
     fs::create_dir_all,
     process::{Command, Stdio},
 };
@@ -12,6 +13,13 @@ macro_rules! test_c {
         #[test]
         fn $name() {
             create_dir_all("/tmp/auto-isa").unwrap();
+
+            Command::new(env::var("CARGO").unwrap())
+                .args(["build"])
+                .status()
+                .unwrap()
+                .exit_ok()
+                .unwrap();
 
             Command::new("clang-16")
                 .args([
