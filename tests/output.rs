@@ -71,3 +71,4 @@ macro_rules! test_c {
 }
 
 test_c!(loop_sum);
+test_c!(pointer_chase);
