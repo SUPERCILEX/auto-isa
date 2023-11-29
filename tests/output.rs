@@ -71,3 +71,6 @@ macro_rules! test_c {
 
 test_c!(loop_sum);
 test_c!(pointer_chase);
+test_c!(perlin);
+test_c!(richards_benchmark);
+test_c!(reed_solomon);
