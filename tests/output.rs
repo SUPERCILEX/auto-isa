@@ -53,7 +53,19 @@ macro_rules! test_c {
             opt_result.status.exit_ok().unwrap();
             let opt_result = String::from_utf8(opt_result.stdout).unwrap();
 
-            expect_file![concat!("../testdata/", stringify!($name), ".out")].assert_eq(&opt_result);
+            expect_file![concat!("../testdata/", stringify!($name), ".gv")].assert_eq(&opt_result);
+
+            Command::new("dot")
+                .args([
+                    "-Tpdf",
+                    concat!("testdata/", stringify!($name), ".gv"),
+                    "-o",
+                    concat!("testdata/", stringify!($name), ".pdf"),
+                ])
+                .status()
+                .unwrap()
+                .exit_ok()
+                .unwrap();
         }
     };
 }
