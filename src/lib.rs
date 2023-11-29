@@ -146,7 +146,7 @@ fn find_instruction_dependencies(
     .unwrap();
 
     if path.contains(&instruction.as_value_ref()) {
-        writeln!(output, "}}").unwrap();
+        writeln!(output, "// Cycle\n}}").unwrap();
         return;
     }
 
@@ -156,13 +156,13 @@ fn find_instruction_dependencies(
         if let Some(op) = instruction.get_operand(i) {
             match op {
                 Either::Left(value) => {
-                    if let Some(parent) = value.as_instruction_value() {
-                        pending.push(parent);
+                    if let Some(instruction) = value.as_instruction_value() {
+                        pending.push(instruction);
                         writeln!(
                             output,
                             "{0}_{1}",
                             state.fn_name,
-                            state.ids[&parent.as_value_ref()],
+                            state.ids[&instruction.as_value_ref()],
                         )
                         .unwrap();
                     }

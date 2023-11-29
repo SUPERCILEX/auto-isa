@@ -31,6 +31,7 @@ pointer_chase_7
 }
 pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
 pointer_chase_7 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -63,6 +64,7 @@ pointer_chase_7
 }
 pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
 pointer_chase_7 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -99,6 +101,7 @@ pointer_chase_7
 }
 pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
 pointer_chase_7 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -149,6 +152,7 @@ pointer_chase_7
 }
 pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
 pointer_chase_7 -> {
+// Cycle
 }
 pointer_chase_11 [label="Load" comment="  %1 = load i32, ptr %0, align 4, !dbg !43, !tbaa !44"]
 pointer_chase_11 -> {
@@ -176,6 +180,7 @@ pointer_chase_7
 }
 pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
 pointer_chase_7 -> {
+// Cycle
 }
 pointer_chase_6 [label="Phi" comment="  %add39 = phi i32 [ %result.promoted, %while.body.lr.ph ], [ %add3, %while.body ], !dbg !31"]
 pointer_chase_6 -> {
@@ -187,6 +192,7 @@ pointer_chase_4 -> {
 }
 pointer_chase_15 [label="Add" comment="  %add3 = add nsw i32 %add, %add39, !dbg !49"]
 pointer_chase_15 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -207,6 +213,7 @@ pointer_chase_18
 }
 pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
 pointer_chase_18 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"

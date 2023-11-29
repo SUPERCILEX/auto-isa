@@ -19,6 +19,7 @@ loop_sum_10
 }
 loop_sum_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 loop_sum_10 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -43,6 +44,7 @@ loop_sum_10
 }
 loop_sum_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 loop_sum_10 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -77,6 +79,7 @@ loop_sum_10
 }
 loop_sum_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 loop_sum_10 -> {
+// Cycle
 }
 loop_sum_13 [label="Load" comment="  %0 = load i32, ptr %arrayidx, align 4, !dbg !27, !tbaa !29"]
 loop_sum_13 -> {
@@ -96,6 +99,7 @@ loop_sum_10
 }
 loop_sum_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 loop_sum_10 -> {
+// Cycle
 }
 loop_sum_17 [label="GetElementPtr" comment="  %arrayidx4 = getelementptr inbounds i32, ptr %output, i64 %indvars.iv, !dbg !35"]
 loop_sum_17 -> {
@@ -111,6 +115,7 @@ loop_sum_10
 }
 loop_sum_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 loop_sum_10 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
