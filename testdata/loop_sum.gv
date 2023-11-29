@@ -122,7 +122,12 @@ label="Store instruction dependencies"
 labelloc=b
 }
 cluster=true
-label=loop_sum
+label="loop_sum"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.dbg.value"
 labelloc=b
 }
 }

@@ -57,10 +57,9 @@ macro_rules! test_c {
 
             Command::new("dot")
                 .args([
+                    "-O",
                     "-Tpdf",
                     concat!("testdata/", stringify!($name), ".gv"),
-                    "-o",
-                    concat!("testdata/", stringify!($name), ".pdf"),
                 ])
                 .status()
                 .unwrap()

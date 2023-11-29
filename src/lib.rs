@@ -8,18 +8,19 @@ use either::Either;
 use llvm_plugin::{
     inkwell::{
         llvm_sys::prelude::LLVMValueRef,
+        module::Module,
         values::{
             AnyValue, AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue,
         },
     },
-    utils::InstructionIterator,
-    AnalysisKey, FunctionAnalysisManager, LlvmFunctionAnalysis, LlvmFunctionPass, PassBuilder,
+    utils::{FunctionIterator, InstructionIterator},
+    AnalysisKey, LlvmModuleAnalysis, LlvmModulePass, ModuleAnalysisManager, PassBuilder,
     PipelineParsing, PreservedAnalyses,
 };
 
 #[llvm_plugin::plugin(name = "AutoIsa", version = "0.1")]
 fn plugin_registrar(builder: &mut PassBuilder) {
-    builder.add_function_pipeline_parsing_callback(|name, pass_manager| {
+    builder.add_module_pipeline_parsing_callback(|name, pass_manager| {
         if name == "auto-isa" {
             pass_manager.add_pass(AutoIsaPass);
             PipelineParsing::Parsed
@@ -28,93 +29,94 @@ fn plugin_registrar(builder: &mut PassBuilder) {
         }
     });
 
-    builder.add_function_analysis_registration_callback(|manager| {
+    builder.add_module_analysis_registration_callback(|manager| {
         manager.register_pass(AutoIsaAnalysis);
     });
 }
 
 struct AutoIsaPass;
 
-impl LlvmFunctionPass for AutoIsaPass {
-    fn run_pass(
-        &self,
-        function: &mut FunctionValue,
-        manager: &FunctionAnalysisManager,
-    ) -> PreservedAnalyses {
-        println!("strict digraph {{");
-        manager.get_result::<AutoIsaAnalysis>(function);
-        println!("}}");
-
+impl LlvmModulePass for AutoIsaPass {
+    fn run_pass(&self, module: &mut Module, manager: &ModuleAnalysisManager) -> PreservedAnalyses {
+        manager.get_result::<AutoIsaAnalysis>(module);
         PreservedAnalyses::All
     }
 }
 
 struct AutoIsaAnalysis;
 
-impl LlvmFunctionAnalysis for AutoIsaAnalysis {
+impl LlvmModuleAnalysis for AutoIsaAnalysis {
     type Result = ();
 
-    fn run_analysis(&self, function: &FunctionValue, _: &FunctionAnalysisManager) -> Self::Result {
-        const TARGET_INSTRUCTIONS: &[InstructionOpcode] =
-            &[InstructionOpcode::Store, InstructionOpcode::Load];
-
-        let mut output = stdout().lock();
-        writeln!(output, "subgraph {{").unwrap();
-
-        let state = {
-            let mut state = FunctionAnalysisState {
-                fn_name: function.get_name().to_string_lossy(),
-                ids: HashMap::new(),
-            };
-            let mut instruction_count = 0;
-
-            for bb in function.get_basic_blocks() {
-                for instr in InstructionIterator::new(&bb) {
-                    assert!(
-                        state
-                            .ids
-                            .insert(instr.as_value_ref(), instruction_count)
-                            .is_none()
-                    );
-                    instruction_count += 1;
-                }
-            }
-
-            state
-        };
-
-        for bb in function.get_basic_blocks() {
-            for instr in InstructionIterator::new(&bb) {
-                if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
-                    continue;
-                }
-
-                writeln!(output, "subgraph {{").unwrap();
-
-                {
-                    let mut path = Vec::new();
-                    find_instruction_dependencies(&mut output, &state, &mut path, instr);
-                }
-
-                writeln!(
-                    output,
-                    "cluster=true\nlabel=\"{:?} instruction dependencies\"\nlabelloc=b\n}}",
-                    instr.get_opcode()
-                )
-                .unwrap();
-            }
+    fn run_analysis(&self, module: &Module<'_>, _: &ModuleAnalysisManager) -> Self::Result {
+        println!("strict digraph {{");
+        for function in FunctionIterator::new(module) {
+            analyze_function(function);
         }
-        writeln!(
-            output,
-            "cluster=true\nlabel={}\nlabelloc=b\n}}",
-            state.fn_name
-        )
-        .unwrap();
+        println!("}}");
     }
 
     fn id() -> AnalysisKey {
         1 as AnalysisKey
     }
+}
+
+fn analyze_function(function: FunctionValue) {
+    const TARGET_INSTRUCTIONS: &[InstructionOpcode] =
+        &[InstructionOpcode::Store, InstructionOpcode::Load];
+
+    let mut output = stdout().lock();
+    writeln!(output, "subgraph {{").unwrap();
+
+    let state = {
+        let mut state = FunctionAnalysisState {
+            fn_name: function.get_name().to_string_lossy(),
+            ids: HashMap::new(),
+        };
+        let mut instruction_count = 0;
+
+        for bb in function.get_basic_blocks() {
+            for instr in InstructionIterator::new(&bb) {
+                assert!(
+                    state
+                        .ids
+                        .insert(instr.as_value_ref(), instruction_count)
+                        .is_none()
+                );
+                instruction_count += 1;
+            }
+        }
+
+        state
+    };
+
+    for bb in function.get_basic_blocks() {
+        for instr in InstructionIterator::new(&bb) {
+            if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
+                continue;
+            }
+
+            writeln!(output, "subgraph {{").unwrap();
+
+            {
+                let mut path = Vec::new();
+                find_instruction_dependencies(&mut output, &state, &mut path, instr);
+            }
+
+            writeln!(
+                output,
+                "cluster=true\nlabel=\"{:?} instruction dependencies\"\nlabelloc=b\n}}",
+                instr.get_opcode()
+            )
+            .unwrap();
+        }
+    }
+    writeln!(
+        output,
+        "cluster=true\nlabel=\"{}\"\nlabelloc=b\n}}",
+        state.fn_name
+    )
+    .unwrap();
 }
 
 struct FunctionAnalysisState<'a> {

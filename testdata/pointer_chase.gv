@@ -220,7 +220,12 @@ label="Load instruction dependencies"
 labelloc=b
 }
 cluster=true
-label=pointer_chase
+label="pointer_chase"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.dbg.value"
 labelloc=b
 }
 }
