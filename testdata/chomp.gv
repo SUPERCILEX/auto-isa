@@ -170,31 +170,6 @@ next_data_7 -> {
 }
 next_data_11 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %data, i64 %idxprom, !dbg !122"]
 next_data_11 -> {
-next_data_10
-}
-next_data_10 [label="SExt" comment="  %idxprom = sext i32 %counter.015 to i64, !dbg !122"]
-next_data_10 -> {
-next_data_7
-}
-next_data_7 [label="Phi" comment="  %counter.015 = phi i32 [ %counter.1, %if.end ], [ 0, %entry ]"]
-next_data_7 -> {
-next_data_24
-}
-next_data_24 [label="Phi" comment="  %counter.1 = phi i32 [ %inc, %if.then ], [ %counter.015, %if.else ], !dbg !114"]
-next_data_24 -> {
-next_data_17
-next_data_7
-}
-next_data_17 [label="Add" comment="  %inc = add nsw i32 %counter.015, 1, !dbg !130"]
-next_data_17 -> {
-next_data_7
-}
-next_data_7 [label="Phi" comment="  %counter.015 = phi i32 [ %counter.1, %if.end ], [ 0, %entry ]"]
-next_data_7 -> {
-// Cycle
-}
-next_data_7 [label="Phi" comment="  %counter.015 = phi i32 [ %counter.1, %if.end ], [ 0, %entry ]"]
-next_data_7 -> {
 // Cycle
 }
 cluster=true
@@ -325,22 +300,6 @@ melt_data_10 -> {
 melt_data_11 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %data1, i64 %indvars.iv.next, !dbg !122"]
 melt_data_11 -> {
 melt_data_10
-}
-melt_data_10 [label="Add" comment="  %indvars.iv.next = add nsw i64 %indvars.iv, -1, !dbg !121"]
-melt_data_10 -> {
-melt_data_9
-}
-melt_data_9 [label="Phi" comment="  %indvars.iv = phi i64 [ %1, %while.body.preheader ], [ %indvars.iv.next, %if.end ]"]
-melt_data_9 -> {
-melt_data_7
-melt_data_10
-}
-melt_data_7 [label="SExt" comment="  %1 = sext i32 %0 to i64, !dbg !120"]
-melt_data_7 -> {
-melt_data_2
-}
-melt_data_2 [label="Load" comment="  %0 = load i32, ptr @ncol, align 4, !dbg !115, !tbaa !116"]
-melt_data_2 -> {
 }
 melt_data_10 [label="Add" comment="  %indvars.iv.next = add nsw i64 %indvars.iv, -1, !dbg !121"]
 melt_data_10 -> {
@@ -1913,17 +1872,11 @@ make_list_29 -> {
 }
 make_list_179 [label="Add" comment="  %sub = add nsw i32 %32, -1, !dbg !280"]
 make_list_179 -> {
-make_list_178
-}
-make_list_178 [label="Load" comment="  %32 = load i32, ptr @ncol, align 4, !dbg !278, !tbaa !121"]
-make_list_178 -> {
+// Cycle
 }
 make_list_179 [label="Add" comment="  %sub = add nsw i32 %32, -1, !dbg !280"]
 make_list_179 -> {
-make_list_178
-}
-make_list_178 [label="Load" comment="  %32 = load i32, ptr @ncol, align 4, !dbg !278, !tbaa !121"]
-make_list_178 -> {
+// Cycle
 }
 make_list_223 [label="Add" comment="  %sub28 = add nsw i32 %40, -1, !dbg !311"]
 make_list_223 -> {
@@ -1953,137 +1906,15 @@ make_list_28 -> {
 }
 make_list_182 [label="Add" comment="  %sub20 = add nsw i32 %33, -1, !dbg !282"]
 make_list_182 -> {
-make_list_181
-}
-make_list_181 [label="Load" comment="  %33 = load i32, ptr @nrow, align 4, !dbg !281, !tbaa !121"]
-make_list_181 -> {
+// Cycle
 }
 make_list_182 [label="Add" comment="  %sub20 = add nsw i32 %33, -1, !dbg !282"]
 make_list_182 -> {
-make_list_181
-}
-make_list_181 [label="Load" comment="  %33 = load i32, ptr @nrow, align 4, !dbg !281, !tbaa !121"]
-make_list_181 -> {
+// Cycle
 }
 make_list_230 [label="Phi" comment="  %row.3 = phi i32 [ %row.2, %if.else ], [ %row.198, %if.end ], [ %sub20, %if.then23 ], [ %row.198, %land.lhs.true ], [ %sub20, %if.then19 ], [ %sub20, %while.cond.i80 ], !dbg !315"]
 make_list_230 -> {
-make_list_224
-make_list_28
-make_list_182
-make_list_28
-make_list_182
-make_list_182
-}
-make_list_224 [label="Select" comment="  %row.2 = select i1 %cmp.not18.i, i32 %sub28, i32 %row.198, !dbg !311"]
-make_list_224 -> {
-make_list_40
-make_list_223
-make_list_28
-}
-make_list_40 [label="ICmp" comment="  %cmp.not18.i = icmp eq i32 %col.097, 0, !dbg !154"]
-make_list_40 -> {
-make_list_29
-}
-make_list_29 [label="Phi" comment="  %col.097 = phi i32 [ 0, %for.body3.lr.ph ], [ %inc, %if.end31 ]"]
-make_list_29 -> {
-make_list_236
-}
-make_list_236 [label="Add" comment="  %inc = add nsw i32 %col.1, 1, !dbg !317"]
-make_list_236 -> {
-make_list_229
-}
-make_list_229 [label="Phi" comment="  %col.1 = phi i32 [ %sub30, %if.else ], [ %col.097, %if.end ], [ %sub, %if.then23 ], [ %col.097, %land.lhs.true ], [ %sub, %if.then19 ], [ %sub, %while.cond.i80 ], !dbg !314"]
-make_list_229 -> {
-make_list_226
-make_list_29
-make_list_179
-make_list_29
-make_list_179
-make_list_179
-}
-make_list_226 [label="Add" comment="  %sub30 = add nsw i32 %2, -1, !dbg !313"]
-make_list_226 -> {
-make_list_26
-}
-make_list_26 [label="Phi" comment="  %2 = phi i32 [ %1, %for.body3.lr.ph ], [ %41, %if.end31 ]"]
-make_list_26 -> {
-make_list_20
-make_list_238
-}
-make_list_20 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_20 -> {
-}
-make_list_238 [label="Load" comment="  %41 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_238 -> {
-}
-make_list_29 [label="Phi" comment="  %col.097 = phi i32 [ 0, %for.body3.lr.ph ], [ %inc, %if.end31 ]"]
-make_list_29 -> {
 // Cycle
-}
-make_list_179 [label="Add" comment="  %sub = add nsw i32 %32, -1, !dbg !280"]
-make_list_179 -> {
-make_list_178
-}
-make_list_178 [label="Load" comment="  %32 = load i32, ptr @ncol, align 4, !dbg !278, !tbaa !121"]
-make_list_178 -> {
-}
-make_list_29 [label="Phi" comment="  %col.097 = phi i32 [ 0, %for.body3.lr.ph ], [ %inc, %if.end31 ]"]
-make_list_29 -> {
-// Cycle
-}
-make_list_179 [label="Add" comment="  %sub = add nsw i32 %32, -1, !dbg !280"]
-make_list_179 -> {
-make_list_178
-}
-make_list_178 [label="Load" comment="  %32 = load i32, ptr @ncol, align 4, !dbg !278, !tbaa !121"]
-make_list_178 -> {
-}
-make_list_179 [label="Add" comment="  %sub = add nsw i32 %32, -1, !dbg !280"]
-make_list_179 -> {
-make_list_178
-}
-make_list_178 [label="Load" comment="  %32 = load i32, ptr @ncol, align 4, !dbg !278, !tbaa !121"]
-make_list_178 -> {
-}
-make_list_223 [label="Add" comment="  %sub28 = add nsw i32 %40, -1, !dbg !311"]
-make_list_223 -> {
-make_list_222
-}
-make_list_222 [label="Load" comment="  %40 = load i32, ptr @nrow, align 4, !dbg !311"]
-make_list_222 -> {
-}
-make_list_28 [label="Phi" comment="  %row.198 = phi i32 [ %row.0102, %for.body3.lr.ph ], [ %row.3, %if.end31 ]"]
-make_list_28 -> {
-// Cycle
-}
-make_list_28 [label="Phi" comment="  %row.198 = phi i32 [ %row.0102, %for.body3.lr.ph ], [ %row.3, %if.end31 ]"]
-make_list_28 -> {
-// Cycle
-}
-make_list_182 [label="Add" comment="  %sub20 = add nsw i32 %33, -1, !dbg !282"]
-make_list_182 -> {
-make_list_181
-}
-make_list_181 [label="Load" comment="  %33 = load i32, ptr @nrow, align 4, !dbg !281, !tbaa !121"]
-make_list_181 -> {
-}
-make_list_28 [label="Phi" comment="  %row.198 = phi i32 [ %row.0102, %for.body3.lr.ph ], [ %row.3, %if.end31 ]"]
-make_list_28 -> {
-// Cycle
-}
-make_list_182 [label="Add" comment="  %sub20 = add nsw i32 %33, -1, !dbg !282"]
-make_list_182 -> {
-make_list_181
-}
-make_list_181 [label="Load" comment="  %33 = load i32, ptr @nrow, align 4, !dbg !281, !tbaa !121"]
-make_list_181 -> {
-}
-make_list_182 [label="Add" comment="  %sub20 = add nsw i32 %33, -1, !dbg !282"]
-make_list_182 -> {
-make_list_181
-}
-make_list_181 [label="Load" comment="  %33 = load i32, ptr @nrow, align 4, !dbg !281, !tbaa !121"]
-make_list_181 -> {
 }
 make_list_64 [label="GetElementPtr" comment="  %arrayidx7.i = getelementptr inbounds i32, ptr %call.i, i64 %indvars.iv23.i, !dbg !170"]
 make_list_64 -> {
@@ -2104,14 +1935,7 @@ make_list_26
 }
 make_list_26 [label="Phi" comment="  %2 = phi i32 [ %1, %for.body3.lr.ph ], [ %41, %if.end31 ]"]
 make_list_26 -> {
-make_list_20
-make_list_238
-}
-make_list_20 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_20 -> {
-}
-make_list_238 [label="Load" comment="  %41 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_238 -> {
+// Cycle
 }
 make_list_62 [label="Phi" comment="  %indvars.iv23.i = phi i64 [ %6, %for.body5.preheader.i ], [ %indvars.iv.next24.i, %for.body5.i ]"]
 make_list_62 -> {
@@ -2202,18 +2026,7 @@ make_list_78 -> {
 }
 make_list_35 [label="SExt" comment="  %conv.i = sext i32 %2 to i64, !dbg !153"]
 make_list_35 -> {
-make_list_26
-}
-make_list_26 [label="Phi" comment="  %2 = phi i32 [ %1, %for.body3.lr.ph ], [ %41, %if.end31 ]"]
-make_list_26 -> {
-make_list_20
-make_list_238
-}
-make_list_20 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_20 -> {
-}
-make_list_238 [label="Load" comment="  %41 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_238 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -2317,46 +2130,11 @@ make_list_35
 }
 make_list_35 [label="SExt" comment="  %conv.i = sext i32 %2 to i64, !dbg !153"]
 make_list_35 -> {
-make_list_26
-}
-make_list_26 [label="Phi" comment="  %2 = phi i32 [ %1, %for.body3.lr.ph ], [ %41, %if.end31 ]"]
-make_list_26 -> {
-make_list_20
-make_list_238
-}
-make_list_20 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_20 -> {
-}
-make_list_238 [label="Load" comment="  %41 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_238 -> {
-}
-make_list_78 [label="Add" comment="  %indvars.iv.next.i66 = add nsw i64 %indvars.iv.i65, -1, !dbg !185"]
-make_list_78 -> {
-make_list_77
-}
-make_list_77 [label="Phi" comment="  %indvars.iv.i65 = phi i64 [ %indvars.iv.next.i66, %if.end.i ], [ %conv.i, %make_data.exit ]"]
-make_list_77 -> {
-make_list_78
-make_list_35
+// Cycle
 }
 make_list_78 [label="Add" comment="  %indvars.iv.next.i66 = add nsw i64 %indvars.iv.i65, -1, !dbg !185"]
 make_list_78 -> {
 // Cycle
-}
-make_list_35 [label="SExt" comment="  %conv.i = sext i32 %2 to i64, !dbg !153"]
-make_list_35 -> {
-make_list_26
-}
-make_list_26 [label="Phi" comment="  %2 = phi i32 [ %1, %for.body3.lr.ph ], [ %41, %if.end31 ]"]
-make_list_26 -> {
-make_list_20
-make_list_238
-}
-make_list_20 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_20 -> {
-}
-make_list_238 [label="Load" comment="  %41 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_238 -> {
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2410,18 +2188,7 @@ make_list_98 -> {
 }
 make_list_35 [label="SExt" comment="  %conv.i = sext i32 %2 to i64, !dbg !153"]
 make_list_35 -> {
-make_list_26
-}
-make_list_26 [label="Phi" comment="  %2 = phi i32 [ %1, %for.body3.lr.ph ], [ %41, %if.end31 ]"]
-make_list_26 -> {
-make_list_20
-make_list_238
-}
-make_list_20 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_20 -> {
-}
-make_list_238 [label="Load" comment="  %41 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_238 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -2523,34 +2290,18 @@ make_list_112 -> {
 }
 make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
 make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
 // Cycle
 }
 make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
 make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
 // Cycle
 }
 make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
 make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
 // Cycle
 }
 make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
 make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
 // Cycle
 }
 make_list_4 [label="Call" comment="  %call = tail call noalias dereferenceable_or_null(16) ptr @malloc(i64 noundef 16) #15, !dbg !125"]
@@ -2558,55 +2309,6 @@ make_list_4 -> {
 }
 make_list_231 [label="Phi" comment="  %current.2 = phi ptr [ %current.199, %if.else ], [ %22, %if.end ], [ %22, %if.then23 ], [ %22, %land.lhs.true ], [ %22, %if.then19 ], [ %22, %while.cond.i80 ], !dbg !119"]
 make_list_231 -> {
-make_list_27
-make_list_135
-make_list_135
-make_list_135
-make_list_135
-make_list_135
-}
-make_list_27 [label="Phi" comment="  %current.199 = phi ptr [ %current.0103, %for.body3.lr.ph ], [ %current.2, %if.end31 ]"]
-make_list_27 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-make_list_112
-}
-make_list_112 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.199, i64 0, i32 1, !dbg !218"]
-make_list_112 -> {
 // Cycle
 }
 cluster=true
@@ -2731,35 +2433,6 @@ make_list_4 -> {
 }
 make_list_231 [label="Phi" comment="  %current.2 = phi ptr [ %current.199, %if.else ], [ %22, %if.end ], [ %22, %if.then23 ], [ %22, %land.lhs.true ], [ %22, %if.then19 ], [ %22, %while.cond.i80 ], !dbg !119"]
 make_list_231 -> {
-make_list_27
-make_list_135
-make_list_135
-make_list_135
-make_list_135
-make_list_135
-}
-make_list_27 [label="Phi" comment="  %current.199 = phi ptr [ %current.0103, %for.body3.lr.ph ], [ %current.2, %if.end31 ]"]
-make_list_27 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
-// Cycle
-}
-make_list_135 [label="Load" comment="  %22 = load ptr, ptr %next7, align 8, !dbg !237, !tbaa !128"]
-make_list_135 -> {
 // Cycle
 }
 cluster=true
@@ -2938,18 +2611,7 @@ make_list_154 -> {
 }
 make_list_35 [label="SExt" comment="  %conv.i = sext i32 %2 to i64, !dbg !153"]
 make_list_35 -> {
-make_list_26
-}
-make_list_26 [label="Phi" comment="  %2 = phi i32 [ %1, %for.body3.lr.ph ], [ %41, %if.end31 ]"]
-make_list_26 -> {
-make_list_20
-make_list_238
-}
-make_list_20 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_20 -> {
-}
-make_list_238 [label="Load" comment="  %41 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !121"]
-make_list_238 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -3370,18 +3032,7 @@ make_play_11 -> {
 }
 make_play_14 [label="Call" comment="  %call.i = tail call noalias ptr @malloc(i64 noundef %mul.i) #16, !dbg !136"]
 make_play_14 -> {
-make_play_13
-}
-make_play_13 [label="Shl" comment="  %mul.i = shl nsw i64 %conv.i, 2, !dbg !136"]
-make_play_13 -> {
-make_play_12
-}
-make_play_12 [label="SExt" comment="  %conv.i = sext i32 %0 to i64, !dbg !136"]
-make_play_12 -> {
-make_play_11
-}
-make_play_11 [label="Load" comment="  %0 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !117"]
-make_play_11 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -3462,18 +3113,7 @@ make_play_30 -> {
 }
 make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
 make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
+// Cycle
 }
 make_play_44 [label="SExt" comment="  %idxprom.i = sext i32 %counter.015.i to i64, !dbg !156"]
 make_play_44 -> {
@@ -3579,18 +3219,7 @@ make_play_30 -> {
 }
 make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
 make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
+// Cycle
 }
 make_play_44 [label="SExt" comment="  %idxprom.i = sext i32 %counter.015.i to i64, !dbg !156"]
 make_play_44 -> {
@@ -3697,18 +3326,7 @@ make_play_30 -> {
 }
 make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
 make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
+// Cycle
 }
 make_play_44 [label="SExt" comment="  %idxprom.i = sext i32 %counter.015.i to i64, !dbg !156"]
 make_play_44 -> {
@@ -3737,102 +3355,6 @@ make_play_41 -> {
 }
 make_play_45 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds i32, ptr %temp.0, i64 %idxprom.i, !dbg !156"]
 make_play_45 -> {
-make_play_30
-make_play_44
-}
-make_play_30 [label="Phi" comment="  %temp.0 = phi ptr [ %call.i, %make_data.exit ], [ %temp.1, %if.end20 ], !dbg !116"]
-make_play_30 -> {
-make_play_14
-make_play_194
-}
-make_play_14 [label="Call" comment="  %call.i = tail call noalias ptr @malloc(i64 noundef %mul.i) #16, !dbg !136"]
-make_play_14 -> {
-make_play_13
-}
-make_play_13 [label="Shl" comment="  %mul.i = shl nsw i64 %conv.i, 2, !dbg !136"]
-make_play_13 -> {
-make_play_12
-}
-make_play_12 [label="SExt" comment="  %conv.i = sext i32 %0 to i64, !dbg !136"]
-make_play_12 -> {
-make_play_11
-}
-make_play_11 [label="Load" comment="  %0 = load i32, ptr @ncol, align 4, !dbg !136, !tbaa !117"]
-make_play_11 -> {
-}
-make_play_194 [label="Phi" comment="  %temp.1 = phi ptr [ %temp.0, %copy_data.exit ], [ %temp.0, %valid_data.exit ], [ %call.i46, %for.cond2.preheader.i ], [ %temp.0, %while.body.preheader.i ], [ %call.i46, %for.body5.i57 ], !dbg !116"]
-make_play_194 -> {
-make_play_30
-make_play_30
-make_play_162
-make_play_30
-make_play_162
-}
-make_play_30 [label="Phi" comment="  %temp.0 = phi ptr [ %call.i, %make_data.exit ], [ %temp.1, %if.end20 ], !dbg !116"]
-make_play_30 -> {
-// Cycle
-}
-make_play_30 [label="Phi" comment="  %temp.0 = phi ptr [ %call.i, %make_data.exit ], [ %temp.1, %if.end20 ], !dbg !116"]
-make_play_30 -> {
-// Cycle
-}
-make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
-make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
-}
-make_play_30 [label="Phi" comment="  %temp.0 = phi ptr [ %call.i, %make_data.exit ], [ %temp.1, %if.end20 ], !dbg !116"]
-make_play_30 -> {
-// Cycle
-}
-make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
-make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
-}
-make_play_44 [label="SExt" comment="  %idxprom.i = sext i32 %counter.015.i to i64, !dbg !156"]
-make_play_44 -> {
-make_play_41
-}
-make_play_41 [label="Phi" comment="  %counter.015.i = phi i32 [ %counter.1.i, %if.end.i ], [ 0, %while.cond ]"]
-make_play_41 -> {
-make_play_58
-}
-make_play_58 [label="Phi" comment="  %counter.1.i = phi i32 [ %inc.i, %if.then.i ], [ %counter.015.i, %if.else.i ], !dbg !151"]
-make_play_58 -> {
-make_play_51
-make_play_41
-}
-make_play_51 [label="Add" comment="  %inc.i = add nsw i32 %counter.015.i, 1, !dbg !164"]
-make_play_51 -> {
-make_play_41
-}
-make_play_41 [label="Phi" comment="  %counter.015.i = phi i32 [ %counter.1.i, %if.end.i ], [ 0, %while.cond ]"]
-make_play_41 -> {
-// Cycle
-}
-make_play_41 [label="Phi" comment="  %counter.015.i = phi i32 [ %counter.1.i, %if.end.i ], [ 0, %while.cond ]"]
-make_play_41 -> {
 // Cycle
 }
 cluster=true
@@ -3925,18 +3447,7 @@ make_play_30 -> {
 }
 make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
 make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -4009,18 +3520,7 @@ make_play_30 -> {
 }
 make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
 make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
+// Cycle
 }
 make_play_91 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i61, 1, !dbg !191"]
 make_play_91 -> {
@@ -4081,10 +3581,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 make_play_31 [label="Phi" comment="  %current.0 = phi ptr [ %call, %make_data.exit ], [ %current.1, %if.end20 ], !dbg !116"]
@@ -4093,10 +3589,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 cluster=true
@@ -4162,10 +3654,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 make_play_31 [label="Phi" comment="  %current.0 = phi ptr [ %call, %make_data.exit ], [ %current.1, %if.end20 ], !dbg !116"]
@@ -4174,10 +3662,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 cluster=true
@@ -4247,10 +3731,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 make_play_31 [label="Phi" comment="  %current.0 = phi ptr [ %call, %make_data.exit ], [ %current.1, %if.end20 ], !dbg !116"]
@@ -4259,10 +3739,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 cluster=true
@@ -4308,10 +3784,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 make_play_31 [label="Phi" comment="  %current.0 = phi ptr [ %call, %make_data.exit ], [ %current.1, %if.end20 ], !dbg !116"]
@@ -4320,10 +3792,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 cluster=true
@@ -4399,18 +3867,7 @@ make_play_30 -> {
 }
 make_play_162 [label="Call" comment="  %call.i46 = tail call noalias ptr @malloc(i64 noundef %mul.i45) #16, !dbg !245"]
 make_play_162 -> {
-make_play_161
-}
-make_play_161 [label="Shl" comment="  %mul.i45 = shl nsw i64 %conv.i44, 2, !dbg !245"]
-make_play_161 -> {
-make_play_160
-}
-make_play_160 [label="SExt" comment="  %conv.i44 = sext i32 %29 to i64, !dbg !245"]
-make_play_160 -> {
-make_play_157
-}
-make_play_157 [label="Load" comment="  %29 = load i32, ptr @ncol, align 4, !dbg !242, !tbaa !117"]
-make_play_157 -> {
+// Cycle
 }
 make_play_1 [label="Alloca" comment="  %val = alloca i32, align 4"]
 make_play_1 -> {
@@ -4460,10 +3917,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 make_play_31 [label="Phi" comment="  %current.0 = phi ptr [ %call, %make_data.exit ], [ %current.1, %if.end20 ], !dbg !116"]
@@ -4472,10 +3925,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 cluster=true
@@ -4545,10 +3994,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 make_play_31 [label="Phi" comment="  %current.0 = phi ptr [ %call, %make_data.exit ], [ %current.1, %if.end20 ], !dbg !116"]
@@ -4557,10 +4002,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 cluster=true
@@ -4614,10 +4055,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 make_play_31 [label="Phi" comment="  %current.0 = phi ptr [ %call, %make_data.exit ], [ %current.1, %if.end20 ], !dbg !116"]
@@ -4626,10 +4063,6 @@ make_play_31 -> {
 }
 make_play_149 [label="Load" comment="  %26 = load ptr, ptr %next, align 8, !dbg !234, !tbaa !199"]
 make_play_149 -> {
-make_play_108
-}
-make_play_108 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct._play, ptr %current.0, i64 0, i32 3, !dbg !197"]
-make_play_108 -> {
 // Cycle
 }
 cluster=true
@@ -5010,56 +4443,6 @@ make_wanted_28 -> {
 }
 make_wanted_131 [label="Phi" comment="  %row.3 = phi i32 [ %row.2, %if.else ], [ %row.155, %if.then ], !dbg !235"]
 make_wanted_131 -> {
-make_wanted_126
-make_wanted_36
-}
-make_wanted_126 [label="Select" comment="  %row.2 = select i1 %cmp.not18.i, i32 %sub, i32 %row.155, !dbg !232"]
-make_wanted_126 -> {
-make_wanted_46
-make_wanted_17
-make_wanted_36
-}
-make_wanted_46 [label="ICmp" comment="  %cmp.not18.i = icmp eq i32 %col.054, 0, !dbg !148"]
-make_wanted_46 -> {
-make_wanted_37
-}
-make_wanted_37 [label="Phi" comment="  %col.054 = phi i32 [ %inc, %if.end17 ], [ 0, %for.cond1.preheader ]"]
-make_wanted_37 -> {
-make_wanted_137
-}
-make_wanted_137 [label="Add" comment="  %inc = add nsw i32 %col.1, 1, !dbg !237"]
-make_wanted_137 -> {
-make_wanted_130
-}
-make_wanted_130 [label="Phi" comment="  %col.1 = phi i32 [ %sub16, %if.else ], [ %col.054, %if.then ], !dbg !234"]
-make_wanted_130 -> {
-make_wanted_18
-make_wanted_37
-}
-make_wanted_18 [label="Add" comment="  %sub16 = add nsw i32 %1, -1"]
-make_wanted_18 -> {
-make_wanted_12
-}
-make_wanted_12 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !tbaa !126"]
-make_wanted_12 -> {
-}
-make_wanted_37 [label="Phi" comment="  %col.054 = phi i32 [ %inc, %if.end17 ], [ 0, %for.cond1.preheader ]"]
-make_wanted_37 -> {
-// Cycle
-}
-make_wanted_17 [label="Add" comment="  %sub = add nsw i32 %0, -1"]
-make_wanted_17 -> {
-make_wanted_7
-}
-make_wanted_7 [label="Load" comment="  %0 = load i32, ptr @nrow, align 4, !tbaa !126"]
-make_wanted_7 -> {
-}
-make_wanted_36 [label="Phi" comment="  %row.155 = phi i32 [ %row.3, %if.end17 ], [ %row.059, %for.cond1.preheader ]"]
-make_wanted_36 -> {
-// Cycle
-}
-make_wanted_36 [label="Phi" comment="  %row.155 = phi i32 [ %row.3, %if.end17 ], [ %row.059, %for.cond1.preheader ]"]
-make_wanted_36 -> {
 // Cycle
 }
 make_wanted_68 [label="GetElementPtr" comment="  %arrayidx7.i = getelementptr inbounds i32, ptr %call.i, i64 %indvars.iv23.i, !dbg !164"]
@@ -5081,6 +4464,7 @@ make_wanted_12
 }
 make_wanted_12 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !tbaa !126"]
 make_wanted_12 -> {
+// Cycle
 }
 make_wanted_66 [label="Phi" comment="  %indvars.iv23.i = phi i64 [ %12, %for.body5.preheader.i ], [ %indvars.iv.next24.i, %for.body5.i ]"]
 make_wanted_66 -> {
@@ -5163,10 +4547,7 @@ make_wanted_76 -> {
 }
 make_wanted_14 [label="SExt" comment="  %conv.i = sext i32 %1 to i64"]
 make_wanted_14 -> {
-make_wanted_12
-}
-make_wanted_12 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !tbaa !126"]
-make_wanted_12 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -5254,30 +4635,11 @@ make_wanted_14
 }
 make_wanted_14 [label="SExt" comment="  %conv.i = sext i32 %1 to i64"]
 make_wanted_14 -> {
-make_wanted_12
-}
-make_wanted_12 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !tbaa !126"]
-make_wanted_12 -> {
-}
-make_wanted_76 [label="Add" comment="  %indvars.iv.next.i39 = add nsw i64 %indvars.iv.i38, -1, !dbg !178"]
-make_wanted_76 -> {
-make_wanted_75
-}
-make_wanted_75 [label="Phi" comment="  %indvars.iv.i38 = phi i64 [ %indvars.iv.next.i39, %if.end.i ], [ %conv.i, %while.body.i.preheader ]"]
-make_wanted_75 -> {
-make_wanted_76
-make_wanted_14
+// Cycle
 }
 make_wanted_76 [label="Add" comment="  %indvars.iv.next.i39 = add nsw i64 %indvars.iv.i38, -1, !dbg !178"]
 make_wanted_76 -> {
 // Cycle
-}
-make_wanted_14 [label="SExt" comment="  %conv.i = sext i32 %1 to i64"]
-make_wanted_14 -> {
-make_wanted_12
-}
-make_wanted_12 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !tbaa !126"]
-make_wanted_12 -> {
 }
 cluster=true
 label="Store instruction dependencies"
@@ -5323,10 +4685,7 @@ make_wanted_95 -> {
 }
 make_wanted_14 [label="SExt" comment="  %conv.i = sext i32 %1 to i64"]
 make_wanted_14 -> {
-make_wanted_12
-}
-make_wanted_12 [label="Load" comment="  %1 = load i32, ptr @ncol, align 4, !tbaa !126"]
-make_wanted_12 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -5419,19 +4778,6 @@ make_wanted_27 -> {
 }
 make_wanted_132 [label="Phi" comment="  %current.2 = phi ptr [ %current.156, %if.else ], [ %20, %if.then ], !dbg !117"]
 make_wanted_132 -> {
-make_wanted_35
-make_wanted_123
-}
-make_wanted_35 [label="Phi" comment="  %current.156 = phi ptr [ %current.2, %if.end17 ], [ %current.060, %for.cond1.preheader ]"]
-make_wanted_35 -> {
-// Cycle
-}
-make_wanted_123 [label="Load" comment="  %20 = load ptr, ptr %next7, align 8, !dbg !230, !tbaa !121"]
-make_wanted_123 -> {
-make_wanted_109
-}
-make_wanted_109 [label="GetElementPtr" comment="  %next7 = getelementptr inbounds %struct._list, ptr %current.156, i64 0, i32 1, !dbg !212"]
-make_wanted_109 -> {
 // Cycle
 }
 cluster=true
@@ -5528,15 +4874,6 @@ make_wanted_27 -> {
 }
 make_wanted_132 [label="Phi" comment="  %current.2 = phi ptr [ %current.156, %if.else ], [ %20, %if.then ], !dbg !117"]
 make_wanted_132 -> {
-make_wanted_35
-make_wanted_123
-}
-make_wanted_35 [label="Phi" comment="  %current.156 = phi ptr [ %current.2, %if.end17 ], [ %current.060, %for.cond1.preheader ]"]
-make_wanted_35 -> {
-// Cycle
-}
-make_wanted_123 [label="Load" comment="  %20 = load ptr, ptr %next7, align 8, !dbg !230, !tbaa !121"]
-make_wanted_123 -> {
 // Cycle
 }
 cluster=true
@@ -6863,18 +6200,7 @@ main_61 -> {
 }
 main_144 [label="Call" comment="  %call.i.i = tail call noalias ptr @malloc(i64 noundef %mul.i.i) #15, !dbg !265"]
 main_144 -> {
-main_143
-}
-main_143 [label="Shl" comment="  %mul.i.i = shl nsw i64 %7, 2, !dbg !265"]
-main_143 -> {
-main_62
-}
-main_62 [label="SExt" comment="  %7 = sext i32 %6 to i64"]
-main_62 -> {
-main_61
-}
-main_61 [label="Load" comment="  %6 = load i32, ptr @ncol, align 4, !tbaa !129"]
-main_61 -> {
+// Cycle
 }
 main_19 [label="Call" comment="  %call.i = tail call noalias ptr @malloc(i64 noundef %mul.i) #15, !dbg !148"]
 main_19 -> {
@@ -6906,10 +6232,7 @@ main_77 -> {
 }
 main_62 [label="SExt" comment="  %7 = sext i32 %6 to i64"]
 main_62 -> {
-main_61
-}
-main_61 [label="Load" comment="  %6 = load i32, ptr @ncol, align 4, !tbaa !129"]
-main_61 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -7379,18 +6702,7 @@ main_61 -> {
 }
 main_144 [label="Call" comment="  %call.i.i = tail call noalias ptr @malloc(i64 noundef %mul.i.i) #15, !dbg !265"]
 main_144 -> {
-main_143
-}
-main_143 [label="Shl" comment="  %mul.i.i = shl nsw i64 %7, 2, !dbg !265"]
-main_143 -> {
-main_62
-}
-main_62 [label="SExt" comment="  %7 = sext i32 %6 to i64"]
-main_62 -> {
-main_61
-}
-main_61 [label="Load" comment="  %6 = load i32, ptr @ncol, align 4, !tbaa !129"]
-main_61 -> {
+// Cycle
 }
 main_166 [label="Phi" comment="  %indvars.iv.i61 = phi i64 [ %indvars.iv.next.i64, %while.cond.i65 ], [ 0, %get_good_move.exit ], !dbg !272"]
 main_166 -> {
@@ -7445,18 +6757,7 @@ main_61 -> {
 }
 main_144 [label="Call" comment="  %call.i.i = tail call noalias ptr @malloc(i64 noundef %mul.i.i) #15, !dbg !265"]
 main_144 -> {
-main_143
-}
-main_143 [label="Shl" comment="  %mul.i.i = shl nsw i64 %7, 2, !dbg !265"]
-main_143 -> {
-main_62
-}
-main_62 [label="SExt" comment="  %7 = sext i32 %6 to i64"]
-main_62 -> {
-main_61
-}
-main_61 [label="Load" comment="  %6 = load i32, ptr @ncol, align 4, !tbaa !129"]
-main_61 -> {
+// Cycle
 }
 main_19 [label="Call" comment="  %call.i = tail call noalias ptr @malloc(i64 noundef %mul.i) #15, !dbg !148"]
 main_19 -> {

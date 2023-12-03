@@ -1,6 +1,6 @@
 use std::{
     borrow::Cow,
-    collections::HashMap,
+    collections::{HashMap, HashSet},
     io::{stdout, Write},
 };
 
@@ -99,8 +99,8 @@ fn analyze_function(function: FunctionValue) {
             writeln!(output, "subgraph {{").unwrap();
 
             {
-                let mut path = Vec::new();
-                find_instruction_dependencies(&mut output, &state, &mut path, instr);
+                let mut seen = HashSet::new();
+                find_instruction_dependencies(&mut output, &state, &mut seen, instr);
             }
 
             writeln!(
@@ -127,7 +127,7 @@ struct FunctionAnalysisState<'a> {
 fn find_instruction_dependencies(
     output: &mut impl Write,
     state: &FunctionAnalysisState,
-    path: &mut Vec<LLVMValueRef>,
+    seen: &mut HashSet<LLVMValueRef>,
     instruction: InstructionValue,
 ) {
     writeln!(
@@ -147,10 +147,11 @@ fn find_instruction_dependencies(
     )
     .unwrap();
 
-    if path.contains(&instruction.as_value_ref()) {
+    if seen.contains(&instruction.as_value_ref()) {
         writeln!(output, "// Cycle\n}}").unwrap();
         return;
     }
+    seen.insert(instruction.as_value_ref());
 
     let mut pending = Vec::new();
 
@@ -169,8 +170,8 @@ fn find_instruction_dependencies(
                         .unwrap();
                     }
                 }
-                Either::Right(_block) => {
-                    todo!();
+                Either::Right(_) => {
+                    panic!("Haven't thought about how you get here.")
                 }
             }
         }
@@ -179,8 +180,6 @@ fn find_instruction_dependencies(
     writeln!(output, "}}").unwrap();
 
     for instr in pending {
-        path.push(instruction.as_value_ref());
-        find_instruction_dependencies(output, state, path, instr);
-        path.pop();
+        find_instruction_dependencies(output, state, seen, instr);
     }
 }

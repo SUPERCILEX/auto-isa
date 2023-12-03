@@ -160,26 +160,6 @@ pointer_chase_10
 }
 pointer_chase_10 [label="Load" comment="  %0 = load ptr, ptr %data, align 8, !dbg !38, !tbaa !40"]
 pointer_chase_10 -> {
-pointer_chase_9
-}
-pointer_chase_9 [label="GetElementPtr" comment="  %data = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 5, !dbg !38"]
-pointer_chase_9 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-pointer_chase_18
-}
-pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
-pointer_chase_18 -> {
-pointer_chase_17
-}
-pointer_chase_17 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 4, !dbg !50"]
-pointer_chase_17 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
 // Cycle
 }
 pointer_chase_6 [label="Phi" comment="  %add39 = phi i32 [ %result.promoted, %while.body.lr.ph ], [ %add3, %while.body ], !dbg !31"]

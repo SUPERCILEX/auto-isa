@@ -560,56 +560,7 @@ schedule_0 -> {
 }
 schedule_8 [label="GetElementPtr" comment="  %t_wkq = getelementptr inbounds %struct.task, ptr %1, i64 0, i32 3, !dbg !137"]
 schedule_8 -> {
-schedule_3
-}
-schedule_3 [label="Phi" comment="  %1 = phi ptr [ %storemerge, %sw.epilog ], [ %0, %entry ]"]
-schedule_3 -> {
-schedule_61
-schedule_0
-}
-schedule_61 [label="Phi" comment="  %storemerge = phi ptr [ %15, %sw.bb11 ], [ %call, %if.end ], !dbg !197"]
-schedule_61 -> {
-schedule_59
-schedule_49
-}
-schedule_59 [label="Load" comment="  %15 = load ptr, ptr %1, align 8, !dbg !194, !tbaa !195"]
-schedule_59 -> {
-schedule_3
-}
-schedule_3 [label="Phi" comment="  %1 = phi ptr [ %storemerge, %sw.epilog ], [ %0, %entry ]"]
-schedule_3 -> {
 // Cycle
-}
-schedule_49 [label="Call" comment="  %call = tail call ptr %11(ptr noundef %pkt.0) #11, !dbg !185"]
-schedule_49 -> {
-schedule_17
-schedule_48
-}
-schedule_17 [label="Phi" comment="  %pkt.0 = phi ptr [ null, %while.body ], [ null, %while.body ], [ %3, %sw.bb ], !dbg !130"]
-schedule_17 -> {
-schedule_9
-}
-schedule_9 [label="Load" comment="  %3 = load ptr, ptr %t_wkq, align 8, !dbg !137, !tbaa !139"]
-schedule_9 -> {
-schedule_8
-}
-schedule_8 [label="GetElementPtr" comment="  %t_wkq = getelementptr inbounds %struct.task, ptr %1, i64 0, i32 3, !dbg !137"]
-schedule_8 -> {
-// Cycle
-}
-schedule_48 [label="Load" comment="  %11 = load ptr, ptr %t_fn, align 8, !dbg !183, !tbaa !184"]
-schedule_48 -> {
-schedule_47
-}
-schedule_47 [label="GetElementPtr" comment="  %t_fn = getelementptr inbounds %struct.task, ptr %10, i64 0, i32 5, !dbg !183"]
-schedule_47 -> {
-schedule_46
-}
-schedule_46 [label="Load" comment="  %10 = load ptr, ptr @tcb, align 8, !dbg !182, !tbaa !124"]
-schedule_46 -> {
-}
-schedule_0 [label="Load" comment="  %0 = load ptr, ptr @tcb, align 8, !dbg !123, !tbaa !124"]
-schedule_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
@@ -692,56 +643,7 @@ schedule_3
 }
 schedule_3 [label="Phi" comment="  %1 = phi ptr [ %storemerge, %sw.epilog ], [ %0, %entry ]"]
 schedule_3 -> {
-schedule_61
-schedule_0
-}
-schedule_61 [label="Phi" comment="  %storemerge = phi ptr [ %15, %sw.bb11 ], [ %call, %if.end ], !dbg !197"]
-schedule_61 -> {
-schedule_59
-schedule_49
-}
-schedule_59 [label="Load" comment="  %15 = load ptr, ptr %1, align 8, !dbg !194, !tbaa !195"]
-schedule_59 -> {
-schedule_3
-}
-schedule_3 [label="Phi" comment="  %1 = phi ptr [ %storemerge, %sw.epilog ], [ %0, %entry ]"]
-schedule_3 -> {
 // Cycle
-}
-schedule_49 [label="Call" comment="  %call = tail call ptr %11(ptr noundef %pkt.0) #11, !dbg !185"]
-schedule_49 -> {
-schedule_17
-schedule_48
-}
-schedule_17 [label="Phi" comment="  %pkt.0 = phi ptr [ null, %while.body ], [ null, %while.body ], [ %3, %sw.bb ], !dbg !130"]
-schedule_17 -> {
-schedule_9
-}
-schedule_9 [label="Load" comment="  %3 = load ptr, ptr %t_wkq, align 8, !dbg !137, !tbaa !139"]
-schedule_9 -> {
-schedule_8
-}
-schedule_8 [label="GetElementPtr" comment="  %t_wkq = getelementptr inbounds %struct.task, ptr %1, i64 0, i32 3, !dbg !137"]
-schedule_8 -> {
-schedule_3
-}
-schedule_3 [label="Phi" comment="  %1 = phi ptr [ %storemerge, %sw.epilog ], [ %0, %entry ]"]
-schedule_3 -> {
-// Cycle
-}
-schedule_48 [label="Load" comment="  %11 = load ptr, ptr %t_fn, align 8, !dbg !183, !tbaa !184"]
-schedule_48 -> {
-schedule_47
-}
-schedule_47 [label="GetElementPtr" comment="  %t_fn = getelementptr inbounds %struct.task, ptr %10, i64 0, i32 5, !dbg !183"]
-schedule_47 -> {
-schedule_46
-}
-schedule_46 [label="Load" comment="  %10 = load ptr, ptr @tcb, align 8, !dbg !182, !tbaa !124"]
-schedule_46 -> {
-}
-schedule_0 [label="Load" comment="  %0 = load ptr, ptr @tcb, align 8, !dbg !123, !tbaa !124"]
-schedule_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
@@ -1390,15 +1292,7 @@ schedule_3
 }
 schedule_3 [label="Phi" comment="  %1 = phi ptr [ %storemerge, %sw.epilog ], [ %0, %entry ]"]
 schedule_3 -> {
-schedule_61
-schedule_0
-}
-schedule_61 [label="Phi" comment="  %storemerge = phi ptr [ %15, %sw.bb11 ], [ %call, %if.end ], !dbg !197"]
-schedule_61 -> {
 // Cycle
-}
-schedule_0 [label="Load" comment="  %0 = load ptr, ptr @tcb, align 8, !dbg !123, !tbaa !124"]
-schedule_0 -> {
 }
 schedule_48 [label="Load" comment="  %11 = load ptr, ptr %t_fn, align 8, !dbg !183, !tbaa !184"]
 schedule_48 -> {
@@ -1467,10 +1361,7 @@ Wait_0 -> {
 }
 Wait_1 [label="GetElementPtr" comment="  %t_state = getelementptr inbounds %struct.task, ptr %0, i64 0, i32 4, !dbg !125"]
 Wait_1 -> {
-Wait_0
-}
-Wait_0 [label="Load" comment="  %0 = load ptr, ptr @tcb, align 8, !dbg !120, !tbaa !121"]
-Wait_0 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -1552,10 +1443,7 @@ holdself_3 -> {
 }
 holdself_4 [label="GetElementPtr" comment="  %t_state = getelementptr inbounds %struct.task, ptr %1, i64 0, i32 4, !dbg !128"]
 holdself_4 -> {
-holdself_3
-}
-holdself_3 [label="Load" comment="  %1 = load ptr, ptr @tcb, align 8, !dbg !125, !tbaa !126"]
-holdself_3 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -1678,22 +1566,7 @@ release_6 -> {
 }
 release_19 [label="GetElementPtr" comment="  %t_state = getelementptr inbounds %struct.task, ptr %t.0.i, i64 0, i32 4, !dbg !142"]
 release_19 -> {
-release_11
-}
-release_11 [label="Phi" comment="  %t.0.i = phi ptr [ %1, %if.then.i ], [ null, %entry ], !dbg !127"]
-release_11 -> {
-release_8
-}
-release_8 [label="Load" comment="  %1 = load ptr, ptr %arrayidx.i, align 8, !dbg !131, !tbaa !132"]
-release_8 -> {
-release_7
-}
-release_7 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds [11 x ptr], ptr @tasktab, i64 0, i64 %conv.i, !dbg !131"]
-release_7 -> {
-release_6
-}
-release_6 [label="SExt" comment="  %conv.i = sext i32 %id to i64"]
-release_6 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2003,30 +1876,7 @@ qpkt_1 -> {
 }
 qpkt_33 [label="GetElementPtr" comment="  %t_state = getelementptr inbounds %struct.task, ptr %t.0.i, i64 0, i32 4, !dbg !162"]
 qpkt_33 -> {
-qpkt_13
-}
-qpkt_13 [label="Phi" comment="  %t.0.i = phi ptr [ %2, %if.then.i ], [ null, %entry ], !dbg !134"]
-qpkt_13 -> {
-qpkt_10
-}
-qpkt_10 [label="Load" comment="  %2 = load ptr, ptr %arrayidx.i, align 8, !dbg !138, !tbaa !139"]
-qpkt_10 -> {
-qpkt_9
-}
-qpkt_9 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds [11 x ptr], ptr @tasktab, i64 0, i64 %conv.i, !dbg !138"]
-qpkt_9 -> {
-qpkt_8
-}
-qpkt_8 [label="SExt" comment="  %conv.i = sext i32 %0 to i64"]
-qpkt_8 -> {
-qpkt_2
-}
-qpkt_2 [label="Load" comment="  %0 = load i32, ptr %p_id, align 8, !dbg !121, !tbaa !122"]
-qpkt_2 -> {
-qpkt_1
-}
-qpkt_1 [label="GetElementPtr" comment="  %p_id = getelementptr inbounds %struct.packet, ptr %pkt, i64 0, i32 1, !dbg !121"]
-qpkt_1 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2353,10 +2203,7 @@ idlefn_9 -> {
 }
 idlefn_10 [label="GetElementPtr" comment="  %t_state.i = getelementptr inbounds %struct.task, ptr %2, i64 0, i32 4, !dbg !139"]
 idlefn_10 -> {
-idlefn_9
-}
-idlefn_9 [label="Load" comment="  %2 = load ptr, ptr @tcb, align 8, !dbg !136, !tbaa !137"]
-idlefn_9 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2449,10 +2296,7 @@ idlefn_26 -> {
 }
 idlefn_35 [label="GetElementPtr" comment="  %t_state.i8 = getelementptr inbounds %struct.task, ptr %7, i64 0, i32 4, !dbg !175"]
 idlefn_35 -> {
-idlefn_26
-}
-idlefn_26 [label="Load" comment="  %7 = load ptr, ptr getelementptr inbounds ([11 x ptr], ptr @tasktab, i64 0, i64 5), align 8, !dbg !168, !tbaa !137"]
-idlefn_26 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2569,10 +2413,7 @@ idlefn_52 -> {
 }
 idlefn_61 [label="GetElementPtr" comment="  %t_state.i12 = getelementptr inbounds %struct.task, ptr %12, i64 0, i32 4, !dbg !195"]
 idlefn_61 -> {
-idlefn_52
-}
-idlefn_52 [label="Load" comment="  %12 = load ptr, ptr getelementptr inbounds ([11 x ptr], ptr @tasktab, i64 0, i64 6), align 16, !dbg !190, !tbaa !137"]
-idlefn_52 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2670,10 +2511,7 @@ workfn_3 -> {
 }
 workfn_4 [label="GetElementPtr" comment="  %t_state.i = getelementptr inbounds %struct.task, ptr %0, i64 0, i32 4, !dbg !135"]
 workfn_4 -> {
-workfn_3
-}
-workfn_3 [label="Load" comment="  %0 = load ptr, ptr @tcb, align 8, !dbg !125, !tbaa !131"]
-workfn_3 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2770,6 +2608,7 @@ workfn_21
 }
 workfn_21 [label="Load" comment="  %3 = load i64, ptr @v2, align 8, !dbg !157, !tbaa !143"]
 workfn_21 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -2802,6 +2641,7 @@ workfn_21
 }
 workfn_21 [label="Load" comment="  %3 = load i64, ptr @v2, align 8, !dbg !157, !tbaa !143"]
 workfn_21 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -2839,6 +2679,7 @@ workfn_21
 }
 workfn_21 [label="Load" comment="  %3 = load i64, ptr @v2, align 8, !dbg !157, !tbaa !143"]
 workfn_21 -> {
+// Cycle
 }
 workfn_28 [label="GetElementPtr" comment="  %arrayidx6 = getelementptr inbounds %struct.packet, ptr %pkt, i64 0, i32 4, i64 %indvars.iv, !dbg !166"]
 workfn_28 -> {
@@ -3115,34 +2956,7 @@ workfn_9 -> {
 }
 workfn_66 [label="GetElementPtr" comment="  %t_state.i15 = getelementptr inbounds %struct.task, ptr %t.0.i.i, i64 0, i32 4, !dbg !210"]
 workfn_66 -> {
-workfn_46
-}
-workfn_46 [label="Phi" comment="  %t.0.i.i = phi ptr [ %6, %if.then.i.i ], [ null, %for.end ], !dbg !186"]
-workfn_46 -> {
-workfn_43
-}
-workfn_43 [label="Load" comment="  %6 = load ptr, ptr %arrayidx.i.i, align 8, !dbg !190, !tbaa !131"]
-workfn_43 -> {
-workfn_42
-}
-workfn_42 [label="GetElementPtr" comment="  %arrayidx.i.i = getelementptr inbounds [11 x ptr], ptr @tasktab, i64 0, i64 %conv.i.i, !dbg !190"]
-workfn_42 -> {
-workfn_41
-}
-workfn_41 [label="AShr" comment="  %conv.i.i = ashr exact i64 %sext, 32"]
-workfn_41 -> {
-workfn_40
-}
-workfn_40 [label="Shl" comment="  %sext = shl i64 %sub, 32"]
-workfn_40 -> {
-workfn_10
-}
-workfn_10 [label="Sub" comment="  %sub = sub nsw i64 7, %2, !dbg !144"]
-workfn_10 -> {
-workfn_9
-}
-workfn_9 [label="Load" comment="  %2 = load i64, ptr @v1, align 8, !dbg !142, !tbaa !143"]
-workfn_9 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -3708,10 +3522,7 @@ handlerfn_21
 }
 handlerfn_21 [label="IntToPtr" comment="  %3 = inttoptr i64 %2 to ptr, !dbg !162"]
 handlerfn_21 -> {
-handlerfn_18
-}
-handlerfn_18 [label="Load" comment="  %2 = load i64, ptr @v1, align 8, !dbg !157, !tbaa !158"]
-handlerfn_18 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -3812,38 +3623,7 @@ handlerfn_18 -> {
 }
 handlerfn_64 [label="GetElementPtr" comment="  %t_state.i = getelementptr inbounds %struct.task, ptr %t.0.i.i, i64 0, i32 4, !dbg !212"]
 handlerfn_64 -> {
-handlerfn_44
-}
-handlerfn_44 [label="Phi" comment="  %t.0.i.i = phi ptr [ %9, %if.then.i.i ], [ null, %if.then5 ], !dbg !187"]
-handlerfn_44 -> {
-handlerfn_41
-}
-handlerfn_41 [label="Load" comment="  %9 = load ptr, ptr %arrayidx.i.i, align 8, !dbg !191, !tbaa !192"]
-handlerfn_41 -> {
-handlerfn_40
-}
-handlerfn_40 [label="GetElementPtr" comment="  %arrayidx.i.i = getelementptr inbounds [11 x ptr], ptr @tasktab, i64 0, i64 %conv.i.i, !dbg !191"]
-handlerfn_40 -> {
-handlerfn_39
-}
-handlerfn_39 [label="SExt" comment="  %conv.i.i = sext i32 %7 to i64"]
-handlerfn_39 -> {
-handlerfn_33
-}
-handlerfn_33 [label="Load" comment="  %7 = load i32, ptr %p_id.i, align 8, !dbg !179, !tbaa !180"]
-handlerfn_33 -> {
-handlerfn_32
-}
-handlerfn_32 [label="GetElementPtr" comment="  %p_id.i = getelementptr inbounds %struct.packet, ptr %3, i64 0, i32 1, !dbg !179"]
-handlerfn_32 -> {
-handlerfn_21
-}
-handlerfn_21 [label="IntToPtr" comment="  %3 = inttoptr i64 %2 to ptr, !dbg !162"]
-handlerfn_21 -> {
-handlerfn_18
-}
-handlerfn_18 [label="Load" comment="  %2 = load i64, ptr @v1, align 8, !dbg !157, !tbaa !158"]
-handlerfn_18 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -4034,10 +3814,7 @@ handlerfn_21
 }
 handlerfn_21 [label="IntToPtr" comment="  %3 = inttoptr i64 %2 to ptr, !dbg !162"]
 handlerfn_21 -> {
-handlerfn_18
-}
-handlerfn_18 [label="Load" comment="  %2 = load i64, ptr @v1, align 8, !dbg !157, !tbaa !158"]
-handlerfn_18 -> {
+// Cycle
 }
 handlerfn_81 [label="Load" comment="  %17 = load ptr, ptr %ptr.addr.0.i.i, align 8, !dbg !227, !tbaa !148"]
 handlerfn_81 -> {
@@ -4138,10 +3915,7 @@ handlerfn_21
 }
 handlerfn_21 [label="IntToPtr" comment="  %3 = inttoptr i64 %2 to ptr, !dbg !162"]
 handlerfn_21 -> {
-handlerfn_18
-}
-handlerfn_18 [label="Load" comment="  %2 = load i64, ptr @v1, align 8, !dbg !157, !tbaa !158"]
-handlerfn_18 -> {
+// Cycle
 }
 cluster=true
 label="Load instruction dependencies"
@@ -4187,10 +3961,7 @@ handlerfn_21
 }
 handlerfn_21 [label="IntToPtr" comment="  %3 = inttoptr i64 %2 to ptr, !dbg !162"]
 handlerfn_21 -> {
-handlerfn_18
-}
-handlerfn_18 [label="Load" comment="  %2 = load i64, ptr @v1, align 8, !dbg !157, !tbaa !158"]
-handlerfn_18 -> {
+// Cycle
 }
 handlerfn_100 [label="GetElementPtr" comment="  %p_a110 = getelementptr inbounds %struct.packet, ptr %20, i64 0, i32 3, !dbg !243"]
 handlerfn_100 -> {
@@ -4234,14 +4005,7 @@ handlerfn_18 -> {
 }
 handlerfn_23 [label="GetElementPtr" comment="  %p_a1 = getelementptr inbounds %struct.packet, ptr %3, i64 0, i32 3, !dbg !164"]
 handlerfn_23 -> {
-handlerfn_21
-}
-handlerfn_21 [label="IntToPtr" comment="  %3 = inttoptr i64 %2 to ptr, !dbg !162"]
-handlerfn_21 -> {
-handlerfn_18
-}
-handlerfn_18 [label="Load" comment="  %2 = load i64, ptr @v1, align 8, !dbg !157, !tbaa !158"]
-handlerfn_18 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -4462,10 +4226,7 @@ handlerfn_91
 }
 handlerfn_91 [label="IntToPtr" comment="  %20 = inttoptr i64 %19 to ptr, !dbg !236"]
 handlerfn_91 -> {
-handlerfn_88
-}
-handlerfn_88 [label="Load" comment="  %19 = load i64, ptr @v2, align 8, !dbg !233, !tbaa !158"]
-handlerfn_88 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -4566,38 +4327,7 @@ handlerfn_88 -> {
 }
 handlerfn_137 [label="GetElementPtr" comment="  %t_state.i42 = getelementptr inbounds %struct.task, ptr %t.0.i.i32, i64 0, i32 4, !dbg !267"]
 handlerfn_137 -> {
-handlerfn_117
-}
-handlerfn_117 [label="Phi" comment="  %t.0.i.i32 = phi ptr [ %26, %if.then.i.i31 ], [ null, %if.then8 ], !dbg !250"]
-handlerfn_117 -> {
-handlerfn_114
-}
-handlerfn_114 [label="Load" comment="  %26 = load ptr, ptr %arrayidx.i.i30, align 8, !dbg !253, !tbaa !192"]
-handlerfn_114 -> {
-handlerfn_113
-}
-handlerfn_113 [label="GetElementPtr" comment="  %arrayidx.i.i30 = getelementptr inbounds [11 x ptr], ptr @tasktab, i64 0, i64 %conv.i.i29, !dbg !253"]
-handlerfn_113 -> {
-handlerfn_112
-}
-handlerfn_112 [label="SExt" comment="  %conv.i.i29 = sext i32 %24 to i64"]
-handlerfn_112 -> {
-handlerfn_106
-}
-handlerfn_106 [label="Load" comment="  %24 = load i32, ptr %p_id.i27, align 8, !dbg !249, !tbaa !180"]
-handlerfn_106 -> {
-handlerfn_105
-}
-handlerfn_105 [label="GetElementPtr" comment="  %p_id.i27 = getelementptr inbounds %struct.packet, ptr %20, i64 0, i32 1, !dbg !249"]
-handlerfn_105 -> {
-handlerfn_91
-}
-handlerfn_91 [label="IntToPtr" comment="  %20 = inttoptr i64 %19 to ptr, !dbg !236"]
-handlerfn_91 -> {
-handlerfn_88
-}
-handlerfn_88 [label="Load" comment="  %19 = load i64, ptr @v2, align 8, !dbg !233, !tbaa !158"]
-handlerfn_88 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -4788,10 +4518,7 @@ handlerfn_91
 }
 handlerfn_91 [label="IntToPtr" comment="  %20 = inttoptr i64 %19 to ptr, !dbg !236"]
 handlerfn_91 -> {
-handlerfn_88
-}
-handlerfn_88 [label="Load" comment="  %19 = load i64, ptr @v2, align 8, !dbg !233, !tbaa !158"]
-handlerfn_88 -> {
+// Cycle
 }
 handlerfn_154 [label="Load" comment="  %34 = load ptr, ptr %ptr.addr.0.i.i49, align 8, !dbg !278, !tbaa !148"]
 handlerfn_154 -> {
@@ -4860,10 +4587,7 @@ handlerfn_164 -> {
 }
 handlerfn_165 [label="GetElementPtr" comment="  %t_state.i56 = getelementptr inbounds %struct.task, ptr %36, i64 0, i32 4, !dbg !290"]
 handlerfn_165 -> {
-handlerfn_164
-}
-handlerfn_164 [label="Load" comment="  %36 = load ptr, ptr @tcb, align 8, !dbg !284, !tbaa !192"]
-handlerfn_164 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -4929,10 +4653,7 @@ devfn_6 -> {
 }
 devfn_7 [label="GetElementPtr" comment="  %t_state.i = getelementptr inbounds %struct.task, ptr %1, i64 0, i32 4, !dbg !140"]
 devfn_7 -> {
-devfn_6
-}
-devfn_6 [label="Load" comment="  %1 = load ptr, ptr @tcb, align 8, !dbg !132, !tbaa !138"]
-devfn_6 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -5161,10 +4882,7 @@ devfn_12
 }
 devfn_12 [label="IntToPtr" comment="  %3 = inttoptr i64 %0 to ptr, !dbg !146"]
 devfn_12 -> {
-devfn_3
-}
-devfn_3 [label="Load" comment="  %0 = load i64, ptr @v1, align 8, !dbg !123, !tbaa !126"]
-devfn_3 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -5265,38 +4983,7 @@ devfn_3 -> {
 }
 devfn_48 [label="GetElementPtr" comment="  %t_state.i11 = getelementptr inbounds %struct.task, ptr %t.0.i.i, i64 0, i32 4, !dbg !187"]
 devfn_48 -> {
-devfn_28
-}
-devfn_28 [label="Phi" comment="  %t.0.i.i = phi ptr [ %6, %if.then.i.i ], [ null, %if.end ], !dbg !163"]
-devfn_28 -> {
-devfn_25
-}
-devfn_25 [label="Load" comment="  %6 = load ptr, ptr %arrayidx.i.i, align 8, !dbg !167, !tbaa !138"]
-devfn_25 -> {
-devfn_24
-}
-devfn_24 [label="GetElementPtr" comment="  %arrayidx.i.i = getelementptr inbounds [11 x ptr], ptr @tasktab, i64 0, i64 %conv.i.i, !dbg !167"]
-devfn_24 -> {
-devfn_23
-}
-devfn_23 [label="SExt" comment="  %conv.i.i = sext i32 %4 to i64"]
-devfn_23 -> {
-devfn_17
-}
-devfn_17 [label="Load" comment="  %4 = load i32, ptr %p_id.i, align 8, !dbg !154, !tbaa !155"]
-devfn_17 -> {
-devfn_16
-}
-devfn_16 [label="GetElementPtr" comment="  %p_id.i = getelementptr inbounds %struct.packet, ptr %3, i64 0, i32 1, !dbg !154"]
-devfn_16 -> {
-devfn_12
-}
-devfn_12 [label="IntToPtr" comment="  %3 = inttoptr i64 %0 to ptr, !dbg !146"]
-devfn_12 -> {
-devfn_3
-}
-devfn_3 [label="Load" comment="  %0 = load i64, ptr @v1, align 8, !dbg !123, !tbaa !126"]
-devfn_3 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"
@@ -5487,10 +5174,7 @@ devfn_12
 }
 devfn_12 [label="IntToPtr" comment="  %3 = inttoptr i64 %0 to ptr, !dbg !146"]
 devfn_12 -> {
-devfn_3
-}
-devfn_3 [label="Load" comment="  %0 = load i64, ptr @v1, align 8, !dbg !123, !tbaa !126"]
-devfn_3 -> {
+// Cycle
 }
 devfn_65 [label="Load" comment="  %14 = load ptr, ptr %ptr.addr.0.i.i, align 8, !dbg !207, !tbaa !177"]
 devfn_65 -> {
@@ -5647,10 +5331,7 @@ devfn_95 -> {
 }
 devfn_96 [label="GetElementPtr" comment="  %t_state.i16 = getelementptr inbounds %struct.task, ptr %21, i64 0, i32 4, !dbg !246"]
 devfn_96 -> {
-devfn_95
-}
-devfn_95 [label="Load" comment="  %21 = load ptr, ptr @tcb, align 8, !dbg !245, !tbaa !138"]
-devfn_95 -> {
+// Cycle
 }
 cluster=true
 label="Store instruction dependencies"

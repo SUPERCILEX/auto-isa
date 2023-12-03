@@ -95,5 +95,6 @@ test_c!(pointer_chase);
 test_c!(queens);
 test_c!(reed_solomon);
 test_c!(richards_benchmark);
+test_c!(salsa20);
 
 test_cpp!(stepanov_v1p2);

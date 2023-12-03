@@ -397,14 +397,6 @@ main_110 -> {
 }
 main_110 [label="Phi" comment="  %i.057.i = phi i32 [ 0, %entry ], [ %inc30.i, %for.inc29.i ]"]
 main_110 -> {
-main_139
-}
-main_139 [label="Add" comment="  %inc30.i = add nuw nsw i32 %i.057.i, 1, !dbg !266"]
-main_139 -> {
-main_110
-}
-main_110 [label="Phi" comment="  %i.057.i = phi i32 [ 0, %entry ], [ %inc30.i, %for.inc29.i ]"]
-main_110 -> {
 // Cycle
 }
 main_129 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds float, ptr %call.i, i64 %2, !dbg !251"]
@@ -447,14 +439,6 @@ main_121
 }
 main_116 [label="Shl" comment="  %mul19.i = shl nsw i32 %i.057.i, 6"]
 main_116 -> {
-main_110
-}
-main_110 [label="Phi" comment="  %i.057.i = phi i32 [ 0, %entry ], [ %inc30.i, %for.inc29.i ]"]
-main_110 -> {
-main_139
-}
-main_139 [label="Add" comment="  %inc30.i = add nuw nsw i32 %i.057.i, 1, !dbg !266"]
-main_139 -> {
 main_110
 }
 main_110 [label="Phi" comment="  %i.057.i = phi i32 [ 0, %entry ], [ %inc30.i, %for.inc29.i ]"]
@@ -1380,14 +1364,6 @@ mat_set_init_18 -> {
 }
 mat_set_init_18 [label="Phi" comment="  %i.057 = phi i32 [ 0, %for.cond1.preheader.lr.ph ], [ %inc30, %for.inc29 ]"]
 mat_set_init_18 -> {
-mat_set_init_53
-}
-mat_set_init_53 [label="Add" comment="  %inc30 = add nuw nsw i32 %i.057, 1, !dbg !158"]
-mat_set_init_53 -> {
-mat_set_init_18
-}
-mat_set_init_18 [label="Phi" comment="  %i.057 = phi i32 [ 0, %for.cond1.preheader.lr.ph ], [ %inc30, %for.inc29 ]"]
-mat_set_init_18 -> {
 // Cycle
 }
 mat_set_init_15 [label="SIToFP" comment="  %conv11 = sitofp i32 %mul10 to float"]
@@ -1412,14 +1388,7 @@ mat_set_init_4 -> {
 }
 mat_set_init_13 [label="Add" comment="  %sub = add nsw i32 %0, -1"]
 mat_set_init_13 -> {
-mat_set_init_5
-}
-mat_set_init_5 [label="Load" comment="  %0 = load i32, ptr %mrows, align 4, !tbaa !125"]
-mat_set_init_5 -> {
-mat_set_init_4
-}
-mat_set_init_4 [label="GetElementPtr" comment="  %mrows = getelementptr inbounds %struct.Mat, ptr %Mat, i64 0, i32 2"]
-mat_set_init_4 -> {
+// Cycle
 }
 mat_set_init_43 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds float, ptr %3, i64 %6, !dbg !143"]
 mat_set_init_43 -> {
@@ -1478,14 +1447,6 @@ mat_set_init_9
 }
 mat_set_init_9 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %Mat, i64 0, i32 3"]
 mat_set_init_9 -> {
-}
-mat_set_init_18 [label="Phi" comment="  %i.057 = phi i32 [ 0, %for.cond1.preheader.lr.ph ], [ %inc30, %for.inc29 ]"]
-mat_set_init_18 -> {
-mat_set_init_53
-}
-mat_set_init_53 [label="Add" comment="  %inc30 = add nuw nsw i32 %i.057, 1, !dbg !158"]
-mat_set_init_53 -> {
-mat_set_init_18
 }
 mat_set_init_18 [label="Phi" comment="  %i.057 = phi i32 [ 0, %for.cond1.preheader.lr.ph ], [ %inc30, %for.inc29 ]"]
 mat_set_init_18 -> {
@@ -2126,10 +2087,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -2356,10 +2314,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -2582,10 +2537,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -2804,10 +2756,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -2931,10 +2880,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -3058,10 +3004,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -3185,10 +3128,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -3415,10 +3355,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -3530,10 +3467,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -3649,10 +3583,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -3768,10 +3699,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -3994,10 +3922,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -4109,10 +4034,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -4228,10 +4150,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -4347,10 +4266,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -4561,10 +4477,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -4791,10 +4704,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -5021,10 +4931,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -5346,10 +5253,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -5655,14 +5559,6 @@ jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_133 [label="Add" comment="  %42 = add nsw i64 %35, %13"]
@@ -5674,14 +5570,6 @@ jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
 jacobi_117 -> {
 jacobi_101
 jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
 jacobi_101 -> {
@@ -5714,10 +5602,7 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
@@ -5728,14 +5613,6 @@ jacobi_12 -> {
 }
 jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -5759,19 +5636,12 @@ jacobi_324
 }
 jacobi_157 [label="Load" comment="  %54 = load ptr, ptr %c, align 8, !tbaa !165"]
 jacobi_157 -> {
+// Cycle
 }
 jacobi_324 [label="Add" comment="  %144 = add nsw i64 %indvars.iv, %81, !dbg !209"]
 jacobi_324 -> {
 jacobi_221
 jacobi_210
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -5803,21 +5673,10 @@ jacobi_94
 }
 jacobi_158 [label="Load" comment="  %55 = load i32, ptr %mrows428, align 4, !tbaa !136"]
 jacobi_158 -> {
-jacobi_36
-}
-jacobi_36 [label="GetElementPtr" comment="  %mrows428 = getelementptr inbounds %struct.Mat, ptr %c, i64 0, i32 2"]
-jacobi_36 -> {
+// Cycle
 }
 jacobi_94 [label="Trunc" comment="  %23 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_94 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -5826,21 +5685,10 @@ jacobi_67 -> {
 }
 jacobi_159 [label="Load" comment="  %56 = load i32, ptr %mcols430, align 8, !tbaa !144"]
 jacobi_159 -> {
-jacobi_37
-}
-jacobi_37 [label="GetElementPtr" comment="  %mcols430 = getelementptr inbounds %struct.Mat, ptr %c, i64 0, i32 3"]
-jacobi_37 -> {
+// Cycle
 }
 jacobi_167 [label="Trunc" comment="  %59 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_167 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -5849,10 +5697,7 @@ jacobi_101 -> {
 }
 jacobi_160 [label="Load" comment="  %57 = load i32, ptr %mdeps432, align 4, !tbaa !147"]
 jacobi_160 -> {
-jacobi_38
-}
-jacobi_38 [label="GetElementPtr" comment="  %mdeps432 = getelementptr inbounds %struct.Mat, ptr %c, i64 0, i32 4"]
-jacobi_38 -> {
+// Cycle
 }
 jacobi_329 [label="Load" comment="  %147 = load float, ptr %arrayidx501, align 4, !dbg !210, !tbaa !169"]
 jacobi_329 -> {
@@ -5865,19 +5710,12 @@ jacobi_327
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_327 [label="Add" comment="  %146 = add nsw i64 %indvars.iv, %51, !dbg !210"]
 jacobi_327 -> {
 jacobi_221
 jacobi_149
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -5899,14 +5737,6 @@ jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
 jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
 }
 jacobi_50 [label="SExt" comment="  %3 = sext i32 %2 to i64, !dbg !152"]
@@ -5915,10 +5745,7 @@ jacobi_17
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_82 [label="SExt" comment="  %11 = sext i32 %mul73 to i64, !dbg !159"]
 jacobi_82 -> {
@@ -5926,42 +5753,6 @@ jacobi_78
 }
 jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
 jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_323 [label="Call" comment="  %143 = tail call float @llvm.fmuladd.f32(float %140, float %142, float %138), !dbg !208"]
@@ -5981,19 +5772,12 @@ jacobi_317
 }
 jacobi_157 [label="Load" comment="  %54 = load ptr, ptr %c, align 8, !tbaa !165"]
 jacobi_157 -> {
+// Cycle
 }
 jacobi_317 [label="Add" comment="  %139 = add nsw i64 %indvars.iv, %80, !dbg !206"]
 jacobi_317 -> {
 jacobi_221
 jacobi_209
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -6020,21 +5804,10 @@ jacobi_93
 }
 jacobi_159 [label="Load" comment="  %56 = load i32, ptr %mcols430, align 8, !tbaa !144"]
 jacobi_159 -> {
-jacobi_37
-}
-jacobi_37 [label="GetElementPtr" comment="  %mcols430 = getelementptr inbounds %struct.Mat, ptr %c, i64 0, i32 3"]
-jacobi_37 -> {
+// Cycle
 }
 jacobi_93 [label="Trunc" comment="  %22 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_93 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -6047,22 +5820,11 @@ jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
 jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
 }
 jacobi_160 [label="Load" comment="  %57 = load i32, ptr %mdeps432, align 4, !tbaa !147"]
 jacobi_160 -> {
-jacobi_38
-}
-jacobi_38 [label="GetElementPtr" comment="  %mdeps432 = getelementptr inbounds %struct.Mat, ptr %c, i64 0, i32 4"]
-jacobi_38 -> {
+// Cycle
 }
 jacobi_322 [label="Load" comment="  %142 = load float, ptr %arrayidx463, align 4, !dbg !207, !tbaa !169"]
 jacobi_322 -> {
@@ -6075,19 +5837,12 @@ jacobi_320
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_320 [label="Add" comment="  %141 = add nsw i64 %indvars.iv, %53, !dbg !207"]
 jacobi_320 -> {
 jacobi_221
 jacobi_156
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -6100,31 +5855,7 @@ jacobi_85
 }
 jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
 jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
 }
 jacobi_85 [label="SExt" comment="  %14 = sext i32 %mul191 to i64, !dbg !159"]
 jacobi_85 -> {
@@ -6142,17 +5873,11 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
+// Cycle
 }
 jacobi_80 [label="Add" comment="  %10 = add i32 %9, -1"]
 jacobi_80 -> {
@@ -6160,14 +5885,6 @@ jacobi_79
 }
 jacobi_79 [label="Trunc" comment="  %9 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_79 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -6196,14 +5913,6 @@ jacobi_298 [label="Add" comment="  %128 = add nsw i64 %indvars.iv, %79, !dbg !19
 jacobi_298 -> {
 jacobi_221
 jacobi_208
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -6250,14 +5959,6 @@ jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
 jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_136 [label="Load" comment="  %45 = load i32, ptr %mcols124, align 8, !tbaa !144"]
@@ -6269,14 +5970,6 @@ jacobi_33 -> {
 }
 jacobi_153 [label="Trunc" comment="  %52 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_153 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -6316,19 +6009,12 @@ jacobi_301
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_301 [label="Add" comment="  %130 = add nsw i64 %indvars.iv.next, %36, !dbg !198"]
 jacobi_301 -> {
 jacobi_242
 jacobi_118
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
 }
 jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
 jacobi_242 -> {
@@ -6341,31 +6027,7 @@ jacobi_83
 }
 jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
 jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
 }
 jacobi_83 [label="SExt" comment="  %12 = sext i32 %mul36 to i64, !dbg !159"]
 jacobi_83 -> {
@@ -6383,17 +6045,11 @@ jacobi_13
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
 jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
+// Cycle
 }
 jacobi_75 [label="Add" comment="  %7 = add i32 %6, 1"]
 jacobi_75 -> {
@@ -6401,14 +6057,6 @@ jacobi_74
 }
 jacobi_74 [label="Trunc" comment="  %6 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_74 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -6426,6 +6074,7 @@ jacobi_304
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_304 [label="Add" comment="  %132 = add nsw i64 %indvars.iv.next, %53, !dbg !199"]
 jacobi_304 -> {
@@ -6434,95 +6083,10 @@ jacobi_156
 }
 jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
 jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
 // Cycle
 }
 jacobi_156 [label="Add" comment="  %53 = add nsw i64 %35, %14"]
 jacobi_156 -> {
-jacobi_117
-jacobi_85
-}
-jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
-jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_85 [label="SExt" comment="  %14 = sext i32 %mul191 to i64, !dbg !159"]
-jacobi_85 -> {
-jacobi_81
-}
-jacobi_81 [label="Mul" comment="  %mul191 = mul i32 %mul189, %10"]
-jacobi_81 -> {
-jacobi_35
-jacobi_80
-}
-jacobi_35 [label="Mul" comment="  %mul189 = mul i32 %2, %1"]
-jacobi_35 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_80 [label="Add" comment="  %10 = add i32 %9, -1"]
-jacobi_80 -> {
-jacobi_79
-}
-jacobi_79 [label="Trunc" comment="  %9 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_79 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_310 [label="Load" comment="  %135 = load float, ptr %arrayidx403, align 4, !dbg !201, !tbaa !169"]
@@ -6536,6 +6100,7 @@ jacobi_308
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_308 [label="Add" comment="  %134 = add nsw i64 %122, %36, !dbg !201"]
 jacobi_308 -> {
@@ -6544,99 +6109,10 @@ jacobi_118
 }
 jacobi_288 [label="Add" comment="  %122 = add nsw i64 %indvars.iv, -1, !dbg !192"]
 jacobi_288 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_118 [label="Add" comment="  %36 = add nsw i64 %35, %12"]
 jacobi_118 -> {
-jacobi_117
-jacobi_83
-}
-jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
-jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_83 [label="SExt" comment="  %12 = sext i32 %mul36 to i64, !dbg !159"]
-jacobi_83 -> {
-jacobi_76
-}
-jacobi_76 [label="Mul" comment="  %mul36 = mul i32 %mul34, %7"]
-jacobi_76 -> {
-jacobi_30
-jacobi_75
-}
-jacobi_30 [label="Mul" comment="  %mul34 = mul i32 %2, %1"]
-jacobi_30 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_75 [label="Add" comment="  %7 = add i32 %6, 1"]
-jacobi_75 -> {
-jacobi_74
-}
-jacobi_74 [label="Trunc" comment="  %6 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_74 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_314 [label="Load" comment="  %137 = load float, ptr %arrayidx424, align 4, !dbg !203, !tbaa !169"]
@@ -6650,6 +6126,7 @@ jacobi_312
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_312 [label="Add" comment="  %136 = add nsw i64 %122, %53, !dbg !203"]
 jacobi_312 -> {
@@ -6658,99 +6135,10 @@ jacobi_156
 }
 jacobi_288 [label="Add" comment="  %122 = add nsw i64 %indvars.iv, -1, !dbg !192"]
 jacobi_288 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_156 [label="Add" comment="  %53 = add nsw i64 %35, %14"]
 jacobi_156 -> {
-jacobi_117
-jacobi_85
-}
-jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
-jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_85 [label="SExt" comment="  %14 = sext i32 %mul191 to i64, !dbg !159"]
-jacobi_85 -> {
-jacobi_81
-}
-jacobi_81 [label="Mul" comment="  %mul191 = mul i32 %mul189, %10"]
-jacobi_81 -> {
-jacobi_35
-jacobi_80
-}
-jacobi_35 [label="Mul" comment="  %mul189 = mul i32 %2, %1"]
-jacobi_35 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_80 [label="Add" comment="  %10 = add i32 %9, -1"]
-jacobi_80 -> {
-jacobi_79
-}
-jacobi_79 [label="Trunc" comment="  %9 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_79 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_297 [label="Call" comment="  %127 = tail call float @llvm.fmuladd.f32(float %117, float %add323, float %115), !dbg !196"]
@@ -6770,19 +6158,12 @@ jacobi_278
 }
 jacobi_134 [label="Load" comment="  %43 = load ptr, ptr %b, align 8, !tbaa !165"]
 jacobi_134 -> {
+// Cycle
 }
 jacobi_278 [label="Add" comment="  %116 = add nsw i64 %indvars.iv, %78, !dbg !188"]
 jacobi_278 -> {
 jacobi_221
 jacobi_207
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -6814,21 +6195,10 @@ jacobi_91
 }
 jacobi_135 [label="Load" comment="  %44 = load i32, ptr %mrows122, align 4, !tbaa !136"]
 jacobi_135 -> {
-jacobi_32
-}
-jacobi_32 [label="GetElementPtr" comment="  %mrows122 = getelementptr inbounds %struct.Mat, ptr %b, i64 0, i32 2"]
-jacobi_32 -> {
+// Cycle
 }
 jacobi_91 [label="Trunc" comment="  %20 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_91 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -6837,21 +6207,10 @@ jacobi_67 -> {
 }
 jacobi_136 [label="Load" comment="  %45 = load i32, ptr %mcols124, align 8, !tbaa !144"]
 jacobi_136 -> {
-jacobi_33
-}
-jacobi_33 [label="GetElementPtr" comment="  %mcols124 = getelementptr inbounds %struct.Mat, ptr %b, i64 0, i32 3"]
-jacobi_33 -> {
+// Cycle
 }
 jacobi_146 [label="Trunc" comment="  %50 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_146 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -6860,10 +6219,7 @@ jacobi_101 -> {
 }
 jacobi_137 [label="Load" comment="  %46 = load i32, ptr %mdeps126, align 4, !tbaa !147"]
 jacobi_137 -> {
-jacobi_34
-}
-jacobi_34 [label="GetElementPtr" comment="  %mdeps126 = getelementptr inbounds %struct.Mat, ptr %b, i64 0, i32 4"]
-jacobi_34 -> {
+// Cycle
 }
 jacobi_296 [label="FAdd" comment="  %add323 = fadd float %sub302, %126, !dbg !195"]
 jacobi_296 -> {
@@ -6891,19 +6247,12 @@ jacobi_281
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_281 [label="Add" comment="  %118 = add nsw i64 %indvars.iv.next, %40, !dbg !189"]
 jacobi_281 -> {
 jacobi_242
 jacobi_126
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
 }
 jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
 jacobi_242 -> {
@@ -6925,14 +6274,6 @@ jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
 jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
 }
 jacobi_52 [label="SExt" comment="  %5 = sext i32 %2 to i64, !dbg !152"]
@@ -6941,10 +6282,7 @@ jacobi_17
 }
 jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
 jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
+// Cycle
 }
 jacobi_86 [label="SExt" comment="  %15 = sext i32 %mul73 to i64, !dbg !159"]
 jacobi_86 -> {
@@ -6952,42 +6290,6 @@ jacobi_78
 }
 jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
 jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_286 [label="Load" comment="  %121 = load float, ptr %arrayidx280, align 4, !dbg !190, !tbaa !169"]
@@ -7001,6 +6303,7 @@ jacobi_284
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_284 [label="Add" comment="  %120 = add nsw i64 %indvars.iv.next, %51, !dbg !190"]
 jacobi_284 -> {
@@ -7009,95 +6312,10 @@ jacobi_149
 }
 jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
 jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
 // Cycle
 }
 jacobi_149 [label="Add" comment="  %51 = add nsw i64 %49, %11"]
 jacobi_149 -> {
-jacobi_143
-jacobi_82
-}
-jacobi_143 [label="Mul" comment="  %49 = mul nsw i64 %48, %3"]
-jacobi_143 -> {
-jacobi_142
-jacobi_50
-}
-jacobi_142 [label="Add" comment="  %48 = add nsw i64 %indvars.iv1158, -1"]
-jacobi_142 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_50 [label="SExt" comment="  %3 = sext i32 %2 to i64, !dbg !152"]
-jacobi_50 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_82 [label="SExt" comment="  %11 = sext i32 %mul73 to i64, !dbg !159"]
-jacobi_82 -> {
-jacobi_78
-}
-jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
-jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_291 [label="Load" comment="  %124 = load float, ptr %arrayidx301, align 4, !dbg !192, !tbaa !169"]
@@ -7111,6 +6329,7 @@ jacobi_289
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_289 [label="Add" comment="  %123 = add nsw i64 %122, %40, !dbg !192"]
 jacobi_289 -> {
@@ -7119,99 +6338,10 @@ jacobi_126
 }
 jacobi_288 [label="Add" comment="  %122 = add nsw i64 %indvars.iv, -1, !dbg !192"]
 jacobi_288 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_126 [label="Add" comment="  %40 = add nsw i64 %39, %15"]
 jacobi_126 -> {
-jacobi_125
-jacobi_86
-}
-jacobi_125 [label="Mul" comment="  %39 = mul nsw i64 %38, %5"]
-jacobi_125 -> {
-jacobi_124
-jacobi_52
-}
-jacobi_124 [label="Add" comment="  %38 = add nuw nsw i64 %indvars.iv1158, 1"]
-jacobi_124 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_52 [label="SExt" comment="  %5 = sext i32 %2 to i64, !dbg !152"]
-jacobi_52 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_86 [label="SExt" comment="  %15 = sext i32 %mul73 to i64, !dbg !159"]
-jacobi_86 -> {
-jacobi_78
-}
-jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
-jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_295 [label="Load" comment="  %126 = load float, ptr %arrayidx322, align 4, !dbg !194, !tbaa !169"]
@@ -7225,6 +6355,7 @@ jacobi_293
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_293 [label="Add" comment="  %125 = add nsw i64 %122, %51, !dbg !194"]
 jacobi_293 -> {
@@ -7233,99 +6364,10 @@ jacobi_149
 }
 jacobi_288 [label="Add" comment="  %122 = add nsw i64 %indvars.iv, -1, !dbg !192"]
 jacobi_288 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_149 [label="Add" comment="  %51 = add nsw i64 %49, %11"]
 jacobi_149 -> {
-jacobi_143
-jacobi_82
-}
-jacobi_143 [label="Mul" comment="  %49 = mul nsw i64 %48, %3"]
-jacobi_143 -> {
-jacobi_142
-jacobi_50
-}
-jacobi_142 [label="Add" comment="  %48 = add nsw i64 %indvars.iv1158, -1"]
-jacobi_142 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_50 [label="SExt" comment="  %3 = sext i32 %2 to i64, !dbg !152"]
-jacobi_50 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_82 [label="SExt" comment="  %11 = sext i32 %mul73 to i64, !dbg !159"]
-jacobi_82 -> {
-jacobi_78
-}
-jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
-jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_277 [label="Call" comment="  %115 = tail call float @llvm.fmuladd.f32(float %106, float %add221, float %104), !dbg !187"]
@@ -7345,19 +6387,12 @@ jacobi_247
 }
 jacobi_134 [label="Load" comment="  %43 = load ptr, ptr %b, align 8, !tbaa !165"]
 jacobi_134 -> {
+// Cycle
 }
 jacobi_247 [label="Add" comment="  %105 = add nsw i64 %indvars.iv, %77, !dbg !179"]
 jacobi_247 -> {
 jacobi_221
 jacobi_206
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -7384,21 +6419,10 @@ jacobi_90
 }
 jacobi_136 [label="Load" comment="  %45 = load i32, ptr %mcols124, align 8, !tbaa !144"]
 jacobi_136 -> {
-jacobi_33
-}
-jacobi_33 [label="GetElementPtr" comment="  %mcols124 = getelementptr inbounds %struct.Mat, ptr %b, i64 0, i32 3"]
-jacobi_33 -> {
+// Cycle
 }
 jacobi_90 [label="Trunc" comment="  %19 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_90 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -7411,22 +6435,11 @@ jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
 jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
 }
 jacobi_137 [label="Load" comment="  %46 = load i32, ptr %mdeps126, align 4, !tbaa !147"]
 jacobi_137 -> {
-jacobi_34
-}
-jacobi_34 [label="GetElementPtr" comment="  %mdeps126 = getelementptr inbounds %struct.Mat, ptr %b, i64 0, i32 4"]
-jacobi_34 -> {
+// Cycle
 }
 jacobi_276 [label="FAdd" comment="  %add221 = fadd float %sub200, %114, !dbg !186"]
 jacobi_276 -> {
@@ -7454,6 +6467,7 @@ jacobi_253
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_253 [label="SExt" comment="  %idxprom157 = sext i32 %add156 to i64, !dbg !180"]
 jacobi_253 -> {
@@ -7475,14 +6489,6 @@ jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_216 [label="Trunc" comment="  %87 = trunc i64 %39 to i32"]
@@ -7491,78 +6497,10 @@ jacobi_125
 }
 jacobi_125 [label="Mul" comment="  %39 = mul nsw i64 %38, %5"]
 jacobi_125 -> {
-jacobi_124
-jacobi_52
-}
-jacobi_124 [label="Add" comment="  %38 = add nuw nsw i64 %indvars.iv1158, 1"]
-jacobi_124 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
-}
-jacobi_52 [label="SExt" comment="  %5 = sext i32 %2 to i64, !dbg !152"]
-jacobi_52 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
 }
 jacobi_76 [label="Mul" comment="  %mul36 = mul i32 %mul34, %7"]
 jacobi_76 -> {
-jacobi_30
-jacobi_75
-}
-jacobi_30 [label="Mul" comment="  %mul34 = mul i32 %2, %1"]
-jacobi_30 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_75 [label="Add" comment="  %7 = add i32 %6, 1"]
-jacobi_75 -> {
-jacobi_74
-}
-jacobi_74 [label="Trunc" comment="  %6 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_74 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_261 [label="Load" comment="  %110 = load float, ptr %arrayidx178, align 4, !dbg !181, !tbaa !169"]
@@ -7576,6 +6514,7 @@ jacobi_259
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_259 [label="SExt" comment="  %idxprom177 = sext i32 %add176 to i64, !dbg !181"]
 jacobi_259 -> {
@@ -7597,14 +6536,6 @@ jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_217 [label="Trunc" comment="  %88 = trunc i64 %49 to i32"]
@@ -7613,78 +6544,10 @@ jacobi_143
 }
 jacobi_143 [label="Mul" comment="  %49 = mul nsw i64 %48, %3"]
 jacobi_143 -> {
-jacobi_142
-jacobi_50
-}
-jacobi_142 [label="Add" comment="  %48 = add nsw i64 %indvars.iv1158, -1"]
-jacobi_142 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
-}
-jacobi_50 [label="SExt" comment="  %3 = sext i32 %2 to i64, !dbg !152"]
-jacobi_50 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
 }
 jacobi_76 [label="Mul" comment="  %mul36 = mul i32 %mul34, %7"]
 jacobi_76 -> {
-jacobi_30
-jacobi_75
-}
-jacobi_30 [label="Mul" comment="  %mul34 = mul i32 %2, %1"]
-jacobi_30 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_75 [label="Add" comment="  %7 = add i32 %6, 1"]
-jacobi_75 -> {
-jacobi_74
-}
-jacobi_74 [label="Trunc" comment="  %6 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_74 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_268 [label="Load" comment="  %112 = load float, ptr %arrayidx199, align 4, !dbg !183, !tbaa !169"]
@@ -7698,6 +6561,7 @@ jacobi_266
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_266 [label="SExt" comment="  %idxprom198 = sext i32 %add197 to i64, !dbg !183"]
 jacobi_266 -> {
@@ -7719,14 +6583,6 @@ jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_218 [label="Trunc" comment="  %89 = trunc i64 %39 to i32"]
@@ -7735,78 +6591,10 @@ jacobi_125
 }
 jacobi_125 [label="Mul" comment="  %39 = mul nsw i64 %38, %5"]
 jacobi_125 -> {
-jacobi_124
-jacobi_52
-}
-jacobi_124 [label="Add" comment="  %38 = add nuw nsw i64 %indvars.iv1158, 1"]
-jacobi_124 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
-}
-jacobi_52 [label="SExt" comment="  %5 = sext i32 %2 to i64, !dbg !152"]
-jacobi_52 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
 }
 jacobi_81 [label="Mul" comment="  %mul191 = mul i32 %mul189, %10"]
 jacobi_81 -> {
-jacobi_35
-jacobi_80
-}
-jacobi_35 [label="Mul" comment="  %mul189 = mul i32 %2, %1"]
-jacobi_35 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_80 [label="Add" comment="  %10 = add i32 %9, -1"]
-jacobi_80 -> {
-jacobi_79
-}
-jacobi_79 [label="Trunc" comment="  %9 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_79 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_275 [label="Load" comment="  %114 = load float, ptr %arrayidx220, align 4, !dbg !185, !tbaa !169"]
@@ -7820,6 +6608,7 @@ jacobi_273
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_273 [label="SExt" comment="  %idxprom219 = sext i32 %add218 to i64, !dbg !185"]
 jacobi_273 -> {
@@ -7841,14 +6630,6 @@ jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_219 [label="Trunc" comment="  %90 = trunc i64 %49 to i32"]
@@ -7857,78 +6638,10 @@ jacobi_143
 }
 jacobi_143 [label="Mul" comment="  %49 = mul nsw i64 %48, %3"]
 jacobi_143 -> {
-jacobi_142
-jacobi_50
-}
-jacobi_142 [label="Add" comment="  %48 = add nsw i64 %indvars.iv1158, -1"]
-jacobi_142 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
-}
-jacobi_50 [label="SExt" comment="  %3 = sext i32 %2 to i64, !dbg !152"]
-jacobi_50 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
 }
 jacobi_81 [label="Mul" comment="  %mul191 = mul i32 %mul189, %10"]
 jacobi_81 -> {
-jacobi_35
-jacobi_80
-}
-jacobi_35 [label="Mul" comment="  %mul189 = mul i32 %2, %1"]
-jacobi_35 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_80 [label="Add" comment="  %10 = add i32 %9, -1"]
-jacobi_80 -> {
-jacobi_79
-}
-jacobi_79 [label="Trunc" comment="  %9 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_79 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_246 [label="Call" comment="  %104 = tail call float @llvm.fmuladd.f32(float %101, float %103, float %99), !dbg !178"]
@@ -7953,14 +6666,6 @@ jacobi_239 [label="Add" comment="  %100 = add nsw i64 %indvars.iv, %76, !dbg !17
 jacobi_239 -> {
 jacobi_221
 jacobi_205
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -8007,14 +6712,6 @@ jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
 jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_110 [label="Load" comment="  %31 = load i32, ptr %mcols13, align 8, !tbaa !144"]
@@ -8026,14 +6723,6 @@ jacobi_28 -> {
 }
 jacobi_130 [label="Trunc" comment="  %41 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_130 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -8058,6 +6747,7 @@ jacobi_243
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_243 [label="Add" comment="  %102 = add nsw i64 %indvars.iv.next, %42, !dbg !177"]
 jacobi_243 -> {
@@ -8066,91 +6756,10 @@ jacobi_133
 }
 jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
 jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
 // Cycle
 }
 jacobi_133 [label="Add" comment="  %42 = add nsw i64 %35, %13"]
 jacobi_133 -> {
-jacobi_117
-jacobi_84
-}
-jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
-jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_84 [label="SExt" comment="  %13 = sext i32 %mul73 to i64, !dbg !159"]
-jacobi_84 -> {
-jacobi_78
-}
-jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
-jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_238 [label="Call" comment="  %99 = tail call float @llvm.fmuladd.f32(float %92, float %94, float %mul82), !dbg !175"]
@@ -8170,19 +6779,12 @@ jacobi_225
 }
 jacobi_108 [label="Load" comment="  %29 = load ptr, ptr %a, align 8, !tbaa !165"]
 jacobi_108 -> {
+// Cycle
 }
 jacobi_225 [label="Add" comment="  %91 = add nsw i64 %indvars.iv, %74, !dbg !166"]
 jacobi_225 -> {
 jacobi_221
 jacobi_203
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -8209,21 +6811,10 @@ jacobi_87
 }
 jacobi_110 [label="Load" comment="  %31 = load i32, ptr %mcols13, align 8, !tbaa !144"]
 jacobi_110 -> {
-jacobi_28
-}
-jacobi_28 [label="GetElementPtr" comment="  %mcols13 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 3"]
-jacobi_28 -> {
+// Cycle
 }
 jacobi_87 [label="Trunc" comment="  %16 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_87 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -8236,22 +6827,11 @@ jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
 jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
 // Cycle
 }
 jacobi_111 [label="Load" comment="  %32 = load i32, ptr %mdeps15, align 4, !tbaa !147"]
 jacobi_111 -> {
-jacobi_29
-}
-jacobi_29 [label="GetElementPtr" comment="  %mdeps15 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 4"]
-jacobi_29 -> {
+// Cycle
 }
 jacobi_230 [label="Load" comment="  %94 = load float, ptr %arrayidx43, align 4, !dbg !171, !tbaa !169"]
 jacobi_230 -> {
@@ -8264,6 +6844,7 @@ jacobi_228
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_228 [label="Add" comment="  %93 = add nsw i64 %indvars.iv, %36, !dbg !171"]
 jacobi_228 -> {
@@ -8272,95 +6853,10 @@ jacobi_118
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_118 [label="Add" comment="  %36 = add nsw i64 %35, %12"]
 jacobi_118 -> {
-jacobi_117
-jacobi_83
-}
-jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
-jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_83 [label="SExt" comment="  %12 = sext i32 %mul36 to i64, !dbg !159"]
-jacobi_83 -> {
-jacobi_76
-}
-jacobi_76 [label="Mul" comment="  %mul36 = mul i32 %mul34, %7"]
-jacobi_76 -> {
-jacobi_30
-jacobi_75
-}
-jacobi_30 [label="Mul" comment="  %mul34 = mul i32 %2, %1"]
-jacobi_30 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_75 [label="Add" comment="  %7 = add i32 %6, 1"]
-jacobi_75 -> {
-jacobi_74
-}
-jacobi_74 [label="Trunc" comment="  %6 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_74 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_237 [label="FMul" comment="  %mul82 = fmul float %96, %98, !dbg !174"]
@@ -8379,19 +6875,12 @@ jacobi_231
 }
 jacobi_108 [label="Load" comment="  %29 = load ptr, ptr %a, align 8, !tbaa !165"]
 jacobi_108 -> {
+// Cycle
 }
 jacobi_231 [label="Add" comment="  %95 = add nsw i64 %indvars.iv, %75, !dbg !172"]
 jacobi_231 -> {
 jacobi_221
 jacobi_204
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -8423,21 +6912,10 @@ jacobi_88
 }
 jacobi_109 [label="Load" comment="  %30 = load i32, ptr %mrows12, align 4, !tbaa !136"]
 jacobi_109 -> {
-jacobi_27
-}
-jacobi_27 [label="GetElementPtr" comment="  %mrows12 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 2"]
-jacobi_27 -> {
+// Cycle
 }
 jacobi_88 [label="Trunc" comment="  %17 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_88 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -8446,21 +6924,10 @@ jacobi_67 -> {
 }
 jacobi_110 [label="Load" comment="  %31 = load i32, ptr %mcols13, align 8, !tbaa !144"]
 jacobi_110 -> {
-jacobi_28
-}
-jacobi_28 [label="GetElementPtr" comment="  %mcols13 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 3"]
-jacobi_28 -> {
+// Cycle
 }
 jacobi_121 [label="Trunc" comment="  %37 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_121 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -8469,10 +6936,7 @@ jacobi_101 -> {
 }
 jacobi_111 [label="Load" comment="  %32 = load i32, ptr %mdeps15, align 4, !tbaa !147"]
 jacobi_111 -> {
-jacobi_29
-}
-jacobi_29 [label="GetElementPtr" comment="  %mdeps15 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 4"]
-jacobi_29 -> {
+// Cycle
 }
 jacobi_236 [label="Load" comment="  %98 = load float, ptr %arrayidx81, align 4, !dbg !173, !tbaa !169"]
 jacobi_236 -> {
@@ -8485,6 +6949,7 @@ jacobi_234
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_234 [label="Add" comment="  %97 = add nsw i64 %indvars.iv, %40, !dbg !173"]
 jacobi_234 -> {
@@ -8493,95 +6958,10 @@ jacobi_126
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_126 [label="Add" comment="  %40 = add nsw i64 %39, %15"]
 jacobi_126 -> {
-jacobi_125
-jacobi_86
-}
-jacobi_125 [label="Mul" comment="  %39 = mul nsw i64 %38, %5"]
-jacobi_125 -> {
-jacobi_124
-jacobi_52
-}
-jacobi_124 [label="Add" comment="  %38 = add nuw nsw i64 %indvars.iv1158, 1"]
-jacobi_124 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_52 [label="SExt" comment="  %5 = sext i32 %2 to i64, !dbg !152"]
-jacobi_52 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_86 [label="SExt" comment="  %15 = sext i32 %mul73 to i64, !dbg !159"]
-jacobi_86 -> {
-jacobi_78
-}
-jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
-jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_340 [label="Load" comment="  %155 = load float, ptr %arrayidx558, align 4, !dbg !215, !tbaa !169"]
@@ -8600,14 +6980,6 @@ jacobi_338 [label="Add" comment="  %154 = add nsw i64 %indvars.iv, %83, !dbg !21
 jacobi_338 -> {
 jacobi_221
 jacobi_212
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -8645,26 +7017,10 @@ jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
 jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_180 [label="Trunc" comment="  %64 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_180 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -8689,19 +7045,12 @@ jacobi_343
 }
 jacobi_108 [label="Load" comment="  %29 = load ptr, ptr %a, align 8, !tbaa !165"]
 jacobi_108 -> {
+// Cycle
 }
 jacobi_343 [label="Add" comment="  %156 = add nsw i64 %indvars.iv, %84, !dbg !217"]
 jacobi_343 -> {
 jacobi_221
 jacobi_213
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -8737,21 +7086,10 @@ jacobi_109
 }
 jacobi_109 [label="Load" comment="  %30 = load i32, ptr %mrows12, align 4, !tbaa !136"]
 jacobi_109 -> {
-jacobi_27
-}
-jacobi_27 [label="GetElementPtr" comment="  %mrows12 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 2"]
-jacobi_27 -> {
+// Cycle
 }
 jacobi_97 [label="Trunc" comment="  %26 = trunc i64 %indvars.iv1173 to i32"]
 jacobi_97 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
 jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
@@ -8760,21 +7098,10 @@ jacobi_67 -> {
 }
 jacobi_110 [label="Load" comment="  %31 = load i32, ptr %mcols13, align 8, !tbaa !144"]
 jacobi_110 -> {
-jacobi_28
-}
-jacobi_28 [label="GetElementPtr" comment="  %mcols13 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 3"]
-jacobi_28 -> {
+// Cycle
 }
 jacobi_186 [label="Trunc" comment="  %65 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_186 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -8783,10 +7110,7 @@ jacobi_101 -> {
 }
 jacobi_111 [label="Load" comment="  %32 = load i32, ptr %mdeps15, align 4, !tbaa !147"]
 jacobi_111 -> {
-jacobi_29
-}
-jacobi_29 [label="GetElementPtr" comment="  %mdeps15 = getelementptr inbounds %struct.Mat, ptr %a, i64 0, i32 4"]
-jacobi_29 -> {
+// Cycle
 }
 jacobi_349 [label="FNeg" comment="  %neg = fneg float %159, !dbg !219"]
 jacobi_349 -> {
@@ -8803,6 +7127,7 @@ jacobi_346
 }
 jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
 jacobi_116 -> {
+// Cycle
 }
 jacobi_346 [label="Add" comment="  %158 = add nsw i64 %indvars.iv, %42, !dbg !218"]
 jacobi_346 -> {
@@ -8811,91 +7136,10 @@ jacobi_133
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
 // Cycle
 }
 jacobi_133 [label="Add" comment="  %42 = add nsw i64 %35, %13"]
 jacobi_133 -> {
-jacobi_117
-jacobi_84
-}
-jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
-jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_84 [label="SExt" comment="  %13 = sext i32 %mul73 to i64, !dbg !159"]
-jacobi_84 -> {
-jacobi_78
-}
-jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
-jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_353 [label="Load" comment="  %162 = load float, ptr %arrayidx614, align 4, !dbg !220, !tbaa !169"]
@@ -8914,14 +7158,6 @@ jacobi_351 [label="Add" comment="  %161 = add nsw i64 %indvars.iv, %85, !dbg !22
 jacobi_351 -> {
 jacobi_221
 jacobi_214
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -8959,26 +7195,10 @@ jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
 jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_193 [label="Trunc" comment="  %69 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_193 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -8994,108 +7214,6 @@ jacobi_42 -> {
 }
 jacobi_348 [label="Load" comment="  %159 = load float, ptr %arrayidx596, align 4, !dbg !218, !tbaa !169"]
 jacobi_348 -> {
-jacobi_347
-}
-jacobi_347 [label="GetElementPtr" comment="  %arrayidx596 = getelementptr inbounds float, ptr %34, i64 %158, !dbg !218"]
-jacobi_347 -> {
-jacobi_116
-jacobi_346
-}
-jacobi_116 [label="Load" comment="  %34 = load ptr, ptr %p, align 8, !tbaa !165"]
-jacobi_116 -> {
-}
-jacobi_346 [label="Add" comment="  %158 = add nsw i64 %indvars.iv, %42, !dbg !218"]
-jacobi_346 -> {
-jacobi_221
-jacobi_133
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-// Cycle
-}
-jacobi_133 [label="Add" comment="  %42 = add nsw i64 %35, %13"]
-jacobi_133 -> {
-jacobi_117
-jacobi_84
-}
-jacobi_117 [label="Mul" comment="  %35 = mul nsw i64 %indvars.iv1158, %4"]
-jacobi_117 -> {
-jacobi_101
-jacobi_51
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-// Cycle
-}
-jacobi_51 [label="SExt" comment="  %4 = sext i32 %2 to i64, !dbg !152"]
-jacobi_51 -> {
-jacobi_17
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_84 [label="SExt" comment="  %13 = sext i32 %mul73 to i64, !dbg !159"]
-jacobi_84 -> {
-jacobi_78
-}
-jacobi_78 [label="Mul" comment="  %mul73 = mul i32 %mul71, %8"]
-jacobi_78 -> {
-jacobi_31
-jacobi_77
-}
-jacobi_31 [label="Mul" comment="  %mul71 = mul i32 %2, %1"]
-jacobi_31 -> {
-jacobi_17
-jacobi_13
-}
-jacobi_17 [label="Load" comment="  %2 = load i32, ptr %mdeps, align 4, !dbg !146, !tbaa !147"]
-jacobi_17 -> {
-jacobi_16
-}
-jacobi_16 [label="GetElementPtr" comment="  %mdeps = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 4, !dbg !146"]
-jacobi_16 -> {
-}
-jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
-jacobi_13 -> {
-jacobi_12
-}
-jacobi_12 [label="GetElementPtr" comment="  %mcols = getelementptr inbounds %struct.Mat, ptr %p, i64 0, i32 3, !dbg !143"]
-jacobi_12 -> {
-}
-jacobi_77 [label="Trunc" comment="  %8 = trunc i64 %indvars.iv1173 to i32"]
-jacobi_77 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_361 [label="GetElementPtr" comment="  %arrayidx653 = getelementptr inbounds float, ptr %70, i64 %166, !dbg !225"]
@@ -9110,14 +7228,6 @@ jacobi_360 [label="Add" comment="  %166 = add nsw i64 %indvars.iv, %86, !dbg !22
 jacobi_360 -> {
 jacobi_221
 jacobi_215
-}
-jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
-jacobi_221 -> {
-jacobi_242
-}
-jacobi_242 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !177"]
-jacobi_242 -> {
-jacobi_221
 }
 jacobi_221 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body11.lr.ph ], [ %indvars.iv.next, %for.body11 ]"]
 jacobi_221 -> {
@@ -9155,26 +7265,10 @@ jacobi_67
 }
 jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
 jacobi_67 -> {
-jacobi_373
-}
-jacobi_373 [label="Add" comment="  %indvars.iv.next1174 = add nuw nsw i64 %indvars.iv1173, 1, !dbg !237"]
-jacobi_373 -> {
-jacobi_67
-}
-jacobi_67 [label="Phi" comment="  %indvars.iv1173 = phi i64 [ %indvars.iv.next1174, %for.inc657 ], [ 1, %for.cond3.preheader ]"]
-jacobi_67 -> {
 // Cycle
 }
 jacobi_200 [label="Trunc" comment="  %73 = trunc i64 %indvars.iv1158 to i32"]
 jacobi_200 -> {
-jacobi_101
-}
-jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
-jacobi_101 -> {
-jacobi_367
-}
-jacobi_367 [label="Add" comment="  %indvars.iv.next1159 = add nuw nsw i64 %indvars.iv1158, 1, !dbg !233"]
-jacobi_367 -> {
 jacobi_101
 }
 jacobi_101 [label="Phi" comment="  %indvars.iv1158 = phi i64 [ 1, %for.cond9.preheader.lr.ph ], [ %indvars.iv.next1159, %for.inc654 ]"]
@@ -9438,14 +7532,6 @@ jacobi_400
 }
 jacobi_402 [label="Phi" comment="  %indvars.iv1184 = phi i64 [ 1, %for.body668.lr.ph ], [ %indvars.iv.next1185, %for.body668 ]"]
 jacobi_402 -> {
-jacobi_410
-}
-jacobi_410 [label="Add" comment="  %indvars.iv.next1185 = add nuw nsw i64 %indvars.iv1184, 1, !dbg !251"]
-jacobi_410 -> {
-jacobi_402
-}
-jacobi_402 [label="Phi" comment="  %indvars.iv1184 = phi i64 [ 1, %for.body668.lr.ph ], [ %indvars.iv.next1185, %for.body668 ]"]
-jacobi_402 -> {
 // Cycle
 }
 jacobi_400 [label="SExt" comment="  %174 = sext i32 %add701 to i64, !dbg !244"]
@@ -9469,14 +7555,6 @@ jacobi_13
 }
 jacobi_378 [label="Phi" comment="  %i.11124 = phi i32 [ %inc712, %for.inc711 ], [ 1, %for.cond660.preheader ]"]
 jacobi_378 -> {
-jacobi_418
-}
-jacobi_418 [label="Add" comment="  %inc712 = add nuw nsw i32 %i.11124, 1, !dbg !259"]
-jacobi_418 -> {
-jacobi_378
-}
-jacobi_378 [label="Phi" comment="  %i.11124 = phi i32 [ %inc712, %for.inc711 ], [ 1, %for.cond660.preheader ]"]
-jacobi_378 -> {
 // Cycle
 }
 jacobi_13 [label="Load" comment="  %1 = load i32, ptr %mcols, align 8, !dbg !143, !tbaa !144"]
@@ -9488,14 +7566,6 @@ jacobi_12 -> {
 }
 jacobi_396 [label="Trunc" comment="  %172 = trunc i64 %indvars.iv1191 to i32"]
 jacobi_396 -> {
-jacobi_384
-}
-jacobi_384 [label="Phi" comment="  %indvars.iv1191 = phi i64 [ 1, %for.cond666.preheader.lr.ph ], [ %indvars.iv.next1192, %for.inc708 ]"]
-jacobi_384 -> {
-jacobi_414
-}
-jacobi_414 [label="Add" comment="  %indvars.iv.next1192 = add nuw nsw i64 %indvars.iv1191, 1, !dbg !255"]
-jacobi_414 -> {
 jacobi_384
 }
 jacobi_384 [label="Phi" comment="  %indvars.iv1191 = phi i64 [ 1, %for.cond666.preheader.lr.ph ], [ %indvars.iv.next1192, %for.inc708 ]"]

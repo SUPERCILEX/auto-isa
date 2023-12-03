@@ -108,14 +108,6 @@ initWorkList_8
 }
 initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 initWorkList_8 -> {
-initWorkList_14
-}
-initWorkList_14 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !108"]
-initWorkList_14 -> {
-initWorkList_8
-}
-initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
-initWorkList_8 -> {
 // Cycle
 }
 cluster=true
@@ -214,14 +206,6 @@ saveSolution_8
 }
 saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 saveSolution_8 -> {
-saveSolution_22
-}
-saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
-saveSolution_22 -> {
-saveSolution_8
-}
-saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
-saveSolution_8 -> {
 // Cycle
 }
 cluster=true
@@ -285,14 +269,6 @@ saveSolution_8
 }
 saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
 saveSolution_8 -> {
-saveSolution_22
-}
-saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
-saveSolution_22 -> {
-saveSolution_8
-}
-saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
-saveSolution_8 -> {
 // Cycle
 }
 cluster=true
@@ -352,14 +328,6 @@ saveSolution_8 -> {
 }
 saveSolution_20 [label="GetElementPtr" comment="  %operation13 = getelementptr inbounds %struct.Comb, ptr %sol, i64 %indvars.iv, i32 2, !dbg !117"]
 saveSolution_20 -> {
-saveSolution_8
-}
-saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
-saveSolution_8 -> {
-saveSolution_22
-}
-saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
-saveSolution_22 -> {
 saveSolution_8
 }
 saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
@@ -1061,14 +1029,6 @@ recSearch_31 -> {
 }
 recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
 recSearch_41 -> {
-recSearch_55
-}
-recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
-recSearch_55 -> {
-recSearch_41
-}
-recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
-recSearch_41 -> {
 // Cycle
 }
 cluster=true
@@ -1144,14 +1104,6 @@ recSearch_31 -> {
 }
 recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
 recSearch_41 -> {
-recSearch_55
-}
-recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
-recSearch_55 -> {
-recSearch_41
-}
-recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
-recSearch_41 -> {
 // Cycle
 }
 cluster=true
@@ -1224,14 +1176,6 @@ recSearch_41
 }
 recSearch_31 [label="Load" comment="  %7 = load ptr, ptr @solution, align 8, !dbg !136, !tbaa !120"]
 recSearch_31 -> {
-}
-recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
-recSearch_41 -> {
-recSearch_55
-}
-recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
-recSearch_55 -> {
-recSearch_41
 }
 recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
 recSearch_41 -> {
@@ -1394,26 +1338,6 @@ recSearch_101
 }
 recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
 recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
 // Cycle
 }
 recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
@@ -1427,6 +1351,7 @@ recSearch_89
 }
 recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
 recSearch_96 -> {
+// Cycle
 }
 recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
 recSearch_89 -> {
@@ -1442,26 +1367,6 @@ recSearch_89 -> {
 }
 recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
 recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
 // Cycle
 }
 recSearch_127 [label="GetElementPtr" comment="  %arrayidx63 = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, !dbg !222"]
@@ -1531,6 +1436,7 @@ recSearch_77
 }
 recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
 recSearch_96 -> {
+// Cycle
 }
 recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
 recSearch_77 -> {
@@ -1546,50 +1452,10 @@ recSearch_77 -> {
 }
 recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
 recSearch_101 -> {
-recSearch_100
-}
-recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
-recSearch_100 -> {
-recSearch_96
-recSearch_89
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-recSearch_159
-}
-recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
-recSearch_159 -> {
-recSearch_89
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
 // Cycle
 }
 recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
 recSearch_101 -> {
-recSearch_100
-}
-recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
-recSearch_100 -> {
-recSearch_96
-recSearch_89
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-recSearch_159
-}
-recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
-recSearch_159 -> {
-recSearch_89
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
 // Cycle
 }
 recSearch_129 [label="GetElementPtr" comment="  %operand267 = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !224"]
@@ -1783,26 +1649,6 @@ recSearch_101
 }
 recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
 recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
 // Cycle
 }
 recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
@@ -1816,6 +1662,7 @@ recSearch_89
 }
 recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
 recSearch_96 -> {
+// Cycle
 }
 recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
 recSearch_89 -> {
@@ -1831,26 +1678,6 @@ recSearch_89 -> {
 }
 recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
 recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
 // Cycle
 }
 recSearch_148 [label="Load" comment="  %23 = load i32, ptr %operand29.i, align 4, !dbg !246, !tbaa !160"]
@@ -1884,115 +1711,14 @@ recSearch_11
 }
 recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
 recSearch_126 -> {
+// Cycle
 }
 recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
 recSearch_11 -> {
+// Cycle
 }
 recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
 recSearch_120 -> {
-recSearch_98
-recSearch_117
-recSearch_98
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-// Cycle
-}
-recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
-recSearch_117 -> {
-recSearch_98
-recSearch_101
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-// Cycle
-}
-recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
-recSearch_101 -> {
-recSearch_100
-}
-recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
-recSearch_100 -> {
-recSearch_96
-recSearch_89
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-recSearch_159
-}
-recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
-recSearch_159 -> {
-recSearch_89
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-// Cycle
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
 // Cycle
 }
 recSearch_141 [label="Sub" comment="  %sub.i = sub nsw i32 %working1.0, %21, !dbg !241"]
@@ -2002,109 +1728,6 @@ recSearch_140
 }
 recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
 recSearch_120 -> {
-recSearch_98
-recSearch_117
-recSearch_98
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-// Cycle
-}
-recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
-recSearch_117 -> {
-recSearch_98
-recSearch_101
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-// Cycle
-}
-recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
-recSearch_101 -> {
-recSearch_100
-}
-recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
-recSearch_100 -> {
-recSearch_96
-recSearch_89
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-recSearch_159
-}
-recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
-recSearch_159 -> {
-recSearch_89
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-// Cycle
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
 // Cycle
 }
 recSearch_140 [label="Load" comment="  %21 = load i32, ptr %operand23.i, align 4, !dbg !240, !tbaa !160"]
@@ -2118,9 +1741,11 @@ recSearch_11
 }
 recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
 recSearch_126 -> {
+// Cycle
 }
 recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
 recSearch_11 -> {
+// Cycle
 }
 recSearch_137 [label="Add" comment="  %add.i = add nsw i32 %20, %working1.0, !dbg !238"]
 recSearch_137 -> {
@@ -2138,115 +1763,14 @@ recSearch_11
 }
 recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
 recSearch_126 -> {
+// Cycle
 }
 recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
 recSearch_11 -> {
+// Cycle
 }
 recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
 recSearch_120 -> {
-recSearch_98
-recSearch_117
-recSearch_98
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-// Cycle
-}
-recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
-recSearch_117 -> {
-recSearch_98
-recSearch_101
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-// Cycle
-}
-recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
-recSearch_101 -> {
-recSearch_100
-}
-recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
-recSearch_100 -> {
-recSearch_96
-recSearch_89
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-recSearch_159
-}
-recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
-recSearch_159 -> {
-recSearch_89
-}
-recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
-recSearch_89 -> {
-// Cycle
-}
-recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
-recSearch_98 -> {
-recSearch_97
-}
-recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
-recSearch_97 -> {
-recSearch_96
-recSearch_77
-}
-recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
-recSearch_96 -> {
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
-recSearch_163
-}
-recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
-recSearch_163 -> {
-recSearch_77
-}
-recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
-recSearch_77 -> {
 // Cycle
 }
 recSearch_155 [label="GetElementPtr" comment="  %arrayidx75 = getelementptr inbounds i32, ptr %16, i64 %idxprom74, !dbg !252"]
@@ -2256,6 +1780,7 @@ recSearch_154
 }
 recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
 recSearch_96 -> {
+// Cycle
 }
 recSearch_154 [label="SExt" comment="  %idxprom74 = sext i32 %add73 to i64, !dbg !252"]
 recSearch_154 -> {
@@ -2600,18 +2125,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 cluster=true
@@ -2666,18 +2179,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 cluster=true
@@ -2736,18 +2237,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 cluster=true
@@ -2810,18 +2299,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 cluster=true
@@ -2880,18 +2357,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 cluster=true
@@ -2950,18 +2415,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 cluster=true
@@ -3017,18 +2470,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 getInput_83 [label="Phi" comment="  %indvars.iv.i30 = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i31, %for.body.i33 ]"]
@@ -3096,18 +2537,6 @@ getInput_26
 }
 getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
 getInput_26 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
-getInput_23
-}
-getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
-getInput_23 -> {
-getInput_12
-}
-getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
-getInput_12 -> {
 // Cycle
 }
 getInput_97 [label="Phi" comment="  %indvars.iv.i37 = phi i64 [ 0, %for.body.preheader.i36 ], [ %indvars.iv.next.i39, %for.body.i41 ]"]
