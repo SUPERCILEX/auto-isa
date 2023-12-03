@@ -1,0 +1,405 @@
+strict digraph {
+subgraph {
+subgraph {
+main_21 [label="Load" comment="  %0 = load ptr, ptr %dvec1, align 8, !dbg !62, !tbaa !63"]
+main_21 -> {
+main_0
+}
+main_0 [label="Alloca" comment="  %dvec1 = alloca ptr, align 8"]
+main_0 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_24 [label="Store" comment="  store double %mul, ptr %arrayidx, align 8, !dbg !67, !tbaa !68"]
+main_24 -> {
+main_20
+main_23
+}
+main_20 [label="FMul" comment="  %mul = fmul double %conv5, 0x3FF000001AD7F29B, !dbg !61"]
+main_20 -> {
+main_19
+}
+main_19 [label="FPExt" comment="  %conv5 = fpext float %call4 to double, !dbg !60"]
+main_19 -> {
+main_18
+}
+main_18 [label="Call" comment="  %call4 = call float @cosf(float noundef %conv) #6, !dbg !60"]
+main_18 -> {
+main_17
+}
+main_17 [label="SIToFP" comment="  %conv = sitofp i64 %sub to float, !dbg !59"]
+main_17 -> {
+main_16
+}
+main_16 [label="Sub" comment="  %sub = sub nuw nsw i64 2048, %i.018, !dbg !56"]
+main_16 -> {
+main_14
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+main_33
+}
+main_33 [label="Add" comment="  %inc = add nuw nsw i64 %i.018, 1, !dbg !75"]
+main_33 -> {
+main_14
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+// Cycle
+}
+main_23 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds double, ptr %0, i64 %i.018, !dbg !62"]
+main_23 -> {
+main_21
+main_14
+}
+main_21 [label="Load" comment="  %0 = load ptr, ptr %dvec1, align 8, !dbg !62, !tbaa !63"]
+main_21 -> {
+main_0
+}
+main_0 [label="Alloca" comment="  %dvec1 = alloca ptr, align 8"]
+main_0 -> {
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+main_33
+}
+main_33 [label="Add" comment="  %inc = add nuw nsw i64 %i.018, 1, !dbg !75"]
+main_33 -> {
+main_14
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_29 [label="Load" comment="  %2 = load ptr, ptr %dvec2, align 8, !dbg !73, !tbaa !63"]
+main_29 -> {
+main_1
+}
+main_1 [label="Alloca" comment="  %dvec2 = alloca ptr, align 8"]
+main_1 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_32 [label="Store" comment="  store double %1, ptr %arrayidx10, align 8, !dbg !74, !tbaa !68"]
+main_32 -> {
+main_28
+main_31
+}
+main_28 [label="Call" comment="  %1 = call double @llvm.fmuladd.f64(double %conv8, double 1.000000e-10, double 1.000000e+00), !dbg !72"]
+main_28 -> {
+main_27
+}
+main_27 [label="FPExt" comment="  %conv8 = fpext float %call7 to double, !dbg !71"]
+main_27 -> {
+main_26
+}
+main_26 [label="Call" comment="  %call7 = call float @sinf(float noundef %conv6) #6, !dbg !71"]
+main_26 -> {
+main_25
+}
+main_25 [label="SIToFP" comment="  %conv6 = sitofp i64 %i.018 to float, !dbg !70"]
+main_25 -> {
+main_14
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+main_33
+}
+main_33 [label="Add" comment="  %inc = add nuw nsw i64 %i.018, 1, !dbg !75"]
+main_33 -> {
+main_14
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+// Cycle
+}
+main_31 [label="GetElementPtr" comment="  %arrayidx10 = getelementptr inbounds double, ptr %2, i64 %i.018, !dbg !73"]
+main_31 -> {
+main_29
+main_14
+}
+main_29 [label="Load" comment="  %2 = load ptr, ptr %dvec2, align 8, !dbg !73, !tbaa !63"]
+main_29 -> {
+main_1
+}
+main_1 [label="Alloca" comment="  %dvec2 = alloca ptr, align 8"]
+main_1 -> {
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+main_33
+}
+main_33 [label="Add" comment="  %inc = add nuw nsw i64 %i.018, 1, !dbg !75"]
+main_33 -> {
+main_14
+}
+main_14 [label="Phi" comment="  %i.018 = phi i64 [ 0, %entry ], [ %inc, %for.body ]"]
+main_14 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_37 [label="Load" comment="  %3 = load ptr, ptr %dvec1, align 8, !dbg !81, !tbaa !63"]
+main_37 -> {
+main_0
+}
+main_0 [label="Alloca" comment="  %dvec1 = alloca ptr, align 8"]
+main_0 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_39 [label="Load" comment="  %4 = load ptr, ptr %dvec2, align 8, !dbg !82, !tbaa !63"]
+main_39 -> {
+main_1
+}
+main_1 [label="Alloca" comment="  %dvec2 = alloca ptr, align 8"]
+main_1 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_54 [label="Load" comment="  %5 = load double, ptr %arrayidx.i, align 8, !dbg !105, !tbaa !68, !alias.scope !87, !noalias !83"]
+main_54 -> {
+main_53
+}
+main_53 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds double, ptr %4, i64 %i.012.i, !dbg !105"]
+main_53 -> {
+main_39
+main_51
+}
+main_39 [label="Load" comment="  %4 = load ptr, ptr %dvec2, align 8, !dbg !82, !tbaa !63"]
+main_39 -> {
+main_1
+}
+main_1 [label="Alloca" comment="  %dvec2 = alloca ptr, align 8"]
+main_1 -> {
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+main_59
+}
+main_59 [label="Add" comment="  %inc.i = add nuw nsw i64 %i.012.i, 1, !dbg !109"]
+main_59 -> {
+main_51
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_56 [label="Load" comment="  %6 = load double, ptr %arrayidx4.i, align 8, !dbg !108, !tbaa !68, !alias.scope !83, !noalias !87"]
+main_56 -> {
+main_55
+}
+main_55 [label="GetElementPtr" comment="  %arrayidx4.i = getelementptr inbounds double, ptr %3, i64 %i.012.i, !dbg !107"]
+main_55 -> {
+main_37
+main_51
+}
+main_37 [label="Load" comment="  %3 = load ptr, ptr %dvec1, align 8, !dbg !81, !tbaa !63"]
+main_37 -> {
+main_0
+}
+main_0 [label="Alloca" comment="  %dvec1 = alloca ptr, align 8"]
+main_0 -> {
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+main_59
+}
+main_59 [label="Add" comment="  %inc.i = add nuw nsw i64 %i.012.i, 1, !dbg !109"]
+main_59 -> {
+main_51
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_58 [label="Store" comment="  store double %div.i, ptr %arrayidx4.i, align 8, !dbg !108, !tbaa !68, !alias.scope !83, !noalias !87"]
+main_58 -> {
+main_57
+main_55
+}
+main_57 [label="FDiv" comment="  %div.i = fdiv double %6, %5, !dbg !108"]
+main_57 -> {
+main_56
+main_54
+}
+main_56 [label="Load" comment="  %6 = load double, ptr %arrayidx4.i, align 8, !dbg !108, !tbaa !68, !alias.scope !83, !noalias !87"]
+main_56 -> {
+main_55
+}
+main_55 [label="GetElementPtr" comment="  %arrayidx4.i = getelementptr inbounds double, ptr %3, i64 %i.012.i, !dbg !107"]
+main_55 -> {
+main_37
+main_51
+}
+main_37 [label="Load" comment="  %3 = load ptr, ptr %dvec1, align 8, !dbg !81, !tbaa !63"]
+main_37 -> {
+main_0
+}
+main_0 [label="Alloca" comment="  %dvec1 = alloca ptr, align 8"]
+main_0 -> {
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+main_59
+}
+main_59 [label="Add" comment="  %inc.i = add nuw nsw i64 %i.012.i, 1, !dbg !109"]
+main_59 -> {
+main_51
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+// Cycle
+}
+main_54 [label="Load" comment="  %5 = load double, ptr %arrayidx.i, align 8, !dbg !105, !tbaa !68, !alias.scope !87, !noalias !83"]
+main_54 -> {
+main_53
+}
+main_53 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds double, ptr %4, i64 %i.012.i, !dbg !105"]
+main_53 -> {
+main_39
+main_51
+}
+main_39 [label="Load" comment="  %4 = load ptr, ptr %dvec2, align 8, !dbg !82, !tbaa !63"]
+main_39 -> {
+main_1
+}
+main_1 [label="Alloca" comment="  %dvec2 = alloca ptr, align 8"]
+main_1 -> {
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+main_59
+}
+main_59 [label="Add" comment="  %inc.i = add nuw nsw i64 %i.012.i, 1, !dbg !109"]
+main_59 -> {
+main_51
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+// Cycle
+}
+main_55 [label="GetElementPtr" comment="  %arrayidx4.i = getelementptr inbounds double, ptr %3, i64 %i.012.i, !dbg !107"]
+main_55 -> {
+main_37
+main_51
+}
+main_37 [label="Load" comment="  %3 = load ptr, ptr %dvec1, align 8, !dbg !81, !tbaa !63"]
+main_37 -> {
+main_0
+}
+main_0 [label="Alloca" comment="  %dvec1 = alloca ptr, align 8"]
+main_0 -> {
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+main_59
+}
+main_59 [label="Add" comment="  %inc.i = add nuw nsw i64 %i.012.i, 1, !dbg !109"]
+main_59 -> {
+main_51
+}
+main_51 [label="Phi" comment="  %i.012.i = phi i64 [ 0, %for.cond1.preheader.i ], [ %inc.i, %for.body3.i ]"]
+main_51 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_68 [label="Load" comment="  %7 = load double, ptr %3, align 8, !dbg !117, !tbaa !68"]
+main_68 -> {
+main_37
+}
+main_37 [label="Load" comment="  %3 = load ptr, ptr %dvec1, align 8, !dbg !81, !tbaa !63"]
+main_37 -> {
+main_0
+}
+main_0 [label="Alloca" comment="  %dvec1 = alloca ptr, align 8"]
+main_0 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="main"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.lifetime.start.p0"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="posix_memalign"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="printf"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="cosf"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="sinf"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.fmuladd.f64"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.lifetime.end.p0"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.dbg.value"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.experimental.noalias.scope.decl"
+labelloc=b
+}
+}

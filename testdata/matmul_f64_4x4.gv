@@ -1,0 +1,1901 @@
+strict digraph {
+subgraph {
+subgraph {
+wrap_mul4_6 [label="Load" comment="  %0 = load double, ptr %A, align 8, !dbg !49, !tbaa !50"]
+wrap_mul4_6 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_7 [label="Load" comment="  %1 = load double, ptr %B, align 8, !dbg !54, !tbaa !50"]
+wrap_mul4_7 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_9 [label="Load" comment="  %2 = load double, ptr %arrayidx5.i, align 8, !dbg !55, !tbaa !50"]
+wrap_mul4_9 -> {
+wrap_mul4_8
+}
+wrap_mul4_8 [label="GetElementPtr" comment="  %arrayidx5.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 1, !dbg !55"]
+wrap_mul4_8 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_11 [label="Load" comment="  %3 = load double, ptr %arrayidx6.i, align 8, !dbg !56, !tbaa !50"]
+wrap_mul4_11 -> {
+wrap_mul4_10
+}
+wrap_mul4_10 [label="GetElementPtr" comment="  %arrayidx6.i = getelementptr inbounds [4 x double], ptr %B, i64 1, !dbg !56"]
+wrap_mul4_10 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_15 [label="Load" comment="  %5 = load double, ptr %arrayidx10.i, align 8, !dbg !59, !tbaa !50"]
+wrap_mul4_15 -> {
+wrap_mul4_14
+}
+wrap_mul4_14 [label="GetElementPtr" comment="  %arrayidx10.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 2, !dbg !59"]
+wrap_mul4_14 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_17 [label="Load" comment="  %6 = load double, ptr %arrayidx11.i, align 8, !dbg !60, !tbaa !50"]
+wrap_mul4_17 -> {
+wrap_mul4_16
+}
+wrap_mul4_16 [label="GetElementPtr" comment="  %arrayidx11.i = getelementptr inbounds [4 x double], ptr %B, i64 2, !dbg !60"]
+wrap_mul4_16 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_20 [label="Load" comment="  %8 = load double, ptr %arrayidx14.i, align 8, !dbg !62, !tbaa !50"]
+wrap_mul4_20 -> {
+wrap_mul4_19
+}
+wrap_mul4_19 [label="GetElementPtr" comment="  %arrayidx14.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 3, !dbg !62"]
+wrap_mul4_19 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_22 [label="Load" comment="  %9 = load double, ptr %arrayidx15.i, align 8, !dbg !63, !tbaa !50"]
+wrap_mul4_22 -> {
+wrap_mul4_21
+}
+wrap_mul4_21 [label="GetElementPtr" comment="  %arrayidx15.i = getelementptr inbounds [4 x double], ptr %B, i64 3, !dbg !63"]
+wrap_mul4_21 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_26 [label="Load" comment="  %11 = load double, ptr %arrayidx21.i, align 8, !dbg !65, !tbaa !50"]
+wrap_mul4_26 -> {
+wrap_mul4_25
+}
+wrap_mul4_25 [label="GetElementPtr" comment="  %arrayidx21.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 1, !dbg !65"]
+wrap_mul4_25 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_28 [label="Load" comment="  %12 = load double, ptr %arrayidx25.i, align 8, !dbg !66, !tbaa !50"]
+wrap_mul4_28 -> {
+wrap_mul4_27
+}
+wrap_mul4_27 [label="GetElementPtr" comment="  %arrayidx25.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 1, !dbg !66"]
+wrap_mul4_27 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_32 [label="Load" comment="  %14 = load double, ptr %arrayidx30.i, align 8, !dbg !69, !tbaa !50"]
+wrap_mul4_32 -> {
+wrap_mul4_31
+}
+wrap_mul4_31 [label="GetElementPtr" comment="  %arrayidx30.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 1, !dbg !69"]
+wrap_mul4_31 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_35 [label="Load" comment="  %16 = load double, ptr %arrayidx34.i, align 8, !dbg !71, !tbaa !50"]
+wrap_mul4_35 -> {
+wrap_mul4_34
+}
+wrap_mul4_34 [label="GetElementPtr" comment="  %arrayidx34.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 1, !dbg !71"]
+wrap_mul4_34 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_39 [label="Load" comment="  %18 = load double, ptr %arrayidx39.i, align 8, !dbg !73, !tbaa !50"]
+wrap_mul4_39 -> {
+wrap_mul4_38
+}
+wrap_mul4_38 [label="GetElementPtr" comment="  %arrayidx39.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 2, !dbg !73"]
+wrap_mul4_38 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_41 [label="Load" comment="  %19 = load double, ptr %arrayidx43.i, align 8, !dbg !74, !tbaa !50"]
+wrap_mul4_41 -> {
+wrap_mul4_40
+}
+wrap_mul4_40 [label="GetElementPtr" comment="  %arrayidx43.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 2, !dbg !74"]
+wrap_mul4_40 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_45 [label="Load" comment="  %21 = load double, ptr %arrayidx48.i, align 8, !dbg !77, !tbaa !50"]
+wrap_mul4_45 -> {
+wrap_mul4_44
+}
+wrap_mul4_44 [label="GetElementPtr" comment="  %arrayidx48.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 2, !dbg !77"]
+wrap_mul4_44 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_48 [label="Load" comment="  %23 = load double, ptr %arrayidx52.i, align 8, !dbg !79, !tbaa !50"]
+wrap_mul4_48 -> {
+wrap_mul4_47
+}
+wrap_mul4_47 [label="GetElementPtr" comment="  %arrayidx52.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 2, !dbg !79"]
+wrap_mul4_47 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_52 [label="Load" comment="  %25 = load double, ptr %arrayidx57.i, align 8, !dbg !81, !tbaa !50"]
+wrap_mul4_52 -> {
+wrap_mul4_51
+}
+wrap_mul4_51 [label="GetElementPtr" comment="  %arrayidx57.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 3, !dbg !81"]
+wrap_mul4_51 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_54 [label="Load" comment="  %26 = load double, ptr %arrayidx61.i, align 8, !dbg !82, !tbaa !50"]
+wrap_mul4_54 -> {
+wrap_mul4_53
+}
+wrap_mul4_53 [label="GetElementPtr" comment="  %arrayidx61.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 3, !dbg !82"]
+wrap_mul4_53 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_58 [label="Load" comment="  %28 = load double, ptr %arrayidx66.i, align 8, !dbg !85, !tbaa !50"]
+wrap_mul4_58 -> {
+wrap_mul4_57
+}
+wrap_mul4_57 [label="GetElementPtr" comment="  %arrayidx66.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 3, !dbg !85"]
+wrap_mul4_57 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_61 [label="Load" comment="  %30 = load double, ptr %arrayidx70.i, align 8, !dbg !87, !tbaa !50"]
+wrap_mul4_61 -> {
+wrap_mul4_60
+}
+wrap_mul4_60 [label="GetElementPtr" comment="  %arrayidx70.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 3, !dbg !87"]
+wrap_mul4_60 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_65 [label="Load" comment="  %32 = load double, ptr %arrayidx72.i, align 8, !dbg !89, !tbaa !50"]
+wrap_mul4_65 -> {
+wrap_mul4_64
+}
+wrap_mul4_64 [label="GetElementPtr" comment="  %arrayidx72.i = getelementptr inbounds [4 x double], ptr %A, i64 1, !dbg !89"]
+wrap_mul4_64 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_67 [label="Load" comment="  %33 = load double, ptr %arrayidx77.i, align 8, !dbg !90, !tbaa !50"]
+wrap_mul4_67 -> {
+wrap_mul4_66
+}
+wrap_mul4_66 [label="GetElementPtr" comment="  %arrayidx77.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 1, !dbg !90"]
+wrap_mul4_66 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_71 [label="Load" comment="  %35 = load double, ptr %arrayidx82.i, align 8, !dbg !93, !tbaa !50"]
+wrap_mul4_71 -> {
+wrap_mul4_70
+}
+wrap_mul4_70 [label="GetElementPtr" comment="  %arrayidx82.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 2, !dbg !93"]
+wrap_mul4_70 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_74 [label="Load" comment="  %37 = load double, ptr %arrayidx86.i, align 8, !dbg !95, !tbaa !50"]
+wrap_mul4_74 -> {
+wrap_mul4_73
+}
+wrap_mul4_73 [label="GetElementPtr" comment="  %arrayidx86.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 3, !dbg !95"]
+wrap_mul4_73 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_93 [label="Load" comment="  %48 = load double, ptr %arrayidx144.i, align 8, !dbg !109, !tbaa !50"]
+wrap_mul4_93 -> {
+wrap_mul4_92
+}
+wrap_mul4_92 [label="GetElementPtr" comment="  %arrayidx144.i = getelementptr inbounds [4 x double], ptr %A, i64 2, !dbg !109"]
+wrap_mul4_92 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_95 [label="Load" comment="  %49 = load double, ptr %arrayidx149.i, align 8, !dbg !110, !tbaa !50"]
+wrap_mul4_95 -> {
+wrap_mul4_94
+}
+wrap_mul4_94 [label="GetElementPtr" comment="  %arrayidx149.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 1, !dbg !110"]
+wrap_mul4_94 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_99 [label="Load" comment="  %51 = load double, ptr %arrayidx154.i, align 8, !dbg !113, !tbaa !50"]
+wrap_mul4_99 -> {
+wrap_mul4_98
+}
+wrap_mul4_98 [label="GetElementPtr" comment="  %arrayidx154.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 2, !dbg !113"]
+wrap_mul4_98 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_102 [label="Load" comment="  %53 = load double, ptr %arrayidx158.i, align 8, !dbg !115, !tbaa !50"]
+wrap_mul4_102 -> {
+wrap_mul4_101
+}
+wrap_mul4_101 [label="GetElementPtr" comment="  %arrayidx158.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 3, !dbg !115"]
+wrap_mul4_101 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_121 [label="Load" comment="  %64 = load double, ptr %arrayidx216.i, align 8, !dbg !129, !tbaa !50"]
+wrap_mul4_121 -> {
+wrap_mul4_120
+}
+wrap_mul4_120 [label="GetElementPtr" comment="  %arrayidx216.i = getelementptr inbounds [4 x double], ptr %A, i64 3, !dbg !129"]
+wrap_mul4_120 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_123 [label="Load" comment="  %65 = load double, ptr %arrayidx221.i, align 8, !dbg !130, !tbaa !50"]
+wrap_mul4_123 -> {
+wrap_mul4_122
+}
+wrap_mul4_122 [label="GetElementPtr" comment="  %arrayidx221.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 1, !dbg !130"]
+wrap_mul4_122 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_127 [label="Load" comment="  %67 = load double, ptr %arrayidx226.i, align 8, !dbg !133, !tbaa !50"]
+wrap_mul4_127 -> {
+wrap_mul4_126
+}
+wrap_mul4_126 [label="GetElementPtr" comment="  %arrayidx226.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 2, !dbg !133"]
+wrap_mul4_126 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_130 [label="Load" comment="  %69 = load double, ptr %arrayidx230.i, align 8, !dbg !135, !tbaa !50"]
+wrap_mul4_130 -> {
+wrap_mul4_129
+}
+wrap_mul4_129 [label="GetElementPtr" comment="  %arrayidx230.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 3, !dbg !135"]
+wrap_mul4_129 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_149 [label="Store" comment="  store double %10, ptr %Out, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_149 -> {
+wrap_mul4_23
+}
+wrap_mul4_23 [label="Call" comment="  %10 = tail call double @llvm.fmuladd.f64(double %8, double %9, double %7), !dbg !64"]
+wrap_mul4_23 -> {
+wrap_mul4_20
+wrap_mul4_22
+wrap_mul4_18
+}
+wrap_mul4_20 [label="Load" comment="  %8 = load double, ptr %arrayidx14.i, align 8, !dbg !62, !tbaa !50"]
+wrap_mul4_20 -> {
+wrap_mul4_19
+}
+wrap_mul4_19 [label="GetElementPtr" comment="  %arrayidx14.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 3, !dbg !62"]
+wrap_mul4_19 -> {
+}
+wrap_mul4_22 [label="Load" comment="  %9 = load double, ptr %arrayidx15.i, align 8, !dbg !63, !tbaa !50"]
+wrap_mul4_22 -> {
+wrap_mul4_21
+}
+wrap_mul4_21 [label="GetElementPtr" comment="  %arrayidx15.i = getelementptr inbounds [4 x double], ptr %B, i64 3, !dbg !63"]
+wrap_mul4_21 -> {
+}
+wrap_mul4_18 [label="Call" comment="  %7 = tail call double @llvm.fmuladd.f64(double %5, double %6, double %4), !dbg !61"]
+wrap_mul4_18 -> {
+wrap_mul4_15
+wrap_mul4_17
+wrap_mul4_13
+}
+wrap_mul4_15 [label="Load" comment="  %5 = load double, ptr %arrayidx10.i, align 8, !dbg !59, !tbaa !50"]
+wrap_mul4_15 -> {
+wrap_mul4_14
+}
+wrap_mul4_14 [label="GetElementPtr" comment="  %arrayidx10.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 2, !dbg !59"]
+wrap_mul4_14 -> {
+}
+wrap_mul4_17 [label="Load" comment="  %6 = load double, ptr %arrayidx11.i, align 8, !dbg !60, !tbaa !50"]
+wrap_mul4_17 -> {
+wrap_mul4_16
+}
+wrap_mul4_16 [label="GetElementPtr" comment="  %arrayidx11.i = getelementptr inbounds [4 x double], ptr %B, i64 2, !dbg !60"]
+wrap_mul4_16 -> {
+}
+wrap_mul4_13 [label="Call" comment="  %4 = tail call double @llvm.fmuladd.f64(double %0, double %1, double %mul8.i), !dbg !58"]
+wrap_mul4_13 -> {
+wrap_mul4_6
+wrap_mul4_7
+wrap_mul4_12
+}
+wrap_mul4_6 [label="Load" comment="  %0 = load double, ptr %A, align 8, !dbg !49, !tbaa !50"]
+wrap_mul4_6 -> {
+}
+wrap_mul4_7 [label="Load" comment="  %1 = load double, ptr %B, align 8, !dbg !54, !tbaa !50"]
+wrap_mul4_7 -> {
+}
+wrap_mul4_12 [label="FMul" comment="  %mul8.i = fmul double %2, %3, !dbg !57"]
+wrap_mul4_12 -> {
+wrap_mul4_9
+wrap_mul4_11
+}
+wrap_mul4_9 [label="Load" comment="  %2 = load double, ptr %arrayidx5.i, align 8, !dbg !55, !tbaa !50"]
+wrap_mul4_9 -> {
+wrap_mul4_8
+}
+wrap_mul4_8 [label="GetElementPtr" comment="  %arrayidx5.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 1, !dbg !55"]
+wrap_mul4_8 -> {
+}
+wrap_mul4_11 [label="Load" comment="  %3 = load double, ptr %arrayidx6.i, align 8, !dbg !56, !tbaa !50"]
+wrap_mul4_11 -> {
+wrap_mul4_10
+}
+wrap_mul4_10 [label="GetElementPtr" comment="  %arrayidx6.i = getelementptr inbounds [4 x double], ptr %B, i64 1, !dbg !56"]
+wrap_mul4_10 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_151 [label="Store" comment="  store double %17, ptr %Res.sroa.4.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_151 -> {
+wrap_mul4_36
+wrap_mul4_150
+}
+wrap_mul4_36 [label="Call" comment="  %17 = tail call double @llvm.fmuladd.f64(double %8, double %16, double %15), !dbg !72"]
+wrap_mul4_36 -> {
+wrap_mul4_20
+wrap_mul4_35
+wrap_mul4_33
+}
+wrap_mul4_20 [label="Load" comment="  %8 = load double, ptr %arrayidx14.i, align 8, !dbg !62, !tbaa !50"]
+wrap_mul4_20 -> {
+wrap_mul4_19
+}
+wrap_mul4_19 [label="GetElementPtr" comment="  %arrayidx14.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 3, !dbg !62"]
+wrap_mul4_19 -> {
+}
+wrap_mul4_35 [label="Load" comment="  %16 = load double, ptr %arrayidx34.i, align 8, !dbg !71, !tbaa !50"]
+wrap_mul4_35 -> {
+wrap_mul4_34
+}
+wrap_mul4_34 [label="GetElementPtr" comment="  %arrayidx34.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 1, !dbg !71"]
+wrap_mul4_34 -> {
+}
+wrap_mul4_33 [label="Call" comment="  %15 = tail call double @llvm.fmuladd.f64(double %5, double %14, double %13), !dbg !70"]
+wrap_mul4_33 -> {
+wrap_mul4_15
+wrap_mul4_32
+wrap_mul4_30
+}
+wrap_mul4_15 [label="Load" comment="  %5 = load double, ptr %arrayidx10.i, align 8, !dbg !59, !tbaa !50"]
+wrap_mul4_15 -> {
+wrap_mul4_14
+}
+wrap_mul4_14 [label="GetElementPtr" comment="  %arrayidx10.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 2, !dbg !59"]
+wrap_mul4_14 -> {
+}
+wrap_mul4_32 [label="Load" comment="  %14 = load double, ptr %arrayidx30.i, align 8, !dbg !69, !tbaa !50"]
+wrap_mul4_32 -> {
+wrap_mul4_31
+}
+wrap_mul4_31 [label="GetElementPtr" comment="  %arrayidx30.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 1, !dbg !69"]
+wrap_mul4_31 -> {
+}
+wrap_mul4_30 [label="Call" comment="  %13 = tail call double @llvm.fmuladd.f64(double %0, double %11, double %mul26.i), !dbg !68"]
+wrap_mul4_30 -> {
+wrap_mul4_6
+wrap_mul4_26
+wrap_mul4_29
+}
+wrap_mul4_6 [label="Load" comment="  %0 = load double, ptr %A, align 8, !dbg !49, !tbaa !50"]
+wrap_mul4_6 -> {
+}
+wrap_mul4_26 [label="Load" comment="  %11 = load double, ptr %arrayidx21.i, align 8, !dbg !65, !tbaa !50"]
+wrap_mul4_26 -> {
+wrap_mul4_25
+}
+wrap_mul4_25 [label="GetElementPtr" comment="  %arrayidx21.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 1, !dbg !65"]
+wrap_mul4_25 -> {
+}
+wrap_mul4_29 [label="FMul" comment="  %mul26.i = fmul double %2, %12, !dbg !67"]
+wrap_mul4_29 -> {
+wrap_mul4_9
+wrap_mul4_28
+}
+wrap_mul4_9 [label="Load" comment="  %2 = load double, ptr %arrayidx5.i, align 8, !dbg !55, !tbaa !50"]
+wrap_mul4_9 -> {
+wrap_mul4_8
+}
+wrap_mul4_8 [label="GetElementPtr" comment="  %arrayidx5.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 1, !dbg !55"]
+wrap_mul4_8 -> {
+}
+wrap_mul4_28 [label="Load" comment="  %12 = load double, ptr %arrayidx25.i, align 8, !dbg !66, !tbaa !50"]
+wrap_mul4_28 -> {
+wrap_mul4_27
+}
+wrap_mul4_27 [label="GetElementPtr" comment="  %arrayidx25.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 1, !dbg !66"]
+wrap_mul4_27 -> {
+}
+wrap_mul4_150 [label="GetElementPtr" comment="  %Res.sroa.4.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 8, !dbg !149"]
+wrap_mul4_150 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_153 [label="Store" comment="  store double %24, ptr %Res.sroa.5.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_153 -> {
+wrap_mul4_49
+wrap_mul4_152
+}
+wrap_mul4_49 [label="Call" comment="  %24 = tail call double @llvm.fmuladd.f64(double %8, double %23, double %22), !dbg !80"]
+wrap_mul4_49 -> {
+wrap_mul4_20
+wrap_mul4_48
+wrap_mul4_46
+}
+wrap_mul4_20 [label="Load" comment="  %8 = load double, ptr %arrayidx14.i, align 8, !dbg !62, !tbaa !50"]
+wrap_mul4_20 -> {
+wrap_mul4_19
+}
+wrap_mul4_19 [label="GetElementPtr" comment="  %arrayidx14.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 3, !dbg !62"]
+wrap_mul4_19 -> {
+}
+wrap_mul4_48 [label="Load" comment="  %23 = load double, ptr %arrayidx52.i, align 8, !dbg !79, !tbaa !50"]
+wrap_mul4_48 -> {
+wrap_mul4_47
+}
+wrap_mul4_47 [label="GetElementPtr" comment="  %arrayidx52.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 2, !dbg !79"]
+wrap_mul4_47 -> {
+}
+wrap_mul4_46 [label="Call" comment="  %22 = tail call double @llvm.fmuladd.f64(double %5, double %21, double %20), !dbg !78"]
+wrap_mul4_46 -> {
+wrap_mul4_15
+wrap_mul4_45
+wrap_mul4_43
+}
+wrap_mul4_15 [label="Load" comment="  %5 = load double, ptr %arrayidx10.i, align 8, !dbg !59, !tbaa !50"]
+wrap_mul4_15 -> {
+wrap_mul4_14
+}
+wrap_mul4_14 [label="GetElementPtr" comment="  %arrayidx10.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 2, !dbg !59"]
+wrap_mul4_14 -> {
+}
+wrap_mul4_45 [label="Load" comment="  %21 = load double, ptr %arrayidx48.i, align 8, !dbg !77, !tbaa !50"]
+wrap_mul4_45 -> {
+wrap_mul4_44
+}
+wrap_mul4_44 [label="GetElementPtr" comment="  %arrayidx48.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 2, !dbg !77"]
+wrap_mul4_44 -> {
+}
+wrap_mul4_43 [label="Call" comment="  %20 = tail call double @llvm.fmuladd.f64(double %0, double %18, double %mul44.i), !dbg !76"]
+wrap_mul4_43 -> {
+wrap_mul4_6
+wrap_mul4_39
+wrap_mul4_42
+}
+wrap_mul4_6 [label="Load" comment="  %0 = load double, ptr %A, align 8, !dbg !49, !tbaa !50"]
+wrap_mul4_6 -> {
+}
+wrap_mul4_39 [label="Load" comment="  %18 = load double, ptr %arrayidx39.i, align 8, !dbg !73, !tbaa !50"]
+wrap_mul4_39 -> {
+wrap_mul4_38
+}
+wrap_mul4_38 [label="GetElementPtr" comment="  %arrayidx39.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 2, !dbg !73"]
+wrap_mul4_38 -> {
+}
+wrap_mul4_42 [label="FMul" comment="  %mul44.i = fmul double %2, %19, !dbg !75"]
+wrap_mul4_42 -> {
+wrap_mul4_9
+wrap_mul4_41
+}
+wrap_mul4_9 [label="Load" comment="  %2 = load double, ptr %arrayidx5.i, align 8, !dbg !55, !tbaa !50"]
+wrap_mul4_9 -> {
+wrap_mul4_8
+}
+wrap_mul4_8 [label="GetElementPtr" comment="  %arrayidx5.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 1, !dbg !55"]
+wrap_mul4_8 -> {
+}
+wrap_mul4_41 [label="Load" comment="  %19 = load double, ptr %arrayidx43.i, align 8, !dbg !74, !tbaa !50"]
+wrap_mul4_41 -> {
+wrap_mul4_40
+}
+wrap_mul4_40 [label="GetElementPtr" comment="  %arrayidx43.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 2, !dbg !74"]
+wrap_mul4_40 -> {
+}
+wrap_mul4_152 [label="GetElementPtr" comment="  %Res.sroa.5.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 16, !dbg !149"]
+wrap_mul4_152 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_155 [label="Store" comment="  store double %31, ptr %Res.sroa.6.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_155 -> {
+wrap_mul4_62
+wrap_mul4_154
+}
+wrap_mul4_62 [label="Call" comment="  %31 = tail call double @llvm.fmuladd.f64(double %8, double %30, double %29), !dbg !88"]
+wrap_mul4_62 -> {
+wrap_mul4_20
+wrap_mul4_61
+wrap_mul4_59
+}
+wrap_mul4_20 [label="Load" comment="  %8 = load double, ptr %arrayidx14.i, align 8, !dbg !62, !tbaa !50"]
+wrap_mul4_20 -> {
+wrap_mul4_19
+}
+wrap_mul4_19 [label="GetElementPtr" comment="  %arrayidx14.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 3, !dbg !62"]
+wrap_mul4_19 -> {
+}
+wrap_mul4_61 [label="Load" comment="  %30 = load double, ptr %arrayidx70.i, align 8, !dbg !87, !tbaa !50"]
+wrap_mul4_61 -> {
+wrap_mul4_60
+}
+wrap_mul4_60 [label="GetElementPtr" comment="  %arrayidx70.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 3, !dbg !87"]
+wrap_mul4_60 -> {
+}
+wrap_mul4_59 [label="Call" comment="  %29 = tail call double @llvm.fmuladd.f64(double %5, double %28, double %27), !dbg !86"]
+wrap_mul4_59 -> {
+wrap_mul4_15
+wrap_mul4_58
+wrap_mul4_56
+}
+wrap_mul4_15 [label="Load" comment="  %5 = load double, ptr %arrayidx10.i, align 8, !dbg !59, !tbaa !50"]
+wrap_mul4_15 -> {
+wrap_mul4_14
+}
+wrap_mul4_14 [label="GetElementPtr" comment="  %arrayidx10.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 2, !dbg !59"]
+wrap_mul4_14 -> {
+}
+wrap_mul4_58 [label="Load" comment="  %28 = load double, ptr %arrayidx66.i, align 8, !dbg !85, !tbaa !50"]
+wrap_mul4_58 -> {
+wrap_mul4_57
+}
+wrap_mul4_57 [label="GetElementPtr" comment="  %arrayidx66.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 3, !dbg !85"]
+wrap_mul4_57 -> {
+}
+wrap_mul4_56 [label="Call" comment="  %27 = tail call double @llvm.fmuladd.f64(double %0, double %25, double %mul62.i), !dbg !84"]
+wrap_mul4_56 -> {
+wrap_mul4_6
+wrap_mul4_52
+wrap_mul4_55
+}
+wrap_mul4_6 [label="Load" comment="  %0 = load double, ptr %A, align 8, !dbg !49, !tbaa !50"]
+wrap_mul4_6 -> {
+}
+wrap_mul4_52 [label="Load" comment="  %25 = load double, ptr %arrayidx57.i, align 8, !dbg !81, !tbaa !50"]
+wrap_mul4_52 -> {
+wrap_mul4_51
+}
+wrap_mul4_51 [label="GetElementPtr" comment="  %arrayidx57.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 3, !dbg !81"]
+wrap_mul4_51 -> {
+}
+wrap_mul4_55 [label="FMul" comment="  %mul62.i = fmul double %2, %26, !dbg !83"]
+wrap_mul4_55 -> {
+wrap_mul4_9
+wrap_mul4_54
+}
+wrap_mul4_9 [label="Load" comment="  %2 = load double, ptr %arrayidx5.i, align 8, !dbg !55, !tbaa !50"]
+wrap_mul4_9 -> {
+wrap_mul4_8
+}
+wrap_mul4_8 [label="GetElementPtr" comment="  %arrayidx5.i = getelementptr inbounds [4 x double], ptr %A, i64 0, i64 1, !dbg !55"]
+wrap_mul4_8 -> {
+}
+wrap_mul4_54 [label="Load" comment="  %26 = load double, ptr %arrayidx61.i, align 8, !dbg !82, !tbaa !50"]
+wrap_mul4_54 -> {
+wrap_mul4_53
+}
+wrap_mul4_53 [label="GetElementPtr" comment="  %arrayidx61.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 3, !dbg !82"]
+wrap_mul4_53 -> {
+}
+wrap_mul4_154 [label="GetElementPtr" comment="  %Res.sroa.6.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 24, !dbg !149"]
+wrap_mul4_154 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_157 [label="Store" comment="  store double %38, ptr %Res.sroa.7.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_157 -> {
+wrap_mul4_75
+wrap_mul4_156
+}
+wrap_mul4_75 [label="Call" comment="  %38 = tail call double @llvm.fmuladd.f64(double %37, double %9, double %36), !dbg !96"]
+wrap_mul4_75 -> {
+wrap_mul4_74
+wrap_mul4_22
+wrap_mul4_72
+}
+wrap_mul4_74 [label="Load" comment="  %37 = load double, ptr %arrayidx86.i, align 8, !dbg !95, !tbaa !50"]
+wrap_mul4_74 -> {
+wrap_mul4_73
+}
+wrap_mul4_73 [label="GetElementPtr" comment="  %arrayidx86.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 3, !dbg !95"]
+wrap_mul4_73 -> {
+}
+wrap_mul4_22 [label="Load" comment="  %9 = load double, ptr %arrayidx15.i, align 8, !dbg !63, !tbaa !50"]
+wrap_mul4_22 -> {
+wrap_mul4_21
+}
+wrap_mul4_21 [label="GetElementPtr" comment="  %arrayidx15.i = getelementptr inbounds [4 x double], ptr %B, i64 3, !dbg !63"]
+wrap_mul4_21 -> {
+}
+wrap_mul4_72 [label="Call" comment="  %36 = tail call double @llvm.fmuladd.f64(double %35, double %6, double %34), !dbg !94"]
+wrap_mul4_72 -> {
+wrap_mul4_71
+wrap_mul4_17
+wrap_mul4_69
+}
+wrap_mul4_71 [label="Load" comment="  %35 = load double, ptr %arrayidx82.i, align 8, !dbg !93, !tbaa !50"]
+wrap_mul4_71 -> {
+wrap_mul4_70
+}
+wrap_mul4_70 [label="GetElementPtr" comment="  %arrayidx82.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 2, !dbg !93"]
+wrap_mul4_70 -> {
+}
+wrap_mul4_17 [label="Load" comment="  %6 = load double, ptr %arrayidx11.i, align 8, !dbg !60, !tbaa !50"]
+wrap_mul4_17 -> {
+wrap_mul4_16
+}
+wrap_mul4_16 [label="GetElementPtr" comment="  %arrayidx11.i = getelementptr inbounds [4 x double], ptr %B, i64 2, !dbg !60"]
+wrap_mul4_16 -> {
+}
+wrap_mul4_69 [label="Call" comment="  %34 = tail call double @llvm.fmuladd.f64(double %32, double %1, double %mul80.i), !dbg !92"]
+wrap_mul4_69 -> {
+wrap_mul4_65
+wrap_mul4_7
+wrap_mul4_68
+}
+wrap_mul4_65 [label="Load" comment="  %32 = load double, ptr %arrayidx72.i, align 8, !dbg !89, !tbaa !50"]
+wrap_mul4_65 -> {
+wrap_mul4_64
+}
+wrap_mul4_64 [label="GetElementPtr" comment="  %arrayidx72.i = getelementptr inbounds [4 x double], ptr %A, i64 1, !dbg !89"]
+wrap_mul4_64 -> {
+}
+wrap_mul4_7 [label="Load" comment="  %1 = load double, ptr %B, align 8, !dbg !54, !tbaa !50"]
+wrap_mul4_7 -> {
+}
+wrap_mul4_68 [label="FMul" comment="  %mul80.i = fmul double %3, %33, !dbg !91"]
+wrap_mul4_68 -> {
+wrap_mul4_11
+wrap_mul4_67
+}
+wrap_mul4_11 [label="Load" comment="  %3 = load double, ptr %arrayidx6.i, align 8, !dbg !56, !tbaa !50"]
+wrap_mul4_11 -> {
+wrap_mul4_10
+}
+wrap_mul4_10 [label="GetElementPtr" comment="  %arrayidx6.i = getelementptr inbounds [4 x double], ptr %B, i64 1, !dbg !56"]
+wrap_mul4_10 -> {
+}
+wrap_mul4_67 [label="Load" comment="  %33 = load double, ptr %arrayidx77.i, align 8, !dbg !90, !tbaa !50"]
+wrap_mul4_67 -> {
+wrap_mul4_66
+}
+wrap_mul4_66 [label="GetElementPtr" comment="  %arrayidx77.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 1, !dbg !90"]
+wrap_mul4_66 -> {
+}
+wrap_mul4_156 [label="GetElementPtr" comment="  %Res.sroa.7.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 32, !dbg !149"]
+wrap_mul4_156 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_159 [label="Store" comment="  store double %41, ptr %Res.sroa.8.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_159 -> {
+wrap_mul4_80
+wrap_mul4_158
+}
+wrap_mul4_80 [label="Call" comment="  %41 = tail call double @llvm.fmuladd.f64(double %37, double %16, double %40), !dbg !100"]
+wrap_mul4_80 -> {
+wrap_mul4_74
+wrap_mul4_35
+wrap_mul4_79
+}
+wrap_mul4_74 [label="Load" comment="  %37 = load double, ptr %arrayidx86.i, align 8, !dbg !95, !tbaa !50"]
+wrap_mul4_74 -> {
+wrap_mul4_73
+}
+wrap_mul4_73 [label="GetElementPtr" comment="  %arrayidx86.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 3, !dbg !95"]
+wrap_mul4_73 -> {
+}
+wrap_mul4_35 [label="Load" comment="  %16 = load double, ptr %arrayidx34.i, align 8, !dbg !71, !tbaa !50"]
+wrap_mul4_35 -> {
+wrap_mul4_34
+}
+wrap_mul4_34 [label="GetElementPtr" comment="  %arrayidx34.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 1, !dbg !71"]
+wrap_mul4_34 -> {
+}
+wrap_mul4_79 [label="Call" comment="  %40 = tail call double @llvm.fmuladd.f64(double %35, double %14, double %39), !dbg !99"]
+wrap_mul4_79 -> {
+wrap_mul4_71
+wrap_mul4_32
+wrap_mul4_78
+}
+wrap_mul4_71 [label="Load" comment="  %35 = load double, ptr %arrayidx82.i, align 8, !dbg !93, !tbaa !50"]
+wrap_mul4_71 -> {
+wrap_mul4_70
+}
+wrap_mul4_70 [label="GetElementPtr" comment="  %arrayidx82.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 2, !dbg !93"]
+wrap_mul4_70 -> {
+}
+wrap_mul4_32 [label="Load" comment="  %14 = load double, ptr %arrayidx30.i, align 8, !dbg !69, !tbaa !50"]
+wrap_mul4_32 -> {
+wrap_mul4_31
+}
+wrap_mul4_31 [label="GetElementPtr" comment="  %arrayidx30.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 1, !dbg !69"]
+wrap_mul4_31 -> {
+}
+wrap_mul4_78 [label="Call" comment="  %39 = tail call double @llvm.fmuladd.f64(double %32, double %11, double %mul98.i), !dbg !98"]
+wrap_mul4_78 -> {
+wrap_mul4_65
+wrap_mul4_26
+wrap_mul4_77
+}
+wrap_mul4_65 [label="Load" comment="  %32 = load double, ptr %arrayidx72.i, align 8, !dbg !89, !tbaa !50"]
+wrap_mul4_65 -> {
+wrap_mul4_64
+}
+wrap_mul4_64 [label="GetElementPtr" comment="  %arrayidx72.i = getelementptr inbounds [4 x double], ptr %A, i64 1, !dbg !89"]
+wrap_mul4_64 -> {
+}
+wrap_mul4_26 [label="Load" comment="  %11 = load double, ptr %arrayidx21.i, align 8, !dbg !65, !tbaa !50"]
+wrap_mul4_26 -> {
+wrap_mul4_25
+}
+wrap_mul4_25 [label="GetElementPtr" comment="  %arrayidx21.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 1, !dbg !65"]
+wrap_mul4_25 -> {
+}
+wrap_mul4_77 [label="FMul" comment="  %mul98.i = fmul double %12, %33, !dbg !97"]
+wrap_mul4_77 -> {
+wrap_mul4_28
+wrap_mul4_67
+}
+wrap_mul4_28 [label="Load" comment="  %12 = load double, ptr %arrayidx25.i, align 8, !dbg !66, !tbaa !50"]
+wrap_mul4_28 -> {
+wrap_mul4_27
+}
+wrap_mul4_27 [label="GetElementPtr" comment="  %arrayidx25.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 1, !dbg !66"]
+wrap_mul4_27 -> {
+}
+wrap_mul4_67 [label="Load" comment="  %33 = load double, ptr %arrayidx77.i, align 8, !dbg !90, !tbaa !50"]
+wrap_mul4_67 -> {
+wrap_mul4_66
+}
+wrap_mul4_66 [label="GetElementPtr" comment="  %arrayidx77.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 1, !dbg !90"]
+wrap_mul4_66 -> {
+}
+wrap_mul4_158 [label="GetElementPtr" comment="  %Res.sroa.8.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 40, !dbg !149"]
+wrap_mul4_158 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_161 [label="Store" comment="  store double %44, ptr %Res.sroa.9.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_161 -> {
+wrap_mul4_85
+wrap_mul4_160
+}
+wrap_mul4_85 [label="Call" comment="  %44 = tail call double @llvm.fmuladd.f64(double %37, double %23, double %43), !dbg !104"]
+wrap_mul4_85 -> {
+wrap_mul4_74
+wrap_mul4_48
+wrap_mul4_84
+}
+wrap_mul4_74 [label="Load" comment="  %37 = load double, ptr %arrayidx86.i, align 8, !dbg !95, !tbaa !50"]
+wrap_mul4_74 -> {
+wrap_mul4_73
+}
+wrap_mul4_73 [label="GetElementPtr" comment="  %arrayidx86.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 3, !dbg !95"]
+wrap_mul4_73 -> {
+}
+wrap_mul4_48 [label="Load" comment="  %23 = load double, ptr %arrayidx52.i, align 8, !dbg !79, !tbaa !50"]
+wrap_mul4_48 -> {
+wrap_mul4_47
+}
+wrap_mul4_47 [label="GetElementPtr" comment="  %arrayidx52.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 2, !dbg !79"]
+wrap_mul4_47 -> {
+}
+wrap_mul4_84 [label="Call" comment="  %43 = tail call double @llvm.fmuladd.f64(double %35, double %21, double %42), !dbg !103"]
+wrap_mul4_84 -> {
+wrap_mul4_71
+wrap_mul4_45
+wrap_mul4_83
+}
+wrap_mul4_71 [label="Load" comment="  %35 = load double, ptr %arrayidx82.i, align 8, !dbg !93, !tbaa !50"]
+wrap_mul4_71 -> {
+wrap_mul4_70
+}
+wrap_mul4_70 [label="GetElementPtr" comment="  %arrayidx82.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 2, !dbg !93"]
+wrap_mul4_70 -> {
+}
+wrap_mul4_45 [label="Load" comment="  %21 = load double, ptr %arrayidx48.i, align 8, !dbg !77, !tbaa !50"]
+wrap_mul4_45 -> {
+wrap_mul4_44
+}
+wrap_mul4_44 [label="GetElementPtr" comment="  %arrayidx48.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 2, !dbg !77"]
+wrap_mul4_44 -> {
+}
+wrap_mul4_83 [label="Call" comment="  %42 = tail call double @llvm.fmuladd.f64(double %32, double %18, double %mul116.i), !dbg !102"]
+wrap_mul4_83 -> {
+wrap_mul4_65
+wrap_mul4_39
+wrap_mul4_82
+}
+wrap_mul4_65 [label="Load" comment="  %32 = load double, ptr %arrayidx72.i, align 8, !dbg !89, !tbaa !50"]
+wrap_mul4_65 -> {
+wrap_mul4_64
+}
+wrap_mul4_64 [label="GetElementPtr" comment="  %arrayidx72.i = getelementptr inbounds [4 x double], ptr %A, i64 1, !dbg !89"]
+wrap_mul4_64 -> {
+}
+wrap_mul4_39 [label="Load" comment="  %18 = load double, ptr %arrayidx39.i, align 8, !dbg !73, !tbaa !50"]
+wrap_mul4_39 -> {
+wrap_mul4_38
+}
+wrap_mul4_38 [label="GetElementPtr" comment="  %arrayidx39.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 2, !dbg !73"]
+wrap_mul4_38 -> {
+}
+wrap_mul4_82 [label="FMul" comment="  %mul116.i = fmul double %19, %33, !dbg !101"]
+wrap_mul4_82 -> {
+wrap_mul4_41
+wrap_mul4_67
+}
+wrap_mul4_41 [label="Load" comment="  %19 = load double, ptr %arrayidx43.i, align 8, !dbg !74, !tbaa !50"]
+wrap_mul4_41 -> {
+wrap_mul4_40
+}
+wrap_mul4_40 [label="GetElementPtr" comment="  %arrayidx43.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 2, !dbg !74"]
+wrap_mul4_40 -> {
+}
+wrap_mul4_67 [label="Load" comment="  %33 = load double, ptr %arrayidx77.i, align 8, !dbg !90, !tbaa !50"]
+wrap_mul4_67 -> {
+wrap_mul4_66
+}
+wrap_mul4_66 [label="GetElementPtr" comment="  %arrayidx77.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 1, !dbg !90"]
+wrap_mul4_66 -> {
+}
+wrap_mul4_160 [label="GetElementPtr" comment="  %Res.sroa.9.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 48, !dbg !149"]
+wrap_mul4_160 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_163 [label="Store" comment="  store double %47, ptr %Res.sroa.10.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_163 -> {
+wrap_mul4_90
+wrap_mul4_162
+}
+wrap_mul4_90 [label="Call" comment="  %47 = tail call double @llvm.fmuladd.f64(double %37, double %30, double %46), !dbg !108"]
+wrap_mul4_90 -> {
+wrap_mul4_74
+wrap_mul4_61
+wrap_mul4_89
+}
+wrap_mul4_74 [label="Load" comment="  %37 = load double, ptr %arrayidx86.i, align 8, !dbg !95, !tbaa !50"]
+wrap_mul4_74 -> {
+wrap_mul4_73
+}
+wrap_mul4_73 [label="GetElementPtr" comment="  %arrayidx86.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 3, !dbg !95"]
+wrap_mul4_73 -> {
+}
+wrap_mul4_61 [label="Load" comment="  %30 = load double, ptr %arrayidx70.i, align 8, !dbg !87, !tbaa !50"]
+wrap_mul4_61 -> {
+wrap_mul4_60
+}
+wrap_mul4_60 [label="GetElementPtr" comment="  %arrayidx70.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 3, !dbg !87"]
+wrap_mul4_60 -> {
+}
+wrap_mul4_89 [label="Call" comment="  %46 = tail call double @llvm.fmuladd.f64(double %35, double %28, double %45), !dbg !107"]
+wrap_mul4_89 -> {
+wrap_mul4_71
+wrap_mul4_58
+wrap_mul4_88
+}
+wrap_mul4_71 [label="Load" comment="  %35 = load double, ptr %arrayidx82.i, align 8, !dbg !93, !tbaa !50"]
+wrap_mul4_71 -> {
+wrap_mul4_70
+}
+wrap_mul4_70 [label="GetElementPtr" comment="  %arrayidx82.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 2, !dbg !93"]
+wrap_mul4_70 -> {
+}
+wrap_mul4_58 [label="Load" comment="  %28 = load double, ptr %arrayidx66.i, align 8, !dbg !85, !tbaa !50"]
+wrap_mul4_58 -> {
+wrap_mul4_57
+}
+wrap_mul4_57 [label="GetElementPtr" comment="  %arrayidx66.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 3, !dbg !85"]
+wrap_mul4_57 -> {
+}
+wrap_mul4_88 [label="Call" comment="  %45 = tail call double @llvm.fmuladd.f64(double %32, double %25, double %mul134.i), !dbg !106"]
+wrap_mul4_88 -> {
+wrap_mul4_65
+wrap_mul4_52
+wrap_mul4_87
+}
+wrap_mul4_65 [label="Load" comment="  %32 = load double, ptr %arrayidx72.i, align 8, !dbg !89, !tbaa !50"]
+wrap_mul4_65 -> {
+wrap_mul4_64
+}
+wrap_mul4_64 [label="GetElementPtr" comment="  %arrayidx72.i = getelementptr inbounds [4 x double], ptr %A, i64 1, !dbg !89"]
+wrap_mul4_64 -> {
+}
+wrap_mul4_52 [label="Load" comment="  %25 = load double, ptr %arrayidx57.i, align 8, !dbg !81, !tbaa !50"]
+wrap_mul4_52 -> {
+wrap_mul4_51
+}
+wrap_mul4_51 [label="GetElementPtr" comment="  %arrayidx57.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 3, !dbg !81"]
+wrap_mul4_51 -> {
+}
+wrap_mul4_87 [label="FMul" comment="  %mul134.i = fmul double %26, %33, !dbg !105"]
+wrap_mul4_87 -> {
+wrap_mul4_54
+wrap_mul4_67
+}
+wrap_mul4_54 [label="Load" comment="  %26 = load double, ptr %arrayidx61.i, align 8, !dbg !82, !tbaa !50"]
+wrap_mul4_54 -> {
+wrap_mul4_53
+}
+wrap_mul4_53 [label="GetElementPtr" comment="  %arrayidx61.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 3, !dbg !82"]
+wrap_mul4_53 -> {
+}
+wrap_mul4_67 [label="Load" comment="  %33 = load double, ptr %arrayidx77.i, align 8, !dbg !90, !tbaa !50"]
+wrap_mul4_67 -> {
+wrap_mul4_66
+}
+wrap_mul4_66 [label="GetElementPtr" comment="  %arrayidx77.i = getelementptr inbounds [4 x double], ptr %A, i64 1, i64 1, !dbg !90"]
+wrap_mul4_66 -> {
+}
+wrap_mul4_162 [label="GetElementPtr" comment="  %Res.sroa.10.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 56, !dbg !149"]
+wrap_mul4_162 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_165 [label="Store" comment="  store double %54, ptr %Res.sroa.11.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_165 -> {
+wrap_mul4_103
+wrap_mul4_164
+}
+wrap_mul4_103 [label="Call" comment="  %54 = tail call double @llvm.fmuladd.f64(double %53, double %9, double %52), !dbg !116"]
+wrap_mul4_103 -> {
+wrap_mul4_102
+wrap_mul4_22
+wrap_mul4_100
+}
+wrap_mul4_102 [label="Load" comment="  %53 = load double, ptr %arrayidx158.i, align 8, !dbg !115, !tbaa !50"]
+wrap_mul4_102 -> {
+wrap_mul4_101
+}
+wrap_mul4_101 [label="GetElementPtr" comment="  %arrayidx158.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 3, !dbg !115"]
+wrap_mul4_101 -> {
+}
+wrap_mul4_22 [label="Load" comment="  %9 = load double, ptr %arrayidx15.i, align 8, !dbg !63, !tbaa !50"]
+wrap_mul4_22 -> {
+wrap_mul4_21
+}
+wrap_mul4_21 [label="GetElementPtr" comment="  %arrayidx15.i = getelementptr inbounds [4 x double], ptr %B, i64 3, !dbg !63"]
+wrap_mul4_21 -> {
+}
+wrap_mul4_100 [label="Call" comment="  %52 = tail call double @llvm.fmuladd.f64(double %51, double %6, double %50), !dbg !114"]
+wrap_mul4_100 -> {
+wrap_mul4_99
+wrap_mul4_17
+wrap_mul4_97
+}
+wrap_mul4_99 [label="Load" comment="  %51 = load double, ptr %arrayidx154.i, align 8, !dbg !113, !tbaa !50"]
+wrap_mul4_99 -> {
+wrap_mul4_98
+}
+wrap_mul4_98 [label="GetElementPtr" comment="  %arrayidx154.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 2, !dbg !113"]
+wrap_mul4_98 -> {
+}
+wrap_mul4_17 [label="Load" comment="  %6 = load double, ptr %arrayidx11.i, align 8, !dbg !60, !tbaa !50"]
+wrap_mul4_17 -> {
+wrap_mul4_16
+}
+wrap_mul4_16 [label="GetElementPtr" comment="  %arrayidx11.i = getelementptr inbounds [4 x double], ptr %B, i64 2, !dbg !60"]
+wrap_mul4_16 -> {
+}
+wrap_mul4_97 [label="Call" comment="  %50 = tail call double @llvm.fmuladd.f64(double %48, double %1, double %mul152.i), !dbg !112"]
+wrap_mul4_97 -> {
+wrap_mul4_93
+wrap_mul4_7
+wrap_mul4_96
+}
+wrap_mul4_93 [label="Load" comment="  %48 = load double, ptr %arrayidx144.i, align 8, !dbg !109, !tbaa !50"]
+wrap_mul4_93 -> {
+wrap_mul4_92
+}
+wrap_mul4_92 [label="GetElementPtr" comment="  %arrayidx144.i = getelementptr inbounds [4 x double], ptr %A, i64 2, !dbg !109"]
+wrap_mul4_92 -> {
+}
+wrap_mul4_7 [label="Load" comment="  %1 = load double, ptr %B, align 8, !dbg !54, !tbaa !50"]
+wrap_mul4_7 -> {
+}
+wrap_mul4_96 [label="FMul" comment="  %mul152.i = fmul double %3, %49, !dbg !111"]
+wrap_mul4_96 -> {
+wrap_mul4_11
+wrap_mul4_95
+}
+wrap_mul4_11 [label="Load" comment="  %3 = load double, ptr %arrayidx6.i, align 8, !dbg !56, !tbaa !50"]
+wrap_mul4_11 -> {
+wrap_mul4_10
+}
+wrap_mul4_10 [label="GetElementPtr" comment="  %arrayidx6.i = getelementptr inbounds [4 x double], ptr %B, i64 1, !dbg !56"]
+wrap_mul4_10 -> {
+}
+wrap_mul4_95 [label="Load" comment="  %49 = load double, ptr %arrayidx149.i, align 8, !dbg !110, !tbaa !50"]
+wrap_mul4_95 -> {
+wrap_mul4_94
+}
+wrap_mul4_94 [label="GetElementPtr" comment="  %arrayidx149.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 1, !dbg !110"]
+wrap_mul4_94 -> {
+}
+wrap_mul4_164 [label="GetElementPtr" comment="  %Res.sroa.11.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 64, !dbg !149"]
+wrap_mul4_164 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_167 [label="Store" comment="  store double %57, ptr %Res.sroa.12.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_167 -> {
+wrap_mul4_108
+wrap_mul4_166
+}
+wrap_mul4_108 [label="Call" comment="  %57 = tail call double @llvm.fmuladd.f64(double %53, double %16, double %56), !dbg !120"]
+wrap_mul4_108 -> {
+wrap_mul4_102
+wrap_mul4_35
+wrap_mul4_107
+}
+wrap_mul4_102 [label="Load" comment="  %53 = load double, ptr %arrayidx158.i, align 8, !dbg !115, !tbaa !50"]
+wrap_mul4_102 -> {
+wrap_mul4_101
+}
+wrap_mul4_101 [label="GetElementPtr" comment="  %arrayidx158.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 3, !dbg !115"]
+wrap_mul4_101 -> {
+}
+wrap_mul4_35 [label="Load" comment="  %16 = load double, ptr %arrayidx34.i, align 8, !dbg !71, !tbaa !50"]
+wrap_mul4_35 -> {
+wrap_mul4_34
+}
+wrap_mul4_34 [label="GetElementPtr" comment="  %arrayidx34.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 1, !dbg !71"]
+wrap_mul4_34 -> {
+}
+wrap_mul4_107 [label="Call" comment="  %56 = tail call double @llvm.fmuladd.f64(double %51, double %14, double %55), !dbg !119"]
+wrap_mul4_107 -> {
+wrap_mul4_99
+wrap_mul4_32
+wrap_mul4_106
+}
+wrap_mul4_99 [label="Load" comment="  %51 = load double, ptr %arrayidx154.i, align 8, !dbg !113, !tbaa !50"]
+wrap_mul4_99 -> {
+wrap_mul4_98
+}
+wrap_mul4_98 [label="GetElementPtr" comment="  %arrayidx154.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 2, !dbg !113"]
+wrap_mul4_98 -> {
+}
+wrap_mul4_32 [label="Load" comment="  %14 = load double, ptr %arrayidx30.i, align 8, !dbg !69, !tbaa !50"]
+wrap_mul4_32 -> {
+wrap_mul4_31
+}
+wrap_mul4_31 [label="GetElementPtr" comment="  %arrayidx30.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 1, !dbg !69"]
+wrap_mul4_31 -> {
+}
+wrap_mul4_106 [label="Call" comment="  %55 = tail call double @llvm.fmuladd.f64(double %48, double %11, double %mul170.i), !dbg !118"]
+wrap_mul4_106 -> {
+wrap_mul4_93
+wrap_mul4_26
+wrap_mul4_105
+}
+wrap_mul4_93 [label="Load" comment="  %48 = load double, ptr %arrayidx144.i, align 8, !dbg !109, !tbaa !50"]
+wrap_mul4_93 -> {
+wrap_mul4_92
+}
+wrap_mul4_92 [label="GetElementPtr" comment="  %arrayidx144.i = getelementptr inbounds [4 x double], ptr %A, i64 2, !dbg !109"]
+wrap_mul4_92 -> {
+}
+wrap_mul4_26 [label="Load" comment="  %11 = load double, ptr %arrayidx21.i, align 8, !dbg !65, !tbaa !50"]
+wrap_mul4_26 -> {
+wrap_mul4_25
+}
+wrap_mul4_25 [label="GetElementPtr" comment="  %arrayidx21.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 1, !dbg !65"]
+wrap_mul4_25 -> {
+}
+wrap_mul4_105 [label="FMul" comment="  %mul170.i = fmul double %12, %49, !dbg !117"]
+wrap_mul4_105 -> {
+wrap_mul4_28
+wrap_mul4_95
+}
+wrap_mul4_28 [label="Load" comment="  %12 = load double, ptr %arrayidx25.i, align 8, !dbg !66, !tbaa !50"]
+wrap_mul4_28 -> {
+wrap_mul4_27
+}
+wrap_mul4_27 [label="GetElementPtr" comment="  %arrayidx25.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 1, !dbg !66"]
+wrap_mul4_27 -> {
+}
+wrap_mul4_95 [label="Load" comment="  %49 = load double, ptr %arrayidx149.i, align 8, !dbg !110, !tbaa !50"]
+wrap_mul4_95 -> {
+wrap_mul4_94
+}
+wrap_mul4_94 [label="GetElementPtr" comment="  %arrayidx149.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 1, !dbg !110"]
+wrap_mul4_94 -> {
+}
+wrap_mul4_166 [label="GetElementPtr" comment="  %Res.sroa.12.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 72, !dbg !149"]
+wrap_mul4_166 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_169 [label="Store" comment="  store double %60, ptr %Res.sroa.13.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_169 -> {
+wrap_mul4_113
+wrap_mul4_168
+}
+wrap_mul4_113 [label="Call" comment="  %60 = tail call double @llvm.fmuladd.f64(double %53, double %23, double %59), !dbg !124"]
+wrap_mul4_113 -> {
+wrap_mul4_102
+wrap_mul4_48
+wrap_mul4_112
+}
+wrap_mul4_102 [label="Load" comment="  %53 = load double, ptr %arrayidx158.i, align 8, !dbg !115, !tbaa !50"]
+wrap_mul4_102 -> {
+wrap_mul4_101
+}
+wrap_mul4_101 [label="GetElementPtr" comment="  %arrayidx158.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 3, !dbg !115"]
+wrap_mul4_101 -> {
+}
+wrap_mul4_48 [label="Load" comment="  %23 = load double, ptr %arrayidx52.i, align 8, !dbg !79, !tbaa !50"]
+wrap_mul4_48 -> {
+wrap_mul4_47
+}
+wrap_mul4_47 [label="GetElementPtr" comment="  %arrayidx52.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 2, !dbg !79"]
+wrap_mul4_47 -> {
+}
+wrap_mul4_112 [label="Call" comment="  %59 = tail call double @llvm.fmuladd.f64(double %51, double %21, double %58), !dbg !123"]
+wrap_mul4_112 -> {
+wrap_mul4_99
+wrap_mul4_45
+wrap_mul4_111
+}
+wrap_mul4_99 [label="Load" comment="  %51 = load double, ptr %arrayidx154.i, align 8, !dbg !113, !tbaa !50"]
+wrap_mul4_99 -> {
+wrap_mul4_98
+}
+wrap_mul4_98 [label="GetElementPtr" comment="  %arrayidx154.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 2, !dbg !113"]
+wrap_mul4_98 -> {
+}
+wrap_mul4_45 [label="Load" comment="  %21 = load double, ptr %arrayidx48.i, align 8, !dbg !77, !tbaa !50"]
+wrap_mul4_45 -> {
+wrap_mul4_44
+}
+wrap_mul4_44 [label="GetElementPtr" comment="  %arrayidx48.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 2, !dbg !77"]
+wrap_mul4_44 -> {
+}
+wrap_mul4_111 [label="Call" comment="  %58 = tail call double @llvm.fmuladd.f64(double %48, double %18, double %mul188.i), !dbg !122"]
+wrap_mul4_111 -> {
+wrap_mul4_93
+wrap_mul4_39
+wrap_mul4_110
+}
+wrap_mul4_93 [label="Load" comment="  %48 = load double, ptr %arrayidx144.i, align 8, !dbg !109, !tbaa !50"]
+wrap_mul4_93 -> {
+wrap_mul4_92
+}
+wrap_mul4_92 [label="GetElementPtr" comment="  %arrayidx144.i = getelementptr inbounds [4 x double], ptr %A, i64 2, !dbg !109"]
+wrap_mul4_92 -> {
+}
+wrap_mul4_39 [label="Load" comment="  %18 = load double, ptr %arrayidx39.i, align 8, !dbg !73, !tbaa !50"]
+wrap_mul4_39 -> {
+wrap_mul4_38
+}
+wrap_mul4_38 [label="GetElementPtr" comment="  %arrayidx39.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 2, !dbg !73"]
+wrap_mul4_38 -> {
+}
+wrap_mul4_110 [label="FMul" comment="  %mul188.i = fmul double %19, %49, !dbg !121"]
+wrap_mul4_110 -> {
+wrap_mul4_41
+wrap_mul4_95
+}
+wrap_mul4_41 [label="Load" comment="  %19 = load double, ptr %arrayidx43.i, align 8, !dbg !74, !tbaa !50"]
+wrap_mul4_41 -> {
+wrap_mul4_40
+}
+wrap_mul4_40 [label="GetElementPtr" comment="  %arrayidx43.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 2, !dbg !74"]
+wrap_mul4_40 -> {
+}
+wrap_mul4_95 [label="Load" comment="  %49 = load double, ptr %arrayidx149.i, align 8, !dbg !110, !tbaa !50"]
+wrap_mul4_95 -> {
+wrap_mul4_94
+}
+wrap_mul4_94 [label="GetElementPtr" comment="  %arrayidx149.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 1, !dbg !110"]
+wrap_mul4_94 -> {
+}
+wrap_mul4_168 [label="GetElementPtr" comment="  %Res.sroa.13.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 80, !dbg !149"]
+wrap_mul4_168 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_171 [label="Store" comment="  store double %63, ptr %Res.sroa.14.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_171 -> {
+wrap_mul4_118
+wrap_mul4_170
+}
+wrap_mul4_118 [label="Call" comment="  %63 = tail call double @llvm.fmuladd.f64(double %53, double %30, double %62), !dbg !128"]
+wrap_mul4_118 -> {
+wrap_mul4_102
+wrap_mul4_61
+wrap_mul4_117
+}
+wrap_mul4_102 [label="Load" comment="  %53 = load double, ptr %arrayidx158.i, align 8, !dbg !115, !tbaa !50"]
+wrap_mul4_102 -> {
+wrap_mul4_101
+}
+wrap_mul4_101 [label="GetElementPtr" comment="  %arrayidx158.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 3, !dbg !115"]
+wrap_mul4_101 -> {
+}
+wrap_mul4_61 [label="Load" comment="  %30 = load double, ptr %arrayidx70.i, align 8, !dbg !87, !tbaa !50"]
+wrap_mul4_61 -> {
+wrap_mul4_60
+}
+wrap_mul4_60 [label="GetElementPtr" comment="  %arrayidx70.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 3, !dbg !87"]
+wrap_mul4_60 -> {
+}
+wrap_mul4_117 [label="Call" comment="  %62 = tail call double @llvm.fmuladd.f64(double %51, double %28, double %61), !dbg !127"]
+wrap_mul4_117 -> {
+wrap_mul4_99
+wrap_mul4_58
+wrap_mul4_116
+}
+wrap_mul4_99 [label="Load" comment="  %51 = load double, ptr %arrayidx154.i, align 8, !dbg !113, !tbaa !50"]
+wrap_mul4_99 -> {
+wrap_mul4_98
+}
+wrap_mul4_98 [label="GetElementPtr" comment="  %arrayidx154.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 2, !dbg !113"]
+wrap_mul4_98 -> {
+}
+wrap_mul4_58 [label="Load" comment="  %28 = load double, ptr %arrayidx66.i, align 8, !dbg !85, !tbaa !50"]
+wrap_mul4_58 -> {
+wrap_mul4_57
+}
+wrap_mul4_57 [label="GetElementPtr" comment="  %arrayidx66.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 3, !dbg !85"]
+wrap_mul4_57 -> {
+}
+wrap_mul4_116 [label="Call" comment="  %61 = tail call double @llvm.fmuladd.f64(double %48, double %25, double %mul206.i), !dbg !126"]
+wrap_mul4_116 -> {
+wrap_mul4_93
+wrap_mul4_52
+wrap_mul4_115
+}
+wrap_mul4_93 [label="Load" comment="  %48 = load double, ptr %arrayidx144.i, align 8, !dbg !109, !tbaa !50"]
+wrap_mul4_93 -> {
+wrap_mul4_92
+}
+wrap_mul4_92 [label="GetElementPtr" comment="  %arrayidx144.i = getelementptr inbounds [4 x double], ptr %A, i64 2, !dbg !109"]
+wrap_mul4_92 -> {
+}
+wrap_mul4_52 [label="Load" comment="  %25 = load double, ptr %arrayidx57.i, align 8, !dbg !81, !tbaa !50"]
+wrap_mul4_52 -> {
+wrap_mul4_51
+}
+wrap_mul4_51 [label="GetElementPtr" comment="  %arrayidx57.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 3, !dbg !81"]
+wrap_mul4_51 -> {
+}
+wrap_mul4_115 [label="FMul" comment="  %mul206.i = fmul double %26, %49, !dbg !125"]
+wrap_mul4_115 -> {
+wrap_mul4_54
+wrap_mul4_95
+}
+wrap_mul4_54 [label="Load" comment="  %26 = load double, ptr %arrayidx61.i, align 8, !dbg !82, !tbaa !50"]
+wrap_mul4_54 -> {
+wrap_mul4_53
+}
+wrap_mul4_53 [label="GetElementPtr" comment="  %arrayidx61.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 3, !dbg !82"]
+wrap_mul4_53 -> {
+}
+wrap_mul4_95 [label="Load" comment="  %49 = load double, ptr %arrayidx149.i, align 8, !dbg !110, !tbaa !50"]
+wrap_mul4_95 -> {
+wrap_mul4_94
+}
+wrap_mul4_94 [label="GetElementPtr" comment="  %arrayidx149.i = getelementptr inbounds [4 x double], ptr %A, i64 2, i64 1, !dbg !110"]
+wrap_mul4_94 -> {
+}
+wrap_mul4_170 [label="GetElementPtr" comment="  %Res.sroa.14.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 88, !dbg !149"]
+wrap_mul4_170 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_173 [label="Store" comment="  store double %70, ptr %Res.sroa.15.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_173 -> {
+wrap_mul4_131
+wrap_mul4_172
+}
+wrap_mul4_131 [label="Call" comment="  %70 = tail call double @llvm.fmuladd.f64(double %69, double %9, double %68), !dbg !136"]
+wrap_mul4_131 -> {
+wrap_mul4_130
+wrap_mul4_22
+wrap_mul4_128
+}
+wrap_mul4_130 [label="Load" comment="  %69 = load double, ptr %arrayidx230.i, align 8, !dbg !135, !tbaa !50"]
+wrap_mul4_130 -> {
+wrap_mul4_129
+}
+wrap_mul4_129 [label="GetElementPtr" comment="  %arrayidx230.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 3, !dbg !135"]
+wrap_mul4_129 -> {
+}
+wrap_mul4_22 [label="Load" comment="  %9 = load double, ptr %arrayidx15.i, align 8, !dbg !63, !tbaa !50"]
+wrap_mul4_22 -> {
+wrap_mul4_21
+}
+wrap_mul4_21 [label="GetElementPtr" comment="  %arrayidx15.i = getelementptr inbounds [4 x double], ptr %B, i64 3, !dbg !63"]
+wrap_mul4_21 -> {
+}
+wrap_mul4_128 [label="Call" comment="  %68 = tail call double @llvm.fmuladd.f64(double %67, double %6, double %66), !dbg !134"]
+wrap_mul4_128 -> {
+wrap_mul4_127
+wrap_mul4_17
+wrap_mul4_125
+}
+wrap_mul4_127 [label="Load" comment="  %67 = load double, ptr %arrayidx226.i, align 8, !dbg !133, !tbaa !50"]
+wrap_mul4_127 -> {
+wrap_mul4_126
+}
+wrap_mul4_126 [label="GetElementPtr" comment="  %arrayidx226.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 2, !dbg !133"]
+wrap_mul4_126 -> {
+}
+wrap_mul4_17 [label="Load" comment="  %6 = load double, ptr %arrayidx11.i, align 8, !dbg !60, !tbaa !50"]
+wrap_mul4_17 -> {
+wrap_mul4_16
+}
+wrap_mul4_16 [label="GetElementPtr" comment="  %arrayidx11.i = getelementptr inbounds [4 x double], ptr %B, i64 2, !dbg !60"]
+wrap_mul4_16 -> {
+}
+wrap_mul4_125 [label="Call" comment="  %66 = tail call double @llvm.fmuladd.f64(double %64, double %1, double %mul224.i), !dbg !132"]
+wrap_mul4_125 -> {
+wrap_mul4_121
+wrap_mul4_7
+wrap_mul4_124
+}
+wrap_mul4_121 [label="Load" comment="  %64 = load double, ptr %arrayidx216.i, align 8, !dbg !129, !tbaa !50"]
+wrap_mul4_121 -> {
+wrap_mul4_120
+}
+wrap_mul4_120 [label="GetElementPtr" comment="  %arrayidx216.i = getelementptr inbounds [4 x double], ptr %A, i64 3, !dbg !129"]
+wrap_mul4_120 -> {
+}
+wrap_mul4_7 [label="Load" comment="  %1 = load double, ptr %B, align 8, !dbg !54, !tbaa !50"]
+wrap_mul4_7 -> {
+}
+wrap_mul4_124 [label="FMul" comment="  %mul224.i = fmul double %3, %65, !dbg !131"]
+wrap_mul4_124 -> {
+wrap_mul4_11
+wrap_mul4_123
+}
+wrap_mul4_11 [label="Load" comment="  %3 = load double, ptr %arrayidx6.i, align 8, !dbg !56, !tbaa !50"]
+wrap_mul4_11 -> {
+wrap_mul4_10
+}
+wrap_mul4_10 [label="GetElementPtr" comment="  %arrayidx6.i = getelementptr inbounds [4 x double], ptr %B, i64 1, !dbg !56"]
+wrap_mul4_10 -> {
+}
+wrap_mul4_123 [label="Load" comment="  %65 = load double, ptr %arrayidx221.i, align 8, !dbg !130, !tbaa !50"]
+wrap_mul4_123 -> {
+wrap_mul4_122
+}
+wrap_mul4_122 [label="GetElementPtr" comment="  %arrayidx221.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 1, !dbg !130"]
+wrap_mul4_122 -> {
+}
+wrap_mul4_172 [label="GetElementPtr" comment="  %Res.sroa.15.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 96, !dbg !149"]
+wrap_mul4_172 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_175 [label="Store" comment="  store double %73, ptr %Res.sroa.16.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_175 -> {
+wrap_mul4_136
+wrap_mul4_174
+}
+wrap_mul4_136 [label="Call" comment="  %73 = tail call double @llvm.fmuladd.f64(double %69, double %16, double %72), !dbg !140"]
+wrap_mul4_136 -> {
+wrap_mul4_130
+wrap_mul4_35
+wrap_mul4_135
+}
+wrap_mul4_130 [label="Load" comment="  %69 = load double, ptr %arrayidx230.i, align 8, !dbg !135, !tbaa !50"]
+wrap_mul4_130 -> {
+wrap_mul4_129
+}
+wrap_mul4_129 [label="GetElementPtr" comment="  %arrayidx230.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 3, !dbg !135"]
+wrap_mul4_129 -> {
+}
+wrap_mul4_35 [label="Load" comment="  %16 = load double, ptr %arrayidx34.i, align 8, !dbg !71, !tbaa !50"]
+wrap_mul4_35 -> {
+wrap_mul4_34
+}
+wrap_mul4_34 [label="GetElementPtr" comment="  %arrayidx34.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 1, !dbg !71"]
+wrap_mul4_34 -> {
+}
+wrap_mul4_135 [label="Call" comment="  %72 = tail call double @llvm.fmuladd.f64(double %67, double %14, double %71), !dbg !139"]
+wrap_mul4_135 -> {
+wrap_mul4_127
+wrap_mul4_32
+wrap_mul4_134
+}
+wrap_mul4_127 [label="Load" comment="  %67 = load double, ptr %arrayidx226.i, align 8, !dbg !133, !tbaa !50"]
+wrap_mul4_127 -> {
+wrap_mul4_126
+}
+wrap_mul4_126 [label="GetElementPtr" comment="  %arrayidx226.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 2, !dbg !133"]
+wrap_mul4_126 -> {
+}
+wrap_mul4_32 [label="Load" comment="  %14 = load double, ptr %arrayidx30.i, align 8, !dbg !69, !tbaa !50"]
+wrap_mul4_32 -> {
+wrap_mul4_31
+}
+wrap_mul4_31 [label="GetElementPtr" comment="  %arrayidx30.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 1, !dbg !69"]
+wrap_mul4_31 -> {
+}
+wrap_mul4_134 [label="Call" comment="  %71 = tail call double @llvm.fmuladd.f64(double %64, double %11, double %mul242.i), !dbg !138"]
+wrap_mul4_134 -> {
+wrap_mul4_121
+wrap_mul4_26
+wrap_mul4_133
+}
+wrap_mul4_121 [label="Load" comment="  %64 = load double, ptr %arrayidx216.i, align 8, !dbg !129, !tbaa !50"]
+wrap_mul4_121 -> {
+wrap_mul4_120
+}
+wrap_mul4_120 [label="GetElementPtr" comment="  %arrayidx216.i = getelementptr inbounds [4 x double], ptr %A, i64 3, !dbg !129"]
+wrap_mul4_120 -> {
+}
+wrap_mul4_26 [label="Load" comment="  %11 = load double, ptr %arrayidx21.i, align 8, !dbg !65, !tbaa !50"]
+wrap_mul4_26 -> {
+wrap_mul4_25
+}
+wrap_mul4_25 [label="GetElementPtr" comment="  %arrayidx21.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 1, !dbg !65"]
+wrap_mul4_25 -> {
+}
+wrap_mul4_133 [label="FMul" comment="  %mul242.i = fmul double %12, %65, !dbg !137"]
+wrap_mul4_133 -> {
+wrap_mul4_28
+wrap_mul4_123
+}
+wrap_mul4_28 [label="Load" comment="  %12 = load double, ptr %arrayidx25.i, align 8, !dbg !66, !tbaa !50"]
+wrap_mul4_28 -> {
+wrap_mul4_27
+}
+wrap_mul4_27 [label="GetElementPtr" comment="  %arrayidx25.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 1, !dbg !66"]
+wrap_mul4_27 -> {
+}
+wrap_mul4_123 [label="Load" comment="  %65 = load double, ptr %arrayidx221.i, align 8, !dbg !130, !tbaa !50"]
+wrap_mul4_123 -> {
+wrap_mul4_122
+}
+wrap_mul4_122 [label="GetElementPtr" comment="  %arrayidx221.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 1, !dbg !130"]
+wrap_mul4_122 -> {
+}
+wrap_mul4_174 [label="GetElementPtr" comment="  %Res.sroa.16.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 104, !dbg !149"]
+wrap_mul4_174 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_177 [label="Store" comment="  store double %76, ptr %Res.sroa.17.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_177 -> {
+wrap_mul4_141
+wrap_mul4_176
+}
+wrap_mul4_141 [label="Call" comment="  %76 = tail call double @llvm.fmuladd.f64(double %69, double %23, double %75), !dbg !144"]
+wrap_mul4_141 -> {
+wrap_mul4_130
+wrap_mul4_48
+wrap_mul4_140
+}
+wrap_mul4_130 [label="Load" comment="  %69 = load double, ptr %arrayidx230.i, align 8, !dbg !135, !tbaa !50"]
+wrap_mul4_130 -> {
+wrap_mul4_129
+}
+wrap_mul4_129 [label="GetElementPtr" comment="  %arrayidx230.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 3, !dbg !135"]
+wrap_mul4_129 -> {
+}
+wrap_mul4_48 [label="Load" comment="  %23 = load double, ptr %arrayidx52.i, align 8, !dbg !79, !tbaa !50"]
+wrap_mul4_48 -> {
+wrap_mul4_47
+}
+wrap_mul4_47 [label="GetElementPtr" comment="  %arrayidx52.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 2, !dbg !79"]
+wrap_mul4_47 -> {
+}
+wrap_mul4_140 [label="Call" comment="  %75 = tail call double @llvm.fmuladd.f64(double %67, double %21, double %74), !dbg !143"]
+wrap_mul4_140 -> {
+wrap_mul4_127
+wrap_mul4_45
+wrap_mul4_139
+}
+wrap_mul4_127 [label="Load" comment="  %67 = load double, ptr %arrayidx226.i, align 8, !dbg !133, !tbaa !50"]
+wrap_mul4_127 -> {
+wrap_mul4_126
+}
+wrap_mul4_126 [label="GetElementPtr" comment="  %arrayidx226.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 2, !dbg !133"]
+wrap_mul4_126 -> {
+}
+wrap_mul4_45 [label="Load" comment="  %21 = load double, ptr %arrayidx48.i, align 8, !dbg !77, !tbaa !50"]
+wrap_mul4_45 -> {
+wrap_mul4_44
+}
+wrap_mul4_44 [label="GetElementPtr" comment="  %arrayidx48.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 2, !dbg !77"]
+wrap_mul4_44 -> {
+}
+wrap_mul4_139 [label="Call" comment="  %74 = tail call double @llvm.fmuladd.f64(double %64, double %18, double %mul260.i), !dbg !142"]
+wrap_mul4_139 -> {
+wrap_mul4_121
+wrap_mul4_39
+wrap_mul4_138
+}
+wrap_mul4_121 [label="Load" comment="  %64 = load double, ptr %arrayidx216.i, align 8, !dbg !129, !tbaa !50"]
+wrap_mul4_121 -> {
+wrap_mul4_120
+}
+wrap_mul4_120 [label="GetElementPtr" comment="  %arrayidx216.i = getelementptr inbounds [4 x double], ptr %A, i64 3, !dbg !129"]
+wrap_mul4_120 -> {
+}
+wrap_mul4_39 [label="Load" comment="  %18 = load double, ptr %arrayidx39.i, align 8, !dbg !73, !tbaa !50"]
+wrap_mul4_39 -> {
+wrap_mul4_38
+}
+wrap_mul4_38 [label="GetElementPtr" comment="  %arrayidx39.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 2, !dbg !73"]
+wrap_mul4_38 -> {
+}
+wrap_mul4_138 [label="FMul" comment="  %mul260.i = fmul double %19, %65, !dbg !141"]
+wrap_mul4_138 -> {
+wrap_mul4_41
+wrap_mul4_123
+}
+wrap_mul4_41 [label="Load" comment="  %19 = load double, ptr %arrayidx43.i, align 8, !dbg !74, !tbaa !50"]
+wrap_mul4_41 -> {
+wrap_mul4_40
+}
+wrap_mul4_40 [label="GetElementPtr" comment="  %arrayidx43.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 2, !dbg !74"]
+wrap_mul4_40 -> {
+}
+wrap_mul4_123 [label="Load" comment="  %65 = load double, ptr %arrayidx221.i, align 8, !dbg !130, !tbaa !50"]
+wrap_mul4_123 -> {
+wrap_mul4_122
+}
+wrap_mul4_122 [label="GetElementPtr" comment="  %arrayidx221.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 1, !dbg !130"]
+wrap_mul4_122 -> {
+}
+wrap_mul4_176 [label="GetElementPtr" comment="  %Res.sroa.17.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 112, !dbg !149"]
+wrap_mul4_176 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+wrap_mul4_179 [label="Store" comment="  store double %79, ptr %Res.sroa.18.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
+wrap_mul4_179 -> {
+wrap_mul4_146
+wrap_mul4_178
+}
+wrap_mul4_146 [label="Call" comment="  %79 = tail call double @llvm.fmuladd.f64(double %69, double %30, double %78), !dbg !148"]
+wrap_mul4_146 -> {
+wrap_mul4_130
+wrap_mul4_61
+wrap_mul4_145
+}
+wrap_mul4_130 [label="Load" comment="  %69 = load double, ptr %arrayidx230.i, align 8, !dbg !135, !tbaa !50"]
+wrap_mul4_130 -> {
+wrap_mul4_129
+}
+wrap_mul4_129 [label="GetElementPtr" comment="  %arrayidx230.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 3, !dbg !135"]
+wrap_mul4_129 -> {
+}
+wrap_mul4_61 [label="Load" comment="  %30 = load double, ptr %arrayidx70.i, align 8, !dbg !87, !tbaa !50"]
+wrap_mul4_61 -> {
+wrap_mul4_60
+}
+wrap_mul4_60 [label="GetElementPtr" comment="  %arrayidx70.i = getelementptr inbounds [4 x double], ptr %B, i64 3, i64 3, !dbg !87"]
+wrap_mul4_60 -> {
+}
+wrap_mul4_145 [label="Call" comment="  %78 = tail call double @llvm.fmuladd.f64(double %67, double %28, double %77), !dbg !147"]
+wrap_mul4_145 -> {
+wrap_mul4_127
+wrap_mul4_58
+wrap_mul4_144
+}
+wrap_mul4_127 [label="Load" comment="  %67 = load double, ptr %arrayidx226.i, align 8, !dbg !133, !tbaa !50"]
+wrap_mul4_127 -> {
+wrap_mul4_126
+}
+wrap_mul4_126 [label="GetElementPtr" comment="  %arrayidx226.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 2, !dbg !133"]
+wrap_mul4_126 -> {
+}
+wrap_mul4_58 [label="Load" comment="  %28 = load double, ptr %arrayidx66.i, align 8, !dbg !85, !tbaa !50"]
+wrap_mul4_58 -> {
+wrap_mul4_57
+}
+wrap_mul4_57 [label="GetElementPtr" comment="  %arrayidx66.i = getelementptr inbounds [4 x double], ptr %B, i64 2, i64 3, !dbg !85"]
+wrap_mul4_57 -> {
+}
+wrap_mul4_144 [label="Call" comment="  %77 = tail call double @llvm.fmuladd.f64(double %64, double %25, double %mul278.i), !dbg !146"]
+wrap_mul4_144 -> {
+wrap_mul4_121
+wrap_mul4_52
+wrap_mul4_143
+}
+wrap_mul4_121 [label="Load" comment="  %64 = load double, ptr %arrayidx216.i, align 8, !dbg !129, !tbaa !50"]
+wrap_mul4_121 -> {
+wrap_mul4_120
+}
+wrap_mul4_120 [label="GetElementPtr" comment="  %arrayidx216.i = getelementptr inbounds [4 x double], ptr %A, i64 3, !dbg !129"]
+wrap_mul4_120 -> {
+}
+wrap_mul4_52 [label="Load" comment="  %25 = load double, ptr %arrayidx57.i, align 8, !dbg !81, !tbaa !50"]
+wrap_mul4_52 -> {
+wrap_mul4_51
+}
+wrap_mul4_51 [label="GetElementPtr" comment="  %arrayidx57.i = getelementptr inbounds [4 x double], ptr %B, i64 0, i64 3, !dbg !81"]
+wrap_mul4_51 -> {
+}
+wrap_mul4_143 [label="FMul" comment="  %mul278.i = fmul double %26, %65, !dbg !145"]
+wrap_mul4_143 -> {
+wrap_mul4_54
+wrap_mul4_123
+}
+wrap_mul4_54 [label="Load" comment="  %26 = load double, ptr %arrayidx61.i, align 8, !dbg !82, !tbaa !50"]
+wrap_mul4_54 -> {
+wrap_mul4_53
+}
+wrap_mul4_53 [label="GetElementPtr" comment="  %arrayidx61.i = getelementptr inbounds [4 x double], ptr %B, i64 1, i64 3, !dbg !82"]
+wrap_mul4_53 -> {
+}
+wrap_mul4_123 [label="Load" comment="  %65 = load double, ptr %arrayidx221.i, align 8, !dbg !130, !tbaa !50"]
+wrap_mul4_123 -> {
+wrap_mul4_122
+}
+wrap_mul4_122 [label="GetElementPtr" comment="  %arrayidx221.i = getelementptr inbounds [4 x double], ptr %A, i64 3, i64 1, !dbg !130"]
+wrap_mul4_122 -> {
+}
+wrap_mul4_178 [label="GetElementPtr" comment="  %Res.sroa.18.0.Out.sroa_idx.i = getelementptr inbounds i8, ptr %Out, i64 120, !dbg !149"]
+wrap_mul4_178 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="wrap_mul4"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.dbg.declare"
+labelloc=b
+}
+subgraph {
+subgraph {
+main_22 [label="Load" comment="  %0 = load double, ptr %arrayidx11, align 8, !dbg !60, !tbaa !62"]
+main_22 -> {
+main_21
+}
+main_21 [label="GetElementPtr" comment="  %arrayidx11 = getelementptr inbounds [4 x [4 x double]], ptr %C, i64 0, i64 %indvars.iv29, i64 %indvars.iv, !dbg !60"]
+main_21 -> {
+main_0
+main_15
+main_19
+}
+main_0 [label="Alloca" comment="  %C = alloca [4 x [4 x double]], align 16"]
+main_0 -> {
+}
+main_15 [label="Phi" comment="  %indvars.iv29 = phi i64 [ %indvars.iv.next30, %for.end14 ], [ 0, %for.body ]"]
+main_15 -> {
+main_29
+}
+main_29 [label="Add" comment="  %indvars.iv.next30 = add nuw nsw i64 %indvars.iv29, 1, !dbg !72"]
+main_29 -> {
+main_15
+}
+main_15 [label="Phi" comment="  %indvars.iv29 = phi i64 [ %indvars.iv.next30, %for.end14 ], [ 0, %for.body ]"]
+main_15 -> {
+// Cycle
+}
+main_19 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.cond6.preheader ], [ %indvars.iv.next, %for.body8 ]"]
+main_19 -> {
+main_24
+}
+main_24 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !67"]
+main_24 -> {
+main_19
+}
+main_19 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.cond6.preheader ], [ %indvars.iv.next, %for.body8 ]"]
+main_19 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="main"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.lifetime.start.p0"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="printf"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.lifetime.end.p0"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.fmuladd.f64"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.dbg.value"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="putchar"
+labelloc=b
+}
+}

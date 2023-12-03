@@ -1,0 +1,3230 @@
+strict digraph {
+subgraph {
+subgraph {
+newWorkList_7 [label="Load" comment="  %0 = load ptr, ptr @stderr, align 8, !dbg !101, !tbaa !103"]
+newWorkList_7 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="newWorkList"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.dbg.declare"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.lifetime.start.p0"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="calloc"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="exit"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.lifetime.end.p0"
+labelloc=b
+}
+subgraph {
+subgraph {
+newCombList_7 [label="Load" comment="  %0 = load ptr, ptr @stderr, align 8, !dbg !101, !tbaa !103"]
+newCombList_7 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="newCombList"
+labelloc=b
+}
+subgraph {
+subgraph {
+initWorkList_11 [label="Load" comment="  %0 = load i32, ptr %arrayidx, align 4, !dbg !101, !tbaa !102"]
+initWorkList_11 -> {
+initWorkList_10
+}
+initWorkList_10 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %givenList, i64 %indvars.iv, !dbg !101"]
+initWorkList_10 -> {
+initWorkList_8
+}
+initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initWorkList_8 -> {
+initWorkList_14
+}
+initWorkList_14 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !108"]
+initWorkList_14 -> {
+initWorkList_8
+}
+initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initWorkList_8 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+initWorkList_13 [label="Store" comment="  store i32 %0, ptr %arrayidx2, align 4, !dbg !107, !tbaa !102"]
+initWorkList_13 -> {
+initWorkList_11
+initWorkList_12
+}
+initWorkList_11 [label="Load" comment="  %0 = load i32, ptr %arrayidx, align 4, !dbg !101, !tbaa !102"]
+initWorkList_11 -> {
+initWorkList_10
+}
+initWorkList_10 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %givenList, i64 %indvars.iv, !dbg !101"]
+initWorkList_10 -> {
+initWorkList_8
+}
+initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initWorkList_8 -> {
+initWorkList_14
+}
+initWorkList_14 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !108"]
+initWorkList_14 -> {
+initWorkList_8
+}
+initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initWorkList_8 -> {
+// Cycle
+}
+initWorkList_12 [label="GetElementPtr" comment="  %arrayidx2 = getelementptr inbounds i32, ptr %workList, i64 %indvars.iv, !dbg !106"]
+initWorkList_12 -> {
+initWorkList_8
+}
+initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initWorkList_8 -> {
+initWorkList_14
+}
+initWorkList_14 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !108"]
+initWorkList_14 -> {
+initWorkList_8
+}
+initWorkList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initWorkList_8 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="initWorkList"
+labelloc=b
+}
+subgraph {
+subgraph {
+initCombList_10 [label="Store" comment="  store i32 0, ptr %operation, align 4, !dbg !101, !tbaa !102"]
+initCombList_10 -> {
+initCombList_9
+}
+initCombList_9 [label="GetElementPtr" comment="  %operation = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 2, !dbg !100"]
+initCombList_9 -> {
+initCombList_7
+}
+initCombList_7 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initCombList_7 -> {
+initCombList_11
+}
+initCombList_11 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !107"]
+initCombList_11 -> {
+initCombList_7
+}
+initCombList_7 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+initCombList_7 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="initCombList"
+labelloc=b
+}
+subgraph {
+subgraph {
+saveSolution_11 [label="Load" comment="  %0 = load i32, ptr %arrayidx, align 4, !dbg !103, !tbaa !104"]
+saveSolution_11 -> {
+saveSolution_10
+}
+saveSolution_10 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, !dbg !101"]
+saveSolution_10 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+saveSolution_13 [label="Store" comment="  store i32 %0, ptr %arrayidx2, align 4, !dbg !110, !tbaa !104"]
+saveSolution_13 -> {
+saveSolution_11
+saveSolution_12
+}
+saveSolution_11 [label="Load" comment="  %0 = load i32, ptr %arrayidx, align 4, !dbg !103, !tbaa !104"]
+saveSolution_11 -> {
+saveSolution_10
+}
+saveSolution_10 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, !dbg !101"]
+saveSolution_10 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+saveSolution_12 [label="GetElementPtr" comment="  %arrayidx2 = getelementptr inbounds %struct.Comb, ptr %sol, i64 %indvars.iv, !dbg !109"]
+saveSolution_12 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+saveSolution_15 [label="Load" comment="  %1 = load i32, ptr %operand2, align 4, !dbg !111, !tbaa !112"]
+saveSolution_15 -> {
+saveSolution_14
+}
+saveSolution_14 [label="GetElementPtr" comment="  %operand2 = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 1, !dbg !111"]
+saveSolution_14 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+saveSolution_17 [label="Store" comment="  store i32 %1, ptr %operand28, align 4, !dbg !114, !tbaa !112"]
+saveSolution_17 -> {
+saveSolution_15
+saveSolution_16
+}
+saveSolution_15 [label="Load" comment="  %1 = load i32, ptr %operand2, align 4, !dbg !111, !tbaa !112"]
+saveSolution_15 -> {
+saveSolution_14
+}
+saveSolution_14 [label="GetElementPtr" comment="  %operand2 = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 1, !dbg !111"]
+saveSolution_14 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+saveSolution_16 [label="GetElementPtr" comment="  %operand28 = getelementptr inbounds %struct.Comb, ptr %sol, i64 %indvars.iv, i32 1, !dbg !113"]
+saveSolution_16 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+saveSolution_19 [label="Load" comment="  %2 = load i32, ptr %operation, align 4, !dbg !115, !tbaa !116"]
+saveSolution_19 -> {
+saveSolution_18
+}
+saveSolution_18 [label="GetElementPtr" comment="  %operation = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 2, !dbg !115"]
+saveSolution_18 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+saveSolution_21 [label="Store" comment="  store i32 %2, ptr %operation13, align 4, !dbg !118, !tbaa !116"]
+saveSolution_21 -> {
+saveSolution_19
+saveSolution_20
+}
+saveSolution_19 [label="Load" comment="  %2 = load i32, ptr %operation, align 4, !dbg !115, !tbaa !116"]
+saveSolution_19 -> {
+saveSolution_18
+}
+saveSolution_18 [label="GetElementPtr" comment="  %operation = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 2, !dbg !115"]
+saveSolution_18 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+saveSolution_20 [label="GetElementPtr" comment="  %operation13 = getelementptr inbounds %struct.Comb, ptr %sol, i64 %indvars.iv, i32 2, !dbg !117"]
+saveSolution_20 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+saveSolution_22
+}
+saveSolution_22 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !119"]
+saveSolution_22 -> {
+saveSolution_8
+}
+saveSolution_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.body ]"]
+saveSolution_8 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+saveSolution_28 [label="Store" comment="  store i32 0, ptr %operation16, align 4, !dbg !126, !tbaa !116"]
+saveSolution_28 -> {
+saveSolution_27
+}
+saveSolution_27 [label="GetElementPtr" comment="  %operation16 = getelementptr inbounds %struct.Comb, ptr %sol, i64 %idxprom14, i32 2, !dbg !125"]
+saveSolution_27 -> {
+saveSolution_26
+}
+saveSolution_26 [label="SExt" comment="  %idxprom14 = sext i32 %length to i64, !dbg !124"]
+saveSolution_26 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="saveSolution"
+labelloc=b
+}
+subgraph {
+subgraph {
+calculate_2 [label="Load" comment="  %0 = load i32, ptr %operation, align 4, !dbg !94, !tbaa !95"]
+calculate_2 -> {
+calculate_1
+}
+calculate_1 [label="GetElementPtr" comment="  %operation = getelementptr inbounds %struct.Comb, ptr %comb, i64 0, i32 2, !dbg !94"]
+calculate_1 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_4 [label="Load" comment="  %1 = load i32, ptr %comb, align 4, !dbg !101, !tbaa !103"]
+calculate_4 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_6 [label="Load" comment="  %2 = load i32, ptr %operand2, align 4, !dbg !104, !tbaa !105"]
+calculate_6 -> {
+calculate_5
+}
+calculate_5 [label="GetElementPtr" comment="  %operand2 = getelementptr inbounds %struct.Comb, ptr %comb, i64 0, i32 1, !dbg !104"]
+calculate_5 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_9 [label="Load" comment="  %3 = load i32, ptr %comb, align 4, !dbg !108, !tbaa !103"]
+calculate_9 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_11 [label="Load" comment="  %4 = load i32, ptr %operand23, align 4, !dbg !109, !tbaa !105"]
+calculate_11 -> {
+calculate_10
+}
+calculate_10 [label="GetElementPtr" comment="  %operand23 = getelementptr inbounds %struct.Comb, ptr %comb, i64 0, i32 1, !dbg !109"]
+calculate_10 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_14 [label="Load" comment="  %5 = load i32, ptr %comb, align 4, !dbg !112, !tbaa !103"]
+calculate_14 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_16 [label="Load" comment="  %6 = load i32, ptr %operand26, align 4, !dbg !113, !tbaa !105"]
+calculate_16 -> {
+calculate_15
+}
+calculate_15 [label="GetElementPtr" comment="  %operand26 = getelementptr inbounds %struct.Comb, ptr %comb, i64 0, i32 1, !dbg !113"]
+calculate_15 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_19 [label="Load" comment="  %7 = load i32, ptr %comb, align 4, !dbg !116, !tbaa !103"]
+calculate_19 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+calculate_21 [label="Load" comment="  %8 = load i32, ptr %operand29, align 4, !dbg !117, !tbaa !105"]
+calculate_21 -> {
+calculate_20
+}
+calculate_20 [label="GetElementPtr" comment="  %operand29 = getelementptr inbounds %struct.Comb, ptr %comb, i64 0, i32 1, !dbg !117"]
+calculate_20 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="calculate"
+labelloc=b
+}
+subgraph {
+subgraph {
+printSolution_12 [label="Load" comment="  %1 = load i32, ptr %arrayidx, align 4, !dbg !102, !tbaa !103"]
+printSolution_12 -> {
+printSolution_11
+}
+printSolution_11 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, !dbg !100"]
+printSolution_11 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_15 [label="Load" comment="  %2 = load i32, ptr %operation, align 4, !dbg !109, !tbaa !110"]
+printSolution_15 -> {
+printSolution_14
+}
+printSolution_14 [label="GetElementPtr" comment="  %operation = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 2, !dbg !109"]
+printSolution_14 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_30 [label="Load" comment="  %3 = load i32, ptr %operand2, align 4, !dbg !125, !tbaa !126"]
+printSolution_30 -> {
+printSolution_29
+}
+printSolution_29 [label="GetElementPtr" comment="  %operand2 = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 1, !dbg !125"]
+printSolution_29 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_33 [label="Load" comment="  %4 = load i32, ptr %operation.i, align 4, !dbg !134, !tbaa !110"]
+printSolution_33 -> {
+printSolution_32
+}
+printSolution_32 [label="GetElementPtr" comment="  %operation.i = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 2, !dbg !134"]
+printSolution_32 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_35 [label="Load" comment="  %5 = load i32, ptr %arrayidx, align 4, !dbg !136, !tbaa !103"]
+printSolution_35 -> {
+printSolution_11
+}
+printSolution_11 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, !dbg !100"]
+printSolution_11 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_37 [label="Load" comment="  %6 = load i32, ptr %operand2.i, align 4, !dbg !138, !tbaa !126"]
+printSolution_37 -> {
+printSolution_36
+}
+printSolution_36 [label="GetElementPtr" comment="  %operand2.i = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 1, !dbg !138"]
+printSolution_36 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_40 [label="Load" comment="  %7 = load i32, ptr %arrayidx, align 4, !dbg !141, !tbaa !103"]
+printSolution_40 -> {
+printSolution_11
+}
+printSolution_11 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, !dbg !100"]
+printSolution_11 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_42 [label="Load" comment="  %8 = load i32, ptr %operand23.i, align 4, !dbg !142, !tbaa !126"]
+printSolution_42 -> {
+printSolution_41
+}
+printSolution_41 [label="GetElementPtr" comment="  %operand23.i = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 1, !dbg !142"]
+printSolution_41 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_45 [label="Load" comment="  %9 = load i32, ptr %arrayidx, align 4, !dbg !145, !tbaa !103"]
+printSolution_45 -> {
+printSolution_11
+}
+printSolution_11 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, !dbg !100"]
+printSolution_11 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_47 [label="Load" comment="  %10 = load i32, ptr %operand26.i, align 4, !dbg !146, !tbaa !126"]
+printSolution_47 -> {
+printSolution_46
+}
+printSolution_46 [label="GetElementPtr" comment="  %operand26.i = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 1, !dbg !146"]
+printSolution_46 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_50 [label="Load" comment="  %11 = load i32, ptr %arrayidx, align 4, !dbg !149, !tbaa !103"]
+printSolution_50 -> {
+printSolution_11
+}
+printSolution_11 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, !dbg !100"]
+printSolution_11 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+printSolution_52 [label="Load" comment="  %12 = load i32, ptr %operand29.i, align 4, !dbg !150, !tbaa !126"]
+printSolution_52 -> {
+printSolution_51
+}
+printSolution_51 [label="GetElementPtr" comment="  %operand29.i = getelementptr inbounds %struct.Comb, ptr %combList, i64 %indvars.iv, i32 1, !dbg !150"]
+printSolution_51 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+printSolution_63
+}
+printSolution_63 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !160"]
+printSolution_63 -> {
+printSolution_9
+}
+printSolution_9 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+printSolution_9 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="printSolution"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="printf"
+labelloc=b
+}
+subgraph {
+subgraph {
+printList_16 [label="Load" comment="  %1 = load i32, ptr %arrayidx, align 4, !dbg !106, !tbaa !107"]
+printList_16 -> {
+printList_15
+}
+printList_15 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %list, i64 %indvars.iv, !dbg !106"]
+printList_15 -> {
+printList_8
+}
+printList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
+printList_8 -> {
+printList_19
+}
+printList_19 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !113"]
+printList_19 -> {
+printList_8
+}
+printList_8 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
+printList_8 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="printList"
+labelloc=b
+}
+subgraph {
+subgraph {
+recSearch_2 [label="Load" comment="  %.b = load i1, ptr @stopSearch, align 4, !dbg !104"]
+recSearch_2 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_4 [label="Load" comment="  %0 = load i32, ptr @nbNodes, align 4, !dbg !107, !tbaa !108"]
+recSearch_4 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_6 [label="Store" comment="  store i32 %inc, ptr @nbNodes, align 4, !dbg !107, !tbaa !108"]
+recSearch_6 -> {
+recSearch_5
+}
+recSearch_5 [label="Add" comment="  %inc = add nsw i32 %0, 1, !dbg !107"]
+recSearch_5 -> {
+recSearch_4
+}
+recSearch_4 [label="Load" comment="  %0 = load i32, ptr @nbNodes, align 4, !dbg !107, !tbaa !108"]
+recSearch_4 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_7 [label="Load" comment="  %1 = load i32, ptr @dmax, align 4, !dbg !112, !tbaa !108"]
+recSearch_7 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_14 [label="Load" comment="  %2 = load ptr, ptr @workList, align 8, !dbg !117, !tbaa !120"]
+recSearch_14 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_15 [label="Load" comment="  %3 = load i32, ptr @listLength, align 4, !dbg !122, !tbaa !108"]
+recSearch_15 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_20 [label="Load" comment="  %4 = load i32, ptr %arrayidx, align 4, !dbg !117, !tbaa !108"]
+recSearch_20 -> {
+recSearch_19
+}
+recSearch_19 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %2, i64 %idxprom, !dbg !117"]
+recSearch_19 -> {
+recSearch_14
+recSearch_18
+}
+recSearch_14 [label="Load" comment="  %2 = load ptr, ptr @workList, align 8, !dbg !117, !tbaa !120"]
+recSearch_14 -> {
+}
+recSearch_18 [label="SExt" comment="  %idxprom = sext i32 %sub to i64, !dbg !117"]
+recSearch_18 -> {
+recSearch_17
+}
+recSearch_17 [label="Add" comment="  %sub = add i32 %add, %3, !dbg !124"]
+recSearch_17 -> {
+recSearch_16
+recSearch_15
+}
+recSearch_16 [label="Add" comment="  %add = add i32 %searchDepth, -1, !dbg !123"]
+recSearch_16 -> {
+}
+recSearch_15 [label="Load" comment="  %3 = load i32, ptr @listLength, align 4, !dbg !122, !tbaa !108"]
+recSearch_15 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_21 [label="Load" comment="  %5 = load i32, ptr @goal, align 4, !dbg !125, !tbaa !108"]
+recSearch_21 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_24 [label="Load" comment="  %6 = load i32, ptr @best, align 4, !dbg !128, !tbaa !108"]
+recSearch_24 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_29 [label="Store" comment="  store i32 %4, ptr @best, align 4, !dbg !133, !tbaa !108"]
+recSearch_29 -> {
+recSearch_20
+}
+recSearch_20 [label="Load" comment="  %4 = load i32, ptr %arrayidx, align 4, !dbg !117, !tbaa !108"]
+recSearch_20 -> {
+recSearch_19
+}
+recSearch_19 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %2, i64 %idxprom, !dbg !117"]
+recSearch_19 -> {
+recSearch_14
+recSearch_18
+}
+recSearch_14 [label="Load" comment="  %2 = load ptr, ptr @workList, align 8, !dbg !117, !tbaa !120"]
+recSearch_14 -> {
+}
+recSearch_18 [label="SExt" comment="  %idxprom = sext i32 %sub to i64, !dbg !117"]
+recSearch_18 -> {
+recSearch_17
+}
+recSearch_17 [label="Add" comment="  %sub = add i32 %add, %3, !dbg !124"]
+recSearch_17 -> {
+recSearch_16
+recSearch_15
+}
+recSearch_16 [label="Add" comment="  %add = add i32 %searchDepth, -1, !dbg !123"]
+recSearch_16 -> {
+}
+recSearch_15 [label="Load" comment="  %3 = load i32, ptr @listLength, align 4, !dbg !122, !tbaa !108"]
+recSearch_15 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_30 [label="Store" comment="  store i32 %searchDepth, ptr @bestDepth, align 4, !dbg !135, !tbaa !108"]
+recSearch_30 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_31 [label="Load" comment="  %7 = load ptr, ptr @solution, align 8, !dbg !136, !tbaa !120"]
+recSearch_31 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
+recSearch_32 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_44 [label="Load" comment="  %9 = load i32, ptr %arrayidx.i, align 4, !dbg !154, !tbaa !155"]
+recSearch_44 -> {
+recSearch_43
+}
+recSearch_43 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds %struct.Comb, ptr %8, i64 %indvars.iv.i, !dbg !152"]
+recSearch_43 -> {
+recSearch_32
+recSearch_41
+}
+recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
+recSearch_32 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_46 [label="Store" comment="  store i32 %9, ptr %arrayidx2.i, align 4, !dbg !158, !tbaa !155"]
+recSearch_46 -> {
+recSearch_44
+recSearch_45
+}
+recSearch_44 [label="Load" comment="  %9 = load i32, ptr %arrayidx.i, align 4, !dbg !154, !tbaa !155"]
+recSearch_44 -> {
+recSearch_43
+}
+recSearch_43 [label="GetElementPtr" comment="  %arrayidx.i = getelementptr inbounds %struct.Comb, ptr %8, i64 %indvars.iv.i, !dbg !152"]
+recSearch_43 -> {
+recSearch_32
+recSearch_41
+}
+recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
+recSearch_32 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+recSearch_45 [label="GetElementPtr" comment="  %arrayidx2.i = getelementptr inbounds %struct.Comb, ptr %7, i64 %indvars.iv.i, !dbg !157"]
+recSearch_45 -> {
+recSearch_31
+recSearch_41
+}
+recSearch_31 [label="Load" comment="  %7 = load ptr, ptr @solution, align 8, !dbg !136, !tbaa !120"]
+recSearch_31 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_48 [label="Load" comment="  %10 = load i32, ptr %operand2.i, align 4, !dbg !159, !tbaa !160"]
+recSearch_48 -> {
+recSearch_47
+}
+recSearch_47 [label="GetElementPtr" comment="  %operand2.i = getelementptr inbounds %struct.Comb, ptr %8, i64 %indvars.iv.i, i32 1, !dbg !159"]
+recSearch_47 -> {
+recSearch_32
+recSearch_41
+}
+recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
+recSearch_32 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_50 [label="Store" comment="  store i32 %10, ptr %operand28.i, align 4, !dbg !162, !tbaa !160"]
+recSearch_50 -> {
+recSearch_48
+recSearch_49
+}
+recSearch_48 [label="Load" comment="  %10 = load i32, ptr %operand2.i, align 4, !dbg !159, !tbaa !160"]
+recSearch_48 -> {
+recSearch_47
+}
+recSearch_47 [label="GetElementPtr" comment="  %operand2.i = getelementptr inbounds %struct.Comb, ptr %8, i64 %indvars.iv.i, i32 1, !dbg !159"]
+recSearch_47 -> {
+recSearch_32
+recSearch_41
+}
+recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
+recSearch_32 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+recSearch_49 [label="GetElementPtr" comment="  %operand28.i = getelementptr inbounds %struct.Comb, ptr %7, i64 %indvars.iv.i, i32 1, !dbg !161"]
+recSearch_49 -> {
+recSearch_31
+recSearch_41
+}
+recSearch_31 [label="Load" comment="  %7 = load ptr, ptr @solution, align 8, !dbg !136, !tbaa !120"]
+recSearch_31 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_52 [label="Load" comment="  %11 = load i32, ptr %operation.i, align 4, !dbg !163, !tbaa !164"]
+recSearch_52 -> {
+recSearch_51
+}
+recSearch_51 [label="GetElementPtr" comment="  %operation.i = getelementptr inbounds %struct.Comb, ptr %8, i64 %indvars.iv.i, i32 2, !dbg !163"]
+recSearch_51 -> {
+recSearch_32
+recSearch_41
+}
+recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
+recSearch_32 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_54 [label="Store" comment="  store i32 %11, ptr %operation13.i, align 4, !dbg !166, !tbaa !164"]
+recSearch_54 -> {
+recSearch_52
+recSearch_53
+}
+recSearch_52 [label="Load" comment="  %11 = load i32, ptr %operation.i, align 4, !dbg !163, !tbaa !164"]
+recSearch_52 -> {
+recSearch_51
+}
+recSearch_51 [label="GetElementPtr" comment="  %operation.i = getelementptr inbounds %struct.Comb, ptr %8, i64 %indvars.iv.i, i32 2, !dbg !163"]
+recSearch_51 -> {
+recSearch_32
+recSearch_41
+}
+recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
+recSearch_32 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+recSearch_53 [label="GetElementPtr" comment="  %operation13.i = getelementptr inbounds %struct.Comb, ptr %7, i64 %indvars.iv.i, i32 2, !dbg !165"]
+recSearch_53 -> {
+recSearch_31
+recSearch_41
+}
+recSearch_31 [label="Load" comment="  %7 = load ptr, ptr @solution, align 8, !dbg !136, !tbaa !120"]
+recSearch_31 -> {
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+recSearch_55
+}
+recSearch_55 [label="Add" comment="  %indvars.iv.next.i = add nuw nsw i64 %indvars.iv.i, 1, !dbg !167"]
+recSearch_55 -> {
+recSearch_41
+}
+recSearch_41 [label="Phi" comment="  %indvars.iv.i = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i, %for.body.i ]"]
+recSearch_41 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_61 [label="Store" comment="  store i32 0, ptr %operation16.i, align 4, !dbg !174, !tbaa !164"]
+recSearch_61 -> {
+recSearch_60
+}
+recSearch_60 [label="GetElementPtr" comment="  %operation16.i = getelementptr inbounds %struct.Comb, ptr %7, i64 %idxprom14.i, i32 2, !dbg !173"]
+recSearch_60 -> {
+recSearch_31
+recSearch_59
+}
+recSearch_31 [label="Load" comment="  %7 = load ptr, ptr @solution, align 8, !dbg !136, !tbaa !120"]
+recSearch_31 -> {
+}
+recSearch_59 [label="SExt" comment="  %idxprom14.i = sext i32 %searchDepth to i64, !dbg !172"]
+recSearch_59 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_65 [label="Store" comment="  store i1 true, ptr @stopSearch, align 4, !dbg !180"]
+recSearch_65 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_70 [label="Load" comment="  %12 = load i32, ptr @listLength, align 4, !dbg !182, !tbaa !108"]
+recSearch_70 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_128 [label="Store" comment="  store i32 %working1.0, ptr %arrayidx63, align 4, !dbg !223, !tbaa !155"]
+recSearch_128 -> {
+recSearch_120
+recSearch_127
+}
+recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
+recSearch_120 -> {
+recSearch_98
+recSearch_117
+recSearch_98
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
+recSearch_117 -> {
+recSearch_98
+recSearch_101
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_127 [label="GetElementPtr" comment="  %arrayidx63 = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, !dbg !222"]
+recSearch_127 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_130 [label="Store" comment="  store i32 %working2.0, ptr %operand267, align 4, !dbg !225, !tbaa !160"]
+recSearch_130 -> {
+recSearch_121
+recSearch_129
+}
+recSearch_121 [label="Phi" comment="  %working2.0 = phi i32 [ %18, %if.end51 ], [ %spec.select132, %land.lhs.true55 ], [ %18, %if.end46 ], !dbg !220"]
+recSearch_121 -> {
+recSearch_101
+recSearch_118
+recSearch_101
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_118 [label="Call" comment="  %spec.select132 = tail call i32 @llvm.smin.i32(i32 %17, i32 %18), !dbg !219"]
+recSearch_118 -> {
+recSearch_98
+recSearch_101
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_129 [label="GetElementPtr" comment="  %operand267 = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !224"]
+recSearch_129 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_132 [label="Store" comment="  store i32 %currOp.0141, ptr %operation, align 4, !dbg !227, !tbaa !164"]
+recSearch_132 -> {
+recSearch_67
+recSearch_131
+}
+recSearch_67 [label="Phi" comment="  %currOp.0141 = phi i32 [ 1, %for.cond.preheader ], [ %inc82, %for.inc81 ]"]
+recSearch_67 -> {
+recSearch_170
+}
+recSearch_170 [label="Add" comment="  %inc82 = add nuw nsw i32 %currOp.0141, 1, !dbg !263"]
+recSearch_170 -> {
+recSearch_67
+}
+recSearch_67 [label="Phi" comment="  %currOp.0141 = phi i32 [ 1, %for.cond.preheader ], [ %inc82, %for.inc81 ]"]
+recSearch_67 -> {
+// Cycle
+}
+recSearch_131 [label="GetElementPtr" comment="  %operation = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 2, !dbg !226"]
+recSearch_131 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_136 [label="Load" comment="  %20 = load i32, ptr %operand2.i134, align 4, !dbg !236, !tbaa !160"]
+recSearch_136 -> {
+recSearch_135
+}
+recSearch_135 [label="GetElementPtr" comment="  %operand2.i134 = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !236"]
+recSearch_135 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_140 [label="Load" comment="  %21 = load i32, ptr %operand23.i, align 4, !dbg !240, !tbaa !160"]
+recSearch_140 -> {
+recSearch_139
+}
+recSearch_139 [label="GetElementPtr" comment="  %operand23.i = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !240"]
+recSearch_139 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_144 [label="Load" comment="  %22 = load i32, ptr %operand26.i, align 4, !dbg !243, !tbaa !160"]
+recSearch_144 -> {
+recSearch_143
+}
+recSearch_143 [label="GetElementPtr" comment="  %operand26.i = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !243"]
+recSearch_143 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_148 [label="Load" comment="  %23 = load i32, ptr %operand29.i, align 4, !dbg !246, !tbaa !160"]
+recSearch_148 -> {
+recSearch_147
+}
+recSearch_147 [label="GetElementPtr" comment="  %operand29.i = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !246"]
+recSearch_147 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_152 [label="Load" comment="  %24 = load i32, ptr @listLength, align 4, !dbg !250, !tbaa !108"]
+recSearch_152 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_156 [label="Store" comment="  store i32 %retval.0.i, ptr %arrayidx75, align 4, !dbg !253, !tbaa !108"]
+recSearch_156 -> {
+recSearch_151
+recSearch_155
+}
+recSearch_151 [label="Phi" comment="  %retval.0.i = phi i32 [ %div.i, %sw.bb7.i ], [ %mul.i, %sw.bb4.i ], [ %sub.i, %sw.bb1.i ], [ %add.i, %sw.bb.i ], [ 0, %if.end58 ], !dbg !249"]
+recSearch_151 -> {
+recSearch_149
+recSearch_145
+recSearch_141
+recSearch_137
+}
+recSearch_149 [label="SDiv" comment="  %div.i = sdiv i32 %working1.0, %23, !dbg !247"]
+recSearch_149 -> {
+recSearch_120
+recSearch_148
+}
+recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
+recSearch_120 -> {
+recSearch_98
+recSearch_117
+recSearch_98
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
+recSearch_117 -> {
+recSearch_98
+recSearch_101
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_148 [label="Load" comment="  %23 = load i32, ptr %operand29.i, align 4, !dbg !246, !tbaa !160"]
+recSearch_148 -> {
+recSearch_147
+}
+recSearch_147 [label="GetElementPtr" comment="  %operand29.i = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !246"]
+recSearch_147 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+recSearch_145 [label="Mul" comment="  %mul.i = mul nsw i32 %22, %working1.0, !dbg !244"]
+recSearch_145 -> {
+recSearch_144
+recSearch_120
+}
+recSearch_144 [label="Load" comment="  %22 = load i32, ptr %operand26.i, align 4, !dbg !243, !tbaa !160"]
+recSearch_144 -> {
+recSearch_143
+}
+recSearch_143 [label="GetElementPtr" comment="  %operand26.i = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !243"]
+recSearch_143 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
+recSearch_120 -> {
+recSearch_98
+recSearch_117
+recSearch_98
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
+recSearch_117 -> {
+recSearch_98
+recSearch_101
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_141 [label="Sub" comment="  %sub.i = sub nsw i32 %working1.0, %21, !dbg !241"]
+recSearch_141 -> {
+recSearch_120
+recSearch_140
+}
+recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
+recSearch_120 -> {
+recSearch_98
+recSearch_117
+recSearch_98
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
+recSearch_117 -> {
+recSearch_98
+recSearch_101
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_140 [label="Load" comment="  %21 = load i32, ptr %operand23.i, align 4, !dbg !240, !tbaa !160"]
+recSearch_140 -> {
+recSearch_139
+}
+recSearch_139 [label="GetElementPtr" comment="  %operand23.i = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !240"]
+recSearch_139 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+recSearch_137 [label="Add" comment="  %add.i = add nsw i32 %20, %working1.0, !dbg !238"]
+recSearch_137 -> {
+recSearch_136
+recSearch_120
+}
+recSearch_136 [label="Load" comment="  %20 = load i32, ptr %operand2.i134, align 4, !dbg !236, !tbaa !160"]
+recSearch_136 -> {
+recSearch_135
+}
+recSearch_135 [label="GetElementPtr" comment="  %operand2.i134 = getelementptr inbounds %struct.Comb, ptr %19, i64 %idxprom62, i32 1, !dbg !236"]
+recSearch_135 -> {
+recSearch_126
+recSearch_11
+}
+recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
+recSearch_126 -> {
+}
+recSearch_11 [label="SExt" comment="  %idxprom62 = sext i32 %searchDepth to i64"]
+recSearch_11 -> {
+}
+recSearch_120 [label="Phi" comment="  %working1.0 = phi i32 [ %17, %if.end51 ], [ %spec.select, %land.lhs.true55 ], [ %17, %if.end46 ], !dbg !220"]
+recSearch_120 -> {
+recSearch_98
+recSearch_117
+recSearch_98
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_117 [label="Call" comment="  %spec.select = tail call i32 @llvm.smax.i32(i32 %17, i32 %18), !dbg !219"]
+recSearch_117 -> {
+recSearch_98
+recSearch_101
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
+recSearch_101 -> {
+recSearch_100
+}
+recSearch_100 [label="GetElementPtr" comment="  %arrayidx34 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv, !dbg !205"]
+recSearch_100 -> {
+recSearch_96
+recSearch_89
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+recSearch_159
+}
+recSearch_159 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !256"]
+recSearch_159 -> {
+recSearch_89
+}
+recSearch_89 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body25.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+recSearch_89 -> {
+// Cycle
+}
+recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
+recSearch_98 -> {
+recSearch_97
+}
+recSearch_97 [label="GetElementPtr" comment="  %arrayidx32 = getelementptr inbounds i32, ptr %16, i64 %indvars.iv144, !dbg !203"]
+recSearch_97 -> {
+recSearch_96
+recSearch_77
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+recSearch_163
+}
+recSearch_163 [label="Add" comment="  %indvars.iv.next145 = add nuw nsw i64 %indvars.iv144, 1, !dbg !260"]
+recSearch_163 -> {
+recSearch_77
+}
+recSearch_77 [label="Phi" comment="  %indvars.iv144 = phi i64 [ 0, %for.body19.lr.ph ], [ %indvars.iv.next145, %for.inc78 ]"]
+recSearch_77 -> {
+// Cycle
+}
+recSearch_155 [label="GetElementPtr" comment="  %arrayidx75 = getelementptr inbounds i32, ptr %16, i64 %idxprom74, !dbg !252"]
+recSearch_155 -> {
+recSearch_96
+recSearch_154
+}
+recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
+recSearch_96 -> {
+}
+recSearch_154 [label="SExt" comment="  %idxprom74 = sext i32 %add73 to i64, !dbg !252"]
+recSearch_154 -> {
+recSearch_153
+}
+recSearch_153 [label="Add" comment="  %add73 = add nsw i32 %24, %searchDepth, !dbg !251"]
+recSearch_153 -> {
+recSearch_152
+}
+recSearch_152 [label="Load" comment="  %24 = load i32, ptr @listLength, align 4, !dbg !250, !tbaa !108"]
+recSearch_152 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+recSearch_165 [label="Load" comment="  %25 = load i32, ptr @listLength, align 4, !dbg !182, !tbaa !108"]
+recSearch_165 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="recSearch"
+labelloc=b
+}
+subgraph {
+subgraph {
+doSearch_1 [label="Load" comment="  %0 = load i32, ptr @listLength, align 4, !tbaa !94"]
+doSearch_1 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_5 [label="Load" comment="  %best.promoted = load i32, ptr @best, align 4, !tbaa !94"]
+doSearch_5 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_6 [label="Load" comment="  %1 = load ptr, ptr @workList, align 8, !tbaa !102"]
+doSearch_6 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_7 [label="Load" comment="  %2 = load i32, ptr @goal, align 4, !tbaa !94"]
+doSearch_7 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_14 [label="Load" comment="  %4 = load i32, ptr %arrayidx, align 4, !dbg !104, !tbaa !94"]
+doSearch_14 -> {
+doSearch_13
+}
+doSearch_13 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %1, i64 %indvars.iv, !dbg !104"]
+doSearch_13 -> {
+doSearch_6
+doSearch_10
+}
+doSearch_6 [label="Load" comment="  %1 = load ptr, ptr @workList, align 8, !tbaa !102"]
+doSearch_6 -> {
+}
+doSearch_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+doSearch_10 -> {
+doSearch_24
+}
+doSearch_24 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !115"]
+doSearch_24 -> {
+doSearch_10
+}
+doSearch_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+doSearch_10 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_21 [label="Store" comment="  store i32 %4, ptr @best, align 4, !dbg !112, !tbaa !94"]
+doSearch_21 -> {
+doSearch_14
+}
+doSearch_14 [label="Load" comment="  %4 = load i32, ptr %arrayidx, align 4, !dbg !104, !tbaa !94"]
+doSearch_14 -> {
+doSearch_13
+}
+doSearch_13 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds i32, ptr %1, i64 %indvars.iv, !dbg !104"]
+doSearch_13 -> {
+doSearch_6
+doSearch_10
+}
+doSearch_6 [label="Load" comment="  %1 = load ptr, ptr @workList, align 8, !tbaa !102"]
+doSearch_6 -> {
+}
+doSearch_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+doSearch_10 -> {
+doSearch_24
+}
+doSearch_24 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !115"]
+doSearch_24 -> {
+doSearch_10
+}
+doSearch_10 [label="Phi" comment="  %indvars.iv = phi i64 [ 0, %for.body.lr.ph ], [ %indvars.iv.next, %for.inc ]"]
+doSearch_10 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_28 [label="Load" comment="  %6 = load i32, ptr @best, align 4, !dbg !120, !tbaa !94"]
+doSearch_28 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_29 [label="Load" comment="  %7 = load i32, ptr @goal, align 4, !dbg !122, !tbaa !94"]
+doSearch_29 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_32 [label="Store" comment="  store i32 1, ptr @dmax, align 4, !dbg !125, !tbaa !94"]
+doSearch_32 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_33 [label="Load" comment="  %8 = load i32, ptr @listLength, align 4, !dbg !127, !tbaa !94"]
+doSearch_33 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_39 [label="Load" comment="  %.b24 = load i1, ptr @stopSearch, align 4, !dbg !136"]
+doSearch_39 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_41 [label="Load" comment="  %9 = load i32, ptr @dmax, align 4, !dbg !139, !tbaa !94"]
+doSearch_41 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_43 [label="Store" comment="  store i32 %inc16, ptr @dmax, align 4, !dbg !125, !tbaa !94"]
+doSearch_43 -> {
+doSearch_42
+}
+doSearch_42 [label="Add" comment="  %inc16 = add nsw i32 %9, 1, !dbg !139"]
+doSearch_42 -> {
+doSearch_41
+}
+doSearch_41 [label="Load" comment="  %9 = load i32, ptr @dmax, align 4, !dbg !139, !tbaa !94"]
+doSearch_41 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_44 [label="Load" comment="  %10 = load i32, ptr @listLength, align 4, !dbg !127, !tbaa !94"]
+doSearch_44 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_47 [label="Load" comment="  %.b = load i1, ptr @stopSearch, align 4, !dbg !142"]
+doSearch_47 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_49 [label="Load" comment="  %11 = load ptr, ptr @solution, align 8, !dbg !145, !tbaa !102"]
+doSearch_49 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+doSearch_50 [label="Load" comment="  %12 = load i32, ptr @bestDepth, align 4, !dbg !146, !tbaa !94"]
+doSearch_50 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="doSearch"
+labelloc=b
+}
+subgraph {
+subgraph {
+getInput_4 [label="Store" comment="  store i32 13, ptr %nums, align 16, !dbg !101, !tbaa !102"]
+getInput_4 -> {
+getInput_0
+}
+getInput_0 [label="Alloca" comment="  %nums = alloca [16 x i32], align 16"]
+getInput_0 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_6 [label="Store" comment="  store i32 32, ptr %arrayidx1, align 4, !dbg !107, !tbaa !102"]
+getInput_6 -> {
+getInput_5
+}
+getInput_5 [label="GetElementPtr" comment="  %arrayidx1 = getelementptr inbounds [16 x i32], ptr %nums, i64 0, i64 1, !dbg !106"]
+getInput_5 -> {
+getInput_0
+}
+getInput_0 [label="Alloca" comment="  %nums = alloca [16 x i32], align 16"]
+getInput_0 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_8 [label="Store" comment="  store i32 14, ptr %arrayidx2, align 8, !dbg !109, !tbaa !102"]
+getInput_8 -> {
+getInput_7
+}
+getInput_7 [label="GetElementPtr" comment="  %arrayidx2 = getelementptr inbounds [16 x i32], ptr %nums, i64 0, i64 2, !dbg !108"]
+getInput_7 -> {
+getInput_0
+}
+getInput_0 [label="Alloca" comment="  %nums = alloca [16 x i32], align 16"]
+getInput_0 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_10 [label="Store" comment="  store i32 1412, ptr %arrayidx3, align 4, !dbg !111, !tbaa !102"]
+getInput_10 -> {
+getInput_9
+}
+getInput_9 [label="GetElementPtr" comment="  %arrayidx3 = getelementptr inbounds [16 x i32], ptr %nums, i64 0, i64 3, !dbg !110"]
+getInput_9 -> {
+getInput_0
+}
+getInput_0 [label="Alloca" comment="  %nums = alloca [16 x i32], align 16"]
+getInput_0 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_14 [label="Load" comment="  %0 = load ptr, ptr @stdin, align 8, !dbg !113, !tbaa !118"]
+getInput_14 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_18 [label="Load" comment="  %1 = load ptr, ptr @stdin, align 8, !dbg !121, !tbaa !118"]
+getInput_18 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_20 [label="Load" comment="  %2 = load ptr, ptr @stdin, align 8, !dbg !124, !tbaa !118"]
+getInput_20 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_31 [label="Store" comment="  store i32 %sub, ptr @listLength, align 4, !dbg !135, !tbaa !102"]
+getInput_31 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_34 [label="Load" comment="  %4 = load i32, ptr %arrayidx10, align 4, !dbg !136, !tbaa !102"]
+getInput_34 -> {
+getInput_33
+}
+getInput_33 [label="GetElementPtr" comment="  %arrayidx10 = getelementptr inbounds [16 x i32], ptr %nums, i64 0, i64 %idxprom9, !dbg !136"]
+getInput_33 -> {
+getInput_0
+getInput_32
+}
+getInput_0 [label="Alloca" comment="  %nums = alloca [16 x i32], align 16"]
+getInput_0 -> {
+}
+getInput_32 [label="SExt" comment="  %idxprom9 = sext i32 %sub to i64, !dbg !136"]
+getInput_32 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_35 [label="Store" comment="  store i32 %4, ptr @goal, align 4, !dbg !137, !tbaa !102"]
+getInput_35 -> {
+getInput_34
+}
+getInput_34 [label="Load" comment="  %4 = load i32, ptr %arrayidx10, align 4, !dbg !136, !tbaa !102"]
+getInput_34 -> {
+getInput_33
+}
+getInput_33 [label="GetElementPtr" comment="  %arrayidx10 = getelementptr inbounds [16 x i32], ptr %nums, i64 0, i64 %idxprom9, !dbg !136"]
+getInput_33 -> {
+getInput_0
+getInput_32
+}
+getInput_0 [label="Alloca" comment="  %nums = alloca [16 x i32], align 16"]
+getInput_0 -> {
+}
+getInput_32 [label="SExt" comment="  %idxprom9 = sext i32 %sub to i64, !dbg !136"]
+getInput_32 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_43 [label="Load" comment="  %5 = load ptr, ptr @stderr, align 8, !dbg !152, !tbaa !118"]
+getInput_43 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_47 [label="Store" comment="  store ptr %call.i18, ptr @workList, align 8, !dbg !156, !tbaa !118"]
+getInput_47 -> {
+getInput_39
+}
+getInput_39 [label="Call" comment="  %call.i18 = call noalias ptr @calloc(i64 noundef %conv.i, i64 noundef 4) #14, !dbg !148"]
+getInput_39 -> {
+getInput_38
+}
+getInput_38 [label="SExt" comment="  %conv.i = sext i32 %mul to i64, !dbg !147"]
+getInput_38 -> {
+getInput_36
+}
+getInput_36 [label="Shl" comment="  %mul = shl nsw i32 %sub, 1, !dbg !138"]
+getInput_36 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_53 [label="Load" comment="  %7 = load ptr, ptr @stderr, align 8, !dbg !169, !tbaa !118"]
+getInput_53 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_57 [label="Store" comment="  store ptr %call.i20, ptr @combList, align 8, !dbg !173, !tbaa !118"]
+getInput_57 -> {
+getInput_49
+}
+getInput_49 [label="Call" comment="  %call.i20 = call noalias ptr @calloc(i64 noundef %idxprom9, i64 noundef 12) #14, !dbg !165"]
+getInput_49 -> {
+getInput_32
+}
+getInput_32 [label="SExt" comment="  %idxprom9 = sext i32 %sub to i64, !dbg !136"]
+getInput_32 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_63 [label="Load" comment="  %9 = load ptr, ptr @stderr, align 8, !dbg !179, !tbaa !118"]
+getInput_63 -> {
+}
+cluster=true
+label="Load instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_67 [label="Store" comment="  store ptr %call.i24, ptr @solution, align 8, !dbg !182, !tbaa !118"]
+getInput_67 -> {
+getInput_59
+}
+getInput_59 [label="Call" comment="  %call.i24 = call noalias ptr @calloc(i64 noundef %idxprom9, i64 noundef 12) #14, !dbg !176"]
+getInput_59 -> {
+getInput_32
+}
+getInput_32 [label="SExt" comment="  %idxprom9 = sext i32 %sub to i64, !dbg !136"]
+getInput_32 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_86 [label="Store" comment="  store i32 0, ptr %operation.i, align 4, !dbg !212, !tbaa !213"]
+getInput_86 -> {
+getInput_85
+}
+getInput_85 [label="GetElementPtr" comment="  %operation.i = getelementptr inbounds %struct.Comb, ptr %call.i20, i64 %indvars.iv.i30, i32 2, !dbg !211"]
+getInput_85 -> {
+getInput_49
+getInput_83
+}
+getInput_49 [label="Call" comment="  %call.i20 = call noalias ptr @calloc(i64 noundef %idxprom9, i64 noundef 12) #14, !dbg !165"]
+getInput_49 -> {
+getInput_32
+}
+getInput_32 [label="SExt" comment="  %idxprom9 = sext i32 %sub to i64, !dbg !136"]
+getInput_32 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_83 [label="Phi" comment="  %indvars.iv.i30 = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i31, %for.body.i33 ]"]
+getInput_83 -> {
+getInput_87
+}
+getInput_87 [label="Add" comment="  %indvars.iv.next.i31 = add nuw nsw i64 %indvars.iv.i30, 1, !dbg !215"]
+getInput_87 -> {
+getInput_83
+}
+getInput_83 [label="Phi" comment="  %indvars.iv.i30 = phi i64 [ 0, %for.body.preheader.i ], [ %indvars.iv.next.i31, %for.body.i33 ]"]
+getInput_83 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+getInput_100 [label="Store" comment="  store i32 0, ptr %operation.i38, align 4, !dbg !223, !tbaa !213"]
+getInput_100 -> {
+getInput_99
+}
+getInput_99 [label="GetElementPtr" comment="  %operation.i38 = getelementptr inbounds %struct.Comb, ptr %call.i24, i64 %indvars.iv.i37, i32 2, !dbg !222"]
+getInput_99 -> {
+getInput_59
+getInput_97
+}
+getInput_59 [label="Call" comment="  %call.i24 = call noalias ptr @calloc(i64 noundef %idxprom9, i64 noundef 12) #14, !dbg !176"]
+getInput_59 -> {
+getInput_32
+}
+getInput_32 [label="SExt" comment="  %idxprom9 = sext i32 %sub to i64, !dbg !136"]
+getInput_32 -> {
+getInput_30
+}
+getInput_30 [label="Select" comment="  %sub = select i1 %cmp8, i32 3, i32 %i.0.op, !dbg !134"]
+getInput_30 -> {
+getInput_27
+getInput_29
+}
+getInput_27 [label="ICmp" comment="  %cmp8 = icmp eq i32 %3, 0, !dbg !132"]
+getInput_27 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_29 [label="Add" comment="  %i.0.op = add nsw i32 %3, -1, !dbg !134"]
+getInput_29 -> {
+getInput_26
+}
+getInput_26 [label="Trunc" comment="  %3 = trunc i64 %indvars.iv to i32, !dbg !112"]
+getInput_26 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+getInput_23
+}
+getInput_23 [label="Add" comment="  %indvars.iv.next = add nuw i64 %indvars.iv, 1, !dbg !127"]
+getInput_23 -> {
+getInput_12
+}
+getInput_12 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %while.body ], [ 0, %entry ], !dbg !100"]
+getInput_12 -> {
+// Cycle
+}
+getInput_97 [label="Phi" comment="  %indvars.iv.i37 = phi i64 [ 0, %for.body.preheader.i36 ], [ %indvars.iv.next.i39, %for.body.i41 ]"]
+getInput_97 -> {
+getInput_101
+}
+getInput_101 [label="Add" comment="  %indvars.iv.next.i39 = add nuw nsw i64 %indvars.iv.i37, 1, !dbg !224"]
+getInput_101 -> {
+getInput_97
+}
+getInput_97 [label="Phi" comment="  %indvars.iv.i37 = phi i64 [ 0, %for.body.preheader.i36 ], [ %indvars.iv.next.i39, %for.body.i41 ]"]
+getInput_97 -> {
+// Cycle
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="getInput"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="ungetc"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="__isoc99_fscanf"
+labelloc=b
+}
+subgraph {
+subgraph {
+search_0 [label="Store" comment="  store i1 false, ptr @stopSearch, align 4, !dbg !92"]
+search_0 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+search_1 [label="Store" comment="  store i32 0, ptr @nbNodes, align 4, !dbg !93, !tbaa !94"]
+search_1 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="search"
+labelloc=b
+}
+subgraph {
+subgraph {
+main_5 [label="Store" comment="  store i1 false, ptr @stopSearch, align 4, !dbg !100"]
+main_5 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+subgraph {
+main_6 [label="Store" comment="  store i32 0, ptr @nbNodes, align 4, !dbg !106, !tbaa !107"]
+main_6 -> {
+}
+cluster=true
+label="Store instruction dependencies"
+labelloc=b
+}
+cluster=true
+label="main"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="getc"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.dbg.value"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="fwrite"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="putchar"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="puts"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.abs.i32"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.smax.i32"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.smin.i32"
+labelloc=b
+}
+subgraph {
+cluster=true
+label="llvm.memcpy.p0.p0.i64"
+labelloc=b
+}
+}

@@ -8,8 +8,8 @@ use std::{
 
 use expect_test::expect_file;
 
-macro_rules! test_c {
-    ($name:ident) => {
+macro_rules! test {
+    ($name:ident, $ext:expr) => {
         #[test]
         fn $name() {
             create_dir_all("/tmp/auto-isa").unwrap();
@@ -29,7 +29,7 @@ macro_rules! test_c {
                     "-S",
                     "-emit-llvm",
                     "-fno-discard-value-names",
-                    concat!("testdata/", stringify!($name), ".c"),
+                    concat!("testdata/", stringify!($name), $ext),
                     "-o",
                     concat!("testdata/", stringify!($name), ".ll"),
                 ])
@@ -69,8 +69,31 @@ macro_rules! test_c {
     };
 }
 
+macro_rules! test_c {
+    ($name:ident) => {
+        test!($name, ".c");
+    };
+}
+
+macro_rules! test_cpp {
+    ($name:ident) => {
+        test!($name, ".cpp");
+    };
+}
+
+test_c!(chomp);
+test_c!(dt);
+test_c!(evalloop);
+test_c!(exptree);
+test_c!(himenobmtxpa);
 test_c!(loop_sum);
-test_c!(pointer_chase);
+test_c!(lowercase);
+test_c!(matmul_f64_4x4);
+test_c!(oourafft);
 test_c!(perlin);
-test_c!(richards_benchmark);
+test_c!(pointer_chase);
+test_c!(queens);
 test_c!(reed_solomon);
+test_c!(richards_benchmark);
+
+test_cpp!(stepanov_v1p2);
