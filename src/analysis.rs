@@ -187,18 +187,14 @@ fn contains_alloca<'ctx>(cache: &mut Cache<'ctx>, instruction: InstructionValue<
 
     for i in 0..instruction.get_num_operands() {
         if let Some(op) = instruction.get_operand(i) {
-            match op {
-                Either::Left(value) => {
-                    if let Some(instruction) = value.as_instruction_value() {
-                        if instruction.get_opcode() == InstructionOpcode::Alloca
-                            || contains_alloca(cache, instruction)
-                        {
-                            return true;
-                        }
-                    }
-                }
-                Either::Right(_) => {
-                    panic!("Haven't thought about how you get here.")
+            if let Some(instruction) = match op {
+                Either::Left(value) => value.as_instruction_value(),
+                Either::Right(block) => block.get_last_instruction(),
+            } {
+                if instruction.get_opcode() == InstructionOpcode::Alloca
+                    || contains_alloca(cache, instruction)
+                {
+                    return true;
                 }
             }
         }
@@ -219,21 +215,17 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
 
     for i in 0..instruction.get_num_operands() {
         if let Some(op) = instruction.get_operand(i) {
-            match op {
-                Either::Left(value) => {
-                    if let Some(instruction) = value.as_instruction_value() {
-                        cache.path.push(instruction);
-                        if instruction.get_opcode() == InstructionOpcode::Load {
-                            write_path_to_graph(cache, state, dependency_graph);
-                        } else {
-                            maybe_add_compute_unit(cache, state, dependency_graph, instruction);
-                        }
-                        cache.path.pop();
-                    }
+            if let Some(instruction) = match op {
+                Either::Left(value) => value.as_instruction_value(),
+                Either::Right(block) => block.get_last_instruction(),
+            } {
+                cache.path.push(instruction);
+                if instruction.get_opcode() == InstructionOpcode::Load {
+                    write_path_to_graph(cache, state, dependency_graph);
+                } else {
+                    maybe_add_compute_unit(cache, state, dependency_graph, instruction);
                 }
-                Either::Right(_) => {
-                    panic!("Haven't thought about how you get here.")
-                }
+                cache.path.pop();
             }
         }
     }
