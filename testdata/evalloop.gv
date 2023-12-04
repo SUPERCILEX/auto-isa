@@ -1,4 +1,5 @@
 strict digraph {
+rankdir=BT
 subgraph {
 subgraph {
 execute_1 [label="Load" comment="  %0 = load i32, ptr @sum, align 4, !dbg !77, !tbaa !78"]
@@ -6,7 +7,6 @@ execute_1 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 execute_3 [label="Store" comment="  store i32 %add, ptr @sum, align 4, !dbg !77, !tbaa !78"]
@@ -22,16 +22,13 @@ execute_1 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="execute"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.declare"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -53,7 +50,6 @@ eval_3 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 eval_17 [label="Load" comment="  %1 = load i32, ptr %p.addr.32.sink277, align 4, !dbg !85, !tbaa !75"]
@@ -511,7 +507,6 @@ eval_5 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 eval_20 [label="Load" comment="  %indirect.goto.dest = load ptr, ptr %arrayidx122, align 8, !dbg !85, !tbaa !86"]
@@ -981,11 +976,9 @@ eval_5 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="eval"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -1002,7 +995,6 @@ main_1 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_15 [label="Store" comment="  store i32 %add, ptr %arrayidx, align 4, !dbg !102, !tbaa !92"]
@@ -1048,7 +1040,6 @@ main_9 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_20 [label="Load" comment="  %1 = load i32, ptr @sum, align 4, !dbg !109, !tbaa !92"]
@@ -1056,20 +1047,16 @@ main_20 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="main"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="printf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 }

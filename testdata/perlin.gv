@@ -1,4 +1,5 @@
 strict digraph {
+rankdir=BT
 subgraph {
 subgraph {
 main_38 [label="Load" comment="  %3 = load i32, ptr %arrayidx.i, align 4, !tbaa !46"]
@@ -39,7 +40,6 @@ main_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_39 [label="Load" comment="  %4 = load i32, ptr %arrayidx18.i, align 4, !tbaa !46"]
@@ -84,7 +84,6 @@ main_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_68 [label="Load" comment="  %6 = load i32, ptr %arrayidx10.i, align 4, !dbg !99, !tbaa !46"]
@@ -188,7 +187,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_74 [label="Load" comment="  %7 = load i32, ptr %arrayidx14.i, align 4, !dbg !102, !tbaa !46"]
@@ -296,7 +294,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_81 [label="Load" comment="  %8 = load i32, ptr %arrayidx21.i, align 4, !dbg !105, !tbaa !46"]
@@ -404,7 +401,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_87 [label="Load" comment="  %9 = load i32, ptr %arrayidx25.i, align 4, !dbg !108, !tbaa !46"]
@@ -516,7 +512,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_92 [label="Load" comment="  %10 = load i32, ptr %arrayidx28.i, align 4, !dbg !110, !tbaa !46"]
@@ -636,7 +631,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_111 [label="Load" comment="  %12 = load i32, ptr %arrayidx31.i, align 4, !dbg !128, !tbaa !46"]
@@ -760,7 +754,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_133 [label="Load" comment="  %14 = load i32, ptr %arrayidx36.i, align 4, !dbg !142, !tbaa !46"]
@@ -884,7 +877,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_153 [label="Load" comment="  %16 = load i32, ptr %arrayidx40.i, align 4, !dbg !150, !tbaa !46"]
@@ -1012,7 +1004,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_179 [label="Load" comment="  %18 = load i32, ptr %arrayidx48.i, align 4, !dbg !162, !tbaa !46"]
@@ -1132,7 +1123,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_199 [label="Load" comment="  %20 = load i32, ptr %arrayidx53.i, align 4, !dbg !170, !tbaa !46"]
@@ -1256,7 +1246,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_222 [label="Load" comment="  %22 = load i32, ptr %arrayidx60.i, align 4, !dbg !180, !tbaa !46"]
@@ -1380,7 +1369,6 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_242 [label="Load" comment="  %24 = load i32, ptr %arrayidx66.i, align 4, !dbg !188, !tbaa !46"]
@@ -1508,35 +1496,28 @@ main_390 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="main"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="printf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.floor.f64"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.fmuladd.f64"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.memcpy.p0.p0.i64"
-labelloc=b
 }
 }

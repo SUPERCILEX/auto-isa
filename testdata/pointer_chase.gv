@@ -1,4 +1,5 @@
 strict digraph {
+rankdir=BT
 subgraph {
 subgraph {
 pointer_chase_4 [label="Load" comment="  %result.promoted = load i32, ptr %result, align 4, !tbaa !34"]
@@ -6,7 +7,6 @@ pointer_chase_4 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 pointer_chase_10 [label="Load" comment="  %0 = load ptr, ptr %data, align 8, !dbg !38, !tbaa !40"]
@@ -35,7 +35,6 @@ pointer_chase_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 pointer_chase_11 [label="Load" comment="  %1 = load i32, ptr %0, align 4, !dbg !43, !tbaa !44"]
@@ -68,7 +67,6 @@ pointer_chase_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 pointer_chase_13 [label="Load" comment="  %2 = load i32, ptr %data12, align 4, !dbg !46, !tbaa !47"]
@@ -105,7 +103,6 @@ pointer_chase_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 pointer_chase_16 [label="Store" comment="  store i32 %add3, ptr %result, align 4, !dbg !49, !tbaa !34"]
@@ -176,7 +173,6 @@ pointer_chase_15 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
@@ -197,15 +193,12 @@ pointer_chase_18 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="pointer_chase"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 }

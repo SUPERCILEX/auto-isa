@@ -1,4 +1,5 @@
 strict digraph {
+rankdir=BT
 subgraph {
 subgraph {
 newWorkList_7 [label="Load" comment="  %0 = load ptr, ptr @stderr, align 8, !dbg !101, !tbaa !103"]
@@ -6,36 +7,29 @@ newWorkList_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="newWorkList"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.declare"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.start.p0"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="calloc"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="exit"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.end.p0"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -44,11 +38,9 @@ newCombList_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="newCombList"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -74,7 +66,6 @@ initWorkList_8 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 initWorkList_13 [label="Store" comment="  store i32 %0, ptr %arrayidx2, align 4, !dbg !107, !tbaa !102"]
@@ -112,11 +103,9 @@ initWorkList_8 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="initWorkList"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -142,11 +131,9 @@ initCombList_7 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="initCombList"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -172,7 +159,6 @@ saveSolution_8 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 saveSolution_13 [label="Store" comment="  store i32 %0, ptr %arrayidx2, align 4, !dbg !110, !tbaa !104"]
@@ -210,7 +196,6 @@ saveSolution_8 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 saveSolution_15 [label="Load" comment="  %1 = load i32, ptr %operand2, align 4, !dbg !111, !tbaa !112"]
@@ -235,7 +220,6 @@ saveSolution_8 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 saveSolution_17 [label="Store" comment="  store i32 %1, ptr %operand28, align 4, !dbg !114, !tbaa !112"]
@@ -273,7 +257,6 @@ saveSolution_8 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 saveSolution_19 [label="Load" comment="  %2 = load i32, ptr %operation, align 4, !dbg !115, !tbaa !116"]
@@ -298,7 +281,6 @@ saveSolution_8 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 saveSolution_21 [label="Store" comment="  store i32 %2, ptr %operation13, align 4, !dbg !118, !tbaa !116"]
@@ -336,7 +318,6 @@ saveSolution_8 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 saveSolution_28 [label="Store" comment="  store i32 0, ptr %operation16, align 4, !dbg !126, !tbaa !116"]
@@ -352,11 +333,9 @@ saveSolution_26 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="saveSolution"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -369,7 +348,6 @@ calculate_1 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_4 [label="Load" comment="  %1 = load i32, ptr %comb, align 4, !dbg !101, !tbaa !103"]
@@ -377,7 +355,6 @@ calculate_4 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_6 [label="Load" comment="  %2 = load i32, ptr %operand2, align 4, !dbg !104, !tbaa !105"]
@@ -389,7 +366,6 @@ calculate_5 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_9 [label="Load" comment="  %3 = load i32, ptr %comb, align 4, !dbg !108, !tbaa !103"]
@@ -397,7 +373,6 @@ calculate_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_11 [label="Load" comment="  %4 = load i32, ptr %operand23, align 4, !dbg !109, !tbaa !105"]
@@ -409,7 +384,6 @@ calculate_10 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_14 [label="Load" comment="  %5 = load i32, ptr %comb, align 4, !dbg !112, !tbaa !103"]
@@ -417,7 +391,6 @@ calculate_14 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_16 [label="Load" comment="  %6 = load i32, ptr %operand26, align 4, !dbg !113, !tbaa !105"]
@@ -429,7 +402,6 @@ calculate_15 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_19 [label="Load" comment="  %7 = load i32, ptr %comb, align 4, !dbg !116, !tbaa !103"]
@@ -437,7 +409,6 @@ calculate_19 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 calculate_21 [label="Load" comment="  %8 = load i32, ptr %operand29, align 4, !dbg !117, !tbaa !105"]
@@ -449,11 +420,9 @@ calculate_20 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="calculate"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -479,7 +448,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_15 [label="Load" comment="  %2 = load i32, ptr %operation, align 4, !dbg !109, !tbaa !110"]
@@ -504,7 +472,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_30 [label="Load" comment="  %3 = load i32, ptr %operand2, align 4, !dbg !125, !tbaa !126"]
@@ -529,7 +496,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_33 [label="Load" comment="  %4 = load i32, ptr %operation.i, align 4, !dbg !134, !tbaa !110"]
@@ -554,7 +520,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_35 [label="Load" comment="  %5 = load i32, ptr %arrayidx, align 4, !dbg !136, !tbaa !103"]
@@ -579,7 +544,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_37 [label="Load" comment="  %6 = load i32, ptr %operand2.i, align 4, !dbg !138, !tbaa !126"]
@@ -604,7 +568,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_40 [label="Load" comment="  %7 = load i32, ptr %arrayidx, align 4, !dbg !141, !tbaa !103"]
@@ -629,7 +592,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_42 [label="Load" comment="  %8 = load i32, ptr %operand23.i, align 4, !dbg !142, !tbaa !126"]
@@ -654,7 +616,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_45 [label="Load" comment="  %9 = load i32, ptr %arrayidx, align 4, !dbg !145, !tbaa !103"]
@@ -679,7 +640,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_47 [label="Load" comment="  %10 = load i32, ptr %operand26.i, align 4, !dbg !146, !tbaa !126"]
@@ -704,7 +664,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_50 [label="Load" comment="  %11 = load i32, ptr %arrayidx, align 4, !dbg !149, !tbaa !103"]
@@ -729,7 +688,6 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 printSolution_52 [label="Load" comment="  %12 = load i32, ptr %operand29.i, align 4, !dbg !150, !tbaa !126"]
@@ -754,16 +712,13 @@ printSolution_9 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="printSolution"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="printf"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -789,11 +744,9 @@ printList_8 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="printList"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -802,7 +755,6 @@ recSearch_2 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_4 [label="Load" comment="  %0 = load i32, ptr @nbNodes, align 4, !dbg !107, !tbaa !108"]
@@ -810,7 +762,6 @@ recSearch_4 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_6 [label="Store" comment="  store i32 %inc, ptr @nbNodes, align 4, !dbg !107, !tbaa !108"]
@@ -826,7 +777,6 @@ recSearch_4 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_7 [label="Load" comment="  %1 = load i32, ptr @dmax, align 4, !dbg !112, !tbaa !108"]
@@ -834,7 +784,6 @@ recSearch_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_14 [label="Load" comment="  %2 = load ptr, ptr @workList, align 8, !dbg !117, !tbaa !120"]
@@ -842,7 +791,6 @@ recSearch_14 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_15 [label="Load" comment="  %3 = load i32, ptr @listLength, align 4, !dbg !122, !tbaa !108"]
@@ -850,7 +798,6 @@ recSearch_15 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_20 [label="Load" comment="  %4 = load i32, ptr %arrayidx, align 4, !dbg !117, !tbaa !108"]
@@ -882,7 +829,6 @@ recSearch_15 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_21 [label="Load" comment="  %5 = load i32, ptr @goal, align 4, !dbg !125, !tbaa !108"]
@@ -890,7 +836,6 @@ recSearch_21 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_24 [label="Load" comment="  %6 = load i32, ptr @best, align 4, !dbg !128, !tbaa !108"]
@@ -898,7 +843,6 @@ recSearch_24 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_29 [label="Store" comment="  store i32 %4, ptr @best, align 4, !dbg !133, !tbaa !108"]
@@ -934,7 +878,6 @@ recSearch_15 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_30 [label="Store" comment="  store i32 %searchDepth, ptr @bestDepth, align 4, !dbg !135, !tbaa !108"]
@@ -942,7 +885,6 @@ recSearch_30 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_31 [label="Load" comment="  %7 = load ptr, ptr @solution, align 8, !dbg !136, !tbaa !120"]
@@ -950,7 +892,6 @@ recSearch_31 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_32 [label="Load" comment="  %8 = load ptr, ptr @combList, align 8, !dbg !137, !tbaa !120"]
@@ -958,7 +899,6 @@ recSearch_32 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_44 [label="Load" comment="  %9 = load i32, ptr %arrayidx.i, align 4, !dbg !154, !tbaa !155"]
@@ -987,7 +927,6 @@ recSearch_41 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_46 [label="Store" comment="  store i32 %9, ptr %arrayidx2.i, align 4, !dbg !158, !tbaa !155"]
@@ -1033,7 +972,6 @@ recSearch_41 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_48 [label="Load" comment="  %10 = load i32, ptr %operand2.i, align 4, !dbg !159, !tbaa !160"]
@@ -1062,7 +1000,6 @@ recSearch_41 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_50 [label="Store" comment="  store i32 %10, ptr %operand28.i, align 4, !dbg !162, !tbaa !160"]
@@ -1108,7 +1045,6 @@ recSearch_41 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_52 [label="Load" comment="  %11 = load i32, ptr %operation.i, align 4, !dbg !163, !tbaa !164"]
@@ -1137,7 +1073,6 @@ recSearch_41 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_54 [label="Store" comment="  store i32 %11, ptr %operation13.i, align 4, !dbg !166, !tbaa !164"]
@@ -1183,7 +1118,6 @@ recSearch_41 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_61 [label="Store" comment="  store i32 0, ptr %operation16.i, align 4, !dbg !174, !tbaa !164"]
@@ -1203,7 +1137,6 @@ recSearch_59 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_65 [label="Store" comment="  store i1 true, ptr @stopSearch, align 4, !dbg !180"]
@@ -1211,7 +1144,6 @@ recSearch_65 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_70 [label="Load" comment="  %12 = load i32, ptr @listLength, align 4, !dbg !182, !tbaa !108"]
@@ -1219,7 +1151,6 @@ recSearch_70 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_96 [label="Load" comment="  %16 = load ptr, ptr @workList, align 8, !dbg !203, !tbaa !120"]
@@ -1227,7 +1158,6 @@ recSearch_96 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_98 [label="Load" comment="  %17 = load i32, ptr %arrayidx32, align 4, !dbg !203, !tbaa !108"]
@@ -1256,7 +1186,6 @@ recSearch_77 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_101 [label="Load" comment="  %18 = load i32, ptr %arrayidx34, align 4, !dbg !205, !tbaa !108"]
@@ -1285,7 +1214,6 @@ recSearch_89 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_126 [label="Load" comment="  %19 = load ptr, ptr @combList, align 8, !dbg !222, !tbaa !120"]
@@ -1293,7 +1221,6 @@ recSearch_126 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_128 [label="Store" comment="  store i32 %working1.0, ptr %arrayidx63, align 4, !dbg !223, !tbaa !155"]
@@ -1382,7 +1309,6 @@ recSearch_11 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_130 [label="Store" comment="  store i32 %working2.0, ptr %operand267, align 4, !dbg !225, !tbaa !160"]
@@ -1471,7 +1397,6 @@ recSearch_11 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_132 [label="Store" comment="  store i32 %currOp.0141, ptr %operation, align 4, !dbg !227, !tbaa !164"]
@@ -1504,7 +1429,6 @@ recSearch_11 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_136 [label="Load" comment="  %20 = load i32, ptr %operand2.i134, align 4, !dbg !236, !tbaa !160"]
@@ -1524,7 +1448,6 @@ recSearch_11 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_140 [label="Load" comment="  %21 = load i32, ptr %operand23.i, align 4, !dbg !240, !tbaa !160"]
@@ -1544,7 +1467,6 @@ recSearch_11 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_144 [label="Load" comment="  %22 = load i32, ptr %operand26.i, align 4, !dbg !243, !tbaa !160"]
@@ -1564,7 +1486,6 @@ recSearch_11 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_148 [label="Load" comment="  %23 = load i32, ptr %operand29.i, align 4, !dbg !246, !tbaa !160"]
@@ -1584,7 +1505,6 @@ recSearch_11 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_152 [label="Load" comment="  %24 = load i32, ptr @listLength, align 4, !dbg !250, !tbaa !108"]
@@ -1592,7 +1512,6 @@ recSearch_152 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_156 [label="Store" comment="  store i32 %retval.0.i, ptr %arrayidx75, align 4, !dbg !253, !tbaa !108"]
@@ -1795,7 +1714,6 @@ recSearch_152 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 recSearch_165 [label="Load" comment="  %25 = load i32, ptr @listLength, align 4, !dbg !182, !tbaa !108"]
@@ -1803,11 +1721,9 @@ recSearch_165 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="recSearch"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -1816,7 +1732,6 @@ doSearch_1 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_5 [label="Load" comment="  %best.promoted = load i32, ptr @best, align 4, !tbaa !94"]
@@ -1824,7 +1739,6 @@ doSearch_5 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_6 [label="Load" comment="  %1 = load ptr, ptr @workList, align 8, !tbaa !102"]
@@ -1832,7 +1746,6 @@ doSearch_6 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_7 [label="Load" comment="  %2 = load i32, ptr @goal, align 4, !tbaa !94"]
@@ -1840,7 +1753,6 @@ doSearch_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_14 [label="Load" comment="  %4 = load i32, ptr %arrayidx, align 4, !dbg !104, !tbaa !94"]
@@ -1869,7 +1781,6 @@ doSearch_10 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_21 [label="Store" comment="  store i32 %4, ptr @best, align 4, !dbg !112, !tbaa !94"]
@@ -1902,7 +1813,6 @@ doSearch_10 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_28 [label="Load" comment="  %6 = load i32, ptr @best, align 4, !dbg !120, !tbaa !94"]
@@ -1910,7 +1820,6 @@ doSearch_28 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_29 [label="Load" comment="  %7 = load i32, ptr @goal, align 4, !dbg !122, !tbaa !94"]
@@ -1918,7 +1827,6 @@ doSearch_29 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_32 [label="Store" comment="  store i32 1, ptr @dmax, align 4, !dbg !125, !tbaa !94"]
@@ -1926,7 +1834,6 @@ doSearch_32 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_33 [label="Load" comment="  %8 = load i32, ptr @listLength, align 4, !dbg !127, !tbaa !94"]
@@ -1934,7 +1841,6 @@ doSearch_33 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_39 [label="Load" comment="  %.b24 = load i1, ptr @stopSearch, align 4, !dbg !136"]
@@ -1942,7 +1848,6 @@ doSearch_39 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_41 [label="Load" comment="  %9 = load i32, ptr @dmax, align 4, !dbg !139, !tbaa !94"]
@@ -1950,7 +1855,6 @@ doSearch_41 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_43 [label="Store" comment="  store i32 %inc16, ptr @dmax, align 4, !dbg !125, !tbaa !94"]
@@ -1966,7 +1870,6 @@ doSearch_41 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_44 [label="Load" comment="  %10 = load i32, ptr @listLength, align 4, !dbg !127, !tbaa !94"]
@@ -1974,7 +1877,6 @@ doSearch_44 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_47 [label="Load" comment="  %.b = load i1, ptr @stopSearch, align 4, !dbg !142"]
@@ -1982,7 +1884,6 @@ doSearch_47 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_49 [label="Load" comment="  %11 = load ptr, ptr @solution, align 8, !dbg !145, !tbaa !102"]
@@ -1990,7 +1891,6 @@ doSearch_49 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 doSearch_50 [label="Load" comment="  %12 = load i32, ptr @bestDepth, align 4, !dbg !146, !tbaa !94"]
@@ -1998,11 +1898,9 @@ doSearch_50 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="doSearch"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -2015,7 +1913,6 @@ getInput_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_6 [label="Store" comment="  store i32 32, ptr %arrayidx1, align 4, !dbg !107, !tbaa !102"]
@@ -2031,7 +1928,6 @@ getInput_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_8 [label="Store" comment="  store i32 14, ptr %arrayidx2, align 8, !dbg !109, !tbaa !102"]
@@ -2047,7 +1943,6 @@ getInput_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_10 [label="Store" comment="  store i32 1412, ptr %arrayidx3, align 4, !dbg !111, !tbaa !102"]
@@ -2063,7 +1958,6 @@ getInput_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_14 [label="Load" comment="  %0 = load ptr, ptr @stdin, align 8, !dbg !113, !tbaa !118"]
@@ -2071,7 +1965,6 @@ getInput_14 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_18 [label="Load" comment="  %1 = load ptr, ptr @stdin, align 8, !dbg !121, !tbaa !118"]
@@ -2079,7 +1972,6 @@ getInput_18 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_20 [label="Load" comment="  %2 = load ptr, ptr @stdin, align 8, !dbg !124, !tbaa !118"]
@@ -2087,7 +1979,6 @@ getInput_20 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_31 [label="Store" comment="  store i32 %sub, ptr @listLength, align 4, !dbg !135, !tbaa !102"]
@@ -2129,7 +2020,6 @@ getInput_26 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_34 [label="Load" comment="  %4 = load i32, ptr %arrayidx10, align 4, !dbg !136, !tbaa !102"]
@@ -2183,7 +2073,6 @@ getInput_26 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_35 [label="Store" comment="  store i32 %4, ptr @goal, align 4, !dbg !137, !tbaa !102"]
@@ -2241,7 +2130,6 @@ getInput_26 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_43 [label="Load" comment="  %5 = load ptr, ptr @stderr, align 8, !dbg !152, !tbaa !118"]
@@ -2249,7 +2137,6 @@ getInput_43 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_47 [label="Store" comment="  store ptr %call.i18, ptr @workList, align 8, !dbg !156, !tbaa !118"]
@@ -2303,7 +2190,6 @@ getInput_26 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_53 [label="Load" comment="  %7 = load ptr, ptr @stderr, align 8, !dbg !169, !tbaa !118"]
@@ -2311,7 +2197,6 @@ getInput_53 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_57 [label="Store" comment="  store ptr %call.i20, ptr @combList, align 8, !dbg !173, !tbaa !118"]
@@ -2361,7 +2246,6 @@ getInput_26 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_63 [label="Load" comment="  %9 = load ptr, ptr @stderr, align 8, !dbg !179, !tbaa !118"]
@@ -2369,7 +2253,6 @@ getInput_63 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_67 [label="Store" comment="  store ptr %call.i24, ptr @solution, align 8, !dbg !182, !tbaa !118"]
@@ -2419,7 +2302,6 @@ getInput_26 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_86 [label="Store" comment="  store i32 0, ptr %operation.i, align 4, !dbg !212, !tbaa !213"]
@@ -2486,7 +2368,6 @@ getInput_83 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 getInput_100 [label="Store" comment="  store i32 0, ptr %operation.i38, align 4, !dbg !223, !tbaa !213"]
@@ -2553,21 +2434,17 @@ getInput_97 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="getInput"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="ungetc"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="__isoc99_fscanf"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -2576,7 +2453,6 @@ search_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 search_1 [label="Store" comment="  store i32 0, ptr @nbNodes, align 4, !dbg !93, !tbaa !94"]
@@ -2584,11 +2460,9 @@ search_1 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="search"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -2597,7 +2471,6 @@ main_5 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_6 [label="Store" comment="  store i32 0, ptr @nbNodes, align 4, !dbg !106, !tbaa !107"]
@@ -2605,55 +2478,44 @@ main_6 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="main"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="getc"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="fwrite"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="putchar"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="puts"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.abs.i32"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.smax.i32"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.smin.i32"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.memcpy.p0.p0.i64"
-labelloc=b
 }
 }

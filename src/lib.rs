@@ -49,7 +49,7 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
     type Result = ();
 
     fn run_analysis(&self, module: &Module<'_>, _: &ModuleAnalysisManager) -> Self::Result {
-        println!("strict digraph {{");
+        println!("strict digraph {{\nrankdir=BT");
         for function in FunctionIterator::new(module) {
             analyze_function(function);
         }
@@ -105,18 +105,13 @@ fn analyze_function(function: FunctionValue) {
 
             writeln!(
                 output,
-                "cluster=true\nlabel=\"{:?} instruction dependencies\"\nlabelloc=b\n}}",
+                "cluster=true\nlabel=\"{:?} instruction dependencies\"\n}}",
                 instr.get_opcode()
             )
             .unwrap();
         }
     }
-    writeln!(
-        output,
-        "cluster=true\nlabel=\"{}\"\nlabelloc=b\n}}",
-        state.fn_name
-    )
-    .unwrap();
+    writeln!(output, "cluster=true\nlabel=\"{}\"\n}}", state.fn_name).unwrap();
 }
 
 struct FunctionAnalysisState<'a> {

@@ -1,4 +1,5 @@
 strict digraph {
+rankdir=BT
 subgraph {
 subgraph {
 main_21 [label="Load" comment="  %0 = load ptr, ptr %dvec1, align 8, !dbg !62, !tbaa !63"]
@@ -10,7 +11,6 @@ main_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_24 [label="Store" comment="  store double %mul, ptr %arrayidx, align 8, !dbg !67, !tbaa !68"]
@@ -68,7 +68,6 @@ main_14 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_29 [label="Load" comment="  %2 = load ptr, ptr %dvec2, align 8, !dbg !73, !tbaa !63"]
@@ -80,7 +79,6 @@ main_1 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_32 [label="Store" comment="  store double %1, ptr %arrayidx10, align 8, !dbg !74, !tbaa !68"]
@@ -134,7 +132,6 @@ main_14 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_37 [label="Load" comment="  %3 = load ptr, ptr %dvec1, align 8, !dbg !81, !tbaa !63"]
@@ -146,7 +143,6 @@ main_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_39 [label="Load" comment="  %4 = load ptr, ptr %dvec2, align 8, !dbg !82, !tbaa !63"]
@@ -158,7 +154,6 @@ main_1 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_54 [label="Load" comment="  %5 = load double, ptr %arrayidx.i, align 8, !dbg !105, !tbaa !68, !alias.scope !87, !noalias !83"]
@@ -191,7 +186,6 @@ main_51 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_56 [label="Load" comment="  %6 = load double, ptr %arrayidx4.i, align 8, !dbg !108, !tbaa !68, !alias.scope !83, !noalias !87"]
@@ -224,7 +218,6 @@ main_51 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_58 [label="Store" comment="  store double %div.i, ptr %arrayidx4.i, align 8, !dbg !108, !tbaa !68, !alias.scope !83, !noalias !87"]
@@ -291,7 +284,6 @@ main_55 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_68 [label="Load" comment="  %7 = load double, ptr %3, align 8, !dbg !117, !tbaa !68"]
@@ -307,55 +299,44 @@ main_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="main"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.start.p0"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="posix_memalign"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="printf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="cosf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="sinf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.fmuladd.f64"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.end.p0"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.experimental.noalias.scope.decl"
-labelloc=b
 }
 }

@@ -1,17 +1,15 @@
 strict digraph {
+rankdir=BT
 subgraph {
 cluster=true
 label="main"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="printf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 }

@@ -1,4 +1,5 @@
 strict digraph {
+rankdir=BT
 subgraph {
 subgraph {
 salsa20_23 [label="Load" comment="  %x.promoted = load i32, ptr %x, align 16, !tbaa !47"]
@@ -10,7 +11,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_24 [label="Load" comment="  %arrayidx7.promoted = load i32, ptr %arrayidx7, align 16, !tbaa !47"]
@@ -26,7 +26,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_25 [label="Load" comment="  %arrayidx11.promoted = load i32, ptr %arrayidx11, align 16, !tbaa !47"]
@@ -42,7 +41,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_26 [label="Load" comment="  %arrayidx21.promoted = load i32, ptr %arrayidx21, align 16, !tbaa !47"]
@@ -58,7 +56,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_27 [label="Load" comment="  %arrayidx45.promoted = load i32, ptr %arrayidx45, align 4, !tbaa !47"]
@@ -74,7 +71,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_28 [label="Load" comment="  %arrayidx46.promoted = load i32, ptr %arrayidx46, align 4, !tbaa !47"]
@@ -90,7 +86,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_29 [label="Load" comment="  %arrayidx54.promoted = load i32, ptr %arrayidx54, align 4, !tbaa !47"]
@@ -106,7 +101,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_30 [label="Load" comment="  %arrayidx65.promoted = load i32, ptr %arrayidx65, align 4, !tbaa !47"]
@@ -122,7 +116,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_31 [label="Load" comment="  %arrayidx89.promoted = load i32, ptr %arrayidx89, align 8, !tbaa !47"]
@@ -138,7 +131,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_32 [label="Load" comment="  %arrayidx90.promoted = load i32, ptr %arrayidx90, align 8, !tbaa !47"]
@@ -154,7 +146,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_33 [label="Load" comment="  %arrayidx98.promoted = load i32, ptr %arrayidx98, align 8, !tbaa !47"]
@@ -170,7 +161,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_34 [label="Load" comment="  %arrayidx109.promoted = load i32, ptr %arrayidx109, align 8, !tbaa !47"]
@@ -186,7 +176,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_35 [label="Load" comment="  %arrayidx133.promoted = load i32, ptr %arrayidx133, align 4, !tbaa !47"]
@@ -202,7 +191,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_36 [label="Load" comment="  %arrayidx134.promoted = load i32, ptr %arrayidx134, align 4, !tbaa !47"]
@@ -218,7 +206,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_37 [label="Load" comment="  %arrayidx142.promoted = load i32, ptr %arrayidx142, align 4, !tbaa !47"]
@@ -234,7 +221,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_38 [label="Load" comment="  %arrayidx153.promoted = load i32, ptr %arrayidx153, align 4, !tbaa !47"]
@@ -250,7 +236,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_41 [label="Store" comment="  store i32 %xor220, ptr %x, align 16, !dbg !53, !tbaa !47"]
@@ -1399,7 +1384,6 @@ salsa20_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_42 [label="Store" comment="  store i32 %xor319, ptr %arrayidx7, align 16, !dbg !53, !tbaa !47"]
@@ -2548,7 +2532,6 @@ salsa20_8 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_43 [label="Store" comment="  store i32 %xor253, ptr %arrayidx11, align 16, !dbg !53, !tbaa !47"]
@@ -3697,7 +3680,6 @@ salsa20_9 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_44 [label="Store" comment="  store i32 %xor286, ptr %arrayidx21, align 16, !dbg !53, !tbaa !47"]
@@ -4846,7 +4828,6 @@ salsa20_10 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_45 [label="Store" comment="  store i32 %xor264, ptr %arrayidx45, align 4, !dbg !53, !tbaa !47"]
@@ -5995,7 +5976,6 @@ salsa20_11 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_46 [label="Store" comment="  store i32 %xor187, ptr %arrayidx46, align 4, !dbg !53, !tbaa !47"]
@@ -7144,7 +7124,6 @@ salsa20_12 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_47 [label="Store" comment="  store i32 %xor297, ptr %arrayidx54, align 4, !dbg !53, !tbaa !47"]
@@ -8293,7 +8272,6 @@ salsa20_13 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_48 [label="Store" comment="  store i32 %xor330, ptr %arrayidx65, align 4, !dbg !53, !tbaa !47"]
@@ -9442,7 +9420,6 @@ salsa20_14 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_49 [label="Store" comment="  store i32 %xor308, ptr %arrayidx89, align 8, !dbg !53, !tbaa !47"]
@@ -10591,7 +10568,6 @@ salsa20_15 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_50 [label="Store" comment="  store i32 %xor231, ptr %arrayidx90, align 8, !dbg !53, !tbaa !47"]
@@ -11740,7 +11716,6 @@ salsa20_16 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_51 [label="Store" comment="  store i32 %xor341, ptr %arrayidx98, align 8, !dbg !53, !tbaa !47"]
@@ -12889,7 +12864,6 @@ salsa20_17 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_52 [label="Store" comment="  store i32 %xor198, ptr %arrayidx109, align 8, !dbg !53, !tbaa !47"]
@@ -14038,7 +14012,6 @@ salsa20_18 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_53 [label="Store" comment="  store i32 %xor352, ptr %arrayidx133, align 4, !dbg !53, !tbaa !47"]
@@ -15187,7 +15160,6 @@ salsa20_19 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_54 [label="Store" comment="  store i32 %xor275, ptr %arrayidx134, align 4, !dbg !53, !tbaa !47"]
@@ -16336,7 +16308,6 @@ salsa20_20 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_55 [label="Store" comment="  store i32 %xor209, ptr %arrayidx142, align 4, !dbg !53, !tbaa !47"]
@@ -17485,7 +17456,6 @@ salsa20_21 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_56 [label="Store" comment="  store i32 %xor242, ptr %arrayidx153, align 4, !dbg !53, !tbaa !47"]
@@ -18634,7 +18604,6 @@ salsa20_22 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_180 [label="Load" comment="  %0 = load i32, ptr %arrayidx359, align 4, !dbg !128, !tbaa !47"]
@@ -18663,7 +18632,6 @@ salsa20_177 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_182 [label="Load" comment="  %1 = load i32, ptr %arrayidx361, align 4, !dbg !130, !tbaa !47"]
@@ -18688,7 +18656,6 @@ salsa20_177 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa20_185 [label="Store" comment="  store i32 %add362, ptr %arrayidx364, align 4, !dbg !133, !tbaa !47"]
@@ -18747,26 +18714,21 @@ salsa20_177 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="salsa20"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.declare"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.start.p0"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.end.p0"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -18775,7 +18737,6 @@ salsa_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa_7 [label="Store" comment="  store i32 %and, ptr @ptr, align 4, !dbg !49, !tbaa !38"]
@@ -18795,7 +18756,6 @@ salsa_0 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 salsa_10 [label="Load" comment="  %1 = load i32, ptr %arrayidx, align 4, !dbg !50, !tbaa !38"]
@@ -18823,11 +18783,9 @@ salsa_0 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="salsa"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -18836,7 +18794,6 @@ main_4 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_15 [label="Store" comment="  store i32 %xor, ptr %arrayidx, align 4, !dbg !54, !tbaa !44"]
@@ -18891,7 +18848,6 @@ main_7 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_29 [label="Store" comment="  store i32 %and.i, ptr @ptr, align 4, !dbg !75, !tbaa !44"]
@@ -18920,7 +18876,6 @@ main_28 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_34 [label="Load" comment="  %2 = load i32, ptr @ptr, align 4, !dbg !80, !tbaa !44"]
@@ -18928,7 +18883,6 @@ main_34 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_41 [label="Store" comment="  store i32 %and.i24, ptr @ptr, align 4, !dbg !88, !tbaa !44"]
@@ -18948,7 +18902,6 @@ main_34 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 main_44 [label="Load" comment="  %3 = load i32, ptr %arrayidx.i26, align 4, !dbg !89, !tbaa !44"]
@@ -18976,30 +18929,24 @@ main_34 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="main"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="printf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.fshl.i32"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.memcpy.p0.p0.i64"
-labelloc=b
 }
 }

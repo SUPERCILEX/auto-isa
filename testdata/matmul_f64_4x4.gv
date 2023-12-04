@@ -1,4 +1,5 @@
 strict digraph {
+rankdir=BT
 subgraph {
 subgraph {
 wrap_mul4_6 [label="Load" comment="  %0 = load double, ptr %A, align 8, !dbg !49, !tbaa !50"]
@@ -6,7 +7,6 @@ wrap_mul4_6 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_7 [label="Load" comment="  %1 = load double, ptr %B, align 8, !dbg !54, !tbaa !50"]
@@ -14,7 +14,6 @@ wrap_mul4_7 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_9 [label="Load" comment="  %2 = load double, ptr %arrayidx5.i, align 8, !dbg !55, !tbaa !50"]
@@ -26,7 +25,6 @@ wrap_mul4_8 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_11 [label="Load" comment="  %3 = load double, ptr %arrayidx6.i, align 8, !dbg !56, !tbaa !50"]
@@ -38,7 +36,6 @@ wrap_mul4_10 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_15 [label="Load" comment="  %5 = load double, ptr %arrayidx10.i, align 8, !dbg !59, !tbaa !50"]
@@ -50,7 +47,6 @@ wrap_mul4_14 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_17 [label="Load" comment="  %6 = load double, ptr %arrayidx11.i, align 8, !dbg !60, !tbaa !50"]
@@ -62,7 +58,6 @@ wrap_mul4_16 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_20 [label="Load" comment="  %8 = load double, ptr %arrayidx14.i, align 8, !dbg !62, !tbaa !50"]
@@ -74,7 +69,6 @@ wrap_mul4_19 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_22 [label="Load" comment="  %9 = load double, ptr %arrayidx15.i, align 8, !dbg !63, !tbaa !50"]
@@ -86,7 +80,6 @@ wrap_mul4_21 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_26 [label="Load" comment="  %11 = load double, ptr %arrayidx21.i, align 8, !dbg !65, !tbaa !50"]
@@ -98,7 +91,6 @@ wrap_mul4_25 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_28 [label="Load" comment="  %12 = load double, ptr %arrayidx25.i, align 8, !dbg !66, !tbaa !50"]
@@ -110,7 +102,6 @@ wrap_mul4_27 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_32 [label="Load" comment="  %14 = load double, ptr %arrayidx30.i, align 8, !dbg !69, !tbaa !50"]
@@ -122,7 +113,6 @@ wrap_mul4_31 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_35 [label="Load" comment="  %16 = load double, ptr %arrayidx34.i, align 8, !dbg !71, !tbaa !50"]
@@ -134,7 +124,6 @@ wrap_mul4_34 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_39 [label="Load" comment="  %18 = load double, ptr %arrayidx39.i, align 8, !dbg !73, !tbaa !50"]
@@ -146,7 +135,6 @@ wrap_mul4_38 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_41 [label="Load" comment="  %19 = load double, ptr %arrayidx43.i, align 8, !dbg !74, !tbaa !50"]
@@ -158,7 +146,6 @@ wrap_mul4_40 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_45 [label="Load" comment="  %21 = load double, ptr %arrayidx48.i, align 8, !dbg !77, !tbaa !50"]
@@ -170,7 +157,6 @@ wrap_mul4_44 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_48 [label="Load" comment="  %23 = load double, ptr %arrayidx52.i, align 8, !dbg !79, !tbaa !50"]
@@ -182,7 +168,6 @@ wrap_mul4_47 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_52 [label="Load" comment="  %25 = load double, ptr %arrayidx57.i, align 8, !dbg !81, !tbaa !50"]
@@ -194,7 +179,6 @@ wrap_mul4_51 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_54 [label="Load" comment="  %26 = load double, ptr %arrayidx61.i, align 8, !dbg !82, !tbaa !50"]
@@ -206,7 +190,6 @@ wrap_mul4_53 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_58 [label="Load" comment="  %28 = load double, ptr %arrayidx66.i, align 8, !dbg !85, !tbaa !50"]
@@ -218,7 +201,6 @@ wrap_mul4_57 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_61 [label="Load" comment="  %30 = load double, ptr %arrayidx70.i, align 8, !dbg !87, !tbaa !50"]
@@ -230,7 +212,6 @@ wrap_mul4_60 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_65 [label="Load" comment="  %32 = load double, ptr %arrayidx72.i, align 8, !dbg !89, !tbaa !50"]
@@ -242,7 +223,6 @@ wrap_mul4_64 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_67 [label="Load" comment="  %33 = load double, ptr %arrayidx77.i, align 8, !dbg !90, !tbaa !50"]
@@ -254,7 +234,6 @@ wrap_mul4_66 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_71 [label="Load" comment="  %35 = load double, ptr %arrayidx82.i, align 8, !dbg !93, !tbaa !50"]
@@ -266,7 +245,6 @@ wrap_mul4_70 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_74 [label="Load" comment="  %37 = load double, ptr %arrayidx86.i, align 8, !dbg !95, !tbaa !50"]
@@ -278,7 +256,6 @@ wrap_mul4_73 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_93 [label="Load" comment="  %48 = load double, ptr %arrayidx144.i, align 8, !dbg !109, !tbaa !50"]
@@ -290,7 +267,6 @@ wrap_mul4_92 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_95 [label="Load" comment="  %49 = load double, ptr %arrayidx149.i, align 8, !dbg !110, !tbaa !50"]
@@ -302,7 +278,6 @@ wrap_mul4_94 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_99 [label="Load" comment="  %51 = load double, ptr %arrayidx154.i, align 8, !dbg !113, !tbaa !50"]
@@ -314,7 +289,6 @@ wrap_mul4_98 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_102 [label="Load" comment="  %53 = load double, ptr %arrayidx158.i, align 8, !dbg !115, !tbaa !50"]
@@ -326,7 +300,6 @@ wrap_mul4_101 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_121 [label="Load" comment="  %64 = load double, ptr %arrayidx216.i, align 8, !dbg !129, !tbaa !50"]
@@ -338,7 +311,6 @@ wrap_mul4_120 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_123 [label="Load" comment="  %65 = load double, ptr %arrayidx221.i, align 8, !dbg !130, !tbaa !50"]
@@ -350,7 +322,6 @@ wrap_mul4_122 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_127 [label="Load" comment="  %67 = load double, ptr %arrayidx226.i, align 8, !dbg !133, !tbaa !50"]
@@ -362,7 +333,6 @@ wrap_mul4_126 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_130 [label="Load" comment="  %69 = load double, ptr %arrayidx230.i, align 8, !dbg !135, !tbaa !50"]
@@ -374,7 +344,6 @@ wrap_mul4_129 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_149 [label="Store" comment="  store double %10, ptr %Out, align 8, !dbg !149, !tbaa !50"]
@@ -454,7 +423,6 @@ wrap_mul4_10 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_151 [label="Store" comment="  store double %17, ptr %Res.sroa.4.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -542,7 +510,6 @@ wrap_mul4_150 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_153 [label="Store" comment="  store double %24, ptr %Res.sroa.5.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -630,7 +597,6 @@ wrap_mul4_152 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_155 [label="Store" comment="  store double %31, ptr %Res.sroa.6.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -718,7 +684,6 @@ wrap_mul4_154 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_157 [label="Store" comment="  store double %38, ptr %Res.sroa.7.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -806,7 +771,6 @@ wrap_mul4_156 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_159 [label="Store" comment="  store double %41, ptr %Res.sroa.8.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -898,7 +862,6 @@ wrap_mul4_158 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_161 [label="Store" comment="  store double %44, ptr %Res.sroa.9.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -990,7 +953,6 @@ wrap_mul4_160 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_163 [label="Store" comment="  store double %47, ptr %Res.sroa.10.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1082,7 +1044,6 @@ wrap_mul4_162 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_165 [label="Store" comment="  store double %54, ptr %Res.sroa.11.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1170,7 +1131,6 @@ wrap_mul4_164 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_167 [label="Store" comment="  store double %57, ptr %Res.sroa.12.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1262,7 +1222,6 @@ wrap_mul4_166 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_169 [label="Store" comment="  store double %60, ptr %Res.sroa.13.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1354,7 +1313,6 @@ wrap_mul4_168 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_171 [label="Store" comment="  store double %63, ptr %Res.sroa.14.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1446,7 +1404,6 @@ wrap_mul4_170 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_173 [label="Store" comment="  store double %70, ptr %Res.sroa.15.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1534,7 +1491,6 @@ wrap_mul4_172 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_175 [label="Store" comment="  store double %73, ptr %Res.sroa.16.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1626,7 +1582,6 @@ wrap_mul4_174 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_177 [label="Store" comment="  store double %76, ptr %Res.sroa.17.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1718,7 +1673,6 @@ wrap_mul4_176 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 subgraph {
 wrap_mul4_179 [label="Store" comment="  store double %79, ptr %Res.sroa.18.0.Out.sroa_idx.i, align 8, !dbg !149, !tbaa !50"]
@@ -1810,16 +1764,13 @@ wrap_mul4_178 -> {
 }
 cluster=true
 label="Store instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="wrap_mul4"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.declare"
-labelloc=b
 }
 subgraph {
 subgraph {
@@ -1862,40 +1813,32 @@ main_19 -> {
 }
 cluster=true
 label="Load instruction dependencies"
-labelloc=b
 }
 cluster=true
 label="main"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.start.p0"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="printf"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.lifetime.end.p0"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.fmuladd.f64"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="llvm.dbg.value"
-labelloc=b
 }
 subgraph {
 cluster=true
 label="putchar"
-labelloc=b
 }
 }
