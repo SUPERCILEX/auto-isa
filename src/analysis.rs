@@ -171,10 +171,9 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
 }
 
 fn contains_alloca<'ctx>(cache: &mut Cache<'ctx>, instruction: InstructionValue<'ctx>) -> bool {
-    if cache.seen.contains(&instruction.as_value_ref()) {
+    if !cache.seen.insert(instruction.as_value_ref()) {
         return false;
     }
-    cache.seen.insert(instruction.as_value_ref());
 
     for i in 0..instruction.get_num_operands() {
         if let Some(op) = instruction.get_operand(i) {
@@ -199,10 +198,9 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     dependency_graph: &mut DependencyGraph<'ctx, S>,
     instruction: InstructionValue<'ctx>,
 ) {
-    if cache.seen.contains(&instruction.as_value_ref()) {
+    if !cache.seen.insert(instruction.as_value_ref()) {
         return;
     }
-    cache.seen.insert(instruction.as_value_ref());
 
     for i in 0..instruction.get_num_operands() {
         if let Some(op) = instruction.get_operand(i) {
