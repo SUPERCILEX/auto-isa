@@ -65,18 +65,23 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
 fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: &State<S>) {
     let mut output = stdout().lock();
     writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
-    for (graph, roots) in compute_units {
+    for (compute_unit_id, (graph, roots)) in compute_units.iter().enumerate() {
         writeln!(output, "subgraph {{").unwrap();
         for (instr, dependencies) in graph.edges.values() {
             writeln!(
                 output,
-                "{0} [label=\"{1:?}\"]\n{0} -> {{",
+                "\"{compute_unit_id}_{0}\" [label=\"{1:?}\"]\n\"{compute_unit_id}_{0}\" -> {{",
                 ids[&instr.as_value_ref()],
                 instr.get_opcode()
             )
             .unwrap();
             for instr in dependencies {
-                writeln!(output, "{}", ids[&instr.as_value_ref()]).unwrap();
+                writeln!(
+                    output,
+                    "\"{compute_unit_id}_{}\"",
+                    ids[&instr.as_value_ref()]
+                )
+                .unwrap();
             }
             writeln!(output, "}}").unwrap();
 
@@ -84,7 +89,7 @@ fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: &State<S>) 
                 if !graph.edges.contains_key(&ids[&instr.as_value_ref()]) {
                     writeln!(
                         output,
-                        "{} [label=\"{:?}\"]",
+                        "\"{compute_unit_id}_{}\" [label=\"{:?}\"]",
                         ids[&instr.as_value_ref()],
                         instr.get_opcode()
                     )

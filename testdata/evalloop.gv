@@ -1,31 +1,31 @@
 strict digraph {
 rankdir=BT
 subgraph {
-2 [label="Add"]
-2 -> {
-1
+"0_2" [label="Add"]
+"0_2" -> {
+"0_1"
 }
-1 [label="Load"]
-3 [label="Store"]
-3 -> {
-2
+"0_1" [label="Load"]
+"0_3" [label="Store"]
+"0_3" -> {
+"0_2"
 }
 cluster=true
 label=<Static occurrences: 1>
 }
 subgraph {
-25 [label="Load"]
-25 -> {
-24
+"1_25" [label="Load"]
+"1_25" -> {
+"1_24"
 }
-23 [label="SExt"]
-23 -> {
-22
+"1_23" [label="SExt"]
+"1_23" -> {
+"1_22"
 }
-22 [label="Load"]
-24 [label="GetElementPtr"]
-24 -> {
-23
+"1_22" [label="Load"]
+"1_24" [label="GetElementPtr"]
+"1_24" -> {
+"1_23"
 }
 cluster=true
 label=<Static occurrences: 1>
