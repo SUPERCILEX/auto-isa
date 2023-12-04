@@ -128,7 +128,8 @@ impl<'ctx, S: BuildHasher> PartialEq<Self> for DependencyGraph<'ctx, S> {
 
             edge_sets.remove(pos);
         }
-        true
+
+        ops.values().all(Vec::is_empty)
     }
 }
 
