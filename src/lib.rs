@@ -74,7 +74,7 @@ fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: State<S>) {
     for (compute_unit_id, (graph, roots)) in compute_units.iter().enumerate() {
         writeln!(output, "subgraph {{").unwrap();
         for (instr, dependencies) in graph.edges.values() {
-            writeln!(
+            write!(
                 output,
                 "\"{compute_unit_id}_{0}\" [label=\"{1:?}\"]\n\"{compute_unit_id}_{0}\" -> {{",
                 ids[&instr.as_value_ref()],
@@ -82,14 +82,14 @@ fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: State<S>) {
             )
             .unwrap();
             for instr in dependencies {
-                writeln!(
+                write!(
                     output,
-                    "\"{compute_unit_id}_{}\"",
+                    " \"{compute_unit_id}_{}\"",
                     ids[&instr.as_value_ref()]
                 )
                 .unwrap();
             }
-            writeln!(output, "}}").unwrap();
+            writeln!(output, " }}").unwrap();
 
             for instr in dependencies {
                 if !graph.edges.contains_key(&ids[&instr.as_value_ref()]) {
