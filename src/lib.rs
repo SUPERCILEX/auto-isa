@@ -54,7 +54,7 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
             }
         }
 
-        print_compute_units(&state);
+        print_compute_units(state);
     }
 
     fn id() -> AnalysisKey {
@@ -62,7 +62,13 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
     }
 }
 
-fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: &State<S>) {
+fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: State<S>) {
+    let compute_units = {
+        let mut compute_units = compute_units.into_iter().collect::<Vec<_>>();
+        compute_units.sort_by_key(|(_, compute_unit)| usize::MAX - compute_unit.len());
+        compute_units
+    };
+
     let mut output = stdout().lock();
     writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
     for (compute_unit_id, (graph, roots)) in compute_units.iter().enumerate() {
