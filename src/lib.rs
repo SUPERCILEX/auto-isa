@@ -1,22 +1,19 @@
 use std::{
-    borrow::Cow,
-    collections::{HashMap, HashSet},
+    collections::{hash_map::DefaultHasher, HashMap},
+    hash::{BuildHasher, BuildHasherDefault},
     io::{stdout, Write},
 };
 
-use either::Either;
 use llvm_plugin::{
-    inkwell::{
-        llvm_sys::prelude::LLVMValueRef,
-        module::Module,
-        values::{
-            AnyValue, AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue,
-        },
-    },
+    inkwell::{llvm_sys::prelude::LLVMValueRef, module::Module, values::AsValueRef},
     utils::{FunctionIterator, InstructionIterator},
     AnalysisKey, LlvmModuleAnalysis, LlvmModulePass, ModuleAnalysisManager, PassBuilder,
     PipelineParsing, PreservedAnalyses,
 };
+
+use crate::analysis::{find_non_local_memory_compute_units, Cache, State};
+
+mod analysis;
 
 #[llvm_plugin::plugin(name = "AutoIsa", version = "0.1")]
 fn plugin_registrar(builder: &mut PassBuilder) {
@@ -48,12 +45,16 @@ struct AutoIsaAnalysis;
 impl LlvmModuleAnalysis for AutoIsaAnalysis {
     type Result = ();
 
-    fn run_analysis(&self, module: &Module<'_>, _: &ModuleAnalysisManager) -> Self::Result {
-        println!("strict digraph {{\nrankdir=BT");
-        for function in FunctionIterator::new(module) {
-            analyze_function(function);
+    fn run_analysis(&self, module: &Module, _: &ModuleAnalysisManager) -> Self::Result {
+        let mut state = State::<BuildHasherDefault<DefaultHasher>>::new(build_ids(module));
+        {
+            let mut cache = Cache::default();
+            for function in FunctionIterator::new(module) {
+                find_non_local_memory_compute_units(&mut cache, &mut state, function);
+            }
         }
-        println!("}}");
+
+        print_compute_units(&state);
     }
 
     fn id() -> AnalysisKey {
@@ -61,120 +62,57 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
     }
 }
 
-fn analyze_function(function: FunctionValue) {
-    const TARGET_INSTRUCTIONS: &[InstructionOpcode] =
-        &[InstructionOpcode::Store, InstructionOpcode::Load];
-
+fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: &State<S>) {
     let mut output = stdout().lock();
-    writeln!(output, "subgraph {{").unwrap();
-
-    let state = {
-        let mut state = FunctionAnalysisState {
-            fn_name: function.get_name().to_string_lossy(),
-            ids: HashMap::new(),
-        };
-        let mut instruction_count = 0;
-
-        for bb in function.get_basic_blocks() {
-            for instr in InstructionIterator::new(&bb) {
-                assert!(
-                    state
-                        .ids
-                        .insert(instr.as_value_ref(), instruction_count)
-                        .is_none()
-                );
-                instruction_count += 1;
-            }
-        }
-
-        state
-    };
-
-    for bb in function.get_basic_blocks() {
-        for instr in InstructionIterator::new(&bb) {
-            if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
-                continue;
-            }
-
-            writeln!(output, "subgraph {{").unwrap();
-
-            {
-                let mut seen = HashSet::new();
-                find_instruction_dependencies(&mut output, &state, &mut seen, instr);
-            }
-
+    writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
+    for (graph, roots) in compute_units {
+        writeln!(output, "subgraph {{").unwrap();
+        for (instr, dependencies) in graph.edges.values() {
             writeln!(
                 output,
-                "cluster=true\nlabel=\"{:?} instruction dependencies\"\n}}",
+                "{0} [label=\"{1:?}\"]\n{0} -> {{",
+                ids[&instr.as_value_ref()],
                 instr.get_opcode()
             )
             .unwrap();
-        }
-    }
-    writeln!(output, "cluster=true\nlabel=\"{}\"\n}}", state.fn_name).unwrap();
-}
+            for instr in dependencies {
+                writeln!(output, "{}", ids[&instr.as_value_ref()]).unwrap();
+            }
+            writeln!(output, "}}").unwrap();
 
-struct FunctionAnalysisState<'a> {
-    fn_name: Cow<'a, str>,
-    ids: HashMap<LLVMValueRef, u32>,
-}
-
-fn find_instruction_dependencies(
-    output: &mut impl Write,
-    state: &FunctionAnalysisState,
-    seen: &mut HashSet<LLVMValueRef>,
-    instruction: InstructionValue,
-) {
-    writeln!(
-        output,
-        "{}_{} [label=\"{:?}\" comment={:?}]",
-        state.fn_name,
-        state.ids[&instruction.as_value_ref()],
-        instruction.get_opcode(),
-        instruction.print_to_string(),
-    )
-    .unwrap();
-    writeln!(
-        output,
-        "{0}_{1} -> {{",
-        state.fn_name,
-        state.ids[&instruction.as_value_ref()],
-    )
-    .unwrap();
-
-    if seen.contains(&instruction.as_value_ref()) {
-        writeln!(output, "// Cycle\n}}").unwrap();
-        return;
-    }
-    seen.insert(instruction.as_value_ref());
-
-    let mut pending = Vec::new();
-
-    for i in 0..instruction.get_num_operands() {
-        if let Some(op) = instruction.get_operand(i) {
-            match op {
-                Either::Left(value) => {
-                    if let Some(instruction) = value.as_instruction_value() {
-                        pending.push(instruction);
-                        writeln!(
-                            output,
-                            "{0}_{1}",
-                            state.fn_name,
-                            state.ids[&instruction.as_value_ref()],
-                        )
-                        .unwrap();
-                    }
-                }
-                Either::Right(_) => {
-                    panic!("Haven't thought about how you get here.")
+            for instr in dependencies {
+                if !graph.edges.contains_key(&ids[&instr.as_value_ref()]) {
+                    writeln!(
+                        output,
+                        "{} [label=\"{:?}\"]",
+                        ids[&instr.as_value_ref()],
+                        instr.get_opcode()
+                    )
+                    .unwrap();
                 }
             }
         }
+        writeln!(
+            output,
+            "cluster=true\nlabel=<Static occurrences: {}>\n}}",
+            roots.len()
+        )
+        .unwrap();
     }
-
     writeln!(output, "}}").unwrap();
+}
 
-    for instr in pending {
-        find_instruction_dependencies(output, state, seen, instr);
+fn build_ids(module: &Module) -> HashMap<LLVMValueRef, u32> {
+    let mut id = 0;
+    let mut ids = HashMap::new();
+    for function in FunctionIterator::new(module) {
+        for bb in function.get_basic_blocks() {
+            for instr in InstructionIterator::new(&bb) {
+                let previous = ids.insert(instr.as_value_ref(), id);
+                debug_assert!(previous.is_none());
+                id += 1;
+            }
+        }
     }
+    ids
 }

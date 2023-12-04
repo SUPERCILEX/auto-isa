@@ -1,204 +1,70 @@
 strict digraph {
 rankdir=BT
 subgraph {
-subgraph {
-pointer_chase_4 [label="Load" comment="  %result.promoted = load i32, ptr %result, align 4, !tbaa !34"]
-pointer_chase_4 -> {
+13 [label="Load"]
+13 -> {
+12
 }
+12 [label="GetElementPtr"]
+12 -> {
+10
+}
+10 [label="Load"]
 cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-pointer_chase_10 [label="Load" comment="  %0 = load ptr, ptr %data, align 8, !dbg !38, !tbaa !40"]
-pointer_chase_10 -> {
-pointer_chase_9
-}
-pointer_chase_9 [label="GetElementPtr" comment="  %data = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 5, !dbg !38"]
-pointer_chase_9 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-pointer_chase_18
-}
-pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
-pointer_chase_18 -> {
-pointer_chase_17
-}
-pointer_chase_17 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 4, !dbg !50"]
-pointer_chase_17 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 1>
 }
 subgraph {
-pointer_chase_11 [label="Load" comment="  %1 = load i32, ptr %0, align 4, !dbg !43, !tbaa !44"]
-pointer_chase_11 -> {
-pointer_chase_10
+11 [label="Load"]
+11 -> {
+10
 }
-pointer_chase_10 [label="Load" comment="  %0 = load ptr, ptr %data, align 8, !dbg !38, !tbaa !40"]
-pointer_chase_10 -> {
-pointer_chase_9
-}
-pointer_chase_9 [label="GetElementPtr" comment="  %data = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 5, !dbg !38"]
-pointer_chase_9 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-pointer_chase_18
-}
-pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
-pointer_chase_18 -> {
-pointer_chase_17
-}
-pointer_chase_17 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 4, !dbg !50"]
-pointer_chase_17 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-// Cycle
-}
+10 [label="Load"]
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 1>
 }
 subgraph {
-pointer_chase_13 [label="Load" comment="  %2 = load i32, ptr %data12, align 4, !dbg !46, !tbaa !47"]
-pointer_chase_13 -> {
-pointer_chase_12
+9 [label="GetElementPtr"]
+9 -> {
+7
 }
-pointer_chase_12 [label="GetElementPtr" comment="  %data12 = getelementptr inbounds %struct.Data, ptr %0, i64 0, i32 1, !dbg !46"]
-pointer_chase_12 -> {
-pointer_chase_10
+7 [label="Phi"]
+7 -> {
+18
 }
-pointer_chase_10 [label="Load" comment="  %0 = load ptr, ptr %data, align 8, !dbg !38, !tbaa !40"]
-pointer_chase_10 -> {
-pointer_chase_9
-}
-pointer_chase_9 [label="GetElementPtr" comment="  %data = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 5, !dbg !38"]
-pointer_chase_9 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-pointer_chase_18
-}
-pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
-pointer_chase_18 -> {
-pointer_chase_17
-}
-pointer_chase_17 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 4, !dbg !50"]
-pointer_chase_17 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-// Cycle
+18 [label="Load"]
+10 [label="Load"]
+10 -> {
+9
 }
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 2>
 }
 subgraph {
-pointer_chase_16 [label="Store" comment="  store i32 %add3, ptr %result, align 4, !dbg !49, !tbaa !34"]
-pointer_chase_16 -> {
-pointer_chase_15
+15 [label="Add"]
+15 -> {
+14
+14
+6
 }
-pointer_chase_15 [label="Add" comment="  %add3 = add nsw i32 %add, %add39, !dbg !49"]
-pointer_chase_15 -> {
-pointer_chase_14
-pointer_chase_6
+14 [label="Add"]
+14 -> {
+13
+11
 }
-pointer_chase_14 [label="Add" comment="  %add = add nsw i32 %2, %1, !dbg !48"]
-pointer_chase_14 -> {
-pointer_chase_13
-pointer_chase_11
+13 [label="Load"]
+11 [label="Load"]
+6 [label="Phi"]
+6 -> {
+4
 }
-pointer_chase_13 [label="Load" comment="  %2 = load i32, ptr %data12, align 4, !dbg !46, !tbaa !47"]
-pointer_chase_13 -> {
-pointer_chase_12
-}
-pointer_chase_12 [label="GetElementPtr" comment="  %data12 = getelementptr inbounds %struct.Data, ptr %0, i64 0, i32 1, !dbg !46"]
-pointer_chase_12 -> {
-pointer_chase_10
-}
-pointer_chase_10 [label="Load" comment="  %0 = load ptr, ptr %data, align 8, !dbg !38, !tbaa !40"]
-pointer_chase_10 -> {
-pointer_chase_9
-}
-pointer_chase_9 [label="GetElementPtr" comment="  %data = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 5, !dbg !38"]
-pointer_chase_9 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-pointer_chase_18
-}
-pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
-pointer_chase_18 -> {
-pointer_chase_17
-}
-pointer_chase_17 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 4, !dbg !50"]
-pointer_chase_17 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-// Cycle
-}
-pointer_chase_11 [label="Load" comment="  %1 = load i32, ptr %0, align 4, !dbg !43, !tbaa !44"]
-pointer_chase_11 -> {
-pointer_chase_10
-}
-pointer_chase_10 [label="Load" comment="  %0 = load ptr, ptr %data, align 8, !dbg !38, !tbaa !40"]
-pointer_chase_10 -> {
-// Cycle
-}
-pointer_chase_6 [label="Phi" comment="  %add39 = phi i32 [ %result.promoted, %while.body.lr.ph ], [ %add3, %while.body ], !dbg !31"]
-pointer_chase_6 -> {
-pointer_chase_4
-pointer_chase_15
-}
-pointer_chase_4 [label="Load" comment="  %result.promoted = load i32, ptr %result, align 4, !tbaa !34"]
-pointer_chase_4 -> {
-}
-pointer_chase_15 [label="Add" comment="  %add3 = add nsw i32 %add, %add39, !dbg !49"]
-pointer_chase_15 -> {
-// Cycle
+4 [label="Load"]
+16 [label="Store"]
+16 -> {
+15
+15
+15
 }
 cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
-pointer_chase_18 -> {
-pointer_chase_17
-}
-pointer_chase_17 [label="GetElementPtr" comment="  %next = getelementptr inbounds %struct.Node, ptr %node.addr.08, i64 0, i32 4, !dbg !50"]
-pointer_chase_17 -> {
-pointer_chase_7
-}
-pointer_chase_7 [label="Phi" comment="  %node.addr.08 = phi ptr [ %node, %while.body.lr.ph ], [ %3, %while.body ]"]
-pointer_chase_7 -> {
-pointer_chase_18
-}
-pointer_chase_18 [label="Load" comment="  %3 = load ptr, ptr %next, align 8, !dbg !50, !tbaa !51"]
-pointer_chase_18 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-cluster=true
-label="pointer_chase"
-}
-subgraph {
-cluster=true
-label="llvm.dbg.value"
+label=<Static occurrences: 1>
 }
 }

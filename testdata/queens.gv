@@ -1,927 +1,118 @@
 strict digraph {
 rankdir=BT
 subgraph {
-subgraph {
-main_3 [label="Load" comment="  %0 = load ptr, ptr %argv, align 8, !dbg !112, !tbaa !113"]
-main_3 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_4 [label="Store" comment="  store ptr %0, ptr @progname, align 8, !dbg !117, !tbaa !113"]
-main_4 -> {
-main_3
-}
-main_3 [label="Load" comment="  %0 = load ptr, ptr %argv, align 8, !dbg !112, !tbaa !113"]
-main_3 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_5 [label="Store" comment="  store i32 0, ptr @printing, align 4, !dbg !118, !tbaa !119"]
-main_5 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_6 [label="Store" comment="  store i32 14, ptr @queens, align 4, !dbg !121, !tbaa !119"]
-main_6 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_7 [label="Store" comment="  store i32 1, ptr @findall, align 4, !dbg !122, !tbaa !119"]
-main_7 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_16 [label="Load" comment="  %1 = load ptr, ptr %arrayidx1, align 8, !dbg !127, !tbaa !113"]
-main_16 -> {
-main_15
-}
-main_15 [label="GetElementPtr" comment="  %arrayidx1 = getelementptr inbounds ptr, ptr %argv, i64 %indvars.iv, !dbg !127"]
-main_15 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-main_71
-}
-main_71 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !183"]
-main_71 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_18 [label="Load" comment="  %2 = load i8, ptr %1, align 1, !dbg !129, !tbaa !131"]
-main_18 -> {
-main_16
-}
-main_16 [label="Load" comment="  %1 = load ptr, ptr %arrayidx1, align 8, !dbg !127, !tbaa !113"]
-main_16 -> {
-main_15
-}
-main_15 [label="GetElementPtr" comment="  %arrayidx1 = getelementptr inbounds ptr, ptr %argv, i64 %indvars.iv, !dbg !127"]
-main_15 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-main_71
-}
-main_71 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !183"]
-main_71 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_24 [label="Load" comment="  %3 = load i8, ptr %incdec.ptr89, align 1, !dbg !136, !tbaa !131"]
-main_24 -> {
-main_22
-}
-main_22 [label="GetElementPtr" comment="  %incdec.ptr89 = getelementptr inbounds i8, ptr %1, i64 1, !dbg !134"]
-main_22 -> {
-main_16
-}
-main_16 [label="Load" comment="  %1 = load ptr, ptr %arrayidx1, align 8, !dbg !127, !tbaa !113"]
-main_16 -> {
-main_15
-}
-main_15 [label="GetElementPtr" comment="  %arrayidx1 = getelementptr inbounds ptr, ptr %argv, i64 %indvars.iv, !dbg !127"]
-main_15 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-main_71
-}
-main_71 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !183"]
-main_71 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_31 [label="Store" comment="  store i32 0, ptr @printing, align 4, !dbg !141, !tbaa !119"]
-main_31 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_33 [label="Store" comment="  store i32 1, ptr @findall, align 4, !dbg !144, !tbaa !119"]
-main_33 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_37 [label="Load" comment="  %5 = load i8, ptr %incdec.ptr, align 1, !dbg !136, !tbaa !131"]
-main_37 -> {
-main_35
-}
-main_35 [label="GetElementPtr" comment="  %incdec.ptr = getelementptr inbounds i8, ptr %incdec.ptr91, i64 1, !dbg !134"]
-main_35 -> {
-main_28
-}
-main_28 [label="Phi" comment="  %incdec.ptr91 = phi ptr [ %incdec.ptr, %sw.bb5 ], [ %incdec.ptr89, %while.cond.preheader ]"]
-main_28 -> {
-main_35
-main_22
-}
-main_35 [label="GetElementPtr" comment="  %incdec.ptr = getelementptr inbounds i8, ptr %incdec.ptr91, i64 1, !dbg !134"]
-main_35 -> {
-// Cycle
-}
-main_22 [label="GetElementPtr" comment="  %incdec.ptr89 = getelementptr inbounds i8, ptr %1, i64 1, !dbg !134"]
-main_22 -> {
-main_16
-}
-main_16 [label="Load" comment="  %1 = load ptr, ptr %arrayidx1, align 8, !dbg !127, !tbaa !113"]
-main_16 -> {
-main_15
-}
-main_15 [label="GetElementPtr" comment="  %arrayidx1 = getelementptr inbounds ptr, ptr %argv, i64 %indvars.iv, !dbg !127"]
-main_15 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-main_71
-}
-main_71 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !183"]
-main_71 -> {
-main_13
-}
-main_13 [label="Phi" comment="  %indvars.iv = phi i64 [ 1, %for.body.preheader ], [ %indvars.iv.next, %for.inc ]"]
-main_13 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_40 [label="Load" comment="  %6 = load ptr, ptr @stderr, align 8, !dbg !149, !tbaa !113"]
-main_40 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_41 [label="Load" comment="  %7 = load ptr, ptr @progname, align 8, !dbg !150, !tbaa !113"]
-main_41 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_43 [label="Load" comment="  %8 = load ptr, ptr @stderr, align 8, !dbg !152, !tbaa !113"]
-main_43 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_44 [label="Load" comment="  %9 = load ptr, ptr @progname, align 8, !dbg !153, !tbaa !113"]
-main_44 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_51 [label="Load" comment="  %10 = load ptr, ptr @stderr, align 8, !dbg !161, !tbaa !113"]
-main_51 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_52 [label="Load" comment="  %11 = load ptr, ptr @progname, align 8, !dbg !163, !tbaa !113"]
-main_52 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_56 [label="Load" comment="  %12 = load i32, ptr @queens, align 4, !dbg !166, !tbaa !119"]
-main_56 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_59 [label="Load" comment="  %13 = load ptr, ptr @stderr, align 8, !dbg !170, !tbaa !113"]
-main_59 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_60 [label="Load" comment="  %14 = load ptr, ptr @progname, align 8, !dbg !172, !tbaa !113"]
-main_60 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_66 [label="Load" comment="  %15 = load ptr, ptr @stderr, align 8, !dbg !178, !tbaa !113"]
-main_66 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_67 [label="Load" comment="  %16 = load ptr, ptr @progname, align 8, !dbg !180, !tbaa !113"]
-main_67 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_75 [label="Load" comment="  %17 = load i32, ptr @queens, align 4, !dbg !186, !tbaa !119"]
-main_75 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_78 [label="Load" comment="  %18 = load ptr, ptr @stderr, align 8, !dbg !189, !tbaa !113"]
-main_78 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_79 [label="Load" comment="  %19 = load ptr, ptr @progname, align 8, !dbg !191, !tbaa !113"]
-main_79 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_81 [label="Load" comment="  %20 = load ptr, ptr @stderr, align 8, !dbg !193, !tbaa !113"]
-main_81 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_82 [label="Load" comment="  %21 = load ptr, ptr @progname, align 8, !dbg !194, !tbaa !113"]
-main_82 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_86 [label="Store" comment="  store i32 %17, ptr @files, align 4, !dbg !197, !tbaa !119"]
-main_86 -> {
-main_75
-}
-main_75 [label="Load" comment="  %17 = load i32, ptr @queens, align 4, !dbg !186, !tbaa !119"]
-main_75 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_87 [label="Store" comment="  store i32 %17, ptr @ranks, align 4, !dbg !198, !tbaa !119"]
-main_87 -> {
-main_75
-}
-main_75 [label="Load" comment="  %17 = load i32, ptr @queens, align 4, !dbg !186, !tbaa !119"]
-main_75 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_91 [label="Load" comment="  %22 = load ptr, ptr @stdout, align 8, !dbg !202, !tbaa !113"]
-main_91 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_93 [label="Store" comment="  store i64 0, ptr @solutions, align 8, !dbg !204, !tbaa !205"]
-main_93 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_99 [label="Store" comment="  store i32 101, ptr %arrayidx39, align 4, !dbg !211, !tbaa !119"]
-main_99 -> {
-main_98
-}
-main_98 [label="GetElementPtr" comment="  %arrayidx39 = getelementptr inbounds [100 x i32], ptr @file, i64 0, i64 %indvars.iv101, !dbg !209"]
-main_98 -> {
-main_96
-}
-main_96 [label="Phi" comment="  %indvars.iv101 = phi i64 [ 0, %if.end29 ], [ %indvars.iv.next102, %for.body37 ]"]
-main_96 -> {
-main_100
-}
-main_100 [label="Add" comment="  %indvars.iv.next102 = add nuw nsw i64 %indvars.iv101, 1, !dbg !212"]
-main_100 -> {
-main_96
-}
-main_96 [label="Phi" comment="  %indvars.iv101 = phi i64 [ 0, %if.end29 ], [ %indvars.iv.next102, %for.body37 ]"]
-main_96 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_107 [label="Store" comment="  store i32 101, ptr %arrayidx48, align 4, !dbg !219, !tbaa !119"]
-main_107 -> {
-main_106
-}
-main_106 [label="GetElementPtr" comment="  %arrayidx48 = getelementptr inbounds [199 x i32], ptr @bakdiag, i64 0, i64 %indvars.iv105, !dbg !216"]
-main_106 -> {
-main_104
-}
-main_104 [label="Phi" comment="  %indvars.iv105 = phi i64 [ %indvars.iv.next106, %for.body46 ], [ 0, %for.body37 ]"]
-main_104 -> {
-main_110
-}
-main_110 [label="Add" comment="  %indvars.iv.next106 = add nuw nsw i64 %indvars.iv105, 1, !dbg !222"]
-main_110 -> {
-main_104
-}
-main_104 [label="Phi" comment="  %indvars.iv105 = phi i64 [ %indvars.iv.next106, %for.body46 ], [ 0, %for.body37 ]"]
-main_104 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_109 [label="Store" comment="  store i32 101, ptr %arrayidx50, align 4, !dbg !221, !tbaa !119"]
-main_109 -> {
-main_108
-}
-main_108 [label="GetElementPtr" comment="  %arrayidx50 = getelementptr inbounds [199 x i32], ptr @fordiag, i64 0, i64 %indvars.iv105, !dbg !220"]
-main_108 -> {
-main_104
-}
-main_104 [label="Phi" comment="  %indvars.iv105 = phi i64 [ %indvars.iv.next106, %for.body46 ], [ 0, %for.body37 ]"]
-main_104 -> {
-main_110
-}
-main_110 [label="Add" comment="  %indvars.iv.next106 = add nuw nsw i64 %indvars.iv105, 1, !dbg !222"]
-main_110 -> {
-main_104
-}
-main_104 [label="Phi" comment="  %indvars.iv105 = phi i64 [ %indvars.iv.next106, %for.body46 ], [ 0, %for.body37 ]"]
-main_104 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-main_115 [label="Load" comment="  %23 = load i32, ptr @printing, align 4, !dbg !228, !tbaa !119"]
-main_115 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_117 [label="Load" comment="  %24 = load i64, ptr @solutions, align 8"]
-main_117 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_122 [label="Load" comment="  %25 = load ptr, ptr @stdout, align 8, !dbg !239, !tbaa !113"]
-main_122 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-main_125 [label="Load" comment="  %26 = load i64, ptr @solutions, align 8, !dbg !242, !tbaa !205"]
-main_125 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-cluster=true
-label="main"
-}
-subgraph {
-cluster=true
-label="fprintf"
-}
-subgraph {
-cluster=true
-label="exit"
-}
-subgraph {
-cluster=true
-label="__isoc99_sscanf"
-}
-subgraph {
-cluster=true
-label="printf"
-}
-subgraph {
-cluster=true
-label="fflush"
-}
-subgraph {
-subgraph {
-find_1 [label="Load" comment="  %0 = load i32, ptr @queens, align 4, !dbg !112, !tbaa !114"]
-find_1 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_4 [label="Load" comment="  %1 = load i64, ptr @solutions, align 8, !dbg !120, !tbaa !122"]
-find_4 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_6 [label="Store" comment="  store i64 %inc, ptr @solutions, align 8, !dbg !120, !tbaa !122"]
-find_6 -> {
-find_5
-}
-find_5 [label="Add" comment="  %inc = add i64 %1, 1, !dbg !120"]
-find_5 -> {
-find_4
-}
-find_4 [label="Load" comment="  %1 = load i64, ptr @solutions, align 8, !dbg !120, !tbaa !122"]
-find_4 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_7 [label="Load" comment="  %2 = load i32, ptr @printing, align 4, !dbg !124, !tbaa !114"]
-find_7 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_12 [label="Load" comment="  %3 = load i32, ptr @findall, align 4, !dbg !128, !tbaa !114"]
-find_12 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_24 [label="Load" comment="  %4 = load i32, ptr @files, align 4, !dbg !132, !tbaa !114"]
-find_24 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_28 [label="Load" comment="  %5 = load i32, ptr @files, align 4, !dbg !139, !tbaa !114"]
-find_28 -> {
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_51 [label="Load" comment="  %6 = load i32, ptr %fp.042, align 4, !dbg !143, !tbaa !114"]
-find_51 -> {
-find_45
-}
-find_45 [label="Phi" comment="  %fp.042 = phi ptr [ @file, %for.body.lr.ph ], [ %incdec.ptr, %for.inc ]"]
-find_45 -> {
-find_71
-}
-find_71 [label="GetElementPtr" comment="  %incdec.ptr = getelementptr inbounds i32, ptr %fp.042, i64 1, !dbg !165"]
-find_71 -> {
-find_45
-}
-find_45 [label="Phi" comment="  %fp.042 = phi ptr [ @file, %for.body.lr.ph ], [ %incdec.ptr, %for.inc ]"]
-find_45 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_54 [label="Load" comment="  %7 = load i32, ptr %fdp.043, align 4, !dbg !148, !tbaa !114"]
-find_54 -> {
-find_44
-}
-find_44 [label="Phi" comment="  %fdp.043 = phi ptr [ %arrayidx, %for.body.lr.ph ], [ %incdec.ptr18, %for.inc ]"]
-find_44 -> {
-find_38
-find_73
-}
-find_38 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds [199 x i32], ptr @fordiag, i64 0, i64 %idxprom, !dbg !142"]
-find_38 -> {
-find_36
-}
-find_36 [label="SExt" comment="  %idxprom = sext i32 %level to i64, !dbg !142"]
-find_36 -> {
-}
-find_73 [label="GetElementPtr" comment="  %incdec.ptr18 = getelementptr inbounds i32, ptr %fdp.043, i64 1, !dbg !166"]
-find_73 -> {
-find_44
-}
-find_44 [label="Phi" comment="  %fdp.043 = phi ptr [ %arrayidx, %for.body.lr.ph ], [ %incdec.ptr18, %for.inc ]"]
-find_44 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_57 [label="Load" comment="  %8 = load i32, ptr %bdp.044, align 4, !dbg !151, !tbaa !114"]
-find_57 -> {
-find_43
-}
-find_43 [label="Phi" comment="  %bdp.044 = phi ptr [ %arrayidx6, %for.body.lr.ph ], [ %incdec.ptr19, %for.inc ]"]
-find_43 -> {
-find_34
-find_75
-}
-find_34 [label="GetElementPtr" comment="  %arrayidx6 = getelementptr inbounds [199 x i32], ptr @bakdiag, i64 0, i64 %idxprom5, !dbg !141"]
-find_34 -> {
-find_32
-}
-find_32 [label="SExt" comment="  %idxprom5 = sext i32 %sub to i64, !dbg !141"]
-find_32 -> {
-find_30
-}
-find_30 [label="Add" comment="  %sub = add i32 %add, %5, !dbg !140"]
-find_30 -> {
-find_27
-find_28
-}
-find_27 [label="Add" comment="  %add = add i32 %level, -1, !dbg !138"]
-find_27 -> {
-}
-find_28 [label="Load" comment="  %5 = load i32, ptr @files, align 4, !dbg !139, !tbaa !114"]
-find_28 -> {
-}
-find_75 [label="GetElementPtr" comment="  %incdec.ptr19 = getelementptr inbounds i32, ptr %bdp.044, i64 -1, !dbg !167"]
-find_75 -> {
-find_43
-}
-find_43 [label="Phi" comment="  %bdp.044 = phi ptr [ %arrayidx6, %for.body.lr.ph ], [ %incdec.ptr19, %for.inc ]"]
-find_43 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-find_60 [label="Store" comment="  store i32 %f.041, ptr %arrayidx14, align 4, !dbg !154, !tbaa !114"]
-find_60 -> {
-find_46
-find_40
+22 [label="GetElementPtr"]
+22 -> {
+16
 }
-find_46 [label="Phi" comment="  %f.041 = phi i32 [ 0, %for.body.lr.ph ], [ %inc17, %for.inc ]"]
-find_46 -> {
-find_69
+16 [label="Load"]
+24 [label="Load"]
+24 -> {
+22
 }
-find_69 [label="Add" comment="  %inc17 = add nuw nsw i32 %f.041, 1, !dbg !164"]
-find_69 -> {
-find_46
-}
-find_46 [label="Phi" comment="  %f.041 = phi i32 [ 0, %for.body.lr.ph ], [ %inc17, %for.inc ]"]
-find_46 -> {
-// Cycle
-}
-find_40 [label="GetElementPtr" comment="  %arrayidx14 = getelementptr inbounds [100 x i32], ptr @queen, i64 0, i64 %idxprom"]
-find_40 -> {
-find_36
-}
-find_36 [label="SExt" comment="  %idxprom = sext i32 %level to i64, !dbg !142"]
-find_36 -> {
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_61 [label="Store" comment="  store i32 %level, ptr %bdp.044, align 4, !dbg !156, !tbaa !114"]
-find_61 -> {
-find_43
-}
-find_43 [label="Phi" comment="  %bdp.044 = phi ptr [ %arrayidx6, %for.body.lr.ph ], [ %incdec.ptr19, %for.inc ]"]
-find_43 -> {
-find_34
-find_75
-}
-find_34 [label="GetElementPtr" comment="  %arrayidx6 = getelementptr inbounds [199 x i32], ptr @bakdiag, i64 0, i64 %idxprom5, !dbg !141"]
-find_34 -> {
-find_32
-}
-find_32 [label="SExt" comment="  %idxprom5 = sext i32 %sub to i64, !dbg !141"]
-find_32 -> {
-find_30
-}
-find_30 [label="Add" comment="  %sub = add i32 %add, %5, !dbg !140"]
-find_30 -> {
-find_27
-find_28
-}
-find_27 [label="Add" comment="  %add = add i32 %level, -1, !dbg !138"]
-find_27 -> {
-}
-find_28 [label="Load" comment="  %5 = load i32, ptr @files, align 4, !dbg !139, !tbaa !114"]
-find_28 -> {
-}
-find_75 [label="GetElementPtr" comment="  %incdec.ptr19 = getelementptr inbounds i32, ptr %bdp.044, i64 -1, !dbg !167"]
-find_75 -> {
-find_43
-}
-find_43 [label="Phi" comment="  %bdp.044 = phi ptr [ %arrayidx6, %for.body.lr.ph ], [ %incdec.ptr19, %for.inc ]"]
-find_43 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_62 [label="Store" comment="  store i32 %level, ptr %fdp.043, align 4, !dbg !157, !tbaa !114"]
-find_62 -> {
-find_44
-}
-find_44 [label="Phi" comment="  %fdp.043 = phi ptr [ %arrayidx, %for.body.lr.ph ], [ %incdec.ptr18, %for.inc ]"]
-find_44 -> {
-find_38
-find_73
-}
-find_38 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds [199 x i32], ptr @fordiag, i64 0, i64 %idxprom, !dbg !142"]
-find_38 -> {
-find_36
-}
-find_36 [label="SExt" comment="  %idxprom = sext i32 %level to i64, !dbg !142"]
-find_36 -> {
-}
-find_73 [label="GetElementPtr" comment="  %incdec.ptr18 = getelementptr inbounds i32, ptr %fdp.043, i64 1, !dbg !166"]
-find_73 -> {
-find_44
-}
-find_44 [label="Phi" comment="  %fdp.043 = phi ptr [ %arrayidx, %for.body.lr.ph ], [ %incdec.ptr18, %for.inc ]"]
-find_44 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_63 [label="Store" comment="  store i32 %level, ptr %fp.042, align 4, !dbg !158, !tbaa !114"]
-find_63 -> {
-find_45
-}
-find_45 [label="Phi" comment="  %fp.042 = phi ptr [ @file, %for.body.lr.ph ], [ %incdec.ptr, %for.inc ]"]
-find_45 -> {
-find_71
-}
-find_71 [label="GetElementPtr" comment="  %incdec.ptr = getelementptr inbounds i32, ptr %fp.042, i64 1, !dbg !165"]
-find_71 -> {
-find_45
-}
-find_45 [label="Phi" comment="  %fp.042 = phi ptr [ @file, %for.body.lr.ph ], [ %incdec.ptr, %for.inc ]"]
-find_45 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_65 [label="Store" comment="  store i32 101, ptr %bdp.044, align 4, !dbg !160, !tbaa !114"]
-find_65 -> {
-find_43
-}
-find_43 [label="Phi" comment="  %bdp.044 = phi ptr [ %arrayidx6, %for.body.lr.ph ], [ %incdec.ptr19, %for.inc ]"]
-find_43 -> {
-find_34
-find_75
-}
-find_34 [label="GetElementPtr" comment="  %arrayidx6 = getelementptr inbounds [199 x i32], ptr @bakdiag, i64 0, i64 %idxprom5, !dbg !141"]
-find_34 -> {
-find_32
-}
-find_32 [label="SExt" comment="  %idxprom5 = sext i32 %sub to i64, !dbg !141"]
-find_32 -> {
-find_30
-}
-find_30 [label="Add" comment="  %sub = add i32 %add, %5, !dbg !140"]
-find_30 -> {
-find_27
-find_28
-}
-find_27 [label="Add" comment="  %add = add i32 %level, -1, !dbg !138"]
-find_27 -> {
-}
-find_28 [label="Load" comment="  %5 = load i32, ptr @files, align 4, !dbg !139, !tbaa !114"]
-find_28 -> {
-}
-find_75 [label="GetElementPtr" comment="  %incdec.ptr19 = getelementptr inbounds i32, ptr %bdp.044, i64 -1, !dbg !167"]
-find_75 -> {
-find_43
-}
-find_43 [label="Phi" comment="  %bdp.044 = phi ptr [ %arrayidx6, %for.body.lr.ph ], [ %incdec.ptr19, %for.inc ]"]
-find_43 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_66 [label="Store" comment="  store i32 101, ptr %fdp.043, align 4, !dbg !161, !tbaa !114"]
-find_66 -> {
-find_44
-}
-find_44 [label="Phi" comment="  %fdp.043 = phi ptr [ %arrayidx, %for.body.lr.ph ], [ %incdec.ptr18, %for.inc ]"]
-find_44 -> {
-find_38
-find_73
-}
-find_38 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds [199 x i32], ptr @fordiag, i64 0, i64 %idxprom, !dbg !142"]
-find_38 -> {
-find_36
-}
-find_36 [label="SExt" comment="  %idxprom = sext i32 %level to i64, !dbg !142"]
-find_36 -> {
-}
-find_73 [label="GetElementPtr" comment="  %incdec.ptr18 = getelementptr inbounds i32, ptr %fdp.043, i64 1, !dbg !166"]
-find_73 -> {
-find_44
-}
-find_44 [label="Phi" comment="  %fdp.043 = phi ptr [ %arrayidx, %for.body.lr.ph ], [ %incdec.ptr18, %for.inc ]"]
-find_44 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_67 [label="Store" comment="  store i32 101, ptr %fp.042, align 4, !dbg !162, !tbaa !114"]
-find_67 -> {
-find_45
-}
-find_45 [label="Phi" comment="  %fp.042 = phi ptr [ @file, %for.body.lr.ph ], [ %incdec.ptr, %for.inc ]"]
-find_45 -> {
-find_71
-}
-find_71 [label="GetElementPtr" comment="  %incdec.ptr = getelementptr inbounds i32, ptr %fp.042, i64 1, !dbg !165"]
-find_71 -> {
-find_45
-}
-find_45 [label="Phi" comment="  %fp.042 = phi ptr [ @file, %for.body.lr.ph ], [ %incdec.ptr, %for.inc ]"]
-find_45 -> {
-// Cycle
-}
-cluster=true
-label="Store instruction dependencies"
-}
-subgraph {
-find_77 [label="Load" comment="  %9 = load i32, ptr @files, align 4, !dbg !132, !tbaa !114"]
-find_77 -> {
-}
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 1>
 }
-cluster=true
-label="find"
-}
-subgraph {
 subgraph {
-pboard_0 [label="Load" comment="  %0 = load i32, ptr @findall, align 4, !dbg !107, !tbaa !109"]
-pboard_0 -> {
+4 [label="Store"]
+4 -> {
+3
 }
+3 [label="Load"]
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 3>
 }
 subgraph {
-pboard_3 [label="Load" comment="  %1 = load i64, ptr @solutions, align 8, !dbg !114, !tbaa !115"]
-pboard_3 -> {
+18 [label="Load"]
+18 -> {
+16
 }
+16 [label="Load"]
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 1>
 }
 subgraph {
-pboard_7 [label="Load" comment="  %2 = load i32, ptr @ranks, align 4, !dbg !119, !tbaa !109"]
-pboard_7 -> {
+37 [label="Load"]
+37 -> {
+35
 }
-cluster=true
-label="Load instruction dependencies"
-}
-subgraph {
-pboard_13 [label="Load" comment="  %3 = load i32, ptr @files, align 4, !dbg !124, !tbaa !109"]
-pboard_13 -> {
+22 [label="GetElementPtr"]
+22 -> {
+16
 }
-cluster=true
-label="Load instruction dependencies"
+16 [label="Load"]
+35 [label="GetElementPtr"]
+35 -> {
+28
 }
-subgraph {
-pboard_21 [label="Load" comment="  %4 = load ptr, ptr @stdout, align 8, !dbg !139, !tbaa !140"]
-pboard_21 -> {
+28 [label="Phi"]
+28 -> {
+22
 }
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 1>
 }
 subgraph {
-pboard_23 [label="Load" comment="  %5 = load i32, ptr %arrayidx, align 4, !dbg !143, !tbaa !109"]
-pboard_23 -> {
-pboard_16
-}
-pboard_16 [label="GetElementPtr" comment="  %arrayidx = getelementptr inbounds [100 x i32], ptr @queen, i64 0, i64 %indvars.iv"]
-pboard_16 -> {
-pboard_10
-}
-pboard_10 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %for.end ], [ 0, %if.end ]"]
-pboard_10 -> {
-pboard_36
-}
-pboard_36 [label="Add" comment="  %indvars.iv.next = add nuw nsw i64 %indvars.iv, 1, !dbg !156"]
-pboard_36 -> {
-pboard_10
-}
-pboard_10 [label="Phi" comment="  %indvars.iv = phi i64 [ %indvars.iv.next, %for.end ], [ 0, %if.end ]"]
-pboard_10 -> {
-// Cycle
-}
-cluster=true
-label="Load instruction dependencies"
+139 [label="Add"]
+139 -> {
+138
 }
-subgraph {
-pboard_25 [label="Load" comment="  %6 = load ptr, ptr @stdout, align 8, !dbg !146, !tbaa !140"]
-pboard_25 -> {
+138 [label="Load"]
+140 [label="Store"]
+140 -> {
+139
 }
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 1>
 }
 subgraph {
-pboard_30 [label="Load" comment="  %7 = load i32, ptr @files, align 4, !dbg !124, !tbaa !109"]
-pboard_30 -> {
+177 [label="Phi"]
+177 -> {
+168
 }
-cluster=true
-label="Load instruction dependencies"
+191 [label="Load"]
+191 -> {
+177
 }
-subgraph {
-pboard_34 [label="Load" comment="  %8 = load ptr, ptr @stdout, align 8, !dbg !154, !tbaa !140"]
-pboard_34 -> {
+168 [label="GetElementPtr"]
+168 -> {
+166
 }
-cluster=true
-label="Load instruction dependencies"
+166 [label="SExt"]
+166 -> {
+164
 }
-subgraph {
-pboard_38 [label="Load" comment="  %9 = load i32, ptr @ranks, align 4, !dbg !119, !tbaa !109"]
-pboard_38 -> {
+164 [label="Add"]
+164 -> {
+162
 }
+162 [label="Load"]
 cluster=true
-label="Load instruction dependencies"
+label=<Static occurrences: 1>
 }
 subgraph {
-pboard_42 [label="Load" comment="  %11 = load ptr, ptr @stdout, align 8, !dbg !159, !tbaa !140"]
-pboard_42 -> {
+177 [label="Phi"]
+177 -> {
+168
 }
-cluster=true
-label="Load instruction dependencies"
+195 [label="Store"]
+195 -> {
+177
 }
-cluster=true
-label="pboard"
+168 [label="GetElementPtr"]
+168 -> {
+166
 }
-subgraph {
-cluster=true
-label="putc"
+166 [label="SExt"]
+166 -> {
+164
 }
-subgraph {
-cluster=true
-label="llvm.dbg.value"
+164 [label="Add"]
+164 -> {
+162
 }
-subgraph {
+162 [label="Load"]
 cluster=true
-label="puts"
+label=<Static occurrences: 2>
 }
 }
