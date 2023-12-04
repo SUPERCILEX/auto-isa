@@ -1,5 +1,5 @@
 use std::{
-    collections::{hash_map::Entry, HashMap, HashSet},
+    collections::{HashMap, HashSet},
     fmt::Debug,
     hash::{BuildHasher, Hash, Hasher},
     ops::{Deref, DerefMut},
@@ -103,14 +103,7 @@ impl<'ctx, S: BuildHasher> PartialEq<Self> for DependencyGraph<'ctx, S> {
 
         let mut ops = HashMap::<_, Vec<&[InstructionValue<'ctx>]>>::with_capacity(self.edges.len());
         for (from, nodes) in self.edges.values() {
-            match ops.entry(from.get_opcode()) {
-                Entry::Occupied(mut entry) => {
-                    entry.get_mut().push(nodes);
-                }
-                Entry::Vacant(entry) => {
-                    entry.insert(vec![nodes]);
-                }
-            }
+            ops.entry(from.get_opcode()).or_default().push(nodes);
         }
 
         for (from, nodes2) in other.edges.values() {
@@ -167,14 +160,11 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
             }
             if !dependencies.edges.is_empty() {
                 dependencies.normalize();
-                match state.compute_units.entry(dependencies) {
-                    Entry::Occupied(mut entry) => {
-                        entry.get_mut().push(instr);
-                    }
-                    Entry::Vacant(entry) => {
-                        entry.insert(vec![instr]);
-                    }
-                }
+                state
+                    .compute_units
+                    .entry(dependencies)
+                    .or_default()
+                    .push(instr);
             }
         }
     }
@@ -242,13 +232,11 @@ fn write_path_to_graph<'ctx, S: BuildHasher>(
             unreachable!();
         };
 
-        match graph.edges.entry(ids[&from.as_value_ref()]) {
-            Entry::Occupied(mut entry) => {
-                entry.get_mut().1.push(to);
-            }
-            Entry::Vacant(entry) => {
-                entry.insert((from, vec![to]));
-            }
-        }
+        graph
+            .edges
+            .entry(ids[&from.as_value_ref()])
+            .or_insert((from, Vec::new()))
+            .1
+            .push(to);
     }
 }
