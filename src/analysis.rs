@@ -2,6 +2,7 @@ use std::{
     collections::{hash_map::Entry, HashMap, HashSet},
     fmt::Debug,
     hash::{BuildHasher, Hash, Hasher},
+    ops::{Deref, DerefMut},
 };
 
 use either::Either;
@@ -25,6 +26,28 @@ impl<'ctx> Cache<'ctx> {
     fn reset(&mut self) {
         self.seen.clear();
         self.path.clear();
+    }
+}
+
+struct CacheContext<'a, 'ctx>(&'a mut Cache<'ctx>);
+
+impl<'a, 'ctx> Deref for CacheContext<'a, 'ctx> {
+    type Target = Cache<'ctx>;
+
+    fn deref(&self) -> &Self::Target {
+        self.0
+    }
+}
+
+impl<'a, 'ctx> DerefMut for CacheContext<'a, 'ctx> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        self.0
+    }
+}
+
+impl<'a, 'ctx> Drop for CacheContext<'a, 'ctx> {
+    fn drop(&mut self) {
+        self.0.reset();
     }
 }
 
@@ -124,15 +147,23 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
             if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
                 continue;
             }
+            {
+                let mut cache = CacheContext(cache);
+                if contains_alloca(&mut cache, instr) {
+                    continue;
+                }
+            }
 
             let mut dependencies = DependencyGraph {
                 edges: HashMap::default(),
             };
 
-            cache.path.push(instr);
-            maybe_add_compute_unit(cache, state, &mut dependencies, instr);
-            cache.reset();
+            {
+                let mut cache = CacheContext(cache);
 
+                cache.path.push(instr);
+                maybe_add_compute_unit(&mut cache, state, &mut dependencies, instr);
+            }
             if !dependencies.edges.is_empty() {
                 dependencies.normalize();
                 match state.compute_units.entry(dependencies) {
@@ -146,6 +177,33 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
             }
         }
     }
+}
+
+fn contains_alloca<'ctx>(cache: &mut Cache<'ctx>, instruction: InstructionValue<'ctx>) -> bool {
+    if cache.seen.contains(&instruction.as_value_ref()) {
+        return false;
+    }
+    cache.seen.insert(instruction.as_value_ref());
+
+    for i in 0..instruction.get_num_operands() {
+        if let Some(op) = instruction.get_operand(i) {
+            match op {
+                Either::Left(value) => {
+                    if let Some(instruction) = value.as_instruction_value() {
+                        if instruction.get_opcode() == InstructionOpcode::Alloca
+                            || contains_alloca(cache, instruction)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                Either::Right(_) => {
+                    panic!("Haven't thought about how you get here.")
+                }
+            }
+        }
+    }
+    false
 }
 
 fn maybe_add_compute_unit<'ctx, S: BuildHasher>(

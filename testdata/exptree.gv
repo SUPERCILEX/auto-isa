@@ -20,7 +20,7 @@ subgraph {
 }
 "1_33" [label="Load"]
 cluster=true
-label=<Static occurrences: 7>
+label=<Static occurrences: 6>
 }
 subgraph {
 "2_252" [label="GetElementPtr"]
