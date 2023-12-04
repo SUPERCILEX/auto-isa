@@ -1,11 +1,14 @@
 use std::{
-    collections::{hash_map::DefaultHasher, HashMap},
+    collections::{hash_map::DefaultHasher, HashMap, HashSet},
     hash::{BuildHasher, BuildHasherDefault},
     io::{stdout, Write},
 };
 
 use llvm_plugin::{
-    inkwell::{llvm_sys::prelude::LLVMValueRef, module::Module, values::AsValueRef},
+    inkwell::{
+        module::Module,
+        values::{AsValueRef, InstructionValue},
+    },
     utils::{FunctionIterator, InstructionIterator},
     AnalysisKey, LlvmModuleAnalysis, LlvmModulePass, ModuleAnalysisManager, PassBuilder,
     PipelineParsing, PreservedAnalyses,
@@ -46,7 +49,7 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
     type Result = ();
 
     fn run_analysis(&self, module: &Module, _: &ModuleAnalysisManager) -> Self::Result {
-        let mut state = State::<BuildHasherDefault<DefaultHasher>>::new(build_ids(module));
+        let mut state = build_state(module);
         {
             let mut cache = Cache::default();
             for function in FunctionIterator::new(module) {
@@ -62,47 +65,47 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
     }
 }
 
-fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: State<S>) {
+fn print_compute_units<S: BuildHasher>(
+    State {
+        ids, compute_units, ..
+    }: State<S>,
+) {
     let compute_units = {
         let mut compute_units = compute_units.into_iter().collect::<Vec<_>>();
         compute_units.sort_by_key(|(_, compute_unit)| usize::MAX - compute_unit.len());
         compute_units
     };
 
+    let mut seen = HashSet::new();
+
     let mut output = stdout().lock();
     writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
     for (compute_unit_id, (graph, roots)) in compute_units.iter().enumerate() {
         writeln!(output, "subgraph {{").unwrap();
-        for (instr, dependencies) in graph.edges.values() {
-            write!(
-                output,
-                "\"{compute_unit_id}_{0}\" [label=\"{1:?}\"]\n\"{compute_unit_id}_{0}\" -> {{",
-                ids[&instr.as_value_ref()],
-                instr.get_opcode()
-            )
-            .unwrap();
-            for instr in dependencies {
-                write!(
-                    output,
-                    " \"{compute_unit_id}_{}\"",
-                    ids[&instr.as_value_ref()]
-                )
-                .unwrap();
-            }
-            writeln!(output, " }}").unwrap();
-
-            for instr in dependencies {
-                if !graph.edges.contains_key(&ids[&instr.as_value_ref()]) {
+        for (from, to) in &graph.edges {
+            let mut create = |node: &InstructionValue| {
+                if seen.insert(node.as_value_ref()) {
                     writeln!(
                         output,
                         "\"{compute_unit_id}_{}\" [label=\"{:?}\"]",
-                        ids[&instr.as_value_ref()],
-                        instr.get_opcode()
+                        ids[&node.as_value_ref()],
+                        node.get_opcode(),
                     )
                     .unwrap();
                 }
-            }
+            };
+            create(from);
+            create(to);
+
+            writeln!(
+                output,
+                "\"{compute_unit_id}_{}\" -> \"{compute_unit_id}_{}\"",
+                ids[&from.as_value_ref()],
+                ids[&to.as_value_ref()],
+            )
+            .unwrap();
         }
+        seen.clear();
         writeln!(
             output,
             "cluster=true\nlabel=<Static occurrences: {}>\n}}",
@@ -113,17 +116,20 @@ fn print_compute_units<S: BuildHasher>(State { ids, compute_units }: State<S>) {
     writeln!(output, "}}").unwrap();
 }
 
-fn build_ids(module: &Module) -> HashMap<LLVMValueRef, u32> {
-    let mut id = 0;
+fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<DefaultHasher>> {
     let mut ids = HashMap::new();
+    let mut ids_index = Vec::new();
     for function in FunctionIterator::new(module) {
         for bb in function.get_basic_blocks() {
             for instr in InstructionIterator::new(&bb) {
-                let previous = ids.insert(instr.as_value_ref(), id);
+                let previous = ids.insert(
+                    instr.as_value_ref(),
+                    u32::try_from(ids_index.len()).unwrap(),
+                );
                 debug_assert!(previous.is_none());
-                id += 1;
+                ids_index.push(instr);
             }
         }
     }
-    ids
+    State::new(ids, ids_index)
 }

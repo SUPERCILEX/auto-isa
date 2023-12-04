@@ -2,29 +2,29 @@ strict digraph {
 rankdir=BT
 subgraph {
 "0_64" [label="Add"]
-"0_64" -> { "0_38" }
 "0_38" [label="Load"]
-"0_68" [label="Load"]
-"0_68" -> { "0_67" }
+"0_64" -> "0_38"
 "0_67" [label="GetElementPtr"]
-"0_67" -> { "0_66" }
 "0_66" [label="SExt"]
-"0_66" -> { "0_64" }
+"0_67" -> "0_66"
+"0_68" [label="Load"]
+"0_68" -> "0_67"
+"0_66" -> "0_64"
 cluster=true
 label=<Static occurrences: 10>
 }
 subgraph {
-"1_73" [label="GetElementPtr"]
-"1_73" -> { "1_72" }
-"1_64" [label="Add"]
-"1_64" -> { "1_38" }
-"1_38" [label="Load"]
-"1_72" [label="SExt"]
-"1_72" -> { "1_71" }
 "1_71" [label="Add"]
-"1_71" -> { "1_64" }
+"1_64" [label="Add"]
+"1_71" -> "1_64"
+"1_38" [label="Load"]
+"1_64" -> "1_38"
+"1_73" [label="GetElementPtr"]
+"1_72" [label="SExt"]
+"1_73" -> "1_72"
 "1_74" [label="Load"]
-"1_74" -> { "1_73" }
+"1_74" -> "1_73"
+"1_72" -> "1_71"
 cluster=true
 label=<Static occurrences: 2>
 }

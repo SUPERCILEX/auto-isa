@@ -2,43 +2,45 @@ strict digraph {
 rankdir=BT
 subgraph {
 "0_9" [label="GetElementPtr"]
-"0_9" -> { "0_7" }
 "0_7" [label="Phi"]
-"0_7" -> { "0_18" }
-"0_18" [label="Load"]
+"0_9" -> "0_7"
 "0_10" [label="Load"]
-"0_10" -> { "0_9" }
+"0_10" -> "0_9"
+"0_18" [label="Load"]
+"0_7" -> "0_18"
 cluster=true
 label=<Static occurrences: 2>
 }
 subgraph {
-"1_13" [label="Load"]
-"1_13" -> { "1_12" }
-"1_12" [label="GetElementPtr"]
-"1_12" -> { "1_10" }
+"1_11" [label="Load"]
 "1_10" [label="Load"]
+"1_11" -> "1_10"
 cluster=true
 label=<Static occurrences: 1>
 }
 subgraph {
-"2_11" [label="Load"]
-"2_11" -> { "2_10" }
+"2_12" [label="GetElementPtr"]
 "2_10" [label="Load"]
+"2_12" -> "2_10"
+"2_13" [label="Load"]
+"2_13" -> "2_12"
 cluster=true
 label=<Static occurrences: 1>
 }
 subgraph {
 "3_15" [label="Add"]
-"3_15" -> { "3_14" "3_14" "3_6" }
 "3_14" [label="Add"]
-"3_14" -> { "3_13" "3_11" }
+"3_15" -> "3_14"
 "3_13" [label="Load"]
+"3_14" -> "3_13"
 "3_11" [label="Load"]
+"3_14" -> "3_11"
 "3_6" [label="Phi"]
-"3_6" -> { "3_4" }
+"3_15" -> "3_6"
 "3_4" [label="Load"]
+"3_6" -> "3_4"
 "3_16" [label="Store"]
-"3_16" -> { "3_15" "3_15" "3_15" }
+"3_16" -> "3_15"
 cluster=true
 label=<Static occurrences: 1>
 }

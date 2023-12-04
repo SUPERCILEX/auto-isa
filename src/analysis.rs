@@ -17,35 +17,37 @@ use llvm_plugin::{
 type InstructionId = u32;
 
 #[derive(Default)]
-pub struct Cache<'ctx> {
+pub struct Cache<'ctx, S> {
     seen: HashSet<LLVMValueRef>,
+    edges: HashSet<StableEdge, S>,
     path: Vec<InstructionValue<'ctx>>,
 }
 
-impl<'ctx> Cache<'ctx> {
+impl<'ctx, S> Cache<'ctx, S> {
     fn reset(&mut self) {
         self.seen.clear();
+        self.edges.clear();
         self.path.clear();
     }
 }
 
-struct CacheContext<'a, 'ctx>(&'a mut Cache<'ctx>);
+struct CacheContext<'a, 'ctx, S>(&'a mut Cache<'ctx, S>);
 
-impl<'a, 'ctx> Deref for CacheContext<'a, 'ctx> {
-    type Target = Cache<'ctx>;
+impl<'a, 'ctx, S> Deref for CacheContext<'a, 'ctx, S> {
+    type Target = Cache<'ctx, S>;
 
     fn deref(&self) -> &Self::Target {
         self.0
     }
 }
 
-impl<'a, 'ctx> DerefMut for CacheContext<'a, 'ctx> {
+impl<'a, 'ctx, S> DerefMut for CacheContext<'a, 'ctx, S> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         self.0
     }
 }
 
-impl<'a, 'ctx> Drop for CacheContext<'a, 'ctx> {
+impl<'a, 'ctx, S> Drop for CacheContext<'a, 'ctx, S> {
     fn drop(&mut self) {
         self.0.reset();
     }
@@ -53,83 +55,71 @@ impl<'a, 'ctx> Drop for CacheContext<'a, 'ctx> {
 
 pub struct State<'ctx, S> {
     pub ids: HashMap<LLVMValueRef, u32>,
-    pub compute_units: HashMap<DependencyGraph<'ctx, S>, Vec<InstructionValue<'ctx>>, S>,
+    ids_index: Vec<InstructionValue<'ctx>>,
+
+    pub compute_units: HashMap<DependencyGraph<'ctx>, Vec<InstructionValue<'ctx>>, S>,
 }
 
 impl<'ctx, S: Default> State<'ctx, S> {
-    pub fn new(ids: HashMap<LLVMValueRef, u32>) -> Self {
+    pub fn new(ids: HashMap<LLVMValueRef, u32>, ids_index: Vec<InstructionValue<'ctx>>) -> Self {
         Self {
             ids,
+            ids_index,
             compute_units: HashMap::default(),
         }
     }
 }
 
+type Edge<'ctx> = (InstructionValue<'ctx>, InstructionValue<'ctx>);
+type StableEdge = (InstructionId, InstructionId);
+
 #[derive(Debug)]
-pub struct DependencyGraph<'ctx, S> {
-    pub edges: HashMap<InstructionId, (InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>), S>,
+pub struct DependencyGraph<'ctx> {
+    pub edges: Vec<Edge<'ctx>>,
 }
 
-impl<'ctx, S> DependencyGraph<'ctx, S> {
-    fn normalize(&mut self) {
-        for nodes in self.edges.values_mut() {
-            nodes.1.sort_unstable_by_key(|a| a.get_opcode() as u32);
-        }
+impl<'ctx, S> From<(&HashSet<StableEdge, S>, &State<'ctx, S>)> for DependencyGraph<'ctx> {
+    fn from((edges, State { ids_index, .. }): (&HashSet<StableEdge, S>, &State<'ctx, S>)) -> Self {
+        let mut edges = edges
+            .iter()
+            .map(|&(a, b)| {
+                (
+                    ids_index[usize::try_from(a).unwrap()],
+                    ids_index[usize::try_from(b).unwrap()],
+                )
+            })
+            .collect::<Vec<_>>();
+        edges.sort_unstable_by_key(|(a, b)| (a.get_opcode() as u32, b.get_opcode() as u32));
+        Self { edges }
     }
 }
 
-// TODO https://github.com/rust-lang/rust-clippy/issues/11923
-#[allow(clippy::collection_is_never_read)]
-impl<'ctx, S> Hash for DependencyGraph<'ctx, S> {
+impl<'ctx> DependencyGraph<'ctx> {
+    fn ops(&self) -> impl Iterator<Item = (InstructionOpcode, InstructionOpcode)> + '_ {
+        self.edges
+            .iter()
+            .map(|(a, b)| (a.get_opcode(), b.get_opcode()))
+    }
+}
+
+impl<'ctx> Hash for DependencyGraph<'ctx> {
     fn hash<H: Hasher>(&self, state: &mut H) {
-        let mut ops = Vec::with_capacity(self.edges.len());
-        for (from, nodes) in self.edges.values() {
-            ops.push(from.get_opcode());
-            for node in nodes {
-                ops.push(node.get_opcode());
-            }
+        for edge in self.ops() {
+            edge.hash(state);
         }
-        ops.sort_unstable_by_key(|&op| op as u32);
-
-        ops.hash(state);
     }
 }
 
-impl<'ctx, S: BuildHasher> PartialEq<Self> for DependencyGraph<'ctx, S> {
+impl<'ctx> PartialEq<Self> for DependencyGraph<'ctx> {
     fn eq(&self, other: &Self) -> bool {
-        if self.edges.len() != other.edges.len() {
-            return false;
-        }
-
-        let mut ops = HashMap::<_, Vec<&[InstructionValue<'ctx>]>>::with_capacity(self.edges.len());
-        for (from, nodes) in self.edges.values() {
-            ops.entry(from.get_opcode()).or_default().push(nodes);
-        }
-
-        for (from, nodes2) in other.edges.values() {
-            let Some(edge_sets) = ops.get_mut(&from.get_opcode()) else {
-                return false;
-            };
-            let Ok(pos) = edge_sets.binary_search_by(|nodes1| {
-                nodes1
-                    .iter()
-                    .map(|instr| instr.get_opcode() as u32)
-                    .cmp(nodes2.iter().map(|instr| instr.get_opcode() as u32))
-            }) else {
-                return false;
-            };
-
-            edge_sets.remove(pos);
-        }
-
-        ops.values().all(Vec::is_empty)
+        self.ops().eq(other.ops())
     }
 }
 
-impl<'ctx, S: BuildHasher> Eq for DependencyGraph<'ctx, S> {}
+impl<'ctx> Eq for DependencyGraph<'ctx> {}
 
 pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
-    cache: &mut Cache<'ctx>,
+    cache: &mut Cache<'ctx, S>,
     state: &mut State<'ctx, S>,
     function: FunctionValue<'ctx>,
 ) {
@@ -148,21 +138,15 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
                 }
             }
 
-            let mut dependencies = DependencyGraph {
-                edges: HashMap::default(),
-            };
+            let mut cache = CacheContext(cache);
 
-            {
-                let mut cache = CacheContext(cache);
+            cache.path.push(instr);
+            maybe_add_compute_unit(&mut cache, state, instr);
 
-                cache.path.push(instr);
-                maybe_add_compute_unit(&mut cache, state, &mut dependencies, instr);
-            }
-            if !dependencies.edges.is_empty() {
-                dependencies.normalize();
+            if !cache.edges.is_empty() {
                 state
                     .compute_units
-                    .entry(dependencies)
+                    .entry(DependencyGraph::from((&cache.edges, &*state)))
                     .or_default()
                     .push(instr);
             }
@@ -170,7 +154,10 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
     }
 }
 
-fn contains_alloca<'ctx>(cache: &mut Cache<'ctx>, instruction: InstructionValue<'ctx>) -> bool {
+fn contains_alloca<'ctx, S>(
+    cache: &mut Cache<'ctx, S>,
+    instruction: InstructionValue<'ctx>,
+) -> bool {
     if !cache.seen.insert(instruction.as_value_ref()) {
         return false;
     }
@@ -193,9 +180,8 @@ fn contains_alloca<'ctx>(cache: &mut Cache<'ctx>, instruction: InstructionValue<
 }
 
 fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
-    cache: &mut Cache<'ctx>,
+    cache: &mut Cache<'ctx, S>,
     state: &mut State<'ctx, S>,
-    dependency_graph: &mut DependencyGraph<'ctx, S>,
     instruction: InstructionValue<'ctx>,
 ) {
     if !cache.seen.insert(instruction.as_value_ref()) {
@@ -210,9 +196,9 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
             } {
                 cache.path.push(instruction);
                 if instruction.get_opcode() == InstructionOpcode::Load {
-                    write_path_to_graph(cache, state, dependency_graph);
+                    write_path_to_graph(cache, state);
                 } else {
-                    maybe_add_compute_unit(cache, state, dependency_graph, instruction);
+                    maybe_add_compute_unit(cache, state, instruction);
                 }
                 cache.path.pop();
             }
@@ -221,20 +207,14 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
 }
 
 fn write_path_to_graph<'ctx, S: BuildHasher>(
-    Cache { path, .. }: &mut Cache<'ctx>,
+    Cache { path, edges, .. }: &mut Cache<'ctx, S>,
     State { ids, .. }: &mut State<'ctx, S>,
-    graph: &mut DependencyGraph<'ctx, S>,
 ) {
     for edge in path.windows(2) {
         let &[from, to] = edge else {
             unreachable!();
         };
 
-        graph
-            .edges
-            .entry(ids[&from.as_value_ref()])
-            .or_insert((from, Vec::new()))
-            .1
-            .push(to);
+        edges.insert((ids[&from.as_value_ref()], ids[&to.as_value_ref()]));
     }
 }
