@@ -26,6 +26,7 @@ macro_rules! test {
                     "-g",
                     "-c",
                     "-O1",
+                    "-Wno-everything",
                     "-S",
                     "-emit-llvm",
                     "-fno-discard-value-names",
