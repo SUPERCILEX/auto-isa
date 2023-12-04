@@ -1,7 +1,10 @@
 use std::{
     collections::{hash_map::DefaultHasher, HashMap, HashSet},
+    fs::File,
     hash::{BuildHasher, BuildHasherDefault},
-    io::{stdout, Write},
+    io::{BufWriter, Write},
+    mem::ManuallyDrop,
+    os::fd::FromRawFd,
 };
 
 use llvm_plugin::{
@@ -78,7 +81,8 @@ fn print_compute_units<S: BuildHasher>(
 
     let mut seen = HashSet::new();
 
-    let mut output = stdout().lock();
+    let mut stdout = ManuallyDrop::new(unsafe { File::from_raw_fd(1) });
+    let mut output = BufWriter::new(&mut *stdout);
     writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
     for (compute_unit_id, (graph, roots)) in compute_units.iter().enumerate() {
         writeln!(output, "subgraph {{").unwrap();
