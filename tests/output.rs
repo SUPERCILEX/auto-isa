@@ -23,8 +23,6 @@ macro_rules! test {
 
             Command::new("clang-16")
                 .args([
-                    "-g",
-                    "-c",
                     "-O1",
                     "-Wno-everything",
                     "-S",

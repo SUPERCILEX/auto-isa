@@ -1,13 +1,13 @@
 strict digraph {
 rankdir=BT
 subgraph {
-"0_16" [label="Add"]
-"0_15" [label="Load"]
-"0_16" -> "0_15"
-"0_13" [label="Load"]
-"0_16" -> "0_13"
-"0_18" [label="Store"]
-"0_18" -> "0_16"
+"0_10" [label="Add"]
+"0_7" [label="Load"]
+"0_10" -> "0_7"
+"0_9" [label="Load"]
+"0_10" -> "0_9"
+"0_12" [label="Store"]
+"0_12" -> "0_10"
 cluster=true
 label=<Static occurrences: 1>
 }
