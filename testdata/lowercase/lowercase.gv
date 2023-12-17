@@ -1,3 +1,19 @@
 strict digraph {
 rankdir=BT
+subgraph {
+"0_26" [label="Add"]
+"0_25" [label="Load"]
+"0_26" -> "0_25"
+"0_27" [label="ICmp"]
+"0_27" -> "0_26"
+"0_29" [label="Or"]
+"0_29" -> "0_25"
+"0_28" [label="Select"]
+"0_29" -> "0_28"
+"0_28" -> "0_27"
+"0_31" [label="Store"]
+"0_31" -> "0_29"
+cluster=true
+label=<Static occurrences: 1>
+}
 }

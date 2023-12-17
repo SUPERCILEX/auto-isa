@@ -46,6 +46,8 @@ static void doTest(size_t numberOfIterations)
   for (i = 0; i < 10000000; i++)
 #endif
     lower_StringImpl(testData, numberOfCharacters, result);
+
+  asm volatile("" : : "r,m"(result) : "memory");
 }
 
 int main(int argc, char **argv)
