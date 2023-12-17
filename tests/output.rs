@@ -12,7 +12,7 @@ macro_rules! test {
     ($name:ident, $ext:expr) => {
         #[test]
         fn $name() {
-            create_dir_all("/tmp/auto-isa").unwrap();
+            create_dir_all(concat!("testdata/", stringify!($name))).unwrap();
 
             Command::new(env::var("CARGO").unwrap())
                 .args(["build"])
@@ -20,6 +20,18 @@ macro_rules! test {
                 .unwrap()
                 .exit_ok()
                 .unwrap();
+
+            macro_rules! file_path {
+                ($suffix: expr) => {
+                    concat!(
+                        "testdata/",
+                        stringify!($name),
+                        "/",
+                        stringify!($name),
+                        $suffix
+                    )
+                };
+            }
 
             Command::new("clang-16")
                 .args([
@@ -30,7 +42,7 @@ macro_rules! test {
                     "-fno-discard-value-names",
                     concat!("testdata/", stringify!($name), $ext),
                     "-o",
-                    concat!("testdata/", stringify!($name), ".ll"),
+                    file_path!(".ll"),
                 ])
                 .status()
                 .unwrap()
@@ -42,7 +54,7 @@ macro_rules! test {
                     "--load-pass-plugin=target/debug/libauto_isa.so",
                     "--passes=auto-isa",
                     "-disable-output",
-                    concat!("testdata/", stringify!($name), ".ll"),
+                    file_path!(".ll"),
                 ])
                 .stdout(Stdio::piped())
                 .spawn()
@@ -52,14 +64,17 @@ macro_rules! test {
             opt_result.status.exit_ok().unwrap();
             let opt_result = String::from_utf8(opt_result.stdout).unwrap();
 
-            expect_file![concat!("../testdata/", stringify!($name), ".gv")].assert_eq(&opt_result);
+            expect_file![concat!(
+                "../testdata/",
+                stringify!($name),
+                "/",
+                stringify!($name),
+                ".gv"
+            )]
+            .assert_eq(&opt_result);
 
             Command::new("dot")
-                .args([
-                    "-O",
-                    "-Tpdf",
-                    concat!("testdata/", stringify!($name), ".gv"),
-                ])
+                .args(["-O", "-Tpdf", file_path!(".gv")])
                 .status()
                 .unwrap()
                 .exit_ok()
