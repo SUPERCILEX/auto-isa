@@ -112,8 +112,17 @@ fn print_compute_units<S: BuildHasher>(
     dynamic_counts: &HashMap<u32, u64>,
 ) {
     let compute_units = {
-        let mut compute_units = compute_units.into_iter().collect::<Vec<_>>();
-        compute_units.sort_by_key(|(_, compute_unit)| usize::MAX - compute_unit.len());
+        let mut compute_units = compute_units
+            .into_iter()
+            .map(|(graph, roots)| {
+                let dynamic_count = roots
+                    .iter()
+                    .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
+                    .sum::<u64>();
+                (graph, roots, dynamic_count)
+            })
+            .collect::<Vec<_>>();
+        compute_units.sort_by_key(|&(_, _, dynamic_count)| dynamic_count);
         compute_units
     };
 
@@ -122,7 +131,7 @@ fn print_compute_units<S: BuildHasher>(
     let mut stdout = ManuallyDrop::new(unsafe { File::from_raw_fd(1) });
     let mut output = BufWriter::new(&mut *stdout);
     writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
-    for (compute_unit_id, (graph, roots)) in compute_units.iter().enumerate() {
+    for (compute_unit_id, (graph, roots, dynamic_count)) in compute_units.iter().rev().enumerate() {
         writeln!(output, "subgraph {{").unwrap();
         for (from, to) in &graph.edges {
             let mut create = |node: &InstructionValue| {
@@ -150,12 +159,9 @@ fn print_compute_units<S: BuildHasher>(
         seen.clear();
         writeln!(
             output,
-            "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: {}\"\n}}",
+            "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
+             {dynamic_count}\"\n}}",
             roots.len(),
-            roots
-                .iter()
-                .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
-                .sum::<u64>(),
         )
         .unwrap();
     }

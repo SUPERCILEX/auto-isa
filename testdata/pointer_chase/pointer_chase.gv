@@ -1,46 +1,46 @@
 strict digraph {
 rankdir=BT
 subgraph {
-"0_6" [label="GetElementPtr"]
-"0_5" [label="Phi"]
-"0_6" -> "0_5"
-"0_7" [label="Load"]
-"0_7" -> "0_6"
-"0_15" [label="Load"]
-"0_5" -> "0_15"
+"0_12" [label="Add"]
+"0_11" [label="Add"]
+"0_12" -> "0_11"
+"0_8" [label="Load"]
+"0_11" -> "0_8"
+"0_10" [label="Load"]
+"0_11" -> "0_10"
+"0_4" [label="Phi"]
+"0_12" -> "0_4"
+"0_2" [label="Load"]
+"0_4" -> "0_2"
+"0_13" [label="Store"]
+"0_13" -> "0_12"
+cluster=true
+label="Static occurrences: 1\nDynamic executions: 0"
+}
+subgraph {
+"1_9" [label="GetElementPtr"]
+"1_7" [label="Load"]
+"1_9" -> "1_7"
+"1_10" [label="Load"]
+"1_10" -> "1_9"
+cluster=true
+label="Static occurrences: 1\nDynamic executions: 0"
+}
+subgraph {
+"2_6" [label="GetElementPtr"]
+"2_5" [label="Phi"]
+"2_6" -> "2_5"
+"2_7" [label="Load"]
+"2_7" -> "2_6"
+"2_15" [label="Load"]
+"2_5" -> "2_15"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 0"
 }
 subgraph {
-"1_8" [label="Load"]
-"1_7" [label="Load"]
-"1_8" -> "1_7"
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
-}
-subgraph {
-"2_9" [label="GetElementPtr"]
-"2_7" [label="Load"]
-"2_9" -> "2_7"
-"2_10" [label="Load"]
-"2_10" -> "2_9"
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
-}
-subgraph {
-"3_12" [label="Add"]
-"3_11" [label="Add"]
-"3_12" -> "3_11"
 "3_8" [label="Load"]
-"3_11" -> "3_8"
-"3_10" [label="Load"]
-"3_11" -> "3_10"
-"3_4" [label="Phi"]
-"3_12" -> "3_4"
-"3_2" [label="Load"]
-"3_4" -> "3_2"
-"3_13" [label="Store"]
-"3_13" -> "3_12"
+"3_7" [label="Load"]
+"3_8" -> "3_7"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0"
 }
