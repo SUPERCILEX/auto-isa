@@ -1,8 +1,11 @@
 #![feature(exit_status_error)]
+#![feature(dir_entry_ext2)]
 
 use std::{
-    env,
+    env, fs,
     fs::create_dir_all,
+    io::Read,
+    os::unix::fs::DirEntryExt2,
     process::{Command, Stdio},
 };
 
@@ -11,8 +14,10 @@ use expect_test::expect_file;
 macro_rules! test {
     ($name:ident, $ext:expr) => {
         #[test]
+        #[allow(clippy::too_many_lines)]
         fn $name() {
-            create_dir_all(concat!("testdata/", stringify!($name))).unwrap();
+            let dir = concat!("testdata/", stringify!($name));
+            create_dir_all(dir).unwrap();
 
             Command::new(env::var("CARGO").unwrap())
                 .args(["build"])
@@ -49,18 +54,76 @@ macro_rules! test {
                 .exit_ok()
                 .unwrap();
 
-            let opt_result = Command::new("opt-16")
+            let mut opt_result = Command::new("opt-16")
                 .args([
                     "--load-pass-plugin=target/debug/libauto_isa.so",
                     "--passes=auto-isa",
-                    "-disable-output",
+                    "-S",
                     file_path!(".ll"),
+                    "-o",
+                    file_path!("-instr.ll"),
                 ])
+                .stdin(Stdio::piped())
                 .stdout(Stdio::piped())
                 .spawn()
-                .unwrap()
-                .wait_with_output()
                 .unwrap();
+            opt_result
+                .stdout
+                .as_mut()
+                .unwrap()
+                .read_exact(&mut [0])
+                .unwrap();
+
+            Command::new("clang-16")
+                .args([
+                    "-O1",
+                    "-fprofile-generate",
+                    "-lm",
+                    file_path!("-instr.ll"),
+                    "-o",
+                    file_path!(""),
+                ])
+                .status()
+                .unwrap()
+                .exit_ok()
+                .unwrap();
+
+            let profdata_file = || {
+                fs::read_dir(dir)
+                    .unwrap()
+                    .map(|entry| entry.unwrap())
+                    .filter(|entry| {
+                        entry
+                            .file_name_ref()
+                            .to_string_lossy()
+                            .ends_with(".profraw")
+                    })
+            };
+            for file in profdata_file() {
+                fs::remove_file(file.path()).unwrap();
+            }
+
+            Command::new(concat!("./", stringify!($name)))
+                .stdin(Stdio::null())
+                .current_dir(dir)
+                .status()
+                .unwrap();
+
+            Command::new("llvm-profdata-16")
+                .args([
+                    "show",
+                    "--all-functions",
+                    "--counts",
+                    "--text",
+                    &*profdata_file().next().unwrap().path().to_string_lossy(),
+                ])
+                .stdout(Stdio::from(opt_result.stdin.take().unwrap()))
+                .status()
+                .unwrap()
+                .exit_ok()
+                .unwrap();
+
+            let opt_result = opt_result.wait_with_output().unwrap();
             opt_result.status.exit_ok().unwrap();
             let opt_result = String::from_utf8(opt_result.stdout).unwrap();
 

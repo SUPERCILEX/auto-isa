@@ -27,6 +27,6 @@ subgraph {
 "0_126" [label="Store"]
 "0_126" -> "0_17"
 cluster=true
-label=<Static occurrences: 16>
+label="Static occurrences: 16\nDynamic executions: 800000000"
 }
 }

@@ -19,3 +19,5 @@ void pointer_chase(struct Node* node, int* result) {
     node = node->next;
   }
 }
+
+int main(int argc, char *argv[]) {}

@@ -26,7 +26,7 @@ subgraph {
 "0_457" -> "0_426"
 "0_481" -> "0_474"
 cluster=true
-label=<Static occurrences: 15>
+label="Static occurrences: 15\nDynamic executions: 464970240"
 }
 subgraph {
 "1_508" [label="Add"]
@@ -49,7 +49,7 @@ subgraph {
 "1_509" -> "1_505"
 "1_597" -> "1_509"
 cluster=true
-label=<Static occurrences: 6>
+label="Static occurrences: 6\nDynamic executions: 185988096"
 }
 subgraph {
 "2_644" [label="Add"]
@@ -79,7 +79,7 @@ subgraph {
 "2_458" -> "2_426"
 "2_610" -> "2_519"
 cluster=true
-label=<Static occurrences: 4>
+label="Static occurrences: 4\nDynamic executions: 123992064"
 }
 subgraph {
 "3_513" [label="Add"]
@@ -106,7 +106,7 @@ subgraph {
 "3_517" -> "3_505"
 "3_598" -> "3_517"
 cluster=true
-label=<Static occurrences: 3>
+label="Static occurrences: 3\nDynamic executions: 92994048"
 }
 subgraph {
 "4_525" [label="Add"]
@@ -135,7 +135,7 @@ subgraph {
 "4_503" [label="Load"]
 "4_521" -> "4_503"
 cluster=true
-label=<Static occurrences: 3>
+label="Static occurrences: 3\nDynamic executions: 92994048"
 }
 subgraph {
 "5_581" [label="Add"]
@@ -164,7 +164,7 @@ subgraph {
 "5_579" -> "5_504"
 "5_607" -> "5_582"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 30998016"
 }
 subgraph {
 "6_595" [label="Add"]
@@ -298,7 +298,7 @@ subgraph {
 "6_751" -> "6_748"
 "6_751" -> "6_750"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 30998016"
 }
 subgraph {
 "7_777" [label="Add"]
@@ -323,7 +323,7 @@ subgraph {
 "7_785" [label="Load"]
 "7_788" -> "7_785"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 30998016"
 }
 subgraph {
 "8_341" [label="Add"]
@@ -356,7 +356,7 @@ subgraph {
 "8_367" -> "8_352"
 "8_367" -> "8_366"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 0"
 }
 subgraph {
 "9_393" [label="Add"]
@@ -385,6 +385,6 @@ subgraph {
 "9_408" [label="Store"]
 "9_408" -> "9_407"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 0"
 }
 }

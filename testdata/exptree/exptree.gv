@@ -7,14 +7,14 @@ subgraph {
 "0_209" [label="Load"]
 "0_209" -> "0_208"
 cluster=true
-label=<Static occurrences: 10>
+label="Static occurrences: 10\nDynamic executions: 191"
 }
 subgraph {
 "1_26" [label="Store"]
 "1_24" [label="Load"]
 "1_26" -> "1_24"
 cluster=true
-label=<Static occurrences: 6>
+label="Static occurrences: 6\nDynamic executions: 8"
 }
 subgraph {
 "2_210" [label="GetElementPtr"]
@@ -25,7 +25,7 @@ subgraph {
 "2_209" [label="Load"]
 "2_211" -> "2_209"
 cluster=true
-label=<Static occurrences: 3>
+label="Static occurrences: 3\nDynamic executions: 24"
 }
 subgraph {
 "3_274" [label="Call"]
@@ -43,7 +43,7 @@ subgraph {
 "3_282" -> "3_281"
 "3_282" -> "3_277"
 cluster=true
-label=<Static occurrences: 2>
+label="Static occurrences: 2\nDynamic executions: 88"
 }
 subgraph {
 "4_224" [label="GetElementPtr"]
@@ -52,7 +52,7 @@ subgraph {
 "4_225" [label="Store"]
 "4_225" -> "4_224"
 cluster=true
-label=<Static occurrences: 2>
+label="Static occurrences: 2\nDynamic executions: 50"
 }
 subgraph {
 "5_176" [label="Add"]
@@ -61,7 +61,7 @@ subgraph {
 "5_177" [label="Store"]
 "5_177" -> "5_176"
 cluster=true
-label=<Static occurrences: 2>
+label="Static occurrences: 2\nDynamic executions: 48"
 }
 subgraph {
 "6_290" [label="Add"]
@@ -103,7 +103,7 @@ subgraph {
 "6_293" [label="Load"]
 "6_294" -> "6_293"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 44"
 }
 subgraph {
 "7_187" [label="Add"]
@@ -118,6 +118,6 @@ subgraph {
 "7_190" -> "7_189"
 "7_188" -> "7_187"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 35"
 }
 }

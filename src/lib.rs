@@ -2,7 +2,7 @@ use std::{
     collections::{hash_map::DefaultHasher, HashMap, HashSet},
     fs::File,
     hash::{BuildHasher, BuildHasherDefault},
-    io::{BufWriter, Write},
+    io::{stdin, stdout, BufRead, BufWriter, Write},
     mem::ManuallyDrop,
     os::fd::FromRawFd,
 };
@@ -13,13 +13,17 @@ use llvm_plugin::{
         values::{AsValueRef, InstructionValue},
     },
     utils::{FunctionIterator, InstructionIterator},
-    AnalysisKey, LlvmModuleAnalysis, LlvmModulePass, ModuleAnalysisManager, PassBuilder,
-    PipelineParsing, PreservedAnalyses,
+    LlvmModulePass, ModuleAnalysisManager, PassBuilder, PipelineParsing, PreservedAnalyses,
+};
+use rustix::{process::WaitOptions, runtime::Fork::Parent};
+
+use crate::{
+    analysis::{find_non_local_memory_compute_units, Cache, State},
+    instrumentation::instrument_compute_units,
 };
 
-use crate::analysis::{find_non_local_memory_compute_units, Cache, State};
-
 mod analysis;
+mod instrumentation;
 
 #[llvm_plugin::plugin(name = "AutoIsa", version = "0.1")]
 fn plugin_registrar(builder: &mut PassBuilder) {
@@ -31,27 +35,12 @@ fn plugin_registrar(builder: &mut PassBuilder) {
             PipelineParsing::NotParsed
         }
     });
-
-    builder.add_module_analysis_registration_callback(|manager| {
-        manager.register_pass(AutoIsaAnalysis);
-    });
 }
 
 struct AutoIsaPass;
 
 impl LlvmModulePass for AutoIsaPass {
-    fn run_pass(&self, module: &mut Module, manager: &ModuleAnalysisManager) -> PreservedAnalyses {
-        manager.get_result::<AutoIsaAnalysis>(module);
-        PreservedAnalyses::All
-    }
-}
-
-struct AutoIsaAnalysis;
-
-impl LlvmModuleAnalysis for AutoIsaAnalysis {
-    type Result = ();
-
-    fn run_analysis(&self, module: &Module, _: &ModuleAnalysisManager) -> Self::Result {
+    fn run_pass(&self, module: &mut Module, _: &ModuleAnalysisManager) -> PreservedAnalyses {
         let mut state = build_state(module);
         {
             let mut cache = Cache::default();
@@ -59,19 +48,68 @@ impl LlvmModuleAnalysis for AutoIsaAnalysis {
                 find_non_local_memory_compute_units(&mut cache, &mut state, function);
             }
         }
+        instrument_compute_units(&state, module);
+        split_into_next_stage(state);
 
-        print_compute_units(state);
+        PreservedAnalyses::None
+    }
+}
+
+fn split_into_next_stage<S: BuildHasher>(state: State<S>) {
+    let Parent(child) = unsafe { rustix::runtime::fork() }.unwrap() else {
+        return;
+    };
+    assert_eq!(
+        0,
+        rustix::process::waitpid(Some(child), WaitOptions::empty())
+            .unwrap()
+            .unwrap()
+            .exit_status()
+            .unwrap()
+    );
+    {
+        let mut stdout = stdout().lock();
+        stdout.write_all(&[0]).unwrap();
+        stdout.flush().unwrap();
     }
 
-    fn id() -> AnalysisKey {
-        1 as AnalysisKey
+    let mut dynamic_counts = HashMap::new();
+    {
+        let mut input = stdin().lock();
+        let mut buf = String::new();
+        let mut pending_counter = None;
+        let mut skipped = 0;
+
+        while input.read_line(&mut buf).unwrap() > 0 {
+            if let Some(id) = pending_counter {
+                if skipped < 3 {
+                    skipped += 1;
+                    buf.clear();
+                    continue;
+                }
+                skipped = 0;
+
+                dynamic_counts.insert(id, str::parse::<u64>(&buf[..buf.len() - 1]).unwrap());
+                pending_counter = None;
+            }
+
+            if buf == ":ir\n" || buf.ends_with("\n\n") {
+                buf.clear();
+            } else if buf.ends_with("# Func Hash:\n4844047\n") {
+                pending_counter = Some(str::parse::<u32>(&buf[..buf.find('\n').unwrap()]).unwrap());
+            }
+        }
     }
+
+    print_compute_units(state, &dynamic_counts);
+    std::process::exit(0);
 }
 
 fn print_compute_units<S: BuildHasher>(
     State {
         ids, compute_units, ..
     }: State<S>,
+    dynamic_counts: &HashMap<u32, u64>,
 ) {
     let compute_units = {
         let mut compute_units = compute_units.into_iter().collect::<Vec<_>>();
@@ -112,8 +150,12 @@ fn print_compute_units<S: BuildHasher>(
         seen.clear();
         writeln!(
             output,
-            "cluster=true\nlabel=<Static occurrences: {}>\n}}",
-            roots.len()
+            "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: {}\"\n}}",
+            roots.len(),
+            roots
+                .iter()
+                .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
+                .sum::<u64>(),
         )
         .unwrap();
     }

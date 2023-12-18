@@ -1,14 +1,20 @@
 strict digraph {
 rankdir=BT
 subgraph {
-"0_10" [label="Add"]
-"0_7" [label="Load"]
-"0_10" -> "0_7"
-"0_9" [label="Load"]
-"0_10" -> "0_9"
-"0_12" [label="Store"]
-"0_12" -> "0_10"
+"0_31" [label="Add"]
+"0_30" [label="Add"]
+"0_31" -> "0_30"
+"0_27" [label="Load"]
+"0_30" -> "0_27"
+"0_29" [label="Load"]
+"0_30" -> "0_29"
+"0_25" [label="Phi"]
+"0_31" -> "0_25"
+"0_21" [label="Load"]
+"0_25" -> "0_21"
+"0_32" [label="Store"]
+"0_32" -> "0_31"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 100000"
 }
 }

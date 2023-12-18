@@ -9,14 +9,14 @@ subgraph {
 "0_15" [label="Load"]
 "0_5" -> "0_15"
 cluster=true
-label=<Static occurrences: 2>
+label="Static occurrences: 2\nDynamic executions: 0"
 }
 subgraph {
 "1_8" [label="Load"]
 "1_7" [label="Load"]
 "1_8" -> "1_7"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 0"
 }
 subgraph {
 "2_9" [label="GetElementPtr"]
@@ -25,7 +25,7 @@ subgraph {
 "2_10" [label="Load"]
 "2_10" -> "2_9"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 0"
 }
 subgraph {
 "3_12" [label="Add"]
@@ -42,6 +42,6 @@ subgraph {
 "3_13" [label="Store"]
 "3_13" -> "3_12"
 cluster=true
-label=<Static occurrences: 1>
+label="Static occurrences: 1\nDynamic executions: 0"
 }
 }

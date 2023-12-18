@@ -11,7 +11,7 @@ subgraph {
 "0_37" -> "0_36"
 "0_35" -> "0_34"
 cluster=true
-label=<Static occurrences: 10>
+label="Static occurrences: 10\nDynamic executions: 426886060"
 }
 subgraph {
 "1_39" [label="Add"]
@@ -26,6 +26,6 @@ subgraph {
 "1_42" -> "1_41"
 "1_40" -> "1_39"
 cluster=true
-label=<Static occurrences: 2>
+label="Static occurrences: 2\nDynamic executions: 85377212"
 }
 }
