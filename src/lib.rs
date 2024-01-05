@@ -122,7 +122,13 @@ fn print_compute_units<S: BuildHasher>(
                 (graph, roots, dynamic_count)
             })
             .collect::<Vec<_>>();
-        compute_units.sort_by_key(|&(_, _, dynamic_count)| dynamic_count);
+        compute_units.sort_by(
+            |(_, compute_unit_a, dynamic_count_a), (_, compute_unit_b, dynamic_count_b)| {
+                dynamic_count_a
+                    .cmp(dynamic_count_b)
+                    .then(compute_unit_a.len().cmp(&compute_unit_b.len()))
+            },
+        );
         compute_units
     };
 
