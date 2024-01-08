@@ -192,3 +192,30 @@ test_c!(richards_benchmark);
 test_c!(salsa20);
 
 test_cpp!(stepanov_v1p2);
+
+#[test]
+fn graphs() {
+    Command::new("clang++-16")
+        .args([
+            "-O3",
+            "-S",
+            "-emit-llvm",
+            "-fno-discard-value-names",
+            "testdata/graphs/main.cpp",
+            "-o",
+            file_path_!(graphs, ".ll"),
+        ])
+        .status()
+        .unwrap()
+        .exit_ok()
+        .unwrap();
+
+    test_llvm!(
+        graphs,
+        [
+            "gplus_combined.txt",
+            "116601386475273901307",
+            "112922373559516660837",
+        ]
+    );
+}

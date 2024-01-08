@@ -1,3 +1,4 @@
 /target
 testdata/*/*
 !testdata/*/*.gv
+!testdata/*/.gitignore
