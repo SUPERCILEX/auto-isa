@@ -96,5 +96,42 @@ int main(int argc, char* argv[]) {
         std::cout << std::endl;
     }
 
+    {
+        size_t total_vertices = num_vertices(g);
+        size_t processed_vertices = 0;
+        size_t last_printed_percent = 0;
+
+        // Perform triangle count
+        size_t triangle_count = 0;
+        graph_traits<Graph>::vertex_iterator vi, vi_end;
+        for (tie(vi, vi_end) = vertices(g); vi != vi_end; ++vi) {
+            graph_traits<Graph>::out_edge_iterator ei, ei_end;
+            for (tie(ei, ei_end) = out_edges(*vi, g); ei != ei_end; ++ei) {
+                graph_traits<Graph>::out_edge_iterator ej, ej_end;
+                for (tie(ej, ej_end) = out_edges(target(*ei, g), g); ej != ej_end; ++ej) {
+//                    graph_traits<Graph>::out_edge_iterator ek, ek_end;
+//                    for (tie(ek, ek_end) = out_edges(target(*ej, g), g); ek != ek_end; ++ek) {
+                        if (target(*ej, g) == *vi) {
+                            ++triangle_count;
+                        }
+//                    }
+                }
+            }
+
+            ++processed_vertices;
+
+            // Calculate and print progress for each percent of vertices processed
+            size_t percent = (processed_vertices * 100) / total_vertices;
+            if (percent != last_printed_percent) {
+                std::cout << "Progress: " << percent << "%" << std::endl;
+                last_printed_percent = percent;
+            }
+        }
+
+        triangle_count /= 3;
+        std::cout << "Number of triangles in the graph: " << triangle_count << std::endl;
+        std::cout << std::endl;
+    }
+
     return 0;
 }
