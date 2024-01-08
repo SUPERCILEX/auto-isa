@@ -198,6 +198,9 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
                 if instruction.get_opcode() == InstructionOpcode::Load {
                     write_path_to_graph(cache, state);
                 } else {
+                    if instruction.get_type().is_pointer_type() {
+                        write_path_to_graph(cache, state);
+                    }
                     maybe_add_compute_unit(cache, state, instruction);
                 }
                 cache.path.pop();
