@@ -73,24 +73,27 @@ int main(int argc, char* argv[]) {
     std::cout << "Number of edges: " << num_edges(g) << std::endl;
     std::cout << std::endl;
 
-    // Find the vertex descriptors for the specified node IDs
-    auto start_vertex_it = id_to_vertex.find(start_node_id);
-    auto end_vertex_it = id_to_vertex.find(end_node_id);
+    {
+        // Find the vertex descriptors for the specified node IDs
+        auto start_vertex_it = id_to_vertex.find(start_node_id);
+        auto end_vertex_it = id_to_vertex.find(end_node_id);
 
-    if (start_vertex_it != id_to_vertex.end() && end_vertex_it != id_to_vertex.end()) {
-        Vertex start_vertex = start_vertex_it->second;
-        Vertex end_vertex = end_vertex_it->second;
+        if (start_vertex_it != id_to_vertex.end() && end_vertex_it != id_to_vertex.end()) {
+            Vertex start_vertex = start_vertex_it->second;
+            Vertex end_vertex = end_vertex_it->second;
 
-        // Perform BFS from start_node_id to end_node_id
-        std::vector<int> distances(num_vertices(g), 0);
-        breadth_first_search(g, start_vertex,
-            visitor(make_bfs_visitor(record_distances(&distances[0], on_tree_edge{}))));
+            // Perform BFS from start_node_id to end_node_id
+            std::vector<int> distances(num_vertices(g), 0);
+            breadth_first_search(g, start_vertex,
+                visitor(make_bfs_visitor(record_distances(&distances[0], on_tree_edge{}))));
 
-        // Output BFS distance from start_node_id to end_node_id
-        std::cout << "BFS Distance from node " << start_node_id << " to node " << end_node_id << ": "
-                  << distances[end_vertex] << std::endl;
-    } else {
-        std::cerr << "One or both of the specified nodes not found in the graph." << std::endl;
+            // Output BFS distance from start_node_id to end_node_id
+            std::cout << "BFS Distance from node " << start_node_id << " to node " << end_node_id << ": "
+                      << distances[end_vertex] << std::endl;
+        } else {
+            std::cerr << "One or both of the specified nodes not found in the graph." << std::endl;
+        }
+        std::cout << std::endl;
     }
 
     return 0;
