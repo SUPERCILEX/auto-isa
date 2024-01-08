@@ -131,12 +131,6 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
             if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
                 continue;
             }
-            {
-                let mut cache = CacheContext(cache);
-                if contains_alloca(&mut cache, instr) {
-                    continue;
-                }
-            }
 
             let mut cache = CacheContext(cache);
 
@@ -152,31 +146,6 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
             }
         }
     }
-}
-
-fn contains_alloca<'ctx, S>(
-    cache: &mut Cache<'ctx, S>,
-    instruction: InstructionValue<'ctx>,
-) -> bool {
-    if !cache.seen.insert(instruction.as_value_ref()) {
-        return false;
-    }
-
-    for i in 0..instruction.get_num_operands() {
-        if let Some(op) = instruction.get_operand(i) {
-            if let Some(instruction) = match op {
-                Either::Left(value) => value.as_instruction_value(),
-                Either::Right(block) => block.get_last_instruction(),
-            } {
-                if instruction.get_opcode() == InstructionOpcode::Alloca
-                    || contains_alloca(cache, instruction)
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    false
 }
 
 fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
@@ -196,10 +165,10 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
             } {
                 cache.path.push(instruction);
                 if instruction.get_opcode() == InstructionOpcode::Load {
-                    write_path_to_graph(cache, state);
+                    maybe_write_path_to_graph(cache, state);
                 } else {
                     if instruction.get_type().is_pointer_type() {
-                        write_path_to_graph(cache, state);
+                        maybe_write_path_to_graph(cache, state);
                     }
                     maybe_add_compute_unit(cache, state, instruction);
                 }
@@ -209,10 +178,17 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     }
 }
 
-fn write_path_to_graph<'ctx, S: BuildHasher>(
+fn maybe_write_path_to_graph<'ctx, S: BuildHasher>(
     Cache { path, edges, .. }: &mut Cache<'ctx, S>,
     State { ids, .. }: &mut State<'ctx, S>,
 ) {
+    if path
+        .iter()
+        .any(|instr| instr.get_opcode() == InstructionOpcode::Alloca)
+    {
+        return;
+    }
+
     for edge in path.windows(2) {
         let &[from, to] = edge else {
             unreachable!();

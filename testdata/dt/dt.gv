@@ -1,3 +1,43 @@
 strict digraph {
 rankdir=BT
+subgraph {
+"0_36" [label="GetElementPtr"]
+"0_29" [label="Load"]
+"0_36" -> "0_29"
+"0_37" [label="Load"]
+"0_37" -> "0_36"
+cluster=true
+label="Static occurrences: 2\nDynamic executions: 536870912"
+}
+subgraph {
+"1_40" [label="FDiv"]
+"1_37" [label="Load"]
+"1_40" -> "1_37"
+"1_39" [label="Load"]
+"1_40" -> "1_39"
+"1_38" [label="GetElementPtr"]
+"1_28" [label="Load"]
+"1_38" -> "1_28"
+"1_41" [label="Store"]
+"1_41" -> "1_40"
+"1_41" -> "1_38"
+cluster=true
+label="Static occurrences: 1\nDynamic executions: 268435456"
+}
+subgraph {
+"2_16" [label="GetElementPtr"]
+"2_15" [label="Load"]
+"2_16" -> "2_15"
+"2_17" [label="Store"]
+"2_17" -> "2_16"
+cluster=true
+label="Static occurrences: 2\nDynamic executions: 4096"
+}
+subgraph {
+"3_48" [label="Load"]
+"3_28" [label="Load"]
+"3_48" -> "3_28"
+cluster=true
+label="Static occurrences: 1\nDynamic executions: 1"
+}
 }

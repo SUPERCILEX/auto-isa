@@ -167,4 +167,11 @@ subgraph {
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 100000"
 }
+subgraph {
+"4_115" [label="Store"]
+"4_114" [label="GetElementPtr"]
+"4_115" -> "4_114"
+cluster=true
+label="Static occurrences: 2\nDynamic executions: 2048"
+}
 }
