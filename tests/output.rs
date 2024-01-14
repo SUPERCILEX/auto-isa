@@ -12,22 +12,15 @@ use std::{
 
 use expect_test::expect_file;
 
-macro_rules! file_path_ {
+macro_rules! file_ext_ {
     ($name:ident, $suffix:expr) => {
-        concat!(
-            "testdata/",
-            stringify!($name),
-            "/",
-            stringify!($name),
-            $suffix
-        )
+        concat!(stringify!($name), $suffix)
     };
 }
 
 macro_rules! test_llvm {
     ($name:ident, $cmd_args:expr) => {
         let dir = concat!("testdata/", stringify!($name));
-        create_dir_all(dir).unwrap();
 
         Command::new(env::var("CARGO").unwrap())
             .args(["build"])
@@ -36,21 +29,22 @@ macro_rules! test_llvm {
             .exit_ok()
             .unwrap();
 
-        macro_rules! file_path {
+        macro_rules! file_ext {
             ($suffix: expr) => {
-                file_path_!($name, $suffix)
+                file_ext_!($name, $suffix)
             };
         }
 
         let mut opt_result = Command::new("opt-16")
             .args([
-                "--load-pass-plugin=target/debug/libauto_isa.so",
+                "--load-pass-plugin=../../target/debug/libauto_isa.so",
                 "--passes=auto-isa",
                 "-S",
-                file_path!(".ll"),
+                file_ext!(".ll"),
                 "-o",
-                file_path!("-instr.ll"),
+                file_ext!("-instr.ll"),
             ])
+            .current_dir(dir)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .spawn()
@@ -67,10 +61,11 @@ macro_rules! test_llvm {
                 "-O1",
                 "-fprofile-generate",
                 "-lm",
-                file_path!("-instr.ll"),
+                file_ext!("-instr.ll"),
                 "-o",
-                file_path!(""),
+                file_ext!(""),
             ])
+            .current_dir(dir)
             .status()
             .unwrap()
             .exit_ok()
@@ -129,7 +124,8 @@ macro_rules! test_llvm {
         .assert_eq(&opt_result);
 
         Command::new("dot")
-            .args(["-O", "-Tpdf", file_path!(".gv")])
+            .args(["-O", "-Tpdf", file_ext!(".gv")])
+            .current_dir(dir)
             .status()
             .unwrap()
             .exit_ok()
@@ -142,6 +138,9 @@ macro_rules! test {
         #[test]
         #[allow(clippy::too_many_lines)]
         fn $name() {
+            let dir = concat!("testdata/", stringify!($name));
+            create_dir_all(dir).unwrap();
+
             Command::new("clang-16")
                 .args([
                     "-O1",
@@ -149,10 +148,11 @@ macro_rules! test {
                     "-S",
                     "-emit-llvm",
                     "-fno-discard-value-names",
-                    concat!("testdata/", stringify!($name), $ext),
+                    file_ext_!($name, $ext),
                     "-o",
-                    file_path_!($name, ".ll"),
+                    concat!(stringify!($name), "/", file_ext_!($name, ".ll")),
                 ])
+                .current_dir("testdata")
                 .status()
                 .unwrap()
                 .exit_ok()
@@ -201,10 +201,11 @@ fn graphs() {
             "-S",
             "-emit-llvm",
             "-fno-discard-value-names",
-            "testdata/graphs/main.cpp",
+            "main.cpp",
             "-o",
-            file_path_!(graphs, ".ll"),
+            "graphs.ll",
         ])
+        .current_dir("testdata/graphs")
         .status()
         .unwrap()
         .exit_ok()
