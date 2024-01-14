@@ -48,14 +48,14 @@ impl LlvmModulePass for AutoIsaPass {
                 find_non_local_memory_compute_units(&mut cache, &mut state, function);
             }
         }
-        instrument_compute_units(&state, module);
-        split_into_next_stage(state);
+        split_into_next_stage(&state);
 
+        instrument_compute_units(&state, module);
         PreservedAnalyses::None
     }
 }
 
-fn split_into_next_stage<S: BuildHasher>(state: State<S>) {
+fn split_into_next_stage<S: BuildHasher>(state: &State<S>) {
     let Parent(child) = unsafe { rustix::runtime::fork() }.unwrap() else {
         return;
     };
@@ -102,18 +102,17 @@ fn split_into_next_stage<S: BuildHasher>(state: State<S>) {
     }
 
     print_compute_units(state, &dynamic_counts);
-    std::process::exit(0);
 }
 
 fn print_compute_units<S: BuildHasher>(
     State {
         ids, compute_units, ..
-    }: State<S>,
+    }: &State<S>,
     dynamic_counts: &HashMap<u32, u64>,
 ) {
     let compute_units = {
         let mut compute_units = compute_units
-            .into_iter()
+            .iter()
             .map(|(graph, roots)| {
                 let dynamic_count = roots
                     .iter()
