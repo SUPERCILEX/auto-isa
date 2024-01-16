@@ -103,18 +103,4 @@ rank=min
 cluster=true
 label="Static occurrences: 14\nDynamic executions: 13"
 }
-subgraph {
-"7_132" [label="Call"]
-"7_131" [label="Load"]
-"7_132" -> "7_131"
-{
-rank=min
-"7_134" [label="Store"]
-}
-"7_133" [label="Trunc"]
-"7_134" -> "7_133"
-"7_133" -> "7_132"
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
-}
 }

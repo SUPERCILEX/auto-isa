@@ -11,69 +11,13 @@ cluster=true
 label="Static occurrences: 31\nDynamic executions: 1500000016"
 }
 subgraph {
-"1_29" [label="Call"]
-"1_26" [label="Call"]
-"1_29" -> "1_26"
-"1_23" [label="Call"]
-"1_26" -> "1_23"
-"1_22" [label="FMul"]
-"1_23" -> "1_22"
-"1_14" [label="Load"]
-"1_29" -> "1_14"
-"1_0" [label="Load"]
-"1_23" -> "1_0"
-"1_19" [label="Load"]
-"1_23" -> "1_19"
-"1_9" [label="Load"]
-"1_26" -> "1_9"
-"1_28" [label="Load"]
-"1_29" -> "1_28"
-"1_25" [label="Load"]
-"1_26" -> "1_25"
-"1_21" [label="Load"]
-"1_22" -> "1_21"
-"1_3" [label="Load"]
-"1_22" -> "1_3"
 {
 rank=min
 "1_128" [label="Store"]
 }
-"1_128" -> "1_29"
 "1_127" [label="GetElementPtr"]
 "1_128" -> "1_127"
 cluster=true
 label="Static occurrences: 15\nDynamic executions: 750000000"
-}
-subgraph {
-"2_17" [label="Call"]
-"2_12" [label="Call"]
-"2_17" -> "2_12"
-"2_7" [label="Call"]
-"2_12" -> "2_7"
-"2_6" [label="FMul"]
-"2_7" -> "2_6"
-"2_16" [label="Load"]
-"2_17" -> "2_16"
-"2_9" [label="Load"]
-"2_12" -> "2_9"
-"2_11" [label="Load"]
-"2_12" -> "2_11"
-"2_0" [label="Load"]
-"2_7" -> "2_0"
-"2_1" [label="Load"]
-"2_7" -> "2_1"
-"2_14" [label="Load"]
-"2_17" -> "2_14"
-"2_3" [label="Load"]
-"2_6" -> "2_3"
-"2_5" [label="Load"]
-"2_6" -> "2_5"
-{
-rank=min
-"2_126" [label="Store"]
-}
-"2_126" -> "2_17"
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 50000000"
 }
 }

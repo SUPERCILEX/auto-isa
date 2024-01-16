@@ -13,16 +13,11 @@ cluster=true
 label="Static occurrences: 10\nDynamic executions: 191"
 }
 subgraph {
-"1_274" [label="Call"]
-"1_259" [label="Load"]
-"1_274" -> "1_259"
-"1_257" [label="Load"]
-"1_274" -> "1_257"
 "1_281" [label="GetElementPtr"]
 "1_280" [label="Load"]
 "1_281" -> "1_280"
 "1_277" [label="Phi"]
-"1_277" -> "1_274"
+"1_257" [label="Load"]
 "1_277" -> "1_257"
 {
 rank=min
@@ -64,11 +59,6 @@ subgraph {
 "4_306" [label="Add"]
 "4_305" [label="Load"]
 "4_306" -> "4_305"
-"4_274" [label="Call"]
-"4_257" [label="Load"]
-"4_274" -> "4_257"
-"4_259" [label="Load"]
-"4_274" -> "4_259"
 "4_308" [label="GetElementPtr"]
 "4_255" [label="Load"]
 "4_308" -> "4_255"
@@ -80,7 +70,7 @@ subgraph {
 "4_304" [label="Phi"]
 "4_304" -> "4_290"
 "4_277" [label="Phi"]
-"4_277" -> "4_274"
+"4_257" [label="Load"]
 "4_277" -> "4_257"
 "4_304" -> "4_298"
 "4_302" [label="SDiv"]
