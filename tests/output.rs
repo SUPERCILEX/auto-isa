@@ -23,7 +23,7 @@ macro_rules! test_llvm {
         let dir = concat!("testdata/", stringify!($name));
 
         Command::new(env::var("CARGO").unwrap())
-            .args(["build"])
+            .arg("build")
             .status()
             .unwrap()
             .exit_ok()
@@ -39,11 +39,9 @@ macro_rules! test_llvm {
             .args([
                 "--load-pass-plugin=../../target/debug/libauto_isa.so",
                 "--passes=auto-isa",
-                "-S",
-                file_ext!(".ll"),
-                "-o",
-                file_ext!("-instr.ll"),
             ])
+            .arg("-S")
+            .args([file_ext!(".ll"), "-o", file_ext!("-instr.ll")])
             .current_dir(dir)
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
@@ -57,14 +55,8 @@ macro_rules! test_llvm {
             .unwrap();
 
         Command::new("clang++-16")
-            .args([
-                "-O1",
-                "-fprofile-generate",
-                "-lm",
-                file_ext!("-instr.ll"),
-                "-o",
-                file_ext!(""),
-            ])
+            .args(["-O1", "-lm", "-fprofile-generate"])
+            .args([file_ext!("-instr.ll"), "-o", file_ext!("")])
             .current_dir(dir)
             .status()
             .unwrap()
@@ -97,13 +89,8 @@ macro_rules! test_llvm {
         }
 
         Command::new("llvm-profdata-16")
-            .args([
-                "show",
-                "--all-functions",
-                "--counts",
-                "--text",
-                &*profdata_file().next().unwrap().path().to_string_lossy(),
-            ])
+            .args(["show", "--all-functions", "--counts", "--text"])
+            .arg(&*profdata_file().next().unwrap().path().to_string_lossy())
             .stdout(Stdio::from(opt_result.stdin.take().unwrap()))
             .status()
             .unwrap()
@@ -142,12 +129,9 @@ macro_rules! test {
             create_dir_all(dir).unwrap();
 
             Command::new("clang-16")
+                .args(["-O1", "-Wno-everything", "-fno-discard-value-names"])
+                .args(["-S", "-emit-llvm"])
                 .args([
-                    "-O1",
-                    "-Wno-everything",
-                    "-S",
-                    "-emit-llvm",
-                    "-fno-discard-value-names",
                     file_ext_!($name, $ext),
                     "-o",
                     concat!(stringify!($name), "/", file_ext_!($name, ".ll")),
@@ -196,15 +180,9 @@ test_cpp!(stepanov_v1p2);
 #[test]
 fn graphs() {
     Command::new("clang++-16")
-        .args([
-            "-O3",
-            "-S",
-            "-emit-llvm",
-            "-fno-discard-value-names",
-            "main.cpp",
-            "-o",
-            "graphs.ll",
-        ])
+        .args(["-O3", "-fno-discard-value-names"])
+        .args(["-S", "-emit-llvm"])
+        .args(["main.cpp", "-o", "graphs.ll"])
         .current_dir("testdata/graphs")
         .status()
         .unwrap()

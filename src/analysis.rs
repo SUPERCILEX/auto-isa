@@ -157,23 +157,21 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         return;
     }
 
-    for i in 0..instruction.get_num_operands() {
-        if let Some(op) = instruction.get_operand(i) {
-            if let Some(instruction) = match op {
-                Either::Left(value) => value.as_instruction_value(),
-                Either::Right(block) => block.get_last_instruction(),
-            } {
-                cache.path.push(instruction);
-                if instruction.get_opcode() == InstructionOpcode::Load {
+    for op in (0..instruction.get_num_operands()).filter_map(|i| instruction.get_operand(i)) {
+        if let Some(instruction) = match op {
+            Either::Left(value) => value.as_instruction_value(),
+            Either::Right(block) => block.get_last_instruction(),
+        } {
+            cache.path.push(instruction);
+            if instruction.get_opcode() == InstructionOpcode::Load {
+                maybe_write_path_to_graph(cache, state);
+            } else {
+                if instruction.get_type().is_pointer_type() {
                     maybe_write_path_to_graph(cache, state);
-                } else {
-                    if instruction.get_type().is_pointer_type() {
-                        maybe_write_path_to_graph(cache, state);
-                    }
-                    maybe_add_compute_unit(cache, state, instruction);
                 }
-                cache.path.pop();
+                maybe_add_compute_unit(cache, state, instruction);
             }
+            cache.path.pop();
         }
     }
 }
