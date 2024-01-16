@@ -100,10 +100,10 @@ subgraph {
 "6_600" -> "6_572"
 "6_588" [label="Load"]
 "6_591" -> "6_588"
-"6_558" [label="Load"]
-"6_572" -> "6_558"
 "6_583" [label="Load"]
 "6_591" -> "6_583"
+"6_558" [label="Load"]
+"6_572" -> "6_558"
 "6_560" [label="Load"]
 "6_572" -> "6_560"
 {
@@ -737,12 +737,12 @@ cluster=true
 label="Static occurrences: 3\nDynamic executions: 20400136"
 }
 subgraph {
-"34_745" [label="Add"]
-"34_727" [label="Add"]
-"34_745" -> "34_727"
 "34_790" [label="Add"]
 "34_781" [label="Add"]
 "34_790" -> "34_781"
+"34_745" [label="Add"]
+"34_727" [label="Add"]
+"34_745" -> "34_727"
 "34_726" [label="Load"]
 "34_727" -> "34_726"
 "34_763" [label="Sub"]
@@ -943,12 +943,12 @@ cluster=true
 label="Static occurrences: 1\nDynamic executions: 18000120"
 }
 subgraph {
-"42_429" [label="Add"]
-"42_417" [label="Add"]
-"42_429" -> "42_417"
 "42_416" [label="Add"]
 "42_409" [label="Add"]
 "42_416" -> "42_409"
+"42_429" [label="Add"]
+"42_417" [label="Add"]
+"42_429" -> "42_417"
 "42_417" -> "42_416"
 "42_406" [label="Load"]
 "42_409" -> "42_406"

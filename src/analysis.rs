@@ -9,7 +9,9 @@ use either::Either;
 use llvm_plugin::{
     inkwell::{
         llvm_sys::prelude::LLVMValueRef,
-        values::{AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue},
+        values::{
+            AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue, PhiValue,
+        },
     },
     utils::InstructionIterator,
 };
@@ -157,12 +159,21 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         return;
     }
 
-    for instruction in (0..instruction.get_num_operands())
+    let mut if_phi = PhiValue::try_from(instruction).map(|phi| {
+        (0..phi.count_incoming())
+            .filter_map(move |i| phi.get_incoming(i))
+            .filter_map(|(value, _)| value.as_instruction_value())
+    });
+    let mut if_not_phi = (0..instruction.get_num_operands())
         .filter_map(|i| instruction.get_operand(i))
         .filter_map(|op| match op {
             Either::Left(value) => value.as_instruction_value(),
-            Either::Right(block) => block.get_last_instruction(),
-        })
+            Either::Right(_) => unreachable!(),
+        });
+    for instruction in if_phi
+        .as_mut()
+        .map(|i| i as &mut dyn Iterator<Item = InstructionValue>)
+        .unwrap_or(&mut if_not_phi)
     {
         cache.path.push(instruction);
         let op = instruction.get_opcode();
