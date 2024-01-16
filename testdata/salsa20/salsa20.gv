@@ -1,7 +1,10 @@
 strict digraph {
 rankdir=BT
 subgraph {
+{
+rank=min
 "0_19" [label="Load"]
+}
 "0_3" [label="GetElementPtr"]
 "0_19" -> "0_3"
 cluster=true
@@ -13,7 +16,10 @@ subgraph {
 "1_173" -> "1_172"
 "1_170" [label="Load"]
 "1_173" -> "1_170"
+{
+rank=min
 "1_175" [label="Store"]
+}
 "1_175" -> "1_173"
 "1_174" [label="GetElementPtr"]
 "1_175" -> "1_174"
@@ -28,7 +34,10 @@ subgraph {
 "2_214" -> "2_213"
 "2_194" [label="Load"]
 "2_208" -> "2_194"
+{
+rank=min
 "2_215" [label="Store"]
+}
 "2_215" -> "2_214"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 537919488"
@@ -203,7 +212,10 @@ subgraph {
 "3_65" -> "3_164"
 "3_131" [label="Xor"]
 "3_62" -> "3_131"
+{
+rank=min
 "3_38" [label="Store"]
+}
 "3_5" [label="GetElementPtr"]
 "3_38" -> "3_5"
 "3_146" [label="Xor"]
@@ -399,7 +411,10 @@ subgraph {
 "4_66" -> "4_143"
 "4_131" [label="Xor"]
 "4_62" -> "4_131"
+{
+rank=min
 "4_37" [label="Store"]
+}
 "4_4" [label="GetElementPtr"]
 "4_37" -> "4_4"
 "4_137" [label="Xor"]
@@ -593,7 +608,10 @@ subgraph {
 "5_54" -> "5_155"
 "5_119" [label="Xor"]
 "5_58" -> "5_119"
+{
+rank=min
 "5_39" [label="Store"]
+}
 "5_6" [label="GetElementPtr"]
 "5_39" -> "5_6"
 "5_140" [label="Xor"]
@@ -792,7 +810,10 @@ subgraph {
 "6_53" -> "6_128"
 "6_152" [label="Xor"]
 "6_61" -> "6_152"
+{
+rank=min
 "6_44" [label="Store"]
+}
 "6_11" [label="GetElementPtr"]
 "6_44" -> "6_11"
 "6_131" [label="Xor"]
@@ -1017,7 +1038,10 @@ subgraph {
 "7_65" -> "7_164"
 "7_137" [label="Xor"]
 "7_55" -> "7_137"
+{
+rank=min
 "7_43" [label="Store"]
+}
 "7_10" [label="GetElementPtr"]
 "7_43" -> "7_10"
 "7_152" [label="Xor"]
@@ -1227,7 +1251,10 @@ subgraph {
 "8_66" -> "8_143"
 "8_164" [label="Xor"]
 "8_65" -> "8_164"
+{
+rank=min
 "8_46" [label="Store"]
+}
 "8_13" [label="GetElementPtr"]
 "8_46" -> "8_13"
 "8_122" [label="Xor"]
@@ -1431,7 +1458,10 @@ subgraph {
 "9_58" -> "9_119"
 "9_143" [label="Xor"]
 "9_66" -> "9_143"
+{
+rank=min
 "9_42" [label="Store"]
+}
 "9_9" [label="GetElementPtr"]
 "9_42" -> "9_9"
 "9_158" [label="Xor"]
@@ -1614,7 +1644,10 @@ subgraph {
 "10_62" -> "10_131"
 "10_119" [label="Xor"]
 "10_58" -> "10_119"
+{
+rank=min
 "10_50" [label="Store"]
+}
 "10_17" [label="GetElementPtr"]
 "10_50" -> "10_17"
 "10_134" [label="Xor"]
@@ -1816,7 +1849,10 @@ subgraph {
 "11_58" -> "11_119"
 "11_131" [label="Xor"]
 "11_62" -> "11_131"
+{
+rank=min
 "11_45" [label="Store"]
+}
 "11_12" [label="GetElementPtr"]
 "11_45" -> "11_12"
 "11_161" [label="Xor"]
@@ -2029,7 +2065,10 @@ subgraph {
 "12_62" -> "12_131"
 "12_122" [label="Xor"]
 "12_64" -> "12_122"
+{
+rank=min
 "12_41" [label="Store"]
+}
 "12_8" [label="GetElementPtr"]
 "12_41" -> "12_8"
 "12_149" [label="Xor"]
@@ -2228,7 +2267,10 @@ subgraph {
 "13_53" -> "13_128"
 "13_152" [label="Xor"]
 "13_61" -> "13_152"
+{
+rank=min
 "13_48" [label="Store"]
+}
 "13_15" [label="GetElementPtr"]
 "13_48" -> "13_15"
 "13_143" [label="Xor"]
@@ -2427,7 +2469,10 @@ subgraph {
 "14_58" -> "14_119"
 "14_143" [label="Xor"]
 "14_66" -> "14_143"
+{
+rank=min
 "14_36" [label="Store"]
+}
 "14_3" [label="GetElementPtr"]
 "14_36" -> "14_3"
 "14_155" [label="Xor"]
@@ -2633,7 +2678,10 @@ subgraph {
 "15_62" -> "15_131"
 "15_143" [label="Xor"]
 "15_66" -> "15_143"
+{
+rank=min
 "15_47" [label="Store"]
+}
 "15_14" [label="GetElementPtr"]
 "15_47" -> "15_14"
 "15_164" [label="Xor"]
@@ -2832,7 +2880,10 @@ subgraph {
 "16_62" -> "16_131"
 "16_143" [label="Xor"]
 "16_66" -> "16_143"
+{
+rank=min
 "16_40" [label="Store"]
+}
 "16_7" [label="GetElementPtr"]
 "16_40" -> "16_7"
 "16_119" [label="Xor"]
@@ -3050,7 +3101,10 @@ subgraph {
 "17_61" -> "17_152"
 "17_143" [label="Xor"]
 "17_66" -> "17_143"
+{
+rank=min
 "17_35" [label="Store"]
+}
 "17_128" [label="Xor"]
 "17_35" -> "17_128"
 "17_83" -> "17_82"
@@ -3095,7 +3149,10 @@ cluster=true
 label="Static occurrences: 1\nDynamic executions: 33619969"
 }
 subgraph {
+{
+rank=min
 "18_203" [label="Store"]
+}
 "18_202" [label="GetElementPtr"]
 "18_203" -> "18_202"
 cluster=true
@@ -3110,7 +3167,10 @@ subgraph {
 "19_190" [label="GetElementPtr"]
 "19_189" [label="ZExt"]
 "19_190" -> "19_189"
+{
+rank=min
 "19_191" [label="Load"]
+}
 "19_191" -> "19_190"
 "19_189" -> "19_187"
 cluster=true
@@ -3122,7 +3182,10 @@ subgraph {
 "20_186" -> "20_181"
 "20_187" [label="And"]
 "20_187" -> "20_186"
+{
+rank=min
 "20_188" [label="Store"]
+}
 "20_188" -> "20_187"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 1"

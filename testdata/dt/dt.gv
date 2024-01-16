@@ -4,7 +4,10 @@ subgraph {
 "0_36" [label="GetElementPtr"]
 "0_29" [label="Load"]
 "0_36" -> "0_29"
+{
+rank=min
 "0_37" [label="Load"]
+}
 "0_37" -> "0_36"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 536870912"
@@ -18,7 +21,10 @@ subgraph {
 "1_38" [label="GetElementPtr"]
 "1_28" [label="Load"]
 "1_38" -> "1_28"
+{
+rank=min
 "1_41" [label="Store"]
+}
 "1_41" -> "1_40"
 "1_41" -> "1_38"
 cluster=true
@@ -28,13 +34,19 @@ subgraph {
 "2_16" [label="GetElementPtr"]
 "2_15" [label="Load"]
 "2_16" -> "2_15"
+{
+rank=min
 "2_17" [label="Store"]
+}
 "2_17" -> "2_16"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 4096"
 }
 subgraph {
+{
+rank=min
 "3_48" [label="Load"]
+}
 "3_28" [label="Load"]
 "3_48" -> "3_28"
 cluster=true

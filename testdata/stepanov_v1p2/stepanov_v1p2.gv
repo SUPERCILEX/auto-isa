@@ -4,7 +4,10 @@ subgraph {
 "0_215" [label="GetElementPtr"]
 "0_213" [label="Phi"]
 "0_215" -> "0_213"
+{
+rank=min
 "0_216" [label="Load"]
+}
 "0_216" -> "0_213"
 "0_213" -> "0_215"
 "0_201" [label="Load"]
@@ -16,7 +19,10 @@ subgraph {
 "1_383" [label="GetElementPtr"]
 "1_381" [label="Phi"]
 "1_383" -> "1_381"
+{
+rank=min
 "1_384" [label="Load"]
+}
 "1_384" -> "1_383"
 "1_381" -> "1_383"
 "1_369" [label="Load"]
@@ -28,7 +34,10 @@ subgraph {
 "2_182" [label="GetElementPtr"]
 "2_154" [label="Load"]
 "2_182" -> "2_154"
+{
+rank=min
 "2_183" [label="Load"]
+}
 "2_183" -> "2_182"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 500000000"
@@ -40,13 +49,19 @@ subgraph {
 "3_140" -> "3_141"
 "3_136" [label="Load"]
 "3_140" -> "3_136"
+{
+rank=min
 "3_142" [label="Store"]
+}
 "3_142" -> "3_140"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 4000"
 }
 subgraph {
+{
+rank=min
 "4_14" [label="Load"]
+}
 "4_13" [label="GetElementPtr"]
 "4_14" -> "4_13"
 cluster=true
@@ -56,7 +71,10 @@ subgraph {
 "5_104" [label="Add"]
 "5_103" [label="Load"]
 "5_104" -> "5_103"
+{
+rank=min
 "5_105" [label="Store"]
+}
 "5_105" -> "5_104"
 cluster=true
 label="Static occurrences: 14\nDynamic executions: 13"
@@ -74,7 +92,10 @@ subgraph {
 "6_106" -> "6_103"
 "6_99" [label="Sub"]
 "6_100" -> "6_99"
+{
+rank=min
 "6_108" [label="Store"]
+}
 "6_108" -> "6_102"
 "6_108" -> "6_107"
 "6_98" [label="Load"]
@@ -86,7 +107,10 @@ subgraph {
 "7_132" [label="Call"]
 "7_131" [label="Load"]
 "7_132" -> "7_131"
+{
+rank=min
 "7_134" [label="Store"]
+}
 "7_133" [label="Trunc"]
 "7_134" -> "7_133"
 "7_133" -> "7_132"

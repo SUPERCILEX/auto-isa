@@ -7,7 +7,10 @@ subgraph {
 "0_16" [label="GetElementPtr"]
 "0_14" [label="Phi"]
 "0_16" -> "0_14"
+{
+rank=min
 "0_17" [label="Load"]
+}
 "0_17" -> "0_14"
 "0_106" [label="Phi"]
 "0_106" -> "0_6"
@@ -141,7 +144,10 @@ subgraph {
 "1_19" [label="GetElementPtr"]
 "1_18" [label="SExt"]
 "1_19" -> "1_18"
+{
+rank=min
 "1_20" [label="Load"]
+}
 "1_20" -> "1_19"
 "1_17" [label="Load"]
 "1_18" -> "1_17"
@@ -152,7 +158,10 @@ subgraph {
 "2_1" [label="Add"]
 "2_0" [label="Load"]
 "2_1" -> "2_0"
+{
+rank=min
 "2_2" [label="Store"]
+}
 "2_2" -> "2_1"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 204700000"
@@ -161,14 +170,20 @@ subgraph {
 "3_6" [label="GetElementPtr"]
 "3_5" [label="Phi"]
 "3_6" -> "3_5"
+{
+rank=min
 "3_7" [label="Load"]
+}
 "3_7" -> "3_5"
 "3_5" -> "3_6"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 100000"
 }
 subgraph {
+{
+rank=min
 "4_115" [label="Store"]
+}
 "4_114" [label="GetElementPtr"]
 "4_115" -> "4_114"
 cluster=true

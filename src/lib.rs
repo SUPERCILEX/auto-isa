@@ -145,6 +145,11 @@ fn print_compute_units<S: BuildHasher>(
         for (from, to) in &graph.edges {
             let mut create = |node: &InstructionValue| {
                 if seen.insert(node.as_value_ref()) {
+                    let is_root = roots.contains(node);
+                    if is_root {
+                        writeln!(output, "{{\nrank=min",).unwrap();
+                    }
+
                     writeln!(
                         output,
                         "\"{compute_unit_id}_{}\" [label=\"{:?}\"]",
@@ -152,6 +157,10 @@ fn print_compute_units<S: BuildHasher>(
                         node.get_opcode(),
                     )
                     .unwrap();
+
+                    if is_root {
+                        writeln!(output, "}}",).unwrap();
+                    }
                 }
             };
             create(from);

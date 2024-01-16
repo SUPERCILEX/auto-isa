@@ -12,7 +12,10 @@ subgraph {
 "0_621" -> "0_620"
 "0_510" [label="Load"]
 "0_621" -> "0_510"
+{
+rank=min
 "0_622" [label="Load"]
+}
 "0_622" -> "0_621"
 "0_436" [label="Mul"]
 "0_423" [label="Load"]
@@ -39,7 +42,10 @@ subgraph {
 "1_618" -> "1_617"
 "1_502" [label="Load"]
 "1_618" -> "1_502"
+{
+rank=min
 "1_619" [label="Load"]
+}
 "1_619" -> "1_618"
 "1_509" [label="Mul"]
 "1_509" -> "1_508"
@@ -64,7 +70,10 @@ subgraph {
 "2_646" -> "2_510"
 "2_645" [label="SExt"]
 "2_646" -> "2_645"
+{
+rank=min
 "2_647" [label="Load"]
+}
 "2_647" -> "2_646"
 "2_436" [label="Mul"]
 "2_423" [label="Load"]
@@ -95,7 +104,10 @@ subgraph {
 "3_632" -> "3_631"
 "3_502" [label="Load"]
 "3_632" -> "3_502"
+{
+rank=min
 "3_633" [label="Load"]
+}
 "3_633" -> "3_632"
 "3_523" -> "3_522"
 "3_526" [label="Mul"]
@@ -124,7 +136,10 @@ subgraph {
 "4_624" -> "4_623"
 "4_502" [label="Load"]
 "4_624" -> "4_502"
+{
+rank=min
 "4_625" [label="Load"]
+}
 "4_625" -> "4_624"
 "4_517" [label="Mul"]
 "4_517" -> "4_516"
@@ -155,7 +170,10 @@ subgraph {
 "5_426" [label="Load"]
 "5_778" -> "5_426"
 "5_780" -> "5_778"
+{
+rank=min
 "5_788" [label="Store"]
+}
 "5_788" -> "5_787"
 "5_785" [label="Load"]
 "5_788" -> "5_785"
@@ -290,7 +308,10 @@ subgraph {
 "6_591" [label="Load"]
 "6_593" -> "6_591"
 "6_609" -> "6_596"
+{
+rank=min
 "6_751" [label="Store"]
+}
 "6_751" -> "6_748"
 "6_751" -> "6_750"
 cluster=true
@@ -310,7 +331,10 @@ subgraph {
 "7_735" -> "7_734"
 "7_502" [label="Load"]
 "7_735" -> "7_502"
+{
+rank=min
 "7_736" [label="Load"]
+}
 "7_736" -> "7_735"
 "7_582" [label="Mul"]
 "7_582" -> "7_581"
@@ -329,34 +353,49 @@ subgraph {
 "8_66" [label="GetElementPtr"]
 "8_7" [label="Call"]
 "8_66" -> "8_7"
+{
+rank=min
 "8_67" [label="Store"]
+}
 "8_67" -> "8_66"
 cluster=true
 label="Static occurrences: 9\nDynamic executions: 4718592"
 }
 subgraph {
+{
+rank=min
 "9_334" [label="Load"]
+}
 "9_333" [label="GetElementPtr"]
 "9_334" -> "9_333"
 cluster=true
 label="Static occurrences: 28\nDynamic executions: 4182275"
 }
 subgraph {
+{
+rank=min
 "10_8" [label="Store"]
+}
 "10_7" [label="Call"]
 "10_8" -> "10_7"
 cluster=true
 label="Static occurrences: 8\nDynamic executions: 7"
 }
 subgraph {
+{
+rank=min
 "11_315" [label="Store"]
+}
 "11_314" [label="GetElementPtr"]
 "11_315" -> "11_314"
 cluster=true
 label="Static occurrences: 6\nDynamic executions: 0"
 }
 subgraph {
+{
+rank=min
 "12_877" [label="Store"]
+}
 "12_876" [label="Trunc"]
 "12_877" -> "12_876"
 "12_874" [label="Load"]
@@ -388,7 +427,10 @@ subgraph {
 "13_379" [label="Load"]
 "13_386" -> "13_379"
 "13_403" -> "13_402"
+{
+rank=min
 "13_408" [label="Store"]
+}
 "13_408" -> "13_407"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0"
@@ -420,7 +462,10 @@ subgraph {
 "14_353" -> "14_338"
 "14_362" -> "14_361"
 "14_343" -> "14_342"
+{
+rank=min
 "14_367" [label="Store"]
+}
 "14_367" -> "14_352"
 "14_367" -> "14_366"
 cluster=true

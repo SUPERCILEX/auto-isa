@@ -1,7 +1,10 @@
 strict digraph {
 rankdir=BT
 subgraph {
+{
+rank=min
 "0_3" [label="Load"]
+}
 "0_2" [label="GetElementPtr"]
 "0_3" -> "0_2"
 cluster=true
@@ -31,7 +34,10 @@ subgraph {
 "1_22" -> "1_21"
 "1_3" [label="Load"]
 "1_22" -> "1_3"
+{
+rank=min
 "1_128" [label="Store"]
+}
 "1_128" -> "1_29"
 "1_127" [label="GetElementPtr"]
 "1_128" -> "1_127"
@@ -62,7 +68,10 @@ subgraph {
 "2_6" -> "2_3"
 "2_5" [label="Load"]
 "2_6" -> "2_5"
+{
+rank=min
 "2_126" [label="Store"]
+}
 "2_126" -> "2_17"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 50000000"

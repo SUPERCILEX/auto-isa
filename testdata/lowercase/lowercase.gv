@@ -4,7 +4,10 @@ subgraph {
 "0_24" [label="GetElementPtr"]
 "0_5" [label="Call"]
 "0_24" -> "0_5"
+{
+rank=min
 "0_25" [label="Load"]
+}
 "0_25" -> "0_24"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 4960000000"
@@ -23,7 +26,10 @@ subgraph {
 "1_28" [label="Select"]
 "1_29" -> "1_28"
 "1_28" -> "1_27"
+{
+rank=min
 "1_31" [label="Store"]
+}
 "1_31" -> "1_30"
 "1_31" -> "1_29"
 cluster=true
