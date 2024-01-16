@@ -11,6 +11,18 @@ use std::{
 };
 
 use expect_test::expect_file;
+macro_rules! dbg_command {
+    ($e:expr) => {{
+        match $e {
+            e => {
+                let mut stdout =
+                    ManuallyDrop::new(unsafe { File::from_raw_fd(rustix::stdio::raw_stdout()) });
+                writeln!(stdout, "$ {e:?}").unwrap();
+                e
+            }
+        }
+    }};
+}
 
 macro_rules! file_ext_ {
     ($name:ident, $suffix:expr) => {
@@ -22,8 +34,7 @@ macro_rules! test_llvm {
     ($name:ident, $cmd_args:expr) => {
         let dir = concat!("testdata/", stringify!($name));
 
-        Command::new(env::var("CARGO").unwrap())
-            .arg("build")
+        dbg_command!(Command::new(env::var("CARGO").unwrap()).arg("build"))
             .status()
             .unwrap()
             .exit_ok()
@@ -35,18 +46,20 @@ macro_rules! test_llvm {
             };
         }
 
-        let mut opt_result = Command::new("opt-16")
-            .args([
-                "--load-pass-plugin=../../target/debug/libauto_isa.so",
-                "--passes=auto-isa",
-            ])
-            .arg("-S")
-            .args([file_ext!(".ll"), "-o", file_ext!("-instr.ll")])
-            .current_dir(dir)
-            .stdin(Stdio::piped())
-            .stdout(Stdio::piped())
-            .spawn()
-            .unwrap();
+        let mut opt_result = dbg_command!(
+            Command::new("opt-16")
+                .args([
+                    "--load-pass-plugin=../../target/debug/libauto_isa.so",
+                    "--passes=auto-isa",
+                ])
+                .arg("-S")
+                .args([file_ext!(".ll"), "-o", file_ext!("-instr.ll")])
+                .current_dir(dir)
+                .stdin(Stdio::piped())
+                .stdout(Stdio::piped())
+        )
+        .spawn()
+        .unwrap();
         opt_result
             .stdout
             .as_mut()
@@ -54,14 +67,16 @@ macro_rules! test_llvm {
             .read_exact(&mut [0])
             .unwrap();
 
-        Command::new("clang++-16")
-            .args(["-O1", "-lm", "-fprofile-generate"])
-            .args([file_ext!("-instr.ll"), "-o", file_ext!("")])
-            .current_dir(dir)
-            .status()
-            .unwrap()
-            .exit_ok()
-            .unwrap();
+        dbg_command!(
+            Command::new("clang++-16")
+                .args(["-O1", "-lm", "-fopenmp", "-fprofile-generate"])
+                .args([file_ext!("-instr.ll"), "-o", file_ext!("")])
+                .current_dir(dir)
+        )
+        .status()
+        .unwrap()
+        .exit_ok()
+        .unwrap();
 
         let profdata_file = || {
             fs::read_dir(dir)
@@ -78,24 +93,25 @@ macro_rules! test_llvm {
             fs::remove_file(file.path()).unwrap();
         }
 
-        {
-            let mut run = Command::new(concat!("./", stringify!($name)));
-            let run = run.args($cmd_args).stdin(Stdio::null()).current_dir(dir);
+        dbg_command!(
+            Command::new(concat!("./", stringify!($name)))
+                .args($cmd_args)
+                .stdin(Stdio::null())
+                .current_dir(dir)
+        )
+        .status()
+        .unwrap();
 
-            let mut stdout = ManuallyDrop::new(unsafe { File::from_raw_fd(1) });
-            writeln!(stdout, "Running command: {run:?}").unwrap();
-
-            run.status().unwrap();
-        }
-
-        Command::new("llvm-profdata-16")
-            .args(["show", "--all-functions", "--counts", "--text"])
-            .arg(&*profdata_file().next().unwrap().path().to_string_lossy())
-            .stdout(Stdio::from(opt_result.stdin.take().unwrap()))
-            .status()
-            .unwrap()
-            .exit_ok()
-            .unwrap();
+        dbg_command!(
+            Command::new("llvm-profdata-16")
+                .args(["show", "--all-functions", "--counts", "--text"])
+                .arg(&*profdata_file().next().unwrap().path().to_string_lossy())
+                .stdout(Stdio::from(opt_result.stdin.take().unwrap()))
+        )
+        .status()
+        .unwrap()
+        .exit_ok()
+        .unwrap();
 
         let opt_result = opt_result.wait_with_output().unwrap();
         opt_result.status.exit_ok().unwrap();
@@ -110,13 +126,15 @@ macro_rules! test_llvm {
         )]
         .assert_eq(&opt_result);
 
-        Command::new("dot")
-            .args(["-O", "-Tpdf", file_ext!(".gv")])
-            .current_dir(dir)
-            .status()
-            .unwrap()
-            .exit_ok()
-            .unwrap();
+        dbg_command!(
+            Command::new("dot")
+                .args(["-O", "-Tpdf", file_ext!(".gv")])
+                .current_dir(dir)
+        )
+        .status()
+        .unwrap()
+        .exit_ok()
+        .unwrap();
     };
 }
 
@@ -179,15 +197,17 @@ test_cpp!(stepanov_v1p2);
 
 #[test]
 fn graphs() {
-    Command::new("clang++-16")
-        .args(["-O3", "-fno-discard-value-names"])
-        .args(["-S", "-emit-llvm"])
-        .args(["main.cpp", "-o", "graphs.ll"])
-        .current_dir("testdata/graphs")
-        .status()
-        .unwrap()
-        .exit_ok()
-        .unwrap();
+    dbg_command!(
+        Command::new("clang++-16")
+            .args(["-O3", "-fno-discard-value-names"])
+            .args(["-S", "-emit-llvm"])
+            .args(["main.cpp", "-o", "graphs.ll"])
+            .current_dir("testdata/graphs")
+    )
+    .status()
+    .unwrap()
+    .exit_ok()
+    .unwrap();
 
     test_llvm!(
         graphs,
