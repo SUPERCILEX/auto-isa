@@ -181,6 +181,7 @@ test_c!(evalloop);
 test_c!(exptree);
 test_c!(himenobmtxpa);
 test_c!(loop_sum);
+test_c!(loop_sum_branch);
 test_c!(lowercase);
 test_c!(matmul_f64_4x4);
 test_c!(oourafft);
