@@ -1,12 +1,11 @@
 #![feature(exit_status_error)]
-#![feature(dir_entry_ext2)]
 
 use std::{
     env, fs,
     fs::{create_dir_all, File},
-    io::{Read, Write},
+    io::{ErrorKind::NotFound, Read, Write},
     mem::ManuallyDrop,
-    os::{fd::FromRawFd, unix::fs::DirEntryExt2},
+    os::fd::FromRawFd,
     process::{Command, Stdio},
 };
 
@@ -78,24 +77,17 @@ macro_rules! test_llvm {
         .exit_ok()
         .unwrap();
 
-        let profdata_file = || {
-            fs::read_dir(dir)
-                .unwrap()
-                .map(|entry| entry.unwrap())
-                .filter(|entry| {
-                    entry
-                        .file_name_ref()
-                        .to_string_lossy()
-                        .ends_with(".profraw")
-                })
-        };
-        for file in profdata_file() {
-            fs::remove_file(file.path()).unwrap();
+        let profile_path = concat!("testdata/", stringify!($name), "/", file_ext!(".profraw"));
+        match fs::remove_file(profile_path) {
+            Err(e) if e.kind() == NotFound => Ok(()),
+            r => r,
         }
+        .unwrap();
 
         dbg_command!(
             Command::new(concat!("./", stringify!($name)))
                 .args($cmd_args)
+                .env("LLVM_PROFILE_FILE", file_ext!(".profraw"))
                 .stdin(Stdio::null())
                 .current_dir(dir)
         )
@@ -105,7 +97,7 @@ macro_rules! test_llvm {
         dbg_command!(
             Command::new("llvm-profdata-16")
                 .args(["show", "--all-functions", "--counts", "--text"])
-                .arg(&*profdata_file().next().unwrap().path().to_string_lossy())
+                .arg(profile_path)
                 .stdout(Stdio::from(opt_result.stdin.take().unwrap()))
         )
         .status()
@@ -121,8 +113,7 @@ macro_rules! test_llvm {
             "../testdata/",
             stringify!($name),
             "/",
-            stringify!($name),
-            ".gv"
+            file_ext!(".gv")
         )]
         .assert_eq(&opt_result);
 
