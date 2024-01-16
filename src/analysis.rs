@@ -167,10 +167,10 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         cache.path.push(instruction);
         let op = instruction.get_opcode();
         if op == InstructionOpcode::Load {
-            maybe_write_path_to_graph(cache, state);
+            write_path_to_graph(cache, state);
         } else {
-            if instruction.get_type().is_pointer_type() {
-                maybe_write_path_to_graph(cache, state);
+            if instruction.get_type().is_pointer_type() && op != InstructionOpcode::Alloca {
+                write_path_to_graph(cache, state);
             }
             if op != InstructionOpcode::Call && op != InstructionOpcode::Invoke {
                 maybe_add_compute_unit(cache, state, instruction);
@@ -180,22 +180,17 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     }
 }
 
-fn maybe_write_path_to_graph<'ctx, S: BuildHasher>(
+fn write_path_to_graph<'ctx, S: BuildHasher>(
     Cache { path, edges, .. }: &mut Cache<'ctx, S>,
     State { ids, .. }: &mut State<'ctx, S>,
 ) {
-    if path
-        .iter()
-        .any(|instr| instr.get_opcode() == InstructionOpcode::Alloca)
-    {
-        return;
-    }
-
-    for edge in path.windows(2) {
+    for edge in path.windows(2).rev() {
         let &[from, to] = edge else {
             unreachable!();
         };
 
-        edges.insert((ids[&from.as_value_ref()], ids[&to.as_value_ref()]));
+        if !edges.insert((ids[&from.as_value_ref()], ids[&to.as_value_ref()])) {
+            break;
+        }
     }
 }
