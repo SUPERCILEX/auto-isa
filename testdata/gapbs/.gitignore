@@ -1,0 +1,3 @@
+# Unfortunately single real benchmarks are multithreaded, their memory operations are
+# non-determinsitic which changes the output each time.
+*.gv

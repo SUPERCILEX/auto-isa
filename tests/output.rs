@@ -10,6 +10,8 @@ use std::{
 };
 
 use expect_test::expect_file;
+use paste::paste;
+
 macro_rules! dbg_command {
     ($e:expr) => {{
         match $e {
@@ -30,8 +32,8 @@ macro_rules! file_ext_ {
 }
 
 macro_rules! test_llvm {
-    ($name:ident, $cmd_args:expr) => {
-        let dir = concat!("testdata/", stringify!($name));
+    ($dir_name:ident, $name:ident, $cmd_args:expr) => {
+        let dir = concat!("testdata/", stringify!($dir_name));
 
         dbg_command!(Command::new(env::var("CARGO").unwrap()).arg("build"))
             .status()
@@ -77,7 +79,12 @@ macro_rules! test_llvm {
         .exit_ok()
         .unwrap();
 
-        let profile_path = concat!("testdata/", stringify!($name), "/", file_ext!(".profraw"));
+        let profile_path = concat!(
+            "testdata/",
+            stringify!($dir_name),
+            "/",
+            file_ext!(".profraw")
+        );
         match fs::remove_file(profile_path) {
             Err(e) if e.kind() == NotFound => Ok(()),
             r => r,
@@ -111,7 +118,7 @@ macro_rules! test_llvm {
 
         expect_file![concat!(
             "../testdata/",
-            stringify!($name),
+            stringify!($dir_name),
             "/",
             file_ext!(".gv")
         )]
@@ -151,7 +158,7 @@ macro_rules! test {
                 .exit_ok()
                 .unwrap();
 
-            test_llvm!($name, [""; 0]);
+            test_llvm!($name, $name, [""; 0]);
         }
     };
 }
@@ -202,6 +209,7 @@ fn graphs() {
 
     test_llvm!(
         graphs,
+        graphs,
         [
             "gplus_combined.txt",
             "116601386475273901307",
@@ -209,3 +217,41 @@ fn graphs() {
         ]
     );
 }
+
+macro_rules! gapbs {
+    ($name:ident) => {
+        paste! {
+            #[test]
+            fn [<gapbs_ $name>] () {
+                dbg_command!(
+                    Command::new("make")
+                        .arg(stringify!($name))
+                        .current_dir("testdata/gapbs/gapbs")
+                        .env("CXX", "clang++-16")
+                        .env("CXX_FLAGS", "-S -emit-llvm")
+                )
+                .status()
+                .unwrap()
+                .exit_ok()
+                .unwrap();
+                fs::rename(
+                    concat!("testdata/gapbs/gapbs/", stringify!($name)),
+                    concat!("testdata/gapbs/", stringify!($name), ".ll"),
+                )
+                .unwrap();
+
+                test_llvm!(gapbs, $name, ["-g", "20",]);
+            }
+        }
+    };
+}
+
+gapbs!(bc);
+gapbs!(bfs);
+gapbs!(cc);
+gapbs!(cc_sv);
+gapbs!(pr);
+gapbs!(pr_spmv);
+gapbs!(sssp);
+gapbs!(tc);
+gapbs!(converter);

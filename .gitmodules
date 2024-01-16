@@ -1,0 +1,3 @@
+[submodule "testdata/gapbs/gapbs"]
+	path = testdata/gapbs/gapbs
+	url = git@github.com:sbeamer/gapbs.git
