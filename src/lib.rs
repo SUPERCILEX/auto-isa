@@ -148,7 +148,19 @@ fn print_compute_units<S: BuildHasher>(
                 if seen.insert(node.as_value_ref()) {
                     let is_root = roots.contains(node);
                     if is_root {
-                        writeln!(output, "{{\nrank=min",).unwrap();
+                        write!(output, "{{\nrank=min\ncomment=<Ids: ").unwrap();
+                        for (index, id) in roots
+                            .iter()
+                            .map(|root| ids[&root.as_value_ref()])
+                            .enumerate()
+                        {
+                            if index == 0 {
+                                write!(output, "{id}").unwrap();
+                            } else {
+                                write!(output, ", {id}").unwrap();
+                            }
+                        }
+                        writeln!(output, ">").unwrap();
                     }
 
                     writeln!(
@@ -160,7 +172,7 @@ fn print_compute_units<S: BuildHasher>(
                     .unwrap();
 
                     if is_root {
-                        writeln!(output, "}}",).unwrap();
+                        writeln!(output, "}}").unwrap();
                     }
                 }
             };

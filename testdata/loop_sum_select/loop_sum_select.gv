@@ -17,6 +17,7 @@ subgraph {
 "0_27" -> "0_25"
 {
 rank=min
+comment=<Ids: 30>
 "0_30" [label="Store"]
 }
 "0_30" -> "0_29"

@@ -6,11 +6,13 @@ subgraph {
 "0_6" -> "0_5"
 {
 rank=min
+comment=<Ids: 7, 15>
 "0_7" [label="Load"]
 }
 "0_7" -> "0_6"
 {
 rank=min
+comment=<Ids: 7, 15>
 "0_15" [label="Load"]
 }
 "0_5" -> "0_15"
@@ -31,6 +33,7 @@ subgraph {
 "1_4" -> "1_2"
 {
 rank=min
+comment=<Ids: 13>
 "1_13" [label="Store"]
 }
 "1_13" -> "1_12"
@@ -43,6 +46,7 @@ subgraph {
 "2_9" -> "2_7"
 {
 rank=min
+comment=<Ids: 10>
 "2_10" [label="Load"]
 }
 "2_10" -> "2_9"
@@ -52,6 +56,7 @@ label="Static occurrences: 1\nDynamic executions: 0"
 subgraph {
 {
 rank=min
+comment=<Ids: 8>
 "3_8" [label="Load"]
 }
 "3_7" [label="Load"]
