@@ -75,6 +75,7 @@ fn split_into_next_stage<S: BuildHasher>(state: &State<S>) {
 
     let dynamic_counts = read_dynamic_counts();
     print_compute_units(state, &dynamic_counts);
+    std::process::exit(0);
 }
 
 fn read_dynamic_counts() -> HashMap<u32, u64> {
