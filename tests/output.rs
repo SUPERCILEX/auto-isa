@@ -230,7 +230,7 @@ macro_rules! gapbs {
                         .arg(stringify!($name))
                         .current_dir("testdata/gapbs/gapbs")
                         .env("CXX", "clang++-16")
-                        .env("CXX_FLAGS", "-S -emit-llvm")
+                        .env("CXX_FLAGS", "-S -emit-llvm -fno-discard-value-names")
                 )
                 .status()
                 .unwrap()
