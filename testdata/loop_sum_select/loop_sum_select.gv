@@ -23,26 +23,4 @@ rank=min
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 100000"
 }
-subgraph {
-{
-rank=min
-"1_25" [label="Load"]
-}
-"1_24" [label="GetElementPtr"]
-"1_25" -> "1_24"
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 100000"
-}
-subgraph {
-"2_12" [label="GetElementPtr"]
-"2_1" [label="Call"]
-"2_12" -> "2_1"
-{
-rank=min
-"2_13" [label="Store"]
-}
-"2_13" -> "2_12"
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 100000"
-}
 }

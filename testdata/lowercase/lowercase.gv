@@ -1,37 +1,21 @@
 strict digraph {
 rankdir=BT
 subgraph {
-"0_24" [label="GetElementPtr"]
-"0_5" [label="Call"]
-"0_24" -> "0_5"
-{
-rank=min
+"0_26" [label="Add"]
 "0_25" [label="Load"]
-}
-"0_25" -> "0_24"
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 4960000000"
-}
-subgraph {
-"1_26" [label="Add"]
-"1_25" [label="Load"]
-"1_26" -> "1_25"
-"1_30" [label="GetElementPtr"]
-"1_14" [label="Call"]
-"1_30" -> "1_14"
-"1_27" [label="ICmp"]
-"1_27" -> "1_26"
-"1_29" [label="Or"]
-"1_29" -> "1_25"
-"1_28" [label="Select"]
-"1_29" -> "1_28"
-"1_28" -> "1_27"
+"0_26" -> "0_25"
+"0_27" [label="ICmp"]
+"0_27" -> "0_26"
+"0_29" [label="Or"]
+"0_29" -> "0_25"
+"0_28" [label="Select"]
+"0_29" -> "0_28"
+"0_28" -> "0_27"
 {
 rank=min
-"1_31" [label="Store"]
+"0_31" [label="Store"]
 }
-"1_31" -> "1_30"
-"1_31" -> "1_29"
+"0_31" -> "0_29"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 4960000000"
 }

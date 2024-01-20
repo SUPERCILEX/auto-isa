@@ -179,13 +179,8 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         let op = instruction.get_opcode();
         if op == InstructionOpcode::Load {
             write_path_to_graph(cache, state);
-        } else {
-            if instruction.get_type().is_pointer_type() && op != InstructionOpcode::Alloca {
-                write_path_to_graph(cache, state);
-            }
-            if op != InstructionOpcode::Call && op != InstructionOpcode::Invoke {
-                maybe_add_compute_unit(cache, state, instruction);
-            }
+        } else if op != InstructionOpcode::Call && op != InstructionOpcode::Invoke {
+            maybe_add_compute_unit(cache, state, instruction);
         }
         cache.path.pop();
     }

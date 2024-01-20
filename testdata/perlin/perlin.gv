@@ -34,14 +34,4 @@ rank=min
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 85377212"
 }
-subgraph {
-{
-rank=min
-"2_25" [label="Load"]
-}
-"2_10" [label="GetElementPtr"]
-"2_25" -> "2_10"
-cluster=true
-label="Static occurrences: 2\nDynamic executions: 565412"
-}
 }
