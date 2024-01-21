@@ -6,14 +6,11 @@ use std::{
 };
 
 use either::Either;
-use llvm_plugin::{
-    inkwell::{
-        llvm_sys::prelude::LLVMValueRef,
-        values::{
-            AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue, PhiValue,
-        },
+use llvm_plugin::inkwell::{
+    llvm_sys::prelude::LLVMValueRef,
+    values::{
+        AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue, PhiValue,
     },
-    utils::InstructionIterator,
 };
 
 type InstructionId = u32;
@@ -128,8 +125,8 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
     const TARGET_INSTRUCTIONS: &[InstructionOpcode] =
         &[InstructionOpcode::Store, InstructionOpcode::Load];
 
-    for bb in function.get_basic_blocks() {
-        for instr in InstructionIterator::new(&bb) {
+    for bb in function.get_basic_block_iter() {
+        for instr in bb.get_instructions() {
             if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
                 continue;
             }
@@ -160,12 +157,12 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     }
 
     let mut if_phi = PhiValue::try_from(instruction).map(|phi| {
-        (0..phi.count_incoming())
-            .filter_map(move |i| phi.get_incoming(i))
+        phi.get_incomings()
             .filter_map(|(value, _)| value.as_instruction_value())
     });
-    let mut if_not_phi = (0..instruction.get_num_operands())
-        .filter_map(|i| instruction.get_operand(i))
+    let mut if_not_phi = instruction
+        .get_operands()
+        .flatten()
         .filter_map(|op| match op {
             Either::Left(value) => value.as_instruction_value(),
             Either::Right(_) => unreachable!(),

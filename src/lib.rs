@@ -12,7 +12,6 @@ use llvm_plugin::{
         module::Module,
         values::{AsValueRef, InstructionValue},
     },
-    utils::InstructionIterator,
     LlvmModulePass, ModuleAnalysisManager, PassBuilder, PipelineParsing, PreservedAnalyses,
 };
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
@@ -203,8 +202,8 @@ fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<De
     let mut ids = HashMap::new();
     let mut ids_index = Vec::new();
     for function in module.get_functions() {
-        for bb in function.get_basic_blocks() {
-            for instr in InstructionIterator::new(&bb) {
+        for bb in function.get_basic_block_iter() {
+            for instr in bb.get_instructions() {
                 let previous = ids.insert(
                     instr.as_value_ref(),
                     u32::try_from(ids_index.len()).unwrap(),

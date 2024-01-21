@@ -43,15 +43,17 @@ pub fn instrument_compute_units<'ctx, S>(
 
         let builder = ctx.create_builder();
         builder.position_at(root.get_parent().unwrap(), root);
-        builder.build_call(
-            incr_fn,
-            &[
-                id.as_pointer_value().into(),
-                ctx.i64_type().const_int(4_844_047, false).into(),
-                ctx.i32_type().const_int(1, false).into(),
-                ctx.i32_type().const_int(0, false).into(),
-            ],
-            "call",
-        );
+        builder
+            .build_call(
+                incr_fn,
+                &[
+                    id.as_pointer_value().into(),
+                    ctx.i64_type().const_int(4_844_047, false).into(),
+                    ctx.i32_type().const_int(1, false).into(),
+                    ctx.i32_type().const_int(0, false).into(),
+                ],
+                "call",
+            )
+            .unwrap();
     }
 }
