@@ -7,6 +7,7 @@ use std::{
 
 use either::Either;
 use llvm_plugin::inkwell::{
+    basic_block::BasicBlock,
     llvm_sys::prelude::LLVMValueRef,
     values::{
         AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue, PhiValue,
@@ -125,24 +126,25 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
     const TARGET_INSTRUCTIONS: &[InstructionOpcode] =
         &[InstructionOpcode::Store, InstructionOpcode::Load];
 
-    for bb in function.get_basic_block_iter() {
-        for instr in bb.get_instructions() {
-            if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
-                continue;
-            }
+    for instr in function
+        .get_basic_block_iter()
+        .flat_map(BasicBlock::get_instructions)
+    {
+        if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
+            continue;
+        }
 
-            let mut cache = CacheContext(cache);
+        let mut cache = CacheContext(cache);
 
-            cache.path.push(instr);
-            maybe_add_compute_unit(&mut cache, state, instr);
+        cache.path.push(instr);
+        maybe_add_compute_unit(&mut cache, state, instr);
 
-            if !cache.edges.is_empty() {
-                state
-                    .compute_units
-                    .entry(DependencyGraph::from((&cache.edges, &*state)))
-                    .or_default()
-                    .push(instr);
-            }
+        if !cache.edges.is_empty() {
+            state
+                .compute_units
+                .entry(DependencyGraph::from((&cache.edges, &*state)))
+                .or_default()
+                .push(instr);
         }
     }
 }
@@ -176,7 +178,7 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         let op = instruction.get_opcode();
         if op == InstructionOpcode::Load {
             write_path_to_graph(cache, state);
-        } else if op != InstructionOpcode::Call && op != InstructionOpcode::Invoke {
+        } else if !matches!(op, InstructionOpcode::Call | InstructionOpcode::Invoke) {
             maybe_add_compute_unit(cache, state, instruction);
         }
         cache.path.pop();

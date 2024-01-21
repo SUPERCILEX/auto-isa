@@ -48,7 +48,7 @@ macro_rules! test_llvm {
         }
 
         let mut opt_result = dbg_command!(
-            Command::new("opt-16")
+            Command::new("opt-17")
                 .args([
                     "--load-pass-plugin=../../target/debug/libauto_isa.so",
                     "--passes=auto-isa",
@@ -69,7 +69,7 @@ macro_rules! test_llvm {
             .unwrap();
 
         dbg_command!(
-            Command::new("clang++-16")
+            Command::new("clang++-17")
                 .args(["-O1", "-lm", "-fopenmp", "-fprofile-generate"])
                 .args([file_ext!("-instr.ll"), "-o", file_ext!("")])
                 .current_dir(dir)
@@ -102,7 +102,7 @@ macro_rules! test_llvm {
         .unwrap();
 
         dbg_command!(
-            Command::new("llvm-profdata-16")
+            Command::new("llvm-profdata-17")
                 .args(["show", "--all-functions", "--counts", "--text"])
                 .arg(profile_path)
                 .stdout(Stdio::from(opt_result.stdin.take().unwrap()))
@@ -144,7 +144,7 @@ macro_rules! test {
             let dir = concat!("testdata/", stringify!($name));
             create_dir_all(dir).unwrap();
 
-            Command::new("clang-16")
+            Command::new("clang-17")
                 .args(["-O1", "-Wno-everything", "-fno-discard-value-names"])
                 .args(["-S", "-emit-llvm"])
                 .args([
@@ -198,7 +198,7 @@ test_cpp!(stepanov_v1p2);
 #[test]
 fn graphs() {
     dbg_command!(
-        Command::new("clang++-16")
+        Command::new("clang++-17")
             .args(["-O3", "-fno-discard-value-names"])
             .args(["-S", "-emit-llvm"])
             .args(["main.cpp", "-o", "graphs.ll"])
@@ -229,7 +229,7 @@ macro_rules! gapbs {
                     Command::new("make")
                         .arg(stringify!($name))
                         .current_dir("testdata/gapbs/gapbs")
-                        .env("CXX", "clang++-16")
+                        .env("CXX", "clang++-17")
                         .env("CXX_FLAGS", "-S -emit-llvm -fno-discard-value-names")
                 )
                 .status()

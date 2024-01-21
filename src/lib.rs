@@ -9,8 +9,9 @@ use std::{
 
 use llvm_plugin::{
     inkwell::{
+        basic_block::BasicBlock,
         module::Module,
-        values::{AsValueRef, InstructionValue},
+        values::{AsValueRef, FunctionValue, InstructionValue},
     },
     LlvmModulePass, ModuleAnalysisManager, PassBuilder, PipelineParsing, PreservedAnalyses,
 };
@@ -201,17 +202,17 @@ fn print_compute_units<S: BuildHasher>(
 fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<DefaultHasher>> {
     let mut ids = HashMap::new();
     let mut ids_index = Vec::new();
-    for function in module.get_functions() {
-        for bb in function.get_basic_block_iter() {
-            for instr in bb.get_instructions() {
-                let previous = ids.insert(
-                    instr.as_value_ref(),
-                    u32::try_from(ids_index.len()).unwrap(),
-                );
-                debug_assert!(previous.is_none());
-                ids_index.push(instr);
-            }
-        }
+    for instr in module
+        .get_functions()
+        .flat_map(FunctionValue::get_basic_block_iter)
+        .flat_map(BasicBlock::get_instructions)
+    {
+        let previous = ids.insert(
+            instr.as_value_ref(),
+            u32::try_from(ids_index.len()).unwrap(),
+        );
+        debug_assert!(previous.is_none());
+        ids_index.push(instr);
     }
     State::new(ids, ids_index)
 }

@@ -6,7 +6,7 @@ publish = false
 
 [dependencies]
 either = "1.9.0"
-llvm-plugin = { version = "0.4.1", features = ["llvm16-0"], path = "/home/asaveau/Desktop/wip/llvm-plugin-rs/llvm-plugin" }
+llvm-plugin = { version = "0.4.1", features = ["llvm17-0"], path = "/home/asaveau/Desktop/wip/llvm-plugin-rs/llvm-plugin" }
 rustix = { version = "0.38.30", features = ["runtime", "process", "stdio"] }
 
 [dev-dependencies]
