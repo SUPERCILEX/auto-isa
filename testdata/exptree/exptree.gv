@@ -1,6 +1,11 @@
 strict digraph {
 rankdir=BT
 subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 906\nTotal stores executed: 286"
+}
+subgraph {
 "0_208" [label="GetElementPtr"]
 "0_202" [label="Load"]
 "0_208" -> "0_202"
@@ -11,7 +16,7 @@ comment=<Ids: 209, 213, 217, 257, 259, 289, 293, 297, 301, 336>
 }
 "0_209" -> "0_208"
 cluster=true
-label="Static occurrences: 10\nDynamic executions: 191"
+label="Static occurrences: 10\nDynamic executions: 191\n\nCaptured memory operations: 42.4%"
 }
 subgraph {
 "1_281" [label="GetElementPtr"]
@@ -28,7 +33,7 @@ comment=<Ids: 282, 284>
 "1_282" -> "1_281"
 "1_282" -> "1_277"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 88"
+label="Static occurrences: 2\nDynamic executions: 88\n\nCaptured memory operations: 24.8%"
 }
 subgraph {
 "2_224" [label="GetElementPtr"]
@@ -41,7 +46,7 @@ comment=<Ids: 225, 286>
 }
 "2_225" -> "2_224"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 50"
+label="Static occurrences: 2\nDynamic executions: 50\n\nCaptured memory operations: 8.3%"
 }
 subgraph {
 "3_176" [label="Add"]
@@ -54,7 +59,7 @@ comment=<Ids: 177, 364>
 }
 "3_177" -> "3_176"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 48"
+label="Static occurrences: 2\nDynamic executions: 48\n\nCaptured memory operations: 8.0%"
 }
 subgraph {
 "4_290" [label="Add"]
@@ -95,7 +100,7 @@ comment=<Ids: 309>
 "4_293" [label="Load"]
 "4_294" -> "4_293"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 44"
+label="Static occurrences: 1\nDynamic executions: 44\n\nCaptured memory operations: 21.1%"
 }
 subgraph {
 "5_187" [label="Add"]
@@ -114,7 +119,7 @@ comment=<Ids: 190>
 "5_190" -> "5_189"
 "5_188" -> "5_187"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 35"
+label="Static occurrences: 1\nDynamic executions: 35\n\nCaptured memory operations: 8.8%"
 }
 subgraph {
 "6_210" [label="GetElementPtr"]
@@ -129,7 +134,7 @@ comment=<Ids: 211, 215, 219>
 "6_209" [label="Load"]
 "6_211" -> "6_209"
 cluster=true
-label="Static occurrences: 3\nDynamic executions: 24"
+label="Static occurrences: 3\nDynamic executions: 24\n\nCaptured memory operations: 5.5%"
 }
 subgraph {
 {
@@ -140,6 +145,6 @@ comment=<Ids: 26, 50, 54, 58, 199, 343, 404>
 "7_24" [label="Load"]
 "7_26" -> "7_24"
 cluster=true
-label="Static occurrences: 7\nDynamic executions: 9"
+label="Static occurrences: 7\nDynamic executions: 9\n\nCaptured memory operations: 4.0%"
 }
 }

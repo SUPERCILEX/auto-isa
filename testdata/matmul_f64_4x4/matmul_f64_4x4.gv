@@ -1,3 +1,8 @@
 strict digraph {
 rankdir=BT
+subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 1600000016\nTotal stores executed: 800000000"
+}
 }

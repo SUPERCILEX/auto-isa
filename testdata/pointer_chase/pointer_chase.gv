@@ -1,6 +1,11 @@
 strict digraph {
 rankdir=BT
 subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 0\nTotal stores executed: 0"
+}
+subgraph {
 "0_6" [label="GetElementPtr"]
 "0_5" [label="Phi"]
 "0_6" -> "0_5"
@@ -17,7 +22,7 @@ comment=<Ids: 7, 15>
 }
 "0_5" -> "0_15"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 0"
+label="Static occurrences: 2\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "1_12" [label="Add"]
@@ -38,7 +43,7 @@ comment=<Ids: 13>
 }
 "1_13" -> "1_12"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "2_9" [label="GetElementPtr"]
@@ -51,7 +56,7 @@ comment=<Ids: 10>
 }
 "2_10" -> "2_9"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 {
@@ -62,6 +67,6 @@ comment=<Ids: 8>
 "3_7" [label="Load"]
 "3_8" -> "3_7"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 }

@@ -1,6 +1,11 @@
 strict digraph {
 rankdir=BT
 subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 536875011\nTotal stores executed: 268439552"
+}
+subgraph {
 "0_36" [label="GetElementPtr"]
 "0_29" [label="Load"]
 "0_36" -> "0_29"
@@ -11,7 +16,7 @@ comment=<Ids: 37, 39>
 }
 "0_37" -> "0_36"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 536870912"
+label="Static occurrences: 2\nDynamic executions: 536870912\n\nCaptured memory operations: 66.6%"
 }
 subgraph {
 "1_40" [label="FDiv"]
@@ -30,7 +35,7 @@ comment=<Ids: 41>
 "1_41" -> "1_40"
 "1_41" -> "1_38"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 268435456"
+label="Static occurrences: 1\nDynamic executions: 268435456\n\nCaptured memory operations: 99.9%"
 }
 subgraph {
 "2_16" [label="GetElementPtr"]
@@ -43,7 +48,7 @@ comment=<Ids: 17, 24>
 }
 "2_17" -> "2_16"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 4096"
+label="Static occurrences: 2\nDynamic executions: 4096\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 {
@@ -54,6 +59,6 @@ comment=<Ids: 48>
 "3_28" [label="Load"]
 "3_48" -> "3_28"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 1"
+label="Static occurrences: 1\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
 }
 }

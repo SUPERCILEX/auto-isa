@@ -1,6 +1,11 @@
 strict digraph {
 rankdir=BT
 subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 6503250191\nTotal stores executed: 4052"
+}
+subgraph {
 {
 rank=min
 comment=<Ids: 216, 258, 300, 342, 552, 594, 636, 678>
@@ -11,7 +16,7 @@ comment=<Ids: 216, 258, 300, 342, 552, 594, 636, 678>
 "0_201" [label="Load"]
 "0_213" -> "0_201"
 cluster=true
-label="Static occurrences: 8\nDynamic executions: 4000000000"
+label="Static occurrences: 8\nDynamic executions: 4000000000\n\nCaptured memory operations: 61.5%"
 }
 subgraph {
 "1_383" [label="GetElementPtr"]
@@ -26,7 +31,7 @@ comment=<Ids: 384, 426, 468, 510>
 "1_369" [label="Load"]
 "1_381" -> "1_369"
 cluster=true
-label="Static occurrences: 4\nDynamic executions: 2000000000"
+label="Static occurrences: 4\nDynamic executions: 2000000000\n\nCaptured memory operations: 30.7%"
 }
 subgraph {
 "2_182" [label="GetElementPtr"]
@@ -39,7 +44,7 @@ comment=<Ids: 183>
 }
 "2_183" -> "2_182"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 500000000"
+label="Static occurrences: 1\nDynamic executions: 500000000\n\nCaptured memory operations: 7.6%"
 }
 subgraph {
 "3_140" [label="Phi"]
@@ -52,7 +57,7 @@ comment=<Ids: 142, 151>
 }
 "3_142" -> "3_140"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 4000"
+label="Static occurrences: 2\nDynamic executions: 4000\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "4_104" [label="Add"]
@@ -65,7 +70,7 @@ comment=<Ids: 105, 197, 239, 281, 323, 365, 407, 449, 491, 533, 575, 617, 659, 7
 }
 "4_105" -> "4_104"
 cluster=true
-label="Static occurrences: 14\nDynamic executions: 13"
+label="Static occurrences: 14\nDynamic executions: 13\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "5_102" [label="FAdd"]
@@ -90,6 +95,6 @@ comment=<Ids: 108, 200, 242, 284, 326, 368, 410, 452, 494, 536, 578, 620, 662, 7
 "5_98" [label="Load"]
 "5_99" -> "5_98"
 cluster=true
-label="Static occurrences: 14\nDynamic executions: 13"
+label="Static occurrences: 14\nDynamic executions: 13\n\nCaptured memory operations: 0.0%"
 }
 }

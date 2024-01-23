@@ -14,6 +14,9 @@ use llvm_plugin::inkwell::{
     },
 };
 
+pub const MEMORY_INSTRUCTIONS: &[InstructionOpcode] =
+    &[InstructionOpcode::Store, InstructionOpcode::Load];
+
 type InstructionId = u32;
 
 #[derive(Default)]
@@ -21,13 +24,22 @@ pub struct Cache<'ctx, S> {
     seen: HashSet<LLVMValueRef>,
     edges: HashSet<StableEdge, S>,
     path: Vec<InstructionValue<'ctx>>,
+    memory_ops: HashSet<InstructionValue<'ctx>>,
 }
 
 impl<'ctx, S> Cache<'ctx, S> {
     fn reset(&mut self) {
-        self.seen.clear();
-        self.edges.clear();
-        self.path.clear();
+        let Self {
+            seen,
+            edges,
+            path,
+            memory_ops,
+        } = self;
+
+        seen.clear();
+        edges.clear();
+        path.clear();
+        memory_ops.clear();
     }
 }
 
@@ -55,9 +67,14 @@ impl<'a, 'ctx, S> Drop for CacheContext<'a, 'ctx, S> {
 
 pub struct State<'ctx, S> {
     pub ids: HashMap<LLVMValueRef, u32>,
-    ids_index: Vec<InstructionValue<'ctx>>,
+    pub ids_index: Vec<InstructionValue<'ctx>>,
 
-    pub compute_units: HashMap<DependencyGraph<'ctx>, Vec<InstructionValue<'ctx>>, S>,
+    pub compute_units: HashMap<DependencyGraph<'ctx>, Vec<ComputeUnit<'ctx>>, S>,
+}
+
+pub struct ComputeUnit<'ctx> {
+    pub root: InstructionValue<'ctx>,
+    pub memory_ops: HashSet<InstructionValue<'ctx>>,
 }
 
 impl<'ctx, S: Default> State<'ctx, S> {
@@ -123,20 +140,18 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
     state: &mut State<'ctx, S>,
     function: FunctionValue<'ctx>,
 ) {
-    const TARGET_INSTRUCTIONS: &[InstructionOpcode] =
-        &[InstructionOpcode::Store, InstructionOpcode::Load];
-
     for instr in function
         .get_basic_block_iter()
         .flat_map(BasicBlock::get_instructions)
     {
-        if !TARGET_INSTRUCTIONS.contains(&instr.get_opcode()) {
+        if !MEMORY_INSTRUCTIONS.contains(&instr.get_opcode()) {
             continue;
         }
 
         let mut cache = CacheContext(cache);
 
         cache.path.push(instr);
+        cache.memory_ops.insert(instr);
         maybe_add_compute_unit(&mut cache, state, instr);
 
         if !cache.edges.is_empty() {
@@ -144,7 +159,10 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
                 .compute_units
                 .entry(DependencyGraph::from((&cache.edges, &*state)))
                 .or_default()
-                .push(instr);
+                .push(ComputeUnit {
+                    root: instr,
+                    memory_ops: cache.memory_ops.clone(),
+                });
         }
     }
 }
@@ -177,6 +195,7 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         cache.path.push(instruction);
         let op = instruction.get_opcode();
         if op == InstructionOpcode::Load {
+            cache.memory_ops.insert(instruction);
             write_path_to_graph(cache, state);
         } else if !matches!(op, InstructionOpcode::Call | InstructionOpcode::Invoke) {
             maybe_add_compute_unit(cache, state, instruction);

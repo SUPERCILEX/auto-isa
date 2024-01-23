@@ -1,6 +1,11 @@
 strict digraph {
 rankdir=BT
 subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 10361602495\nTotal stores executed: 524915052"
+}
+subgraph {
 {
 rank=min
 comment=<Ids: 290, 388, 761, 829, 1070, 1079, 1313, 1340, 1701, 1740, 2075, 2375, 2988, 3036, 3291>
@@ -11,7 +16,7 @@ comment=<Ids: 290, 388, 761, 829, 1070, 1079, 1313, 1340, 1701, 1740, 2075, 2375
 "0_278" [label="Load"]
 "0_288" -> "0_278"
 cluster=true
-label="Static occurrences: 15\nDynamic executions: 7608030601"
+label="Static occurrences: 15\nDynamic executions: 7608030601\n\nCaptured memory operations: 70.5%"
 }
 subgraph {
 "1_299" [label="GetElementPtr"]
@@ -26,7 +31,7 @@ comment=<Ids: 300, 398, 771, 839, 1315, 1320, 1546, 1705, 1750, 2085, 2379, 2408
 "1_278" [label="Load"]
 "1_288" -> "1_278"
 cluster=true
-label="Static occurrences: 12\nDynamic executions: 665315096"
+label="Static occurrences: 12\nDynamic executions: 665315096\n\nCaptured memory operations: 6.6%"
 }
 subgraph {
 "2_34" [label="GetElementPtr"]
@@ -39,7 +44,7 @@ comment=<Ids: 35, 48, 57, 61, 66, 207, 217, 226, 230, 235, 271, 601, 608, 612, 6
 }
 "2_35" -> "2_34"
 cluster=true
-label="Static occurrences: 96\nDynamic executions: 246892529"
+label="Static occurrences: 96\nDynamic executions: 246892529\n\nCaptured memory operations: 5.5%"
 }
 subgraph {
 "3_1362" [label="GetElementPtr"]
@@ -56,7 +61,7 @@ comment=<Ids: 1363, 1368, 1413, 1418, 1479, 1497, 1501, 1506>
 "3_1361" [label="Load"]
 "3_1360" -> "3_1361"
 cluster=true
-label="Static occurrences: 8\nDynamic executions: 184721500"
+label="Static occurrences: 8\nDynamic executions: 184721500\n\nCaptured memory operations: 4.5%"
 }
 subgraph {
 {
@@ -67,7 +72,7 @@ comment=<Ids: 64, 94, 127, 160, 233, 615, 717, 742, 944, 1018, 1043, 1119, 1153,
 "4_51" [label="Load"]
 "4_64" -> "4_51"
 cluster=true
-label="Static occurrences: 39\nDynamic executions: 115900650"
+label="Static occurrences: 39\nDynamic executions: 115900650\n\nCaptured memory operations: 2.8%"
 }
 subgraph {
 {
@@ -78,7 +83,7 @@ comment=<Ids: 90, 95, 101, 123, 128, 134, 156, 161, 167, 1702, 1706, 1806, 1812,
 "5_89" [label="Load"]
 "5_90" -> "5_89"
 cluster=true
-label="Static occurrences: 51\nDynamic executions: 94508663"
+label="Static occurrences: 51\nDynamic executions: 94508663\n\nCaptured memory operations: 1.7%"
 }
 subgraph {
 "6_363" [label="Add"]
@@ -105,7 +110,7 @@ comment=<Ids: 473, 474, 521, 522>
 "6_361" -> "6_360"
 "6_361" -> "6_359"
 cluster=true
-label="Static occurrences: 4\nDynamic executions: 88336638"
+label="Static occurrences: 4\nDynamic executions: 88336638\n\nCaptured memory operations: 1.9%"
 }
 subgraph {
 "7_2195" [label="Add"]
@@ -170,7 +175,7 @@ comment=<Ids: 2208, 2477, 2534, 2553, 2785, 2794>
 "7_2188" -> "7_2187"
 "7_2181" -> "7_2180"
 cluster=true
-label="Static occurrences: 6\nDynamic executions: 85113500"
+label="Static occurrences: 6\nDynamic executions: 85113500\n\nCaptured memory operations: 4.0%"
 }
 subgraph {
 "8_37" [label="GetElementPtr"]
@@ -185,7 +190,7 @@ comment=<Ids: 38, 51, 210, 220, 274, 604, 649, 650, 653, 654, 706, 729, 931, 100
 }
 "8_38" -> "8_37"
 cluster=true
-label="Static occurrences: 23\nDynamic executions: 71730560"
+label="Static occurrences: 23\nDynamic executions: 71730560\n\nCaptured memory operations: 1.4%"
 }
 subgraph {
 "9_309" [label="GetElementPtr"]
@@ -203,7 +208,7 @@ comment=<Ids: 318, 416, 789, 857, 1768, 2103>
 "9_315" -> "9_278"
 "9_288" -> "9_278"
 cluster=true
-label="Static occurrences: 6\nDynamic executions: 61228404"
+label="Static occurrences: 6\nDynamic executions: 61228404\n\nCaptured memory operations: 1.1%"
 }
 subgraph {
 "10_1448" [label="Add"]
@@ -222,7 +227,7 @@ comment=<Ids: 1461>
 }
 "10_1461" -> "10_1460"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 61097346"
+label="Static occurrences: 1\nDynamic executions: 61097346\n\nCaptured memory operations: 1.6%"
 }
 subgraph {
 "11_1319" [label="GetElementPtr"]
@@ -237,7 +242,7 @@ comment=<Ids: 1336, 1562, 2381, 2424>
 }
 "11_1336" -> "11_1319"
 cluster=true
-label="Static occurrences: 4\nDynamic executions: 52792371"
+label="Static occurrences: 4\nDynamic executions: 52792371\n\nCaptured memory operations: 0.4%"
 }
 subgraph {
 {
@@ -254,7 +259,7 @@ comment=<Ids: 1484, 1511, 2231, 2500>
 "12_1477" -> "12_1484"
 "12_1483" -> "12_1477"
 cluster=true
-label="Static occurrences: 4\nDynamic executions: 46684079"
+label="Static occurrences: 4\nDynamic executions: 46684079\n\nCaptured memory operations: 1.8%"
 }
 subgraph {
 "13_2061" [label="GetElementPtr"]
@@ -279,7 +284,7 @@ comment=<Ids: 2062, 2064, 2736, 2743>
 "13_2059" -> "13_2164"
 "13_2164" -> "13_2148"
 cluster=true
-label="Static occurrences: 4\nDynamic executions: 33816512"
+label="Static occurrences: 4\nDynamic executions: 33816512\n\nCaptured memory operations: 0.8%"
 }
 subgraph {
 "14_562" [label="GetElementPtr"]
@@ -294,7 +299,7 @@ comment=<Ids: 563, 1072, 1279, 1407, 1857, 1867, 2000, 2054, 2538, 2548, 2674, 2
 }
 "14_563" -> "14_562"
 cluster=true
-label="Static occurrences: 13\nDynamic executions: 27394397"
+label="Static occurrences: 13\nDynamic executions: 27394397\n\nCaptured memory operations: 0.8%"
 }
 subgraph {
 {
@@ -307,7 +312,7 @@ comment=<Ids: 2161, 2298, 2795, 3251, 3326, 3436, 3523>
 "15_2159" [label="Load"]
 "15_2161" -> "15_2159"
 cluster=true
-label="Static occurrences: 7\nDynamic executions: 16910556"
+label="Static occurrences: 7\nDynamic executions: 16910556\n\nCaptured memory operations: 0.7%"
 }
 subgraph {
 {
@@ -329,7 +334,7 @@ comment=<Ids: 2130, 2764>
 "16_2059" -> "16_2164"
 "16_2164" -> "16_2148"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 16908256"
+label="Static occurrences: 2\nDynamic executions: 16908256\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "17_2731" [label="Add"]
@@ -408,7 +413,7 @@ comment=<Ids: 2763>
 "17_2739" -> "17_2738"
 "17_2748" -> "17_2747"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 16777200"
+label="Static occurrences: 1\nDynamic executions: 16777200\n\nCaptured memory operations: 0.7%"
 }
 subgraph {
 {
@@ -422,7 +427,7 @@ comment=<Ids: 567, 1283, 1361, 1411, 2145, 2779, 3262>
 "18_563" [label="Load"]
 "18_566" -> "18_563"
 cluster=true
-label="Static occurrences: 7\nDynamic executions: 13886697"
+label="Static occurrences: 7\nDynamic executions: 13886697\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "19_3234" [label="GetElementPtr"]
@@ -439,7 +444,7 @@ comment=<Ids: 3235, 3300, 3313, 3459>
 "19_3225" [label="Load"]
 "19_3232" -> "19_3225"
 cluster=true
-label="Static occurrences: 4\nDynamic executions: 13859703"
+label="Static occurrences: 4\nDynamic executions: 13859703\n\nCaptured memory operations: 0.6%"
 }
 subgraph {
 "20_103" [label="GetElementPtr"]
@@ -454,7 +459,7 @@ comment=<Ids: 104, 137, 170, 1831, 2287>
 }
 "20_104" -> "20_103"
 cluster=true
-label="Static occurrences: 5\nDynamic executions: 13781070"
+label="Static occurrences: 5\nDynamic executions: 13781070\n\nCaptured memory operations: 0.3%"
 }
 subgraph {
 "21_1856" [label="GetElementPtr"]
@@ -473,7 +478,7 @@ comment=<Ids: 1885, 2559>
 }
 "21_1885" -> "21_1884"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 13781067"
+label="Static occurrences: 2\nDynamic executions: 13781067\n\nCaptured memory operations: 0.4%"
 }
 subgraph {
 "22_1887" [label="Add"]
@@ -486,7 +491,7 @@ comment=<Ids: 1888, 2562>
 }
 "22_1888" -> "22_1887"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 13781067"
+label="Static occurrences: 2\nDynamic executions: 13781067\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "23_1073" [label="GetElementPtr"]
@@ -503,7 +508,7 @@ comment=<Ids: 1074, 3285>
 }
 "23_1074" -> "23_1073"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 13779083"
+label="Static occurrences: 2\nDynamic executions: 13779083\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "24_2304" [label="GetElementPtr"]
@@ -522,7 +527,7 @@ comment=<Ids: 2329>
 "24_2308" [label="Load"]
 "24_2310" -> "24_2308"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 13673453"
+label="Static occurrences: 1\nDynamic executions: 13673453\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "25_2528" [label="Add"]
@@ -585,7 +590,7 @@ comment=<Ids: 2533>
 "25_2457" -> "25_2456"
 "25_2450" -> "25_2449"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 13673453"
+label="Static occurrences: 1\nDynamic executions: 13673453\n\nCaptured memory operations: 0.5%"
 }
 subgraph {
 {
@@ -613,7 +618,7 @@ comment=<Ids: 2155, 2789>
 "26_2149" -> "26_2143"
 "26_2164" -> "26_2148"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 13304938"
+label="Static occurrences: 2\nDynamic executions: 13304938\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "27_2731" [label="Add"]
@@ -706,7 +711,7 @@ comment=<Ids: 2788>
 "27_2746" -> "27_2745"
 "27_2748" -> "27_2747"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 13201664"
+label="Static occurrences: 1\nDynamic executions: 13201664\n\nCaptured memory operations: 0.7%"
 }
 subgraph {
 "28_2299" [label="GetElementPtr"]
@@ -721,7 +726,7 @@ comment=<Ids: 2301>
 "28_2300" [label="Load"]
 "28_2301" -> "28_2300"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 13201608"
+label="Static occurrences: 1\nDynamic executions: 13201608\n\nCaptured memory operations: 0.3%"
 }
 subgraph {
 "29_2291" [label="GetElementPtr"]
@@ -740,7 +745,7 @@ comment=<Ids: 2305>
 "29_2305" -> "29_2291"
 "29_2305" -> "29_2304"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 13201608"
+label="Static occurrences: 1\nDynamic executions: 13201608\n\nCaptured memory operations: 0.3%"
 }
 subgraph {
 "30_1862" [label="And"]
@@ -757,7 +762,7 @@ comment=<Ids: 1864, 2545>
 }
 "30_1864" -> "30_1863"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 6807621"
+label="Static occurrences: 2\nDynamic executions: 6807621\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "31_2528" [label="Add"]
@@ -826,7 +831,7 @@ comment=<Ids: 2547>
 "31_2454" -> "31_2453"
 "31_2450" -> "31_2449"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 6754459"
+label="Static occurrences: 1\nDynamic executions: 6754459\n\nCaptured memory operations: 0.5%"
 }
 subgraph {
 "32_2143" [label="Phi"]
@@ -857,7 +862,7 @@ comment=<Ids: 2158, 2792>
 "32_2158" -> "32_2157"
 "32_2158" -> "32_2149"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 3603318"
+label="Static occurrences: 2\nDynamic executions: 3603318\n\nCaptured memory operations: 0.3%"
 }
 subgraph {
 "33_2053" [label="GetElementPtr"]
@@ -896,7 +901,7 @@ comment=<Ids: 2162, 2796>
 "33_2162" -> "33_2060"
 "33_2162" -> "33_2148"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 3603318"
+label="Static occurrences: 2\nDynamic executions: 3603318\n\nCaptured memory operations: 0.3%"
 }
 subgraph {
 "34_2053" [label="GetElementPtr"]
@@ -935,7 +940,7 @@ comment=<Ids: 2159, 2793>
 "34_2165" -> "34_2149"
 "34_2164" -> "34_2148"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 3603318"
+label="Static occurrences: 2\nDynamic executions: 3603318\n\nCaptured memory operations: 0.3%"
 }
 subgraph {
 "35_2354" [label="Add"]
@@ -966,7 +971,7 @@ comment=<Ids: 2436>
 "35_2347" -> "35_2346"
 "35_2347" -> "35_2345"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 471845"
+label="Static occurrences: 1\nDynamic executions: 471845\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "36_2361" [label="AShr"]
@@ -987,7 +992,7 @@ comment=<Ids: 2369>
 "36_2369" -> "36_2368"
 "36_2360" -> "36_2346"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 471845"
+label="Static occurrences: 1\nDynamic executions: 471845\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "37_1847" [label="Add"]
@@ -1086,7 +1091,7 @@ comment=<Ids: 1853, 1872, 2151, 2160>
 "37_1756" -> "37_1755"
 "37_1746" -> "37_1745"
 cluster=true
-label="Static occurrences: 4\nDynamic executions: 320902"
+label="Static occurrences: 4\nDynamic executions: 320902\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "38_2057" [label="Add"]
@@ -1199,7 +1204,7 @@ comment=<Ids: 2129>
 "38_2091" -> "38_2090"
 "38_2081" -> "38_2080"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 131056"
+label="Static occurrences: 1\nDynamic executions: 131056\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "39_363" [label="Add"]
@@ -1222,7 +1227,7 @@ comment=<Ids: 366, 464>
 "39_361" -> "39_360"
 "39_361" -> "39_359"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 107614"
+label="Static occurrences: 2\nDynamic executions: 107614\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "40_1847" [label="Add"]
@@ -1319,7 +1324,7 @@ comment=<Ids: 1852>
 "40_1774" -> "40_1773"
 "40_1746" -> "40_1745"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 107614"
+label="Static occurrences: 1\nDynamic executions: 107614\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "41_3152" [label="And"]
@@ -1336,7 +1341,7 @@ comment=<Ids: 3153>
 "41_3153" -> "41_3152"
 "41_3153" -> "41_3145"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 107614"
+label="Static occurrences: 1\nDynamic executions: 107614\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "42_1608" [label="GetElementPtr"]
@@ -1362,7 +1367,7 @@ comment=<Ids: 1639>
 }
 "42_1639" -> "42_1638"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 107596"
+label="Static occurrences: 1\nDynamic executions: 107596\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "43_3267" [label="GetElementPtr"]
@@ -1383,7 +1388,7 @@ comment=<Ids: 3280>
 }
 "43_3280" -> "43_3279"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 105630"
+label="Static occurrences: 1\nDynamic executions: 105630\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "44_3462" [label="And"]
@@ -1413,7 +1418,7 @@ comment=<Ids: 3465>
 "44_3465" -> "44_3464"
 "44_3460" -> "44_3262"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 105630"
+label="Static occurrences: 1\nDynamic executions: 105630\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "45_3327" [label="GetElementPtr"]
@@ -1430,7 +1435,7 @@ comment=<Ids: 3446>
 }
 "45_3446" -> "45_3445"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 105629"
+label="Static occurrences: 1\nDynamic executions: 105629\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "46_3304" [label="And"]
@@ -1468,7 +1473,7 @@ comment=<Ids: 3320>
 "46_3313" [label="Load"]
 "46_3314" -> "46_3313"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 105629"
+label="Static occurrences: 1\nDynamic executions: 105629\n\nCaptured memory operations: 0.2%"
 }
 subgraph {
 "47_3310" [label="Add"]
@@ -1485,7 +1490,7 @@ comment=<Ids: 3312>
 "47_3312" -> "47_3310"
 "47_3312" -> "47_3311"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 105629"
+label="Static occurrences: 1\nDynamic executions: 105629\n\nCaptured memory operations: 0.1%"
 }
 subgraph {
 "48_2057" [label="Add"]
@@ -1612,7 +1617,7 @@ comment=<Ids: 2154>
 "48_2109" -> "48_2108"
 "48_2081" -> "48_2080"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 103274"
+label="Static occurrences: 1\nDynamic executions: 103274\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "49_1847" [label="Add"]
@@ -1715,7 +1720,7 @@ comment=<Ids: 1866>
 "49_1746" -> "49_1745"
 "49_1756" -> "49_1755"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 53164"
+label="Static occurrences: 1\nDynamic executions: 53164\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "50_1535" [label="GetElementPtr"]
@@ -1728,7 +1733,7 @@ comment=<Ids: 1576, 3103, 3113, 3117, 3253, 3273, 3277, 3422, 3429, 3439, 3443, 
 }
 "50_1576" -> "50_1535"
 cluster=true
-label="Static occurrences: 15\nDynamic executions: 6620"
+label="Static occurrences: 15\nDynamic executions: 6620\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "51_3392" [label="Add"]
@@ -1783,7 +1788,7 @@ comment=<Ids: 3434>
 "51_3333" -> "51_3332"
 "51_3333" -> "51_3331"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 1650"
+label="Static occurrences: 1\nDynamic executions: 1650\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "52_2016" [label="Phi"]
@@ -1796,7 +1801,7 @@ comment=<Ids: 2037, 2711>
 }
 "52_2037" -> "52_2016"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 35"
+label="Static occurrences: 2\nDynamic executions: 35\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "53_1646" [label="Add"]
@@ -1827,7 +1832,7 @@ comment=<Ids: 1723>
 "53_1586" -> "53_1585"
 "53_1586" -> "53_1584"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 18"
+label="Static occurrences: 1\nDynamic executions: 18\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "54_1720" [label="GetElementPtr"]
@@ -1852,7 +1857,7 @@ comment=<Ids: 1721>
 "54_1586" -> "54_1585"
 "54_1586" -> "54_1584"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 18"
+label="Static occurrences: 1\nDynamic executions: 18\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "55_3392" [label="Add"]
@@ -1867,7 +1872,7 @@ comment=<Ids: 3415, 3601>
 }
 "55_3415" -> "55_3392"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 8"
+label="Static occurrences: 2\nDynamic executions: 8\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "56_3392" [label="Add"]
@@ -1913,7 +1918,7 @@ comment=<Ids: 3418>
 "56_3333" -> "56_3332"
 "56_3333" -> "56_3331"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 8"
+label="Static occurrences: 1\nDynamic executions: 8\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "57_3392" [label="Add"]
@@ -1963,7 +1968,7 @@ comment=<Ids: 3425>
 "57_3333" -> "57_3332"
 "57_3333" -> "57_3331"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 8"
+label="Static occurrences: 1\nDynamic executions: 8\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "58_3392" [label="Add"]
@@ -2009,7 +2014,7 @@ comment=<Ids: 3419>
 "58_3333" -> "58_3332"
 "58_3333" -> "58_3331"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 8"
+label="Static occurrences: 1\nDynamic executions: 8\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "59_3392" [label="Add"]
@@ -2059,7 +2064,7 @@ comment=<Ids: 3426>
 "59_3333" -> "59_3332"
 "59_3333" -> "59_3331"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 8"
+label="Static occurrences: 1\nDynamic executions: 8\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "60_633" [label="And"]
@@ -2091,7 +2096,7 @@ comment=<Ids: 689>
 "60_627" -> "60_625"
 "60_627" -> "60_626"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 2"
+label="Static occurrences: 1\nDynamic executions: 2\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "61_633" [label="And"]
@@ -2121,7 +2126,7 @@ comment=<Ids: 690>
 "61_627" -> "61_625"
 "61_627" -> "61_626"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 2"
+label="Static occurrences: 1\nDynamic executions: 2\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "62_2809" [label="PtrToInt"]
@@ -2142,7 +2147,7 @@ comment=<Ids: 2812>
 "62_2810" -> "62_2808"
 "62_2810" -> "62_2809"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 1"
+label="Static occurrences: 1\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "63_3241" [label="And"]
@@ -2176,7 +2181,7 @@ comment=<Ids: 3244>
 "63_3236" -> "63_3225"
 "63_3240" -> "63_3239"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 1"
+label="Static occurrences: 1\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "64_1535" [label="GetElementPtr"]
@@ -2191,7 +2196,7 @@ comment=<Ids: 1539, 1566>
 "64_1539" -> "64_1538"
 "64_1538" -> "64_1535"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 0"
+label="Static occurrences: 2\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "65_3575" [label="Add"]
@@ -2243,7 +2248,7 @@ comment=<Ids: 3605>
 "65_3540" -> "65_3538"
 "65_3540" -> "65_3539"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "66_2057" [label="Add"]
@@ -2350,7 +2355,7 @@ comment=<Ids: 2144>
 "66_2081" -> "66_2080"
 "66_2109" -> "66_2108"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "67_3543" [label="Add"]
@@ -2406,7 +2411,7 @@ comment=<Ids: 3613>
 "67_3540" -> "67_3538"
 "67_3540" -> "67_3539"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "68_3575" [label="Add"]
@@ -2462,7 +2467,7 @@ comment=<Ids: 3614>
 "68_3540" -> "68_3538"
 "68_3540" -> "68_3539"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "69_2731" [label="Add"]
@@ -2535,7 +2540,7 @@ comment=<Ids: 2778>
 "69_2746" -> "69_2745"
 "69_2748" -> "69_2747"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.4%"
 }
 subgraph {
 "70_3575" [label="Add"]
@@ -2587,7 +2592,7 @@ comment=<Ids: 3604>
 "70_3540" -> "70_3538"
 "70_3540" -> "70_3539"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "71_1535" [label="GetElementPtr"]
@@ -2604,7 +2609,7 @@ comment=<Ids: 1541>
 "71_1541" -> "71_1540"
 "71_1538" -> "71_1535"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "72_3519" [label="GetElementPtr"]
@@ -2621,6 +2626,6 @@ comment=<Ids: 3520>
 }
 "72_3520" -> "72_3519"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 }

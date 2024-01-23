@@ -1,6 +1,11 @@
 strict digraph {
 rankdir=BT
 subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 200002\nTotal stores executed: 300001"
+}
+subgraph {
 "0_31" [label="Add"]
 "0_30" [label="Add"]
 "0_31" -> "0_30"
@@ -19,6 +24,6 @@ comment=<Ids: 32>
 }
 "0_32" -> "0_31"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 100000"
+label="Static occurrences: 1\nDynamic executions: 100000\n\nCaptured memory operations: 59.9%"
 }
 }

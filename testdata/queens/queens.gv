@@ -1,6 +1,11 @@
 strict digraph {
 rankdir=BT
 subgraph {
+Stats [shape=plaintext]
+cluster=true
+label="Total loads executed: 992915882\nTotal stores executed: 191875965"
+}
+subgraph {
 "0_138" [label="Add"]
 "0_137" [label="Load"]
 "0_138" -> "0_137"
@@ -17,7 +22,7 @@ comment=<Ids: 156>
 "0_146" -> "0_140"
 "0_139" -> "0_138"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 55391321"
+label="Static occurrences: 1\nDynamic executions: 55391321\n\nCaptured memory operations: 6.9%"
 }
 subgraph {
 "1_138" [label="Add"]
@@ -36,7 +41,7 @@ comment=<Ids: 160, 164>
 }
 "1_160" -> "1_146"
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 54717104"
+label="Static occurrences: 2\nDynamic executions: 54717104\n\nCaptured memory operations: 9.1%"
 }
 subgraph {
 "2_121" [label="Add"]
@@ -49,7 +54,7 @@ comment=<Ids: 122>
 }
 "2_122" -> "2_121"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 365596"
+label="Static occurrences: 1\nDynamic executions: 365596\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 {
@@ -60,7 +65,7 @@ comment=<Ids: 1, 75, 76>
 "3_0" [label="Load"]
 "3_1" -> "3_0"
 cluster=true
-label="Static occurrences: 3\nDynamic executions: 3"
+label="Static occurrences: 3\nDynamic executions: 3\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "4_15" [label="GetElementPtr"]
@@ -73,7 +78,7 @@ comment=<Ids: 16>
 }
 "4_16" -> "4_15"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "5_15" [label="GetElementPtr"]
@@ -90,7 +95,7 @@ comment=<Ids: 27>
 "5_27" -> "5_26"
 "5_20" -> "5_15"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 {
@@ -101,6 +106,6 @@ comment=<Ids: 12>
 "6_11" [label="Load"]
 "6_12" -> "6_11"
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0"
+label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 }

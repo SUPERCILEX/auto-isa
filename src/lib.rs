@@ -11,14 +11,14 @@ use llvm_plugin::{
     inkwell::{
         basic_block::BasicBlock,
         module::Module,
-        values::{AsValueRef, FunctionValue, InstructionValue},
+        values::{AsValueRef, FunctionValue, InstructionOpcode, InstructionValue},
     },
     LlvmModulePass, ModuleAnalysisManager, PassBuilder, PipelineParsing, PreservedAnalyses,
 };
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
-    analysis::{find_non_local_memory_compute_units, Cache, State},
+    analysis::{find_non_local_memory_compute_units, Cache, ComputeUnit, State},
     instrumentation::instrument_compute_units,
 };
 
@@ -109,19 +109,36 @@ fn read_dynamic_counts() -> HashMap<u32, u64> {
     dynamic_counts
 }
 
+#[allow(clippy::too_many_lines)]
 fn print_compute_units<S: BuildHasher>(
     State {
-        ids, compute_units, ..
+        ids,
+        ids_index,
+        compute_units,
     }: &State<S>,
     dynamic_counts: &HashMap<u32, u64>,
 ) {
+    let mut total_executed_loads = 0;
+    let mut total_executed_stores = 0;
+    for (&id, count) in dynamic_counts {
+        match ids_index[usize::try_from(id).unwrap()].get_opcode() {
+            InstructionOpcode::Load => {
+                total_executed_loads += count;
+            }
+            InstructionOpcode::Store => {
+                total_executed_stores += count;
+            }
+            _ => continue,
+        }
+    }
+
     let compute_units = {
         let mut compute_units = compute_units
             .iter()
             .map(|(graph, roots)| {
                 let dynamic_count = roots
                     .iter()
-                    .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
+                    .map(|ComputeUnit { root, .. }| dynamic_counts[&ids[&root.as_value_ref()]])
                     .sum::<u64>();
                 (graph, roots, dynamic_count)
             })
@@ -140,18 +157,26 @@ fn print_compute_units<S: BuildHasher>(
 
     let mut stdout = ManuallyDrop::new(unsafe { File::from_raw_fd(rustix::stdio::raw_stdout()) });
     let mut output = BufWriter::new(&mut *stdout);
+
     writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
+    writeln!(
+        output,
+        "subgraph {{\nStats [shape=plaintext]\ncluster=true\nlabel=\"Total loads executed: \
+         {total_executed_loads}\\nTotal stores executed: {total_executed_stores}\"\n}}"
+    )
+    .unwrap();
+
     for (compute_unit_id, (graph, roots, dynamic_count)) in compute_units.iter().rev().enumerate() {
         writeln!(output, "subgraph {{").unwrap();
         for (from, to) in &graph.edges {
             let mut create = |node: &InstructionValue| {
                 if seen.insert(node.as_value_ref()) {
-                    let is_root = roots.contains(node);
+                    let is_root = roots.iter().any(|ComputeUnit { root, .. }| root == node);
                     if is_root {
                         write!(output, "{{\nrank=min\ncomment=<Ids: ").unwrap();
                         for (index, id) in roots
                             .iter()
-                            .map(|root| ids[&root.as_value_ref()])
+                            .map(|ComputeUnit { root, .. }| ids[&root.as_value_ref()])
                             .enumerate()
                         {
                             if index == 0 {
@@ -188,11 +213,32 @@ fn print_compute_units<S: BuildHasher>(
             .unwrap();
         }
         seen.clear();
+
+        let captured_memory_operations = {
+            let total_everywhere = total_executed_loads
+                .checked_add(total_executed_stores)
+                .unwrap();
+            let total_in_compute_unit = roots
+                .iter()
+                .flat_map(|ComputeUnit { memory_ops, .. }| memory_ops)
+                .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
+                .sum::<u64>();
+
+            if total_everywhere == 0 {
+                (0, 0)
+            } else {
+                let bps = total_in_compute_unit.checked_mul(1000).unwrap() / total_everywhere;
+                (bps / 10, bps % 10)
+            }
+        };
+
         writeln!(
             output,
             "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
-             {dynamic_count}\"\n}}",
+             {dynamic_count}\\n\\nCaptured memory operations: {}.{}%\"\n}}",
             roots.len(),
+            captured_memory_operations.0,
+            captured_memory_operations.1
         )
         .unwrap();
     }
