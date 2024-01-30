@@ -151,12 +151,6 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
         maybe_add_compute_unit(&mut cache, state, instr);
 
         if !cache.edges.is_empty() {
-            let mut edges = cache
-                .edges
-                .iter()
-                .map(|e| e.to_edge(&state.ids_index))
-                .collect::<Vec<_>>();
-            edges.sort_unstable_by_key(Edge::to_opcodes);
             state
                 .idioms
                 .entry(EquivalenceGraph::from((&cache.edges, &*state.ids_index)))
@@ -164,7 +158,11 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
                 .push(ComputeUnit {
                     root: instr,
                     memory_ops: cache.memory_ops.clone(),
-                    edges,
+                    edges: cache
+                        .edges
+                        .iter()
+                        .map(|e| e.to_edge(&state.ids_index))
+                        .collect(),
                 });
         }
     }

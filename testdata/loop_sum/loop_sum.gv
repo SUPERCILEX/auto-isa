@@ -6,23 +6,23 @@ cluster=true
 label="Total loads executed: 200002\nTotal stores executed: 300001"
 }
 subgraph {
-"0_31" [label="Add"]
-"0_30" [label="Add"]
-"0_31" -> "0_30"
-"0_27" [label="Load"]
-"0_30" -> "0_27"
-"0_29" [label="Load"]
-"0_30" -> "0_29"
-"0_25" [label="Phi"]
-"0_31" -> "0_25"
-"0_21" [label="Load"]
-"0_25" -> "0_21"
 {
 rank=min
 comment=<Ids: 32>
 "0_32" [label="Store"]
 }
+"0_31" [label="Add"]
 "0_32" -> "0_31"
+"0_30" [label="Add"]
+"0_27" [label="Load"]
+"0_30" -> "0_27"
+"0_25" [label="Phi"]
+"0_21" [label="Load"]
+"0_25" -> "0_21"
+"0_31" -> "0_30"
+"0_31" -> "0_25"
+"0_29" [label="Load"]
+"0_30" -> "0_29"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 100000\n\nCaptured memory operations: 59.9%"
 }

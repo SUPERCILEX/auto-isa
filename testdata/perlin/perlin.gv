@@ -23,21 +23,21 @@ cluster=true
 label="Static occurrences: 10\nDynamic executions: 426886060\n\nCaptured memory operations: 149.9%"
 }
 subgraph {
-"1_39" [label="Add"]
 "1_34" [label="Add"]
-"1_39" -> "1_34"
 "1_25" [label="Load"]
 "1_34" -> "1_25"
 "1_41" [label="GetElementPtr"]
 "1_40" [label="SExt"]
 "1_41" -> "1_40"
+"1_39" [label="Add"]
+"1_39" -> "1_34"
+"1_40" -> "1_39"
 {
 rank=min
 comment=<Ids: 42, 52>
 "1_42" [label="Load"]
 }
 "1_42" -> "1_41"
-"1_40" -> "1_39"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 85377212\n\nCaptured memory operations: 16.7%"
 }

@@ -19,8 +19,10 @@ cluster=true
 label="Static occurrences: 8\nDynamic executions: 4000000000\n\nCaptured memory operations: 61.5%"
 }
 subgraph {
-"1_383" [label="GetElementPtr"]
 "1_381" [label="Phi"]
+"1_369" [label="Load"]
+"1_381" -> "1_369"
+"1_383" [label="GetElementPtr"]
 "1_383" -> "1_381"
 {
 rank=min
@@ -28,8 +30,6 @@ comment=<Ids: 384, 426, 468, 510>
 "1_384" [label="Load"]
 }
 "1_384" -> "1_383"
-"1_369" [label="Load"]
-"1_381" -> "1_369"
 cluster=true
 label="Static occurrences: 4\nDynamic executions: 2000000000\n\nCaptured memory operations: 30.7%"
 }
@@ -60,40 +60,40 @@ cluster=true
 label="Static occurrences: 2\nDynamic executions: 4000\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
-"4_102" [label="FAdd"]
-"4_101" [label="FDiv"]
-"4_102" -> "4_101"
-"4_100" [label="SIToFP"]
-"4_101" -> "4_100"
-"4_107" [label="GetElementPtr"]
-"4_106" [label="SExt"]
-"4_107" -> "4_106"
-"4_103" [label="Load"]
-"4_106" -> "4_103"
 "4_99" [label="Sub"]
-"4_100" -> "4_99"
+"4_98" [label="Load"]
+"4_99" -> "4_98"
 {
 rank=min
 comment=<Ids: 108, 200, 242, 284, 326, 368, 410, 452, 494, 536, 578, 620, 662, 704>
 "4_108" [label="Store"]
 }
-"4_108" -> "4_102"
+"4_107" [label="GetElementPtr"]
 "4_108" -> "4_107"
-"4_98" [label="Load"]
-"4_99" -> "4_98"
+"4_106" [label="SExt"]
+"4_107" -> "4_106"
+"4_100" [label="SIToFP"]
+"4_100" -> "4_99"
+"4_102" [label="FAdd"]
+"4_101" [label="FDiv"]
+"4_102" -> "4_101"
+"4_103" [label="Load"]
+"4_106" -> "4_103"
+"4_101" -> "4_100"
+"4_108" -> "4_102"
 cluster=true
 label="Static occurrences: 14\nDynamic executions: 13\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
-"5_104" [label="Add"]
-"5_103" [label="Load"]
-"5_104" -> "5_103"
 {
 rank=min
 comment=<Ids: 105, 197, 239, 281, 323, 365, 407, 449, 491, 533, 575, 617, 659, 701>
 "5_105" [label="Store"]
 }
+"5_104" [label="Add"]
 "5_105" -> "5_104"
+"5_103" [label="Load"]
+"5_104" -> "5_103"
 cluster=true
 label="Static occurrences: 14\nDynamic executions: 13\n\nCaptured memory operations: 0.0%"
 }

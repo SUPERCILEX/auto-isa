@@ -6,12 +6,6 @@ cluster=true
 label="Total loads executed: 992915882\nTotal stores executed: 191875965"
 }
 subgraph {
-"0_138" [label="Add"]
-"0_137" [label="Load"]
-"0_138" -> "0_137"
-"0_140" [label="GetElementPtr"]
-"0_139" [label="SExt"]
-"0_140" -> "0_139"
 {
 rank=min
 comment=<Ids: 156>
@@ -19,40 +13,46 @@ comment=<Ids: 156>
 }
 "0_146" [label="Phi"]
 "0_156" -> "0_146"
+"0_140" [label="GetElementPtr"]
 "0_146" -> "0_140"
+"0_138" [label="Add"]
+"0_137" [label="Load"]
+"0_138" -> "0_137"
+"0_139" [label="SExt"]
 "0_139" -> "0_138"
+"0_140" -> "0_139"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 55391321\n\nCaptured memory operations: 6.9%"
 }
 subgraph {
-"1_138" [label="Add"]
-"1_137" [label="Load"]
-"1_138" -> "1_137"
-"1_140" [label="GetElementPtr"]
-"1_139" [label="SExt"]
-"1_140" -> "1_139"
-"1_146" [label="Phi"]
-"1_146" -> "1_140"
-"1_139" -> "1_138"
 {
 rank=min
 comment=<Ids: 160, 164>
 "1_160" [label="Store"]
 }
+"1_146" [label="Phi"]
 "1_160" -> "1_146"
+"1_140" [label="GetElementPtr"]
+"1_146" -> "1_140"
+"1_138" [label="Add"]
+"1_137" [label="Load"]
+"1_138" -> "1_137"
+"1_139" [label="SExt"]
+"1_139" -> "1_138"
+"1_140" -> "1_139"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 54717104\n\nCaptured memory operations: 9.1%"
 }
 subgraph {
-"2_121" [label="Add"]
-"2_120" [label="Load"]
-"2_121" -> "2_120"
 {
 rank=min
 comment=<Ids: 122>
 "2_122" [label="Store"]
 }
+"2_121" [label="Add"]
 "2_122" -> "2_121"
+"2_120" [label="Load"]
+"2_121" -> "2_120"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 365596\n\nCaptured memory operations: 0.0%"
 }
@@ -85,15 +85,15 @@ cluster=true
 label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
-"5_15" [label="GetElementPtr"]
-"5_11" [label="Load"]
-"5_15" -> "5_11"
 {
 rank=min
 comment=<Ids: 16>
 "5_16" [label="Load"]
 }
+"5_15" [label="GetElementPtr"]
 "5_16" -> "5_15"
+"5_11" [label="Load"]
+"5_15" -> "5_11"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }

@@ -9,6 +9,8 @@ subgraph {
 "0_53" [label="Phi"]
 "0_18" [label="Load"]
 "0_53" -> "0_18"
+"0_80" [label="Xor"]
+"0_80" -> "0_53"
 {
 rank=min
 comment=<Ids: 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50>
@@ -16,8 +18,6 @@ comment=<Ids: 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50>
 }
 "0_128" [label="Xor"]
 "0_35" -> "0_128"
-"0_80" [label="Xor"]
-"0_80" -> "0_53"
 "0_128" -> "0_80"
 cluster=true
 label="Static occurrences: 16\nDynamic executions: 537919504\n\nCaptured memory operations: 33.3%"
@@ -38,19 +38,19 @@ cluster=true
 label="Static occurrences: 1\nDynamic executions: 537919504\n\nCaptured memory operations: 49.9%"
 }
 subgraph {
-"2_213" [label="Add"]
-"2_208" [label="Phi"]
-"2_213" -> "2_208"
-"2_214" [label="And"]
-"2_214" -> "2_213"
-"2_194" [label="Load"]
-"2_208" -> "2_194"
 {
 rank=min
 comment=<Ids: 215>
 "2_215" [label="Store"]
 }
+"2_214" [label="And"]
 "2_215" -> "2_214"
+"2_213" [label="Add"]
+"2_214" -> "2_213"
+"2_208" [label="Phi"]
+"2_213" -> "2_208"
+"2_194" [label="Load"]
+"2_208" -> "2_194"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 537919488\n\nCaptured memory operations: 16.6%"
 }
@@ -63,13 +63,13 @@ subgraph {
 "3_190" [label="GetElementPtr"]
 "3_189" [label="ZExt"]
 "3_190" -> "3_189"
+"3_189" -> "3_187"
 {
 rank=min
 comment=<Ids: 191, 229>
 "3_191" [label="Load"]
 }
 "3_191" -> "3_190"
-"3_189" -> "3_187"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
 }
