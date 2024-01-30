@@ -18,7 +18,7 @@ use llvm_plugin::{
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
-    analysis::{find_non_local_memory_compute_units, Cache, ComputeUnit, State},
+    analysis::{find_non_local_memory_compute_units, Cache, Edge, State},
     instrumentation::instrument_compute_units,
 };
 
@@ -114,7 +114,7 @@ fn print_compute_units<S: BuildHasher>(
     State {
         ids,
         ids_index,
-        compute_units,
+        idioms,
     }: &State<S>,
     dynamic_counts: &HashMap<u32, u64>,
 ) {
@@ -132,25 +132,25 @@ fn print_compute_units<S: BuildHasher>(
         }
     }
 
-    let compute_units = {
-        let mut compute_units = compute_units
-            .iter()
-            .map(|(graph, roots)| {
+    let idioms = {
+        let mut idioms = idioms
+            .values()
+            .map(|roots| {
                 let dynamic_count = roots
                     .iter()
-                    .map(|ComputeUnit { root, .. }| dynamic_counts[&ids[&root.as_value_ref()]])
+                    .map(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]])
                     .sum::<u64>();
-                (graph, roots, dynamic_count)
+                (roots, dynamic_count)
             })
             .collect::<Vec<_>>();
-        compute_units.sort_by(
-            |(_, compute_unit_a, dynamic_count_a), (_, compute_unit_b, dynamic_count_b)| {
+        idioms.sort_by(
+            |(compute_unit_a, dynamic_count_a), (compute_unit_b, dynamic_count_b)| {
                 dynamic_count_a
                     .cmp(dynamic_count_b)
                     .then(compute_unit_a.len().cmp(&compute_unit_b.len()))
             },
         );
-        compute_units
+        idioms
     };
 
     let mut seen = HashSet::new();
@@ -166,17 +166,17 @@ fn print_compute_units<S: BuildHasher>(
     )
     .unwrap();
 
-    for (compute_unit_id, (graph, roots, dynamic_count)) in compute_units.iter().rev().enumerate() {
+    for (compute_unit_id, (compute_units, dynamic_count)) in idioms.iter().rev().enumerate() {
         writeln!(output, "subgraph {{").unwrap();
-        for (from, to) in &graph.edges {
-            let mut create = |node: &InstructionValue| {
+        for Edge(from, to) in &compute_units[0].edges {
+            let mut create = |&node: &InstructionValue| {
                 if seen.insert(node.as_value_ref()) {
-                    let is_root = roots.iter().any(|ComputeUnit { root, .. }| root == node);
+                    let is_root = compute_units.iter().any(|cu| cu.root == node);
                     if is_root {
                         write!(output, "{{\nrank=min\ncomment=<Ids: ").unwrap();
-                        for (index, id) in roots
+                        for (index, id) in compute_units
                             .iter()
-                            .map(|ComputeUnit { root, .. }| ids[&root.as_value_ref()])
+                            .map(|cu| ids[&cu.root.as_value_ref()])
                             .enumerate()
                         {
                             if index == 0 {
@@ -218,9 +218,9 @@ fn print_compute_units<S: BuildHasher>(
             let total_everywhere = total_executed_loads
                 .checked_add(total_executed_stores)
                 .unwrap();
-            let total_in_compute_unit = roots
+            let total_in_compute_unit = compute_units
                 .iter()
-                .flat_map(|ComputeUnit { memory_ops, .. }| memory_ops)
+                .flat_map(|cu| &cu.memory_ops)
                 .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
                 .sum::<u64>();
 
@@ -236,7 +236,7 @@ fn print_compute_units<S: BuildHasher>(
             output,
             "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
              {dynamic_count}\\n\\nCaptured memory operations: {}.{}%\"\n}}",
-            roots.len(),
+            compute_units.len(),
             captured_memory_operations.0,
             captured_memory_operations.1
         )

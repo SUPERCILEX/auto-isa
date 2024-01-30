@@ -2,6 +2,7 @@ use std::{
     collections::{HashMap, HashSet},
     fmt::Debug,
     hash::{BuildHasher, Hash, Hasher},
+    mem,
     ops::{Deref, DerefMut},
 };
 
@@ -69,10 +70,11 @@ pub struct State<'ctx, S> {
     pub ids: HashMap<LLVMValueRef, u32>,
     pub ids_index: Vec<InstructionValue<'ctx>>,
 
-    pub compute_units: HashMap<DependencyGraph<'ctx>, Vec<ComputeUnit<'ctx>>, S>,
+    pub idioms: HashMap<EquivalenceGraph<'ctx>, Vec<ComputeUnit<'ctx>>, S>,
 }
 
 pub struct ComputeUnit<'ctx> {
+    pub edges: Vec<Edge<'ctx>>,
     pub root: InstructionValue<'ctx>,
     pub memory_ops: HashSet<InstructionValue<'ctx>>,
 }
@@ -82,36 +84,56 @@ impl<'ctx, S: Default> State<'ctx, S> {
         Self {
             ids,
             ids_index,
-            compute_units: HashMap::default(),
+            idioms: HashMap::default(),
         }
     }
 }
 
-type Edge<'ctx> = (InstructionValue<'ctx>, InstructionValue<'ctx>);
-type StableEdge = (InstructionId, InstructionId);
+#[derive(Hash, Eq, PartialEq, Debug)]
+pub struct Edge<'ctx>(pub InstructionValue<'ctx>, pub InstructionValue<'ctx>);
 
-#[derive(Debug)]
-pub struct DependencyGraph<'ctx> {
-    pub edges: Vec<Edge<'ctx>>,
+impl Edge<'_> {
+    fn to_opcodes(&self) -> (u8, u8) {
+        let Self(a, b) = self;
+        (a.get_opcode() as u8, b.get_opcode() as u8)
+    }
 }
 
-impl<'ctx, S> From<(&HashSet<StableEdge, S>, &State<'ctx, S>)> for DependencyGraph<'ctx> {
-    fn from((edges, State { ids_index, .. }): (&HashSet<StableEdge, S>, &State<'ctx, S>)) -> Self {
+#[derive(Copy, Clone, Hash, Eq, PartialEq, Debug)]
+struct StableEdge(InstructionId, InstructionId);
+
+impl StableEdge {
+    fn to_edge<'ctx>(self, ids_index: &[InstructionValue<'ctx>]) -> Edge<'ctx> {
+        let Self(a, b) = self;
+        Edge(
+            ids_index[usize::try_from(a).unwrap()],
+            ids_index[usize::try_from(b).unwrap()],
+        )
+    }
+}
+
+#[derive(Debug)]
+pub struct EquivalenceGraph<'ctx> {
+    edges: Vec<(InstructionValue<'ctx>, InstructionValue<'ctx>)>,
+}
+
+const _: () = assert!(mem::size_of::<InstructionOpcode>() <= mem::size_of::<u8>());
+
+impl<'ctx, S> From<(&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])>
+    for EquivalenceGraph<'ctx>
+{
+    fn from((edges, ids_index): (&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])) -> Self {
         let mut edges = edges
             .iter()
-            .map(|&(a, b)| {
-                (
-                    ids_index[usize::try_from(a).unwrap()],
-                    ids_index[usize::try_from(b).unwrap()],
-                )
-            })
+            .map(|e| e.to_edge(ids_index))
+            .map(|e| (e.0, e.1))
             .collect::<Vec<_>>();
         edges.sort_unstable_by_key(|(a, b)| (a.get_opcode() as u32, b.get_opcode() as u32));
         Self { edges }
     }
 }
 
-impl<'ctx> DependencyGraph<'ctx> {
+impl<'ctx> EquivalenceGraph<'ctx> {
     fn ops(&self) -> impl Iterator<Item = (InstructionOpcode, InstructionOpcode)> + '_ {
         self.edges
             .iter()
@@ -119,7 +141,7 @@ impl<'ctx> DependencyGraph<'ctx> {
     }
 }
 
-impl<'ctx> Hash for DependencyGraph<'ctx> {
+impl<'ctx> Hash for EquivalenceGraph<'ctx> {
     fn hash<H: Hasher>(&self, state: &mut H) {
         for edge in self.ops() {
             edge.hash(state);
@@ -127,13 +149,13 @@ impl<'ctx> Hash for DependencyGraph<'ctx> {
     }
 }
 
-impl<'ctx> PartialEq<Self> for DependencyGraph<'ctx> {
+impl<'ctx> PartialEq<Self> for EquivalenceGraph<'ctx> {
     fn eq(&self, other: &Self) -> bool {
         self.ops().eq(other.ops())
     }
 }
 
-impl<'ctx> Eq for DependencyGraph<'ctx> {}
+impl<'ctx> Eq for EquivalenceGraph<'ctx> {}
 
 pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
     cache: &mut Cache<'ctx, S>,
@@ -155,13 +177,20 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
         maybe_add_compute_unit(&mut cache, state, instr);
 
         if !cache.edges.is_empty() {
+            let mut edges = cache
+                .edges
+                .iter()
+                .map(|e| e.to_edge(&state.ids_index))
+                .collect::<Vec<_>>();
+            edges.sort_unstable_by_key(Edge::to_opcodes);
             state
-                .compute_units
-                .entry(DependencyGraph::from((&cache.edges, &*state)))
+                .idioms
+                .entry(EquivalenceGraph::from((&cache.edges, &*state.ids_index)))
                 .or_default()
                 .push(ComputeUnit {
                     root: instr,
                     memory_ops: cache.memory_ops.clone(),
+                    edges,
                 });
         }
     }
@@ -213,7 +242,10 @@ fn write_path_to_graph<'ctx, S: BuildHasher>(
             unreachable!();
         };
 
-        if !edges.insert((ids[&from.as_value_ref()], ids[&to.as_value_ref()])) {
+        if !edges.insert(StableEdge(
+            ids[&from.as_value_ref()],
+            ids[&to.as_value_ref()],
+        )) {
             break;
         }
     }
