@@ -131,6 +131,9 @@ fn print_compute_units<S: BuildHasher>(
             _ => continue,
         }
     }
+    let total_executed_mem_ops = total_executed_loads
+        .checked_add(total_executed_stores)
+        .unwrap();
 
     let idioms = {
         let mut idioms = idioms
@@ -167,92 +170,93 @@ fn print_compute_units<S: BuildHasher>(
     )
     .unwrap();
 
-    for (compute_unit_id, (compute_units, dynamic_count)) in idioms.iter().rev().enumerate() {
-        writeln!(output, "subgraph {{").unwrap();
-        for Edge(from, to) in &compute_units[0].edges {
-            let mut create = |&node: &InstructionValue| {
-                if seen.insert(node.as_value_ref()) {
-                    let is_root = compute_units.iter().any(|cu| cu.root == node);
-                    if is_root {
-                        write!(output, "{{\nrank=min\ncomment=<Ids: ").unwrap();
-                        for (index, id) in compute_units
-                            .iter()
-                            .map(|cu| ids[&cu.root.as_value_ref()])
-                            .enumerate()
-                        {
-                            if index == 0 {
-                                write!(output, "{id}").unwrap();
-                            } else {
-                                write!(output, ", {id}").unwrap();
-                            }
-                        }
-                        writeln!(output, ">").unwrap();
-                    }
+    for (idiom_id, &(compute_units, dynamic_count)) in idioms.iter().rev().enumerate() {
+        macro_rules! captured_mem_ops {
+            ($iter:expr) => {{
+                let total = $iter
+                    .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
+                    .sum::<u64>();
 
-                    writeln!(
-                        output,
-                        "\"{compute_unit_id}_{}\" [label=\"{:?}\"]",
-                        ids[&node.as_value_ref()],
-                        node.get_opcode(),
-                    )
-                    .unwrap();
-
-                    if is_root {
-                        writeln!(output, "}}").unwrap();
-                    }
+                if total_executed_mem_ops == 0 {
+                    (0, 0)
+                } else {
+                    let bps = total.checked_mul(1000).unwrap() / total_executed_mem_ops;
+                    (bps / 10, bps % 10)
                 }
-            };
-            create(from);
-            create(to);
+            }};
+        }
+
+        writeln!(output, "subgraph {{").unwrap();
+        for (compute_unit_id, cu) in compute_units.iter().enumerate() {
+            writeln!(output, "subgraph {{").unwrap();
+            for Edge(from, to) in &cu.edges {
+                let mut create = |&node: &InstructionValue| {
+                    if seen.insert(node.as_value_ref()) {
+                        let is_root = node == cu.root;
+                        if is_root {
+                            writeln!(output, "{{\nrank=min").unwrap();
+                        }
+
+                        writeln!(
+                            output,
+                            "\"{idiom_id}_{compute_unit_id}_{}\" [label=\"{:?}\"]",
+                            ids[&node.as_value_ref()],
+                            node.get_opcode(),
+                        )
+                        .unwrap();
+
+                        if is_root {
+                            writeln!(output, "}}").unwrap();
+                        }
+                    }
+                };
+                create(from);
+                create(to);
+
+                writeln!(
+                    output,
+                    "\"{idiom_id}_{compute_unit_id}_{}\" -> \"{idiom_id}_{compute_unit_id}_{}\"",
+                    ids[&from.as_value_ref()],
+                    ids[&to.as_value_ref()],
+                )
+                .unwrap();
+            }
+            seen.clear();
+
+            let captured_memory_operations = captured_mem_ops!(cu.memory_ops.iter());
+
+            for instr in compute_units.iter().flat_map(|cu| &cu.memory_ops) {
+                seen.insert(instr.as_value_ref());
+            }
+            let uses_mem_instruction_from_previous_idioms =
+                seen.iter().any(|&instr| !all_time_seen.insert(instr));
+            seen.clear();
 
             writeln!(
                 output,
-                "\"{compute_unit_id}_{}\" -> \"{compute_unit_id}_{}\"",
-                ids[&from.as_value_ref()],
-                ids[&to.as_value_ref()],
+                "cluster=true\nlabel=\"Dynamic executions: {}\\n\\nCaptured memory operations: \
+                 {}.{}%\"",
+                dynamic_counts[&ids[&cu.root.as_value_ref()]],
+                captured_memory_operations.0,
+                captured_memory_operations.1
             )
             .unwrap();
-        }
-        seen.clear();
-
-        let captured_memory_operations = {
-            let total_everywhere = total_executed_loads
-                .checked_add(total_executed_stores)
-                .unwrap();
-            let total_in_compute_unit = compute_units
-                .iter()
-                .flat_map(|cu| &cu.memory_ops)
-                .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
-                .sum::<u64>();
-
-            if total_everywhere == 0 {
-                (0, 0)
-            } else {
-                let bps = total_in_compute_unit.checked_mul(1000).unwrap() / total_everywhere;
-                (bps / 10, bps % 10)
+            if uses_mem_instruction_from_previous_idioms {
+                writeln!(output, "color=red").unwrap();
             }
-        };
-
-        for instr in compute_units.iter().flat_map(|cu| &cu.memory_ops) {
-            seen.insert(instr.as_value_ref());
+            writeln!(output, "}}").unwrap();
         }
-        let uses_mem_instruction_from_previous_idioms =
-            seen.iter().any(|&instr| !all_time_seen.insert(instr));
-        seen.clear();
+
+        let captured_memory_operations =
+            captured_mem_ops!(compute_units.iter().flat_map(|cu| &cu.memory_ops));
 
         writeln!(
             output,
-            "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
-             {dynamic_count}\\n\\nCaptured memory operations: {}.{}%\"",
-            compute_units.len(),
-            captured_memory_operations.0,
-            captured_memory_operations.1
+            "cluster=true\nlabel=\"Dynamic executions: {dynamic_count}\\nCaptured memory \
+             operations: {}.{}%\"\n}}",
+            captured_memory_operations.0, captured_memory_operations.1
         )
         .unwrap();
-        if uses_mem_instruction_from_previous_idioms {
-            writeln!(output, "color=red").unwrap();
-        }
-        writeln!(output, "}}").unwrap();
     }
     writeln!(output, "}}").unwrap();
 }
