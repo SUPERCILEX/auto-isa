@@ -203,20 +203,19 @@ subgraph {
 "9_430" [label="GetElementPtr"]
 "9_367" [label="Phi"]
 "9_430" -> "9_367"
-"9_520" [label="Phi"]
+{
+rank=min
+comment=<Ids: 448>
 "9_448" [label="Load"]
+}
+"9_448" -> "9_430"
+"9_520" [label="Phi"]
 "9_520" -> "9_448"
 "9_358" [label="Phi"]
 "9_367" -> "9_358"
 "9_527" [label="Phi"]
 "9_527" -> "9_520"
 "9_358" -> "9_527"
-{
-rank=min
-comment=<Ids: 431>
-"9_431" [label="Store"]
-}
-"9_431" -> "9_430"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 180180\n\nCaptured memory operations: 0.0%"
 }
@@ -224,19 +223,20 @@ subgraph {
 "10_430" [label="GetElementPtr"]
 "10_367" [label="Phi"]
 "10_430" -> "10_367"
-{
-rank=min
-comment=<Ids: 448>
-"10_448" [label="Load"]
-}
-"10_448" -> "10_430"
 "10_520" [label="Phi"]
+"10_448" [label="Load"]
 "10_520" -> "10_448"
 "10_358" [label="Phi"]
 "10_367" -> "10_358"
 "10_527" [label="Phi"]
 "10_527" -> "10_520"
 "10_358" -> "10_527"
+{
+rank=min
+comment=<Ids: 431>
+"10_431" [label="Store"]
+}
+"10_431" -> "10_430"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 180180\n\nCaptured memory operations: 0.0%"
 }

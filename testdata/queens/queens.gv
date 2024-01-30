@@ -71,12 +71,16 @@ subgraph {
 "4_15" [label="GetElementPtr"]
 "4_11" [label="Load"]
 "4_15" -> "4_11"
+"4_26" [label="GetElementPtr"]
+"4_20" [label="Phi"]
+"4_26" -> "4_20"
 {
 rank=min
-comment=<Ids: 16>
-"4_16" [label="Load"]
+comment=<Ids: 27>
+"4_27" [label="Load"]
 }
-"4_16" -> "4_15"
+"4_27" -> "4_26"
+"4_20" -> "4_15"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }
@@ -84,16 +88,12 @@ subgraph {
 "5_15" [label="GetElementPtr"]
 "5_11" [label="Load"]
 "5_15" -> "5_11"
-"5_26" [label="GetElementPtr"]
-"5_20" [label="Phi"]
-"5_26" -> "5_20"
 {
 rank=min
-comment=<Ids: 27>
-"5_27" [label="Load"]
+comment=<Ids: 16>
+"5_16" [label="Load"]
 }
-"5_27" -> "5_26"
-"5_20" -> "5_15"
+"5_16" -> "5_15"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0\n\nCaptured memory operations: 0.0%"
 }

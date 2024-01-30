@@ -60,12 +60,16 @@ subgraph {
 "3_186" -> "3_181"
 "3_187" [label="And"]
 "3_187" -> "3_186"
+"3_190" [label="GetElementPtr"]
+"3_189" [label="ZExt"]
+"3_190" -> "3_189"
 {
 rank=min
-comment=<Ids: 188, 226>
-"3_188" [label="Store"]
+comment=<Ids: 191, 229>
+"3_191" [label="Load"]
 }
-"3_188" -> "3_187"
+"3_191" -> "3_190"
+"3_189" -> "3_187"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
 }
@@ -75,16 +79,12 @@ subgraph {
 "4_186" -> "4_181"
 "4_187" [label="And"]
 "4_187" -> "4_186"
-"4_190" [label="GetElementPtr"]
-"4_189" [label="ZExt"]
-"4_190" -> "4_189"
 {
 rank=min
-comment=<Ids: 191, 229>
-"4_191" [label="Load"]
+comment=<Ids: 188, 226>
+"4_188" [label="Store"]
 }
-"4_191" -> "4_190"
-"4_189" -> "4_187"
+"4_188" -> "4_187"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
 }

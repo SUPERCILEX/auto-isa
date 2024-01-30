@@ -1,7 +1,7 @@
 use std::{
     collections::{HashMap, HashSet},
     fmt::Debug,
-    hash::{BuildHasher, Hash, Hasher},
+    hash::{BuildHasher, Hash},
     mem,
     ops::{Deref, DerefMut},
 };
@@ -70,7 +70,7 @@ pub struct State<'ctx, S> {
     pub ids: HashMap<LLVMValueRef, u32>,
     pub ids_index: Vec<InstructionValue<'ctx>>,
 
-    pub idioms: HashMap<EquivalenceGraph<'ctx>, Vec<ComputeUnit<'ctx>>, S>,
+    pub idioms: HashMap<EquivalenceGraph, Vec<ComputeUnit<'ctx>>, S>,
 }
 
 pub struct ComputeUnit<'ctx> {
@@ -112,50 +112,24 @@ impl StableEdge {
     }
 }
 
-#[derive(Debug)]
-pub struct EquivalenceGraph<'ctx> {
-    edges: Vec<(InstructionValue<'ctx>, InstructionValue<'ctx>)>,
+#[derive(Hash, Eq, PartialEq, Debug)]
+pub struct EquivalenceGraph {
+    edges: Vec<(u8, u8)>,
 }
 
 const _: () = assert!(mem::size_of::<InstructionOpcode>() <= mem::size_of::<u8>());
 
-impl<'ctx, S> From<(&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])>
-    for EquivalenceGraph<'ctx>
-{
+impl<'ctx, S> From<(&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])> for EquivalenceGraph {
     fn from((edges, ids_index): (&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])) -> Self {
         let mut edges = edges
             .iter()
             .map(|e| e.to_edge(ids_index))
-            .map(|e| (e.0, e.1))
+            .map(|e| e.to_opcodes())
             .collect::<Vec<_>>();
-        edges.sort_unstable_by_key(|(a, b)| (a.get_opcode() as u32, b.get_opcode() as u32));
+        edges.sort_unstable();
         Self { edges }
     }
 }
-
-impl<'ctx> EquivalenceGraph<'ctx> {
-    fn ops(&self) -> impl Iterator<Item = (InstructionOpcode, InstructionOpcode)> + '_ {
-        self.edges
-            .iter()
-            .map(|(a, b)| (a.get_opcode(), b.get_opcode()))
-    }
-}
-
-impl<'ctx> Hash for EquivalenceGraph<'ctx> {
-    fn hash<H: Hasher>(&self, state: &mut H) {
-        for edge in self.ops() {
-            edge.hash(state);
-        }
-    }
-}
-
-impl<'ctx> PartialEq<Self> for EquivalenceGraph<'ctx> {
-    fn eq(&self, other: &Self) -> bool {
-        self.ops().eq(other.ops())
-    }
-}
-
-impl<'ctx> Eq for EquivalenceGraph<'ctx> {}
 
 pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
     cache: &mut Cache<'ctx, S>,
