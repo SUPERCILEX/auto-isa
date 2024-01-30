@@ -30,9 +30,9 @@ rank=min
 "0_0_40" -> "0_0_39"
 "0_0_37" -> "0_0_25"
 cluster=true
-label="Dynamic executions: 100000\n\nCaptured memory operations: 49.9%"
+label="Dynamic executions: 100000\nCaptured memory operations: 49.9%"
 }
 cluster=true
-label="Dynamic executions: 100000\nCaptured memory operations: 49.9%"
+label="Static occurrences: 1\nDynamic executions: 100000\nCaptured memory operations: 49.9%"
 }
 }

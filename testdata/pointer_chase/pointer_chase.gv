@@ -18,24 +18,10 @@ rank=min
 }
 "0_0_7" -> "0_0_6"
 cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
-}
-subgraph {
-"0_1_5" [label="Phi"]
-{
-rank=min
-"0_1_15" [label="Load\n0"]
-}
-"0_1_5" -> "0_1_15"
-"0_1_14" [label="GetElementPtr"]
-"0_1_14" -> "0_1_5"
-"0_1_15" -> "0_1_14"
-cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
-color=red
-}
-cluster=true
 label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+}
+cluster=true
+label="Static occurrences: 2\nDynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 subgraph {
 subgraph {
@@ -48,11 +34,11 @@ rank=min
 }
 "1_0_10" -> "1_0_9"
 cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
+label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 subgraph {
 subgraph {
@@ -63,11 +49,11 @@ rank=min
 "2_0_7" [label="Load\n0"]
 "2_0_8" -> "2_0_7"
 cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
+label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 subgraph {
 subgraph {
@@ -88,10 +74,10 @@ rank=min
 "3_0_10" [label="Load\n0"]
 "3_0_11" -> "3_0_10"
 cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
+label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 }

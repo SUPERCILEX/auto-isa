@@ -187,7 +187,17 @@ fn print_compute_units<S: BuildHasher>(
         }
 
         writeln!(output, "subgraph {{").unwrap();
-        for (compute_unit_id, cu) in compute_units.iter().enumerate() {
+        for (compute_unit_id, cu) in compute_units
+            .iter()
+            .take(1)
+            .chain(
+                compute_units
+                    .iter()
+                    .skip(1)
+                    .filter(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]] >= 100),
+            )
+            .enumerate()
+        {
             writeln!(output, "subgraph {{").unwrap();
             for Edge(from, to) in &cu.edges {
                 let mut create = |&node: &InstructionValue| {
@@ -239,7 +249,7 @@ fn print_compute_units<S: BuildHasher>(
 
             writeln!(
                 output,
-                "cluster=true\nlabel=\"Dynamic executions: {}\\n\\nCaptured memory operations: \
+                "cluster=true\nlabel=\"Dynamic executions: {}\\nCaptured memory operations: \
                  {}.{}%\"",
                 dynamic_counts[&ids[&cu.root.as_value_ref()]],
                 captured_memory_operations.0,
@@ -257,9 +267,11 @@ fn print_compute_units<S: BuildHasher>(
 
         writeln!(
             output,
-            "cluster=true\nlabel=\"Dynamic executions: {dynamic_count}\\nCaptured memory \
-             operations: {}.{}%\"\n}}",
-            captured_memory_operations.0, captured_memory_operations.1
+            "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
+             {dynamic_count}\\nCaptured memory operations: {}.{}%\"\n}}",
+            compute_units.len(),
+            captured_memory_operations.0,
+            captured_memory_operations.1
         )
         .unwrap();
     }

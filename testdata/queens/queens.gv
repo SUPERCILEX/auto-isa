@@ -22,10 +22,10 @@ rank=min
 "0_0_139" -> "0_0_138"
 "0_0_140" -> "0_0_139"
 cluster=true
-label="Dynamic executions: 55391321\n\nCaptured memory operations: 6.9%"
+label="Dynamic executions: 55391321\nCaptured memory operations: 6.9%"
 }
 cluster=true
-label="Dynamic executions: 55391321\nCaptured memory operations: 6.9%"
+label="Static occurrences: 1\nDynamic executions: 55391321\nCaptured memory operations: 6.9%"
 }
 subgraph {
 subgraph {
@@ -44,7 +44,7 @@ rank=min
 "1_0_139" -> "1_0_138"
 "1_0_140" -> "1_0_139"
 cluster=true
-label="Dynamic executions: 27358552\n\nCaptured memory operations: 4.5%"
+label="Dynamic executions: 27358552\nCaptured memory operations: 4.5%"
 color=red
 }
 subgraph {
@@ -63,11 +63,11 @@ rank=min
 "1_1_164" -> "1_1_146"
 "1_1_140" -> "1_1_139"
 cluster=true
-label="Dynamic executions: 27358552\n\nCaptured memory operations: 4.5%"
+label="Dynamic executions: 27358552\nCaptured memory operations: 4.5%"
 color=red
 }
 cluster=true
-label="Dynamic executions: 54717104\nCaptured memory operations: 9.1%"
+label="Static occurrences: 2\nDynamic executions: 54717104\nCaptured memory operations: 9.1%"
 }
 subgraph {
 subgraph {
@@ -80,10 +80,10 @@ rank=min
 "2_0_120" [label="Load\n365596"]
 "2_0_121" -> "2_0_120"
 cluster=true
-label="Dynamic executions: 365596\n\nCaptured memory operations: 0.0%"
+label="Dynamic executions: 365596\nCaptured memory operations: 0.0%"
 }
 cluster=true
-label="Dynamic executions: 365596\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nDynamic executions: 365596\nCaptured memory operations: 0.0%"
 }
 subgraph {
 subgraph {
@@ -94,32 +94,10 @@ rank=min
 "3_0_0" [label="Load\n1"]
 "3_0_1" -> "3_0_0"
 cluster=true
-label="Dynamic executions: 1\n\nCaptured memory operations: 0.0%"
-}
-subgraph {
-{
-rank=min
-"3_1_75" [label="Store\n1"]
-}
-"3_1_64" [label="Load\n1"]
-"3_1_75" -> "3_1_64"
-cluster=true
-label="Dynamic executions: 1\n\nCaptured memory operations: 0.0%"
-color=red
-}
-subgraph {
-{
-rank=min
-"3_2_76" [label="Store\n1"]
-}
-"3_2_64" [label="Load\n1"]
-"3_2_76" -> "3_2_64"
-cluster=true
-label="Dynamic executions: 1\n\nCaptured memory operations: 0.0%"
-color=red
+label="Dynamic executions: 1\nCaptured memory operations: 0.0%"
 }
 cluster=true
-label="Dynamic executions: 3\nCaptured memory operations: 0.0%"
+label="Static occurrences: 3\nDynamic executions: 3\nCaptured memory operations: 0.0%"
 }
 subgraph {
 subgraph {
@@ -136,10 +114,10 @@ rank=min
 "4_0_27" -> "4_0_26"
 "4_0_20" -> "4_0_15"
 cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
+label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 subgraph {
 subgraph {
@@ -152,11 +130,11 @@ rank=min
 "5_0_11" [label="Load\n0"]
 "5_0_15" -> "5_0_11"
 cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
+label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 subgraph {
 subgraph {
@@ -167,10 +145,10 @@ rank=min
 "6_0_11" [label="Load\n0"]
 "6_0_12" -> "6_0_11"
 cluster=true
-label="Dynamic executions: 0\n\nCaptured memory operations: 0.0%"
+label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
 }
 }
