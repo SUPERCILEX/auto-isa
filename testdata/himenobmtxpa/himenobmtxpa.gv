@@ -94,6 +94,7 @@ comment=<Ids: 629, 664, 710>
 "2_518" -> "2_508"
 cluster=true
 label="Static occurrences: 3\nDynamic executions: 92994048\n\nCaptured memory operations: 8.7%"
+color=red
 }
 subgraph {
 "3_527" [label="Mul"]
@@ -127,6 +128,7 @@ comment=<Ids: 637, 684, 717>
 "3_636" -> "3_506"
 cluster=true
 label="Static occurrences: 3\nDynamic executions: 92994048\n\nCaptured memory operations: 8.7%"
+color=red
 }
 subgraph {
 "4_742" [label="GetElementPtr"]
@@ -187,6 +189,7 @@ comment=<Ids: 728>
 "5_727" -> "5_726"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 30998016\n\nCaptured memory operations: 2.9%"
+color=red
 }
 subgraph {
 {
@@ -216,6 +219,7 @@ comment=<Ids: 780>
 "6_756" -> "6_423"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 30998016\n\nCaptured memory operations: 5.6%"
+color=red
 }
 subgraph {
 "7_868" [label="Trunc"]

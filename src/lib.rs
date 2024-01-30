@@ -153,6 +153,7 @@ fn print_compute_units<S: BuildHasher>(
         idioms
     };
 
+    let mut all_time_seen = HashSet::new();
     let mut seen = HashSet::new();
 
     let mut stdout = ManuallyDrop::new(unsafe { File::from_raw_fd(rustix::stdio::raw_stdout()) });
@@ -232,15 +233,26 @@ fn print_compute_units<S: BuildHasher>(
             }
         };
 
+        for instr in compute_units.iter().flat_map(|cu| &cu.memory_ops) {
+            seen.insert(instr.as_value_ref());
+        }
+        let uses_mem_instruction_from_previous_idioms =
+            seen.iter().any(|&instr| !all_time_seen.insert(instr));
+        seen.clear();
+
         writeln!(
             output,
             "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
-             {dynamic_count}\\n\\nCaptured memory operations: {}.{}%\"\n}}",
+             {dynamic_count}\\n\\nCaptured memory operations: {}.{}%\"",
             compute_units.len(),
             captured_memory_operations.0,
             captured_memory_operations.1
         )
         .unwrap();
+        if uses_mem_instruction_from_previous_idioms {
+            writeln!(output, "color=red").unwrap();
+        }
+        writeln!(output, "}}").unwrap();
     }
     writeln!(output, "}}").unwrap();
 }

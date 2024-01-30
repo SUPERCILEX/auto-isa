@@ -34,6 +34,7 @@ comment=<Ids: 282, 284>
 "1_281" -> "1_280"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 88\n\nCaptured memory operations: 24.8%"
+color=red
 }
 subgraph {
 {
@@ -47,6 +48,7 @@ comment=<Ids: 225, 286>
 "2_224" -> "2_201"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 50\n\nCaptured memory operations: 8.3%"
+color=red
 }
 subgraph {
 {
@@ -101,6 +103,7 @@ comment=<Ids: 309>
 "4_304" -> "4_294"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 44\n\nCaptured memory operations: 21.1%"
+color=red
 }
 subgraph {
 {
@@ -135,6 +138,7 @@ comment=<Ids: 211, 215, 219>
 "6_211" -> "6_210"
 cluster=true
 label="Static occurrences: 3\nDynamic executions: 24\n\nCaptured memory operations: 5.5%"
+color=red
 }
 subgraph {
 {
@@ -146,5 +150,6 @@ comment=<Ids: 26, 50, 54, 58, 199, 343, 404>
 "7_26" -> "7_24"
 cluster=true
 label="Static occurrences: 7\nDynamic executions: 9\n\nCaptured memory operations: 4.0%"
+color=red
 }
 }

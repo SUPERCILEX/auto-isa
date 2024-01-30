@@ -36,6 +36,7 @@ comment=<Ids: 41>
 "1_38" -> "1_28"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 268435456\n\nCaptured memory operations: 99.9%"
+color=red
 }
 subgraph {
 "2_16" [label="GetElementPtr"]
@@ -60,5 +61,6 @@ comment=<Ids: 48>
 "3_48" -> "3_28"
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
+color=red
 }
 }

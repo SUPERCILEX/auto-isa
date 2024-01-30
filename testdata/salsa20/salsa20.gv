@@ -87,5 +87,6 @@ comment=<Ids: 188, 226>
 "4_188" -> "4_187"
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 1\n\nCaptured memory operations: 0.0%"
+color=red
 }
 }

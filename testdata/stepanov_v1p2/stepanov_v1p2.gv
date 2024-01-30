@@ -96,5 +96,6 @@ comment=<Ids: 105, 197, 239, 281, 323, 365, 407, 449, 491, 533, 575, 617, 659, 7
 "5_104" -> "5_103"
 cluster=true
 label="Static occurrences: 14\nDynamic executions: 13\n\nCaptured memory operations: 0.0%"
+color=red
 }
 }
