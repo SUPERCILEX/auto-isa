@@ -8,11 +8,11 @@ label="Total loads executed: 536875011\nTotal stores executed: 268439552"
 subgraph {
 subgraph {
 "0_0_36" [label="GetElementPtr"]
-"0_0_29" [label="Load"]
+"0_0_29" [label="Load\n1"]
 "0_0_36" -> "0_0_29"
 {
 rank=min
-"0_0_37" [label="Load"]
+"0_0_37" [label="Load\n268435456"]
 }
 "0_0_37" -> "0_0_36"
 cluster=true
@@ -20,11 +20,11 @@ label="Dynamic executions: 268435456\n\nCaptured memory operations: 33.3%"
 }
 subgraph {
 "0_1_38" [label="GetElementPtr"]
-"0_1_28" [label="Load"]
+"0_1_28" [label="Load\n1"]
 "0_1_38" -> "0_1_28"
 {
 rank=min
-"0_1_39" [label="Load"]
+"0_1_39" [label="Load\n268435456"]
 }
 "0_1_39" -> "0_1_38"
 cluster=true
@@ -38,17 +38,17 @@ subgraph {
 subgraph {
 {
 rank=min
-"1_0_41" [label="Store"]
+"1_0_41" [label="Store\n268435456"]
 }
 "1_0_40" [label="FDiv"]
 "1_0_41" -> "1_0_40"
-"1_0_37" [label="Load"]
+"1_0_37" [label="Load\n268435456"]
 "1_0_40" -> "1_0_37"
 "1_0_38" [label="GetElementPtr"]
 "1_0_41" -> "1_0_38"
-"1_0_39" [label="Load"]
+"1_0_39" [label="Load\n268435456"]
 "1_0_40" -> "1_0_39"
-"1_0_28" [label="Load"]
+"1_0_28" [label="Load\n1"]
 "1_0_38" -> "1_0_28"
 cluster=true
 label="Dynamic executions: 268435456\n\nCaptured memory operations: 99.9%"
@@ -60,11 +60,11 @@ label="Dynamic executions: 268435456\nCaptured memory operations: 99.9%"
 subgraph {
 subgraph {
 "2_0_16" [label="GetElementPtr"]
-"2_0_15" [label="Load"]
+"2_0_15" [label="Load\n2048"]
 "2_0_16" -> "2_0_15"
 {
 rank=min
-"2_0_17" [label="Store"]
+"2_0_17" [label="Store\n2048"]
 }
 "2_0_17" -> "2_0_16"
 cluster=true
@@ -72,11 +72,11 @@ label="Dynamic executions: 2048\n\nCaptured memory operations: 0.0%"
 }
 subgraph {
 "2_1_23" [label="GetElementPtr"]
-"2_1_22" [label="Load"]
+"2_1_22" [label="Load\n2048"]
 "2_1_23" -> "2_1_22"
 {
 rank=min
-"2_1_24" [label="Store"]
+"2_1_24" [label="Store\n2048"]
 }
 "2_1_24" -> "2_1_23"
 cluster=true
@@ -90,9 +90,9 @@ subgraph {
 subgraph {
 {
 rank=min
-"3_0_48" [label="Load"]
+"3_0_48" [label="Load\n1"]
 }
-"3_0_28" [label="Load"]
+"3_0_28" [label="Load\n1"]
 "3_0_48" -> "3_0_28"
 cluster=true
 label="Dynamic executions: 1\n\nCaptured memory operations: 0.0%"

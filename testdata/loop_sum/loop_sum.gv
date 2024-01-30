@@ -9,19 +9,19 @@ subgraph {
 subgraph {
 {
 rank=min
-"0_0_32" [label="Store"]
+"0_0_32" [label="Store\n100000"]
 }
 "0_0_31" [label="Add"]
 "0_0_32" -> "0_0_31"
 "0_0_30" [label="Add"]
-"0_0_27" [label="Load"]
+"0_0_27" [label="Load\n100000"]
 "0_0_30" -> "0_0_27"
 "0_0_25" [label="Phi"]
-"0_0_21" [label="Load"]
+"0_0_21" [label="Load\n1"]
 "0_0_25" -> "0_0_21"
 "0_0_31" -> "0_0_30"
 "0_0_31" -> "0_0_25"
-"0_0_29" [label="Load"]
+"0_0_29" [label="Load\n100000"]
 "0_0_30" -> "0_0_29"
 cluster=true
 label="Dynamic executions: 100000\n\nCaptured memory operations: 59.9%"

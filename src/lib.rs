@@ -18,7 +18,7 @@ use llvm_plugin::{
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
-    analysis::{find_non_local_memory_compute_units, Cache, Edge, State},
+    analysis::{find_non_local_memory_compute_units, Cache, Edge, State, MEMORY_INSTRUCTIONS},
     instrumentation::instrument_compute_units,
 };
 
@@ -197,13 +197,18 @@ fn print_compute_units<S: BuildHasher>(
                             writeln!(output, "{{\nrank=min").unwrap();
                         }
 
-                        writeln!(
+                        write!(
                             output,
-                            "\"{idiom_id}_{compute_unit_id}_{}\" [label=\"{:?}\"]",
+                            "\"{idiom_id}_{compute_unit_id}_{}\" [label=\"{:?}",
                             ids[&node.as_value_ref()],
                             node.get_opcode(),
                         )
                         .unwrap();
+                        if MEMORY_INSTRUCTIONS.contains(&node.get_opcode()) {
+                            write!(output, "\\n{}", dynamic_counts[&ids[&node.as_value_ref()]])
+                                .unwrap();
+                        }
+                        writeln!(output, "\"]").unwrap();
 
                         if is_root {
                             writeln!(output, "}}").unwrap();
