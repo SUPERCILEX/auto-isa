@@ -148,7 +148,7 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
 
         cache.path.push(instr);
         cache.memory_ops.insert(instr);
-        maybe_add_compute_unit(&mut cache, state, instr);
+        maybe_add_compute_unit(&mut cache, &state.ids, instr);
 
         if !cache.edges.is_empty() {
             state
@@ -170,7 +170,7 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
 
 fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     cache: &mut Cache<'ctx, S>,
-    state: &mut State<'ctx, S>,
+    ids: &HashMap<LLVMValueRef, u32>,
     instruction: InstructionValue<'ctx>,
 ) {
     if !cache.seen.insert(instruction.as_value_ref()) {
@@ -197,24 +197,21 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         let op = instruction.get_opcode();
         if op == InstructionOpcode::Load {
             cache.memory_ops.insert(instruction);
-            write_path_to_graph(cache, state);
+            write_path_to_graph(cache, ids);
         } else if !matches!(op, InstructionOpcode::Call | InstructionOpcode::Invoke) {
-            maybe_add_compute_unit(cache, state, instruction);
+            maybe_add_compute_unit(cache, ids, instruction);
         }
         cache.path.pop();
     }
 }
 
-fn write_path_to_graph<'ctx, S: BuildHasher>(
-    Cache { path, edges, .. }: &mut Cache<'ctx, S>,
-    State { ids, .. }: &mut State<'ctx, S>,
-) {
-    for edge in path.windows(2).rev() {
+fn write_path_to_graph<S: BuildHasher>(cache: &mut Cache<S>, ids: &HashMap<LLVMValueRef, u32>) {
+    for edge in cache.path.windows(2).rev() {
         let &[from, to] = edge else {
             unreachable!();
         };
 
-        if !edges.insert(StableEdge(
+        if !cache.edges.insert(StableEdge(
             ids[&from.as_value_ref()],
             ids[&to.as_value_ref()],
         )) {
