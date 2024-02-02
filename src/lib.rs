@@ -194,8 +194,13 @@ fn print_compute_units<S: BuildHasher>(
             for instr in compute_units.iter().flat_map(|cu| &cu.memory_ops) {
                 seen.insert(instr.as_value_ref());
             }
-            let uses_mem_instruction_from_previous_idioms =
-                seen.iter().any(|&instr| !all_time_seen.insert(instr));
+            let uses_mem_instruction_from_previous_idioms = {
+                let mut overlap = false;
+                for &instr in &seen {
+                    overlap |= !all_time_seen.insert(instr);
+                }
+                overlap
+            };
             seen.clear();
 
             if !first && dynamic_counts[&ids[&cu.root.as_value_ref()]] < 100 {

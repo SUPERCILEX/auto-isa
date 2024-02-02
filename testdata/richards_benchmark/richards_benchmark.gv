@@ -1396,6 +1396,7 @@ rank=min
 "25_0_298" -> "25_0_296"
 cluster=true
 label="Dynamic executions: 9305564\nCaptured memory operations: 0.8%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 9305564\nCaptured memory operations: 0.8%"
@@ -1685,6 +1686,7 @@ rank=min
 "39_0_211" -> "39_0_212"
 cluster=true
 label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"

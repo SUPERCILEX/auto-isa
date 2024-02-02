@@ -1216,6 +1216,7 @@ rank=min
 "7_0_2174" -> "7_0_2173"
 cluster=true
 label="Dynamic executions: 30494865\nCaptured memory operations: 1.4%"
+color=red
 }
 subgraph {
 {
@@ -1808,6 +1809,7 @@ rank=min
 "10_0_1449" -> "10_0_1448"
 cluster=true
 label="Dynamic executions: 61097346\nCaptured memory operations: 1.6%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 61097346\nCaptured memory operations: 1.6%"
@@ -2577,6 +2579,7 @@ rank=min
 "24_0_2310" -> "24_0_2308"
 cluster=true
 label="Dynamic executions: 13673453\nCaptured memory operations: 0.2%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 13673453\nCaptured memory operations: 0.2%"
@@ -2842,6 +2845,7 @@ rank=min
 "29_0_2301" -> "29_0_2300"
 cluster=true
 label="Dynamic executions: 13201608\nCaptured memory operations: 0.3%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 13201608\nCaptured memory operations: 0.3%"
@@ -4472,6 +4476,7 @@ rank=min
 "52_0_2037" -> "52_0_2016"
 cluster=true
 label="Dynamic executions: 14\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 35\nCaptured memory operations: 0.0%"
@@ -4796,6 +4801,7 @@ rank=min
 "60_0_633" -> "60_0_628"
 cluster=true
 label="Dynamic executions: 2\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 2\nCaptured memory operations: 0.0%"
@@ -4912,6 +4918,7 @@ rank=min
 "64_0_1538" -> "64_0_1535"
 cluster=true
 label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 0\nCaptured memory operations: 0.0%"
@@ -4987,6 +4994,7 @@ rank=min
 "66_0_3554" -> "66_0_3552"
 cluster=true
 label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"

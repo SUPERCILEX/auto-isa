@@ -762,6 +762,7 @@ rank=min
 "22_0_57" -> "22_0_54"
 cluster=true
 label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 2\nDynamic executions: 0\nCaptured memory operations: 0.0%"

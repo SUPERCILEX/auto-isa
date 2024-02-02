@@ -1150,6 +1150,7 @@ rank=min
 "16_0_582" -> "16_0_580"
 cluster=true
 label="Dynamic executions: 243901\nCaptured memory operations: 0.0%"
+color=red
 }
 subgraph {
 "16_1_563" [label="SExt"]
@@ -1332,6 +1333,7 @@ rank=min
 "22_0_496" -> "22_0_495"
 cluster=true
 label="Dynamic executions: 43074\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 43074\nCaptured memory operations: 0.0%"

@@ -75,6 +75,7 @@ rank=min
 "3_0_11" -> "3_0_10"
 cluster=true
 label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
