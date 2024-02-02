@@ -187,17 +187,22 @@ fn print_compute_units<S: BuildHasher>(
         }
 
         writeln!(output, "subgraph {{").unwrap();
-        for (compute_unit_id, cu) in compute_units
+        let mut first = !compute_units
             .iter()
-            .take(1)
-            .chain(
-                compute_units
-                    .iter()
-                    .skip(1)
-                    .filter(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]] >= 100),
-            )
-            .enumerate()
-        {
+            .any(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]] >= 100);
+        for (compute_unit_id, cu) in compute_units.iter().enumerate() {
+            for instr in compute_units.iter().flat_map(|cu| &cu.memory_ops) {
+                seen.insert(instr.as_value_ref());
+            }
+            let uses_mem_instruction_from_previous_idioms =
+                seen.iter().any(|&instr| !all_time_seen.insert(instr));
+            seen.clear();
+
+            if !first && dynamic_counts[&ids[&cu.root.as_value_ref()]] < 100 {
+                continue;
+            }
+            first = false;
+
             writeln!(output, "subgraph {{").unwrap();
             for Edge(from, to) in &cu.edges {
                 let mut create = |&node: &InstructionValue| {
@@ -239,14 +244,6 @@ fn print_compute_units<S: BuildHasher>(
             seen.clear();
 
             let captured_memory_operations = captured_mem_ops!(cu.memory_ops.iter());
-
-            for instr in compute_units.iter().flat_map(|cu| &cu.memory_ops) {
-                seen.insert(instr.as_value_ref());
-            }
-            let uses_mem_instruction_from_previous_idioms =
-                seen.iter().any(|&instr| !all_time_seen.insert(instr));
-            seen.clear();
-
             writeln!(
                 output,
                 "cluster=true\nlabel=\"Dynamic executions: {}\\nCaptured memory operations: \
