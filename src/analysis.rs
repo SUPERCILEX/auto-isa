@@ -341,7 +341,7 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
         .iter()
         .map(|(_, v)| v.len())
         .product::<usize>()
-        > 1_000_000
+        > 100_000
     {
         // Preemptively give up
         return;
