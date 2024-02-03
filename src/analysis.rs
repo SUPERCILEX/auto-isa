@@ -27,11 +27,11 @@ pub struct Cache<'ctx, S> {
     path: Vec<InstructionValue<'ctx>>,
     memory_ops: HashSet<InstructionValue<'ctx>>,
 
-    ivv_pool: VecPool<InstructionValue<'ctx>>,
-    phi_graph: HashMap<InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>, S>,
-    full_graph: HashMap<InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>, S>,
+    ivv_pool: VecPool<InstructionId>,
+    phi_graph: HashMap<InstructionId, Vec<InstructionId>, S>,
+    full_graph: HashMap<InstructionId, Vec<InstructionId>, S>,
     phi_odometer: Vec<usize>,
-    phi_edges: Vec<(InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>)>,
+    phi_edges: Vec<(InstructionId, Vec<InstructionId>)>,
     seen_split_pool: VecPool<StableEdge>,
     seen_split_idioms: HashSet<Vec<StableEdge>>,
 }
@@ -289,9 +289,7 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher>(
     }
 
     for &StableEdge(from, to) in &cache.edges {
-        let from = ids_index[usize::try_from(from).unwrap()];
-        if from.get_opcode() == InstructionOpcode::Phi {
-            let to = ids_index[usize::try_from(to).unwrap()];
+        if ids_index[usize::try_from(from).unwrap()].get_opcode() == InstructionOpcode::Phi {
             match cache.phi_graph.entry(from) {
                 Entry::Occupied(mut e) => e.get_mut().push(to),
                 Entry::Vacant(e) => {
@@ -323,8 +321,7 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher>(
         return;
     }
 
-    for e in &cache.edges {
-        let Edge(from, to) = e.to_edge(ids_index);
+    for &StableEdge(from, to) in &cache.edges {
         match cache.full_graph.entry(from) {
             Entry::Occupied(mut e) => e.get_mut().push(to),
             Entry::Vacant(e) => {
@@ -357,11 +354,11 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher>(
             cache.seen.clear();
 
             build_filtered_compute_unit(
-                root,
+                ids[&root.as_value_ref()],
                 &cache.full_graph,
                 &cache.phi_odometer,
                 &cache.phi_edges,
-                ids,
+                ids_index,
                 &mut cache.seen,
                 &mut cache.edges,
                 &mut cache.memory_ops,
@@ -394,44 +391,45 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher>(
 
 #[allow(clippy::too_many_arguments)]
 fn build_filtered_compute_unit<'ctx, S: BuildHasher>(
-    root: InstructionValue<'ctx>,
-    full_graph: &HashMap<InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>, S>,
+    root: InstructionId,
+    full_graph: &HashMap<InstructionId, Vec<InstructionId>, S>,
     phi_odometer: &[usize],
-    phi_edges: &[(InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>)],
-    ids: &HashMap<LLVMValueRef, u32>,
+    phi_edges: &[(InstructionId, Vec<InstructionId>)],
+    ids_index: &[InstructionValue<'ctx>],
     seen: &mut HashSet<LLVMValueRef>,
     edges: &mut HashSet<StableEdge, S>,
     memory_ops: &mut HashSet<InstructionValue<'ctx>>,
 ) {
-    if !seen.insert(root.as_value_ref()) {
+    let root_instr = ids_index[usize::try_from(root).unwrap()];
+    if !seen.insert(root_instr.as_value_ref()) {
         return;
     }
 
     if let Some(index) = phi_edges.iter().position(|&(node, _)| root == node) {
         let next = phi_edges[index].1[phi_odometer[index]];
-        edges.insert(Edge(root, next).to_stable(ids));
+        edges.insert(StableEdge(root, next));
         build_filtered_compute_unit(
             next,
             full_graph,
             phi_odometer,
             phi_edges,
-            ids,
+            ids_index,
             seen,
             edges,
             memory_ops,
         );
     } else {
-        if MEMORY_INSTRUCTIONS.contains(&root.get_opcode()) {
-            memory_ops.insert(root);
+        if MEMORY_INSTRUCTIONS.contains(&root_instr.get_opcode()) {
+            memory_ops.insert(root_instr);
         }
         for &outgoing in full_graph.get(&root).map(|v| &**v).unwrap_or_default() {
-            edges.insert(Edge(root, outgoing).to_stable(ids));
+            edges.insert(StableEdge(root, outgoing));
             build_filtered_compute_unit(
                 outgoing,
                 full_graph,
                 phi_odometer,
                 phi_edges,
-                ids,
+                ids_index,
                 seen,
                 edges,
                 memory_ops,
