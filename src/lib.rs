@@ -1,3 +1,5 @@
+#![feature(iter_collect_into)]
+
 use std::{
     collections::{hash_map::DefaultHasher, HashMap, HashSet},
     fs::File,

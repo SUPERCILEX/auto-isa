@@ -1,5 +1,5 @@
 use std::{
-    collections::{HashMap, HashSet},
+    collections::{hash_map::Entry, HashMap, HashSet},
     fmt::Debug,
     hash::{BuildHasher, Hash},
     mem,
@@ -26,6 +26,36 @@ pub struct Cache<'ctx, S> {
     edges: HashSet<StableEdge, S>,
     path: Vec<InstructionValue<'ctx>>,
     memory_ops: HashSet<InstructionValue<'ctx>>,
+
+    ivv_pool: VecPool<InstructionValue<'ctx>>,
+    phi_graph: HashMap<InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>, S>,
+    full_graph: HashMap<InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>, S>,
+    phi_odometer: Vec<usize>,
+    phi_edges: Vec<(InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>)>,
+    seen_split_pool: VecPool<StableEdge>,
+    seen_split_idioms: HashSet<Vec<StableEdge>>,
+}
+
+struct VecPool<T>(Vec<Vec<T>>);
+
+impl<T> VecPool<T> {
+    fn pop(&mut self) -> Option<Vec<T>> {
+        self.0.pop()
+    }
+
+    fn release(&mut self, mut v: Vec<T>) {
+        if v.capacity() == 0 {
+            return;
+        }
+        v.clear();
+        self.0.push(v);
+    }
+}
+
+impl<T> Default for VecPool<T> {
+    fn default() -> Self {
+        Self(Vec::new())
+    }
 }
 
 impl<'ctx, S> Cache<'ctx, S> {
@@ -35,12 +65,35 @@ impl<'ctx, S> Cache<'ctx, S> {
             edges,
             path,
             memory_ops,
+            ivv_pool,
+            phi_graph,
+            full_graph,
+            phi_odometer,
+            phi_edges,
+            seen_split_idioms,
+            seen_split_pool,
         } = self;
 
         seen.clear();
         edges.clear();
         path.clear();
         memory_ops.clear();
+
+        macro_rules! drain {
+            ($iter:expr) => {
+                for (_, v) in $iter {
+                    ivv_pool.release(v);
+                }
+            };
+        }
+
+        drain!(phi_graph.drain());
+        drain!(full_graph.drain());
+        drain!(phi_edges.drain(0..));
+        phi_odometer.clear();
+        for v in seen_split_idioms.drain() {
+            seen_split_pool.release(v);
+        }
     }
 }
 
@@ -93,6 +146,11 @@ impl<'ctx, S: Default> State<'ctx, S> {
 pub struct Edge<'ctx>(pub InstructionValue<'ctx>, pub InstructionValue<'ctx>);
 
 impl Edge<'_> {
+    fn to_stable(&self, ids: &HashMap<LLVMValueRef, u32>) -> StableEdge {
+        let Self(a, b) = self;
+        StableEdge(ids[&a.as_value_ref()], ids[&b.as_value_ref()])
+    }
+
     fn to_opcodes(&self) -> (u8, u8) {
         let Self(a, b) = self;
         (a.get_opcode() as u8, b.get_opcode() as u8)
@@ -150,21 +208,23 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
         cache.memory_ops.insert(instr);
         maybe_add_compute_unit(&mut cache, &state.ids, instr);
 
-        if !cache.edges.is_empty() {
-            state
-                .idioms
-                .entry(EquivalenceGraph::from((&cache.edges, &*state.ids_index)))
-                .or_default()
-                .push(ComputeUnit {
-                    root: instr,
-                    memory_ops: cache.memory_ops.clone(),
-                    edges: cache
-                        .edges
-                        .iter()
-                        .map(|e| e.to_edge(&state.ids_index))
-                        .collect(),
-                });
-        }
+        split_idiom_on_phis(
+            &mut cache,
+            &state.ids,
+            &state.ids_index,
+            instr,
+            &mut |edges, memory_ops| {
+                state
+                    .idioms
+                    .entry(EquivalenceGraph::from((edges, &*state.ids_index)))
+                    .or_default()
+                    .push(ComputeUnit {
+                        root: instr,
+                        memory_ops,
+                        edges: edges.iter().map(|e| e.to_edge(&state.ids_index)).collect(),
+                    });
+            },
+        );
     }
 }
 
@@ -211,11 +271,159 @@ fn write_path_to_graph<S: BuildHasher>(cache: &mut Cache<S>, ids: &HashMap<LLVMV
             unreachable!();
         };
 
-        if !cache.edges.insert(StableEdge(
-            ids[&from.as_value_ref()],
-            ids[&to.as_value_ref()],
-        )) {
+        if !cache.edges.insert(Edge(from, to).to_stable(ids)) {
             break;
+        }
+    }
+}
+
+fn split_idiom_on_phis<'ctx, S: BuildHasher>(
+    cache: &mut Cache<'ctx, S>,
+    ids: &HashMap<LLVMValueRef, u32>,
+    ids_index: &[InstructionValue<'ctx>],
+    root: InstructionValue<'ctx>,
+    add: &mut impl FnMut(&HashSet<StableEdge, S>, HashSet<InstructionValue<'ctx>>),
+) {
+    if cache.edges.is_empty() {
+        return;
+    }
+
+    for &StableEdge(from, to) in &cache.edges {
+        let from = ids_index[usize::try_from(from).unwrap()];
+        if from.get_opcode() == InstructionOpcode::Phi {
+            let to = ids_index[usize::try_from(to).unwrap()];
+            match cache.phi_graph.entry(from) {
+                Entry::Occupied(mut e) => e.get_mut().push(to),
+                Entry::Vacant(e) => {
+                    let mut outgoing = cache.ivv_pool.pop().unwrap_or_default();
+                    outgoing.push(to);
+                    e.insert(outgoing);
+                }
+            }
+        }
+    }
+
+    {
+        let mut prune = cache.ivv_pool.pop().unwrap_or_default();
+        for (&node, outgoings) in &cache.phi_graph {
+            if outgoings.len() <= 1 {
+                prune.push(node);
+            }
+        }
+        for node in &prune {
+            cache
+                .ivv_pool
+                .release(cache.phi_graph.remove(node).unwrap());
+        }
+        cache.ivv_pool.release(prune);
+    }
+
+    if cache.phi_graph.is_empty() {
+        add(&cache.edges, cache.memory_ops.clone());
+        return;
+    }
+
+    for e in &cache.edges {
+        let Edge(from, to) = e.to_edge(ids_index);
+        match cache.full_graph.entry(from) {
+            Entry::Occupied(mut e) => e.get_mut().push(to),
+            Entry::Vacant(e) => {
+                let mut outgoing = cache.ivv_pool.pop().unwrap_or_default();
+                outgoing.push(to);
+                e.insert(outgoing);
+            }
+        }
+    }
+
+    cache.phi_graph.drain().collect_into(&mut cache.phi_edges);
+    cache.phi_odometer.resize(cache.phi_edges.len(), 0);
+
+    'outer: loop {
+        {
+            cache.edges.clear();
+            cache.memory_ops.clear();
+            cache.seen.clear();
+
+            build_filtered_compute_unit(
+                root,
+                &cache.full_graph,
+                &cache.phi_odometer,
+                &cache.phi_edges,
+                ids,
+                &mut cache.seen,
+                &mut cache.edges,
+                &mut cache.memory_ops,
+            );
+
+            let mut graph = cache.seen_split_pool.pop().unwrap_or_default();
+            cache.edges.iter().copied().collect_into(&mut graph);
+            if cache.seen_split_idioms.contains(&graph) {
+                cache.seen_split_pool.release(graph);
+            } else {
+                add(&cache.edges, cache.memory_ops.clone());
+                cache.seen_split_idioms.insert(graph);
+            }
+        }
+
+        let mut odometer_digit = cache.phi_odometer.len() - 1;
+        loop {
+            cache.phi_odometer[odometer_digit] += 1;
+            if cache.phi_odometer[odometer_digit] < cache.phi_edges[odometer_digit].1.len() {
+                break;
+            }
+            if odometer_digit == 0 {
+                break 'outer;
+            }
+            cache.phi_odometer[odometer_digit] = 0;
+            odometer_digit -= 1;
+        }
+    }
+}
+
+#[allow(clippy::too_many_arguments)]
+fn build_filtered_compute_unit<'ctx, S: BuildHasher>(
+    root: InstructionValue<'ctx>,
+    full_graph: &HashMap<InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>, S>,
+    phi_odometer: &[usize],
+    phi_edges: &[(InstructionValue<'ctx>, Vec<InstructionValue<'ctx>>)],
+    ids: &HashMap<LLVMValueRef, u32>,
+    seen: &mut HashSet<LLVMValueRef>,
+    edges: &mut HashSet<StableEdge, S>,
+    memory_ops: &mut HashSet<InstructionValue<'ctx>>,
+) {
+    if !seen.insert(root.as_value_ref()) {
+        return;
+    }
+
+    if let Some(index) = phi_edges.iter().position(|&(node, _)| root == node) {
+        let next = phi_edges[index].1[phi_odometer[index]];
+        edges.insert(Edge(root, next).to_stable(ids));
+        build_filtered_compute_unit(
+            next,
+            full_graph,
+            phi_odometer,
+            phi_edges,
+            ids,
+            seen,
+            edges,
+            memory_ops,
+        );
+    } else {
+        if MEMORY_INSTRUCTIONS.contains(&root.get_opcode()) {
+            memory_ops.insert(root);
+        }
+        for &outgoing in full_graph.get(&root).map(|v| &**v).unwrap_or_default() {
+            edges.insert(Edge(root, outgoing).to_stable(ids));
+            build_filtered_compute_unit(
+                outgoing,
+                full_graph,
+                phi_odometer,
+                phi_edges,
+                ids,
+                seen,
+                edges,
+                memory_ops,
+            );
         }
     }
 }
