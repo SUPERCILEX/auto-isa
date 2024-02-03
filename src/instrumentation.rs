@@ -1,4 +1,4 @@
-use std::fmt::Write;
+use std::{fmt::Write, hash::BuildHasher};
 
 use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
@@ -9,7 +9,7 @@ use llvm_plugin::inkwell::{
 
 use crate::analysis::{State, MEMORY_INSTRUCTIONS};
 
-pub fn instrument_compute_units<'ctx, S>(
+pub fn instrument_compute_units<'ctx, S: BuildHasher>(
     State { ids, .. }: &State<'ctx, S>,
     module: &Module<'ctx>,
 ) {

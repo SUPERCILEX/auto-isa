@@ -7,26 +7,26 @@ label="Total loads executed: 536875011\nTotal stores executed: 268439552"
 }
 subgraph {
 subgraph {
-"0_0_36" [label="GetElementPtr"]
-"0_0_29" [label="Load\n1"]
-"0_0_36" -> "0_0_29"
 {
 rank=min
 "0_0_37" [label="Load\n268435456"]
 }
+"0_0_36" [label="GetElementPtr"]
 "0_0_37" -> "0_0_36"
+"0_0_29" [label="Load\n1"]
+"0_0_36" -> "0_0_29"
 cluster=true
 label="Dynamic executions: 268435456\nCaptured memory operations: 33.3%"
 }
 subgraph {
-"0_1_38" [label="GetElementPtr"]
-"0_1_28" [label="Load\n1"]
-"0_1_38" -> "0_1_28"
 {
 rank=min
 "0_1_39" [label="Load\n268435456"]
 }
+"0_1_38" [label="GetElementPtr"]
 "0_1_39" -> "0_1_38"
+"0_1_28" [label="Load\n1"]
+"0_1_38" -> "0_1_28"
 cluster=true
 label="Dynamic executions: 268435456\nCaptured memory operations: 33.3%"
 color=red
@@ -36,20 +36,20 @@ label="Static occurrences: 2\nDynamic executions: 536870912\nCaptured memory ope
 }
 subgraph {
 subgraph {
+"1_0_40" [label="FDiv"]
+"1_0_39" [label="Load\n268435456"]
+"1_0_40" -> "1_0_39"
+"1_0_37" [label="Load\n268435456"]
+"1_0_40" -> "1_0_37"
+"1_0_38" [label="GetElementPtr"]
+"1_0_28" [label="Load\n1"]
+"1_0_38" -> "1_0_28"
 {
 rank=min
 "1_0_41" [label="Store\n268435456"]
 }
-"1_0_40" [label="FDiv"]
-"1_0_41" -> "1_0_40"
-"1_0_37" [label="Load\n268435456"]
-"1_0_40" -> "1_0_37"
-"1_0_38" [label="GetElementPtr"]
 "1_0_41" -> "1_0_38"
-"1_0_39" [label="Load\n268435456"]
-"1_0_40" -> "1_0_39"
-"1_0_28" [label="Load\n1"]
-"1_0_38" -> "1_0_28"
+"1_0_41" -> "1_0_40"
 cluster=true
 label="Dynamic executions: 268435456\nCaptured memory operations: 99.9%"
 color=red

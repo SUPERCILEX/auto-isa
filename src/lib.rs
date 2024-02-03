@@ -1,7 +1,7 @@
 #![feature(iter_collect_into)]
 
 use std::{
-    collections::{hash_map::DefaultHasher, HashMap, HashSet},
+    collections::{HashMap, HashSet},
     fs::File,
     hash::{BuildHasher, BuildHasherDefault},
     io::{stdin, BufRead, BufWriter, Write},
@@ -17,6 +17,7 @@ use llvm_plugin::{
     },
     LlvmModulePass, ModuleAnalysisManager, PassBuilder, PipelineParsing, PreservedAnalyses,
 };
+use rustc_hash::FxHasher;
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
@@ -27,11 +28,21 @@ use crate::{
 mod analysis;
 mod instrumentation;
 
+#[cfg(feature = "trace")]
+#[global_allocator]
+static GLOBAL: tracy_client::ProfiledAllocator<std::alloc::System> =
+    tracy_client::ProfiledAllocator::new(std::alloc::System, 100);
+
 #[llvm_plugin::plugin(name = "AutoIsa", version = "0.1")]
 fn plugin_registrar(builder: &mut PassBuilder) {
+    #[cfg(feature = "trace")]
+    tracy_client::Client::start();
+
     builder.add_module_pipeline_parsing_callback(|name, pass_manager| {
-        if name == "auto-isa" {
-            pass_manager.add_pass(AutoIsaPass);
+        if name.starts_with("auto-isa") {
+            pass_manager.add_pass(AutoIsaPass {
+                analysis_only: name == "auto-isa-analysis",
+            });
             PipelineParsing::Parsed
         } else {
             PipelineParsing::NotParsed
@@ -39,7 +50,9 @@ fn plugin_registrar(builder: &mut PassBuilder) {
     });
 }
 
-struct AutoIsaPass;
+struct AutoIsaPass {
+    analysis_only: bool,
+}
 
 impl LlvmModulePass for AutoIsaPass {
     fn run_pass(&self, module: &mut Module, _: &ModuleAnalysisManager) -> PreservedAnalyses {
@@ -50,6 +63,10 @@ impl LlvmModulePass for AutoIsaPass {
                 find_non_local_memory_compute_units(&mut cache, &mut state, function);
             }
         }
+        if self.analysis_only {
+            return PreservedAnalyses::All;
+        }
+
         split_into_next_stage(&state);
 
         instrument_compute_units(&state, module);
@@ -282,8 +299,8 @@ fn print_compute_units<S: BuildHasher>(
     writeln!(output, "}}").unwrap();
 }
 
-fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<DefaultHasher>> {
-    let mut ids = HashMap::new();
+fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<FxHasher>> {
+    let mut ids = HashMap::default();
     let mut ids_index = Vec::new();
     for instr in module
         .get_functions()

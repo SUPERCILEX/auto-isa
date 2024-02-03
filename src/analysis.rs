@@ -22,10 +22,10 @@ type InstructionId = u32;
 
 #[derive(Default)]
 pub struct Cache<'ctx, S> {
-    seen: HashSet<LLVMValueRef>,
+    seen: HashSet<LLVMValueRef, S>,
     edges: HashSet<StableEdge, S>,
     path: Vec<InstructionValue<'ctx>>,
-    memory_ops: HashSet<InstructionValue<'ctx>>,
+    memory_ops: HashSet<InstructionValue<'ctx>, S>,
 
     ivv_pool: VecPool<InstructionId>,
     phi_graph: HashMap<InstructionId, Vec<InstructionId>, S>,
@@ -33,7 +33,7 @@ pub struct Cache<'ctx, S> {
     phi_odometer: Vec<usize>,
     phi_edges: Vec<(InstructionId, Vec<InstructionId>)>,
     seen_split_pool: VecPool<StableEdge>,
-    seen_split_idioms: HashSet<Vec<StableEdge>>,
+    seen_split_idioms: HashSet<Vec<StableEdge>, S>,
 }
 
 struct VecPool<T>(Vec<Vec<T>>);
@@ -120,20 +120,20 @@ impl<'a, 'ctx, S> Drop for CacheContext<'a, 'ctx, S> {
 }
 
 pub struct State<'ctx, S> {
-    pub ids: HashMap<LLVMValueRef, u32>,
+    pub ids: HashMap<LLVMValueRef, u32, S>,
     pub ids_index: Vec<InstructionValue<'ctx>>,
 
-    pub idioms: HashMap<EquivalenceGraph, Vec<ComputeUnit<'ctx>>, S>,
+    pub idioms: HashMap<EquivalenceGraph, Vec<ComputeUnit<'ctx, S>>, S>,
 }
 
-pub struct ComputeUnit<'ctx> {
+pub struct ComputeUnit<'ctx, S> {
     pub edges: Vec<Edge<'ctx>>,
     pub root: InstructionValue<'ctx>,
-    pub memory_ops: HashSet<InstructionValue<'ctx>>,
+    pub memory_ops: HashSet<InstructionValue<'ctx>, S>,
 }
 
 impl<'ctx, S: Default> State<'ctx, S> {
-    pub fn new(ids: HashMap<LLVMValueRef, u32>, ids_index: Vec<InstructionValue<'ctx>>) -> Self {
+    pub fn new(ids: HashMap<LLVMValueRef, u32, S>, ids_index: Vec<InstructionValue<'ctx>>) -> Self {
         Self {
             ids,
             ids_index,
@@ -146,7 +146,7 @@ impl<'ctx, S: Default> State<'ctx, S> {
 pub struct Edge<'ctx>(pub InstructionValue<'ctx>, pub InstructionValue<'ctx>);
 
 impl Edge<'_> {
-    fn to_stable(&self, ids: &HashMap<LLVMValueRef, u32>) -> StableEdge {
+    fn to_stable<S: BuildHasher>(&self, ids: &HashMap<LLVMValueRef, u32, S>) -> StableEdge {
         let Self(a, b) = self;
         StableEdge(ids[&a.as_value_ref()], ids[&b.as_value_ref()])
     }
@@ -189,7 +189,7 @@ impl<'ctx, S> From<(&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])> for Equ
     }
 }
 
-pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
+pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default + Clone>(
     cache: &mut Cache<'ctx, S>,
     state: &mut State<'ctx, S>,
     function: FunctionValue<'ctx>,
@@ -230,7 +230,7 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default>(
 
 fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     cache: &mut Cache<'ctx, S>,
-    ids: &HashMap<LLVMValueRef, u32>,
+    ids: &HashMap<LLVMValueRef, u32, S>,
     instruction: InstructionValue<'ctx>,
 ) {
     if !cache.seen.insert(instruction.as_value_ref()) {
@@ -265,7 +265,7 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     }
 }
 
-fn write_path_to_graph<S: BuildHasher>(cache: &mut Cache<S>, ids: &HashMap<LLVMValueRef, u32>) {
+fn write_path_to_graph<S: BuildHasher>(cache: &mut Cache<S>, ids: &HashMap<LLVMValueRef, u32, S>) {
     for edge in cache.path.windows(2).rev() {
         let &[from, to] = edge else {
             unreachable!();
@@ -277,12 +277,12 @@ fn write_path_to_graph<S: BuildHasher>(cache: &mut Cache<S>, ids: &HashMap<LLVMV
     }
 }
 
-fn split_idiom_on_phis<'ctx, S: BuildHasher>(
+fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
     cache: &mut Cache<'ctx, S>,
-    ids: &HashMap<LLVMValueRef, u32>,
+    ids: &HashMap<LLVMValueRef, u32, S>,
     ids_index: &[InstructionValue<'ctx>],
     root: InstructionValue<'ctx>,
-    add: &mut impl FnMut(&HashSet<StableEdge, S>, HashSet<InstructionValue<'ctx>>),
+    add: &mut impl FnMut(&HashSet<StableEdge, S>, HashSet<InstructionValue<'ctx>, S>),
 ) {
     if cache.edges.is_empty() {
         return;
@@ -396,9 +396,9 @@ fn build_filtered_compute_unit<'ctx, S: BuildHasher>(
     phi_odometer: &[usize],
     phi_edges: &[(InstructionId, Vec<InstructionId>)],
     ids_index: &[InstructionValue<'ctx>],
-    seen: &mut HashSet<LLVMValueRef>,
+    seen: &mut HashSet<LLVMValueRef, S>,
     edges: &mut HashSet<StableEdge, S>,
-    memory_ops: &mut HashSet<InstructionValue<'ctx>>,
+    memory_ops: &mut HashSet<InstructionValue<'ctx>, S>,
 ) {
     let root_instr = ids_index[usize::try_from(root).unwrap()];
     if !seen.insert(root_instr.as_value_ref()) {
