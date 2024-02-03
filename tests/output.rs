@@ -180,7 +180,7 @@ test_c!(dt);
 test_c!(evalloop);
 test_c!(exptree);
 test_c!(himenobmtxpa);
-test_c!(loop_sum);
+test_c!(loop_sum_simple);
 test_c!(loop_sum_branch);
 test_c!(loop_sum_select);
 test_c!(lowercase);
