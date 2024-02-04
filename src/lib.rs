@@ -21,7 +21,7 @@ use rustc_hash::FxHasher;
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
-    analysis::{find_non_local_memory_compute_units, Cache, Edge, State, MEMORY_INSTRUCTIONS},
+    analysis::{find_non_local_memory_compute_units, Edge, State, MEMORY_INSTRUCTIONS},
     instrumentation::instrument_compute_units,
 };
 
@@ -57,12 +57,7 @@ struct AutoIsaPass {
 impl LlvmModulePass for AutoIsaPass {
     fn run_pass(&self, module: &mut Module, _: &ModuleAnalysisManager) -> PreservedAnalyses {
         let mut state = build_state(module);
-        {
-            let mut cache = Cache::default();
-            for function in module.get_functions() {
-                find_non_local_memory_compute_units(&mut cache, &mut state, function);
-            }
-        }
+        find_non_local_memory_compute_units(&mut state, module);
         if self.analysis_only {
             return PreservedAnalyses::All;
         }

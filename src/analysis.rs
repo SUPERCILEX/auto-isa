@@ -10,6 +10,7 @@ use either::Either;
 use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
     llvm_sys::prelude::LLVMValueRef,
+    module::Module,
     values::{
         AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue, PhiValue,
     },
@@ -21,7 +22,7 @@ pub const MEMORY_INSTRUCTIONS: &[InstructionOpcode] =
 type InstructionId = u32;
 
 #[derive(Default)]
-pub struct Cache<'ctx, S> {
+struct Cache<'ctx, S> {
     seen: HashSet<LLVMValueRef, S>,
     edges: HashSet<StableEdge, S>,
     path: Vec<InstructionValue<'ctx>>,
@@ -190,19 +191,20 @@ impl<'ctx, S> From<(&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])> for Equ
 }
 
 pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default + Clone>(
-    cache: &mut Cache<'ctx, S>,
     state: &mut State<'ctx, S>,
-    function: FunctionValue<'ctx>,
+    module: &Module<'ctx>,
 ) {
-    for instr in function
-        .get_basic_block_iter()
+    let mut cache = Cache::default();
+    for instr in module
+        .get_functions()
+        .flat_map(FunctionValue::get_basic_block_iter)
         .flat_map(BasicBlock::get_instructions)
     {
         if !MEMORY_INSTRUCTIONS.contains(&instr.get_opcode()) {
             continue;
         }
 
-        let mut cache = CacheContext(cache);
+        let mut cache = CacheContext(&mut cache);
 
         cache.path.push(instr);
         cache.memory_ops.insert(instr);
