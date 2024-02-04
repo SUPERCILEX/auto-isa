@@ -7,7 +7,7 @@ use llvm_plugin::inkwell::{
     AddressSpace,
 };
 
-use crate::analysis::{State, MEMORY_INSTRUCTIONS};
+use crate::{analysis::MEMORY_INSTRUCTIONS, State};
 
 pub fn instrument_compute_units<'ctx, S: BuildHasher>(
     State { ids, .. }: &State<'ctx, S>,

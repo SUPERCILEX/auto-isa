@@ -16,6 +16,8 @@ use llvm_plugin::inkwell::{
     },
 };
 
+use crate::State;
+
 pub const MEMORY_INSTRUCTIONS: &[InstructionOpcode] =
     &[InstructionOpcode::Store, InstructionOpcode::Load];
 
@@ -120,27 +122,10 @@ impl<'a, 'ctx, S> Drop for CacheContext<'a, 'ctx, S> {
     }
 }
 
-pub struct State<'ctx, S> {
-    pub ids: HashMap<LLVMValueRef, u32, S>,
-    pub ids_index: Vec<InstructionValue<'ctx>>,
-
-    pub idioms: HashMap<EquivalenceGraph, Vec<ComputeUnit<'ctx, S>>, S>,
-}
-
 pub struct ComputeUnit<'ctx, S> {
     pub edges: Vec<Edge<'ctx>>,
     pub root: InstructionValue<'ctx>,
     pub memory_ops: HashSet<InstructionValue<'ctx>, S>,
-}
-
-impl<'ctx, S: Default> State<'ctx, S> {
-    pub fn new(ids: HashMap<LLVMValueRef, u32, S>, ids_index: Vec<InstructionValue<'ctx>>) -> Self {
-        Self {
-            ids,
-            ids_index,
-            idioms: HashMap::default(),
-        }
-    }
 }
 
 #[derive(Hash, Eq, PartialEq, Debug)]
@@ -190,9 +175,22 @@ impl<'ctx, S> From<(&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])> for Equ
     }
 }
 
+#[derive(Default)]
+pub struct Idiom<'ctx, S>(pub Vec<ComputeUnit<'ctx, S>>);
+
 pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default + Clone>(
-    state: &mut State<'ctx, S>,
+    state: &State<'ctx, S>,
     module: &Module<'ctx>,
+) -> Vec<Idiom<'ctx, S>> {
+    let mut idioms = HashMap::default();
+    find_idioms(state, module, &mut idioms);
+    idioms.into_values().collect()
+}
+
+pub fn find_idioms<'ctx, S: BuildHasher + Default + Clone>(
+    state: &State<'ctx, S>,
+    module: &Module<'ctx>,
+    idioms: &mut HashMap<EquivalenceGraph, Idiom<'ctx, S>, S>,
 ) {
     let mut cache = Cache::default();
     for instr in module
@@ -210,23 +208,17 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default + Clon
         cache.memory_ops.insert(instr);
         maybe_add_compute_unit(&mut cache, &state.ids, instr);
 
-        split_idiom_on_phis(
-            &mut cache,
-            &state.ids,
-            &state.ids_index,
-            instr,
-            &mut |edges, memory_ops| {
-                state
-                    .idioms
-                    .entry(EquivalenceGraph::from((edges, &*state.ids_index)))
-                    .or_default()
-                    .push(ComputeUnit {
-                        root: instr,
-                        memory_ops,
-                        edges: edges.iter().map(|e| e.to_edge(&state.ids_index)).collect(),
-                    });
-            },
-        );
+        split_idiom_on_phis(&mut cache, state, instr, &mut |edges, memory_ops| {
+            idioms
+                .entry(EquivalenceGraph::from((edges, &*state.ids_index)))
+                .or_default()
+                .0
+                .push(ComputeUnit {
+                    root: instr,
+                    memory_ops,
+                    edges: edges.iter().map(|e| e.to_edge(&state.ids_index)).collect(),
+                });
+        });
     }
 }
 
@@ -281,8 +273,7 @@ fn write_path_to_graph<S: BuildHasher>(cache: &mut Cache<S>, ids: &HashMap<LLVMV
 
 fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
     cache: &mut Cache<'ctx, S>,
-    ids: &HashMap<LLVMValueRef, u32, S>,
-    ids_index: &[InstructionValue<'ctx>],
+    State { ids, ids_index }: &State<'ctx, S>,
     root: InstructionValue<'ctx>,
     add: &mut impl FnMut(&HashSet<StableEdge, S>, HashSet<InstructionValue<'ctx>, S>),
 ) {

@@ -12,6 +12,7 @@ use std::{
 use llvm_plugin::{
     inkwell::{
         basic_block::BasicBlock,
+        llvm_sys::prelude::LLVMValueRef,
         module::Module,
         values::{AsValueRef, FunctionValue, InstructionOpcode, InstructionValue},
     },
@@ -21,7 +22,7 @@ use rustc_hash::FxHasher;
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
-    analysis::{find_non_local_memory_compute_units, Edge, State, MEMORY_INSTRUCTIONS},
+    analysis::{find_non_local_memory_compute_units, Edge, Idiom, MEMORY_INSTRUCTIONS},
     instrumentation::instrument_compute_units,
 };
 
@@ -54,22 +55,28 @@ struct AutoIsaPass {
     analysis_only: bool,
 }
 
+pub struct State<'ctx, S> {
+    pub ids: HashMap<LLVMValueRef, u32, S>,
+    pub ids_index: Vec<InstructionValue<'ctx>>,
+}
+
 impl LlvmModulePass for AutoIsaPass {
     fn run_pass(&self, module: &mut Module, _: &ModuleAnalysisManager) -> PreservedAnalyses {
-        let mut state = build_state(module);
-        find_non_local_memory_compute_units(&mut state, module);
+        let state = build_state(module);
+
+        let idioms = find_non_local_memory_compute_units(&state, module);
         if self.analysis_only {
             return PreservedAnalyses::All;
         }
 
-        split_into_next_stage(&state);
+        split_into_next_stage(&state, &idioms);
 
         instrument_compute_units(&state, module);
         PreservedAnalyses::None
     }
 }
 
-fn split_into_next_stage<S: BuildHasher>(state: &State<S>) {
+fn split_into_next_stage<'ctx, S: BuildHasher>(state: &State<'ctx, S>, idioms: &[Idiom<'ctx, S>]) {
     let Parent(child) = unsafe { rustix::runtime::fork() }.unwrap() else {
         return;
     };
@@ -88,7 +95,7 @@ fn split_into_next_stage<S: BuildHasher>(state: &State<S>) {
     }
 
     let dynamic_counts = read_dynamic_counts();
-    print_compute_units(state, &dynamic_counts);
+    print_compute_units(state, idioms, &dynamic_counts);
     std::process::exit(0);
 }
 
@@ -124,12 +131,9 @@ fn read_dynamic_counts() -> HashMap<u32, u64> {
 }
 
 #[allow(clippy::too_many_lines)]
-fn print_compute_units<S: BuildHasher>(
-    State {
-        ids,
-        ids_index,
-        idioms,
-    }: &State<S>,
+fn print_compute_units<'ctx, S: BuildHasher>(
+    State { ids, ids_index }: &State<'ctx, S>,
+    idioms: &[Idiom<'ctx, S>],
     dynamic_counts: &HashMap<u32, u64>,
 ) {
     let mut total_executed_loads = 0;
@@ -151,9 +155,10 @@ fn print_compute_units<S: BuildHasher>(
 
     let idioms = {
         let mut idioms = idioms
-            .values()
+            .iter()
             .map(|roots| {
                 let dynamic_count = roots
+                    .0
                     .iter()
                     .map(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]])
                     .sum::<u64>();
@@ -164,7 +169,7 @@ fn print_compute_units<S: BuildHasher>(
             |(compute_unit_a, dynamic_count_a), (compute_unit_b, dynamic_count_b)| {
                 dynamic_count_a
                     .cmp(dynamic_count_b)
-                    .then(compute_unit_a.len().cmp(&compute_unit_b.len()))
+                    .then(compute_unit_a.0.len().cmp(&compute_unit_b.0.len()))
             },
         );
         idioms
@@ -202,10 +207,11 @@ fn print_compute_units<S: BuildHasher>(
 
         writeln!(output, "subgraph {{").unwrap();
         let mut first = !compute_units
+            .0
             .iter()
             .any(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]] >= 100);
-        for (compute_unit_id, cu) in compute_units.iter().enumerate() {
-            for instr in compute_units.iter().flat_map(|cu| &cu.memory_ops) {
+        for (compute_unit_id, cu) in compute_units.0.iter().enumerate() {
+            for instr in compute_units.0.iter().flat_map(|cu| &cu.memory_ops) {
                 seen.insert(instr.as_value_ref());
             }
             let uses_mem_instruction_from_previous_idioms = {
@@ -279,13 +285,13 @@ fn print_compute_units<S: BuildHasher>(
         }
 
         let captured_memory_operations =
-            captured_mem_ops!(compute_units.iter().flat_map(|cu| &cu.memory_ops));
+            captured_mem_ops!(compute_units.0.iter().flat_map(|cu| &cu.memory_ops));
 
         writeln!(
             output,
             "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
              {dynamic_count}\\nCaptured memory operations: {}.{}%\"\n}}",
-            compute_units.len(),
+            compute_units.0.len(),
             captured_memory_operations.0,
             captured_memory_operations.1
         )
@@ -297,6 +303,7 @@ fn print_compute_units<S: BuildHasher>(
 fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<FxHasher>> {
     let mut ids = HashMap::default();
     let mut ids_index = Vec::new();
+
     for instr in module
         .get_functions()
         .flat_map(FunctionValue::get_basic_block_iter)
@@ -309,5 +316,8 @@ fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<Fx
         debug_assert!(previous.is_none());
         ids_index.push(instr);
     }
-    State::new(ids, ids_index)
+
+    ids.shrink_to_fit();
+    ids_index.shrink_to_fit();
+    State { ids, ids_index }
 }
