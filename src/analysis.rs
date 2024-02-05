@@ -16,12 +16,10 @@ use llvm_plugin::inkwell::{
     },
 };
 
-use crate::State;
-
-pub const MEMORY_INSTRUCTIONS: &[InstructionOpcode] =
-    &[InstructionOpcode::Store, InstructionOpcode::Load];
-
-type InstructionId = u32;
+use crate::{
+    utils::{Edge, InstructionId, StableEdge, VecPool, MEMORY_INSTRUCTIONS},
+    State,
+};
 
 #[derive(Default)]
 struct Cache<'ctx, S> {
@@ -37,28 +35,6 @@ struct Cache<'ctx, S> {
     phi_edges: Vec<(InstructionId, Vec<InstructionId>)>,
     seen_split_pool: VecPool<StableEdge>,
     seen_split_idioms: HashSet<Vec<StableEdge>, S>,
-}
-
-struct VecPool<T>(Vec<Vec<T>>);
-
-impl<T> VecPool<T> {
-    fn pop(&mut self) -> Option<Vec<T>> {
-        self.0.pop()
-    }
-
-    fn release(&mut self, mut v: Vec<T>) {
-        if v.capacity() == 0 {
-            return;
-        }
-        v.clear();
-        self.0.push(v);
-    }
-}
-
-impl<T> Default for VecPool<T> {
-    fn default() -> Self {
-        Self(Vec::new())
-    }
 }
 
 impl<'ctx, S> Cache<'ctx, S> {
@@ -129,35 +105,7 @@ pub struct ComputeUnit<'ctx, S> {
 }
 
 #[derive(Hash, Eq, PartialEq, Debug)]
-pub struct Edge<'ctx>(pub InstructionValue<'ctx>, pub InstructionValue<'ctx>);
-
-impl Edge<'_> {
-    fn to_stable<S: BuildHasher>(&self, ids: &HashMap<LLVMValueRef, u32, S>) -> StableEdge {
-        let Self(a, b) = self;
-        StableEdge(ids[&a.as_value_ref()], ids[&b.as_value_ref()])
-    }
-
-    fn to_opcodes(&self) -> (u8, u8) {
-        let Self(a, b) = self;
-        (a.get_opcode() as u8, b.get_opcode() as u8)
-    }
-}
-
-#[derive(Copy, Clone, Hash, Eq, PartialEq, Debug)]
-struct StableEdge(InstructionId, InstructionId);
-
-impl StableEdge {
-    fn to_edge<'ctx>(self, ids_index: &[InstructionValue<'ctx>]) -> Edge<'ctx> {
-        let Self(a, b) = self;
-        Edge(
-            ids_index[usize::try_from(a).unwrap()],
-            ids_index[usize::try_from(b).unwrap()],
-        )
-    }
-}
-
-#[derive(Hash, Eq, PartialEq, Debug)]
-pub struct EquivalenceGraph {
+struct EquivalenceGraph {
     edges: Vec<(u8, u8)>,
 }
 
@@ -187,7 +135,7 @@ pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default + Clon
     idioms.into_values().collect()
 }
 
-pub fn find_idioms<'ctx, S: BuildHasher + Default + Clone>(
+fn find_idioms<'ctx, S: BuildHasher + Default + Clone>(
     state: &State<'ctx, S>,
     module: &Module<'ctx>,
     idioms: &mut HashMap<EquivalenceGraph, Idiom<'ctx, S>, S>,

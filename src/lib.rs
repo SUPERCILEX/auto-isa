@@ -22,12 +22,14 @@ use rustc_hash::FxHasher;
 use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
-    analysis::{find_non_local_memory_compute_units, Edge, Idiom, MEMORY_INSTRUCTIONS},
+    analysis::{find_non_local_memory_compute_units, Idiom},
     instrumentation::instrument_compute_units,
+    utils::{Edge, MEMORY_INSTRUCTIONS},
 };
 
 mod analysis;
 mod instrumentation;
+mod utils;
 
 #[cfg(feature = "trace")]
 #[global_allocator]
