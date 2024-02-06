@@ -7,10 +7,16 @@ use std::{
     mem::ManuallyDrop,
     os::fd::FromRawFd,
     process::{Command, Stdio},
+    slice,
 };
 
 use expect_test::expect_file;
 use paste::paste;
+
+use crate::shared::{EXTRACTION_COMPLETE, INSTRUMENTATION_COMPLETE};
+
+#[path = "../src/shared.rs"]
+mod shared;
 
 macro_rules! dbg_command {
     ($e:expr) => {{
@@ -61,12 +67,38 @@ macro_rules! test_llvm {
         )
         .spawn()
         .unwrap();
-        opt_result
-            .stdout
-            .as_mut()
-            .unwrap()
-            .read_exact(&mut [0])
-            .unwrap();
+
+        for _ in 0..2 {
+            let mut byte = u8::MAX;
+            opt_result
+                .stdout
+                .as_mut()
+                .unwrap()
+                .read_exact(slice::from_mut(&mut byte))
+                .unwrap();
+            if byte == INSTRUMENTATION_COMPLETE {
+                // Nothing to do
+            } else if byte == EXTRACTION_COMPLETE {
+                dbg_command!(
+                    Command::new("clang++-17")
+                        .args([
+                            "-O1",
+                            "-S",
+                            "--target=riscv64",
+                            "idioms.ll",
+                            "-o",
+                            "idioms.riscv",
+                        ])
+                        .current_dir(dir)
+                )
+                .status()
+                .unwrap()
+                .exit_ok()
+                .unwrap();
+            } else {
+                unreachable!();
+            }
+        }
 
         dbg_command!(
             Command::new("clang++-17")
@@ -242,7 +274,7 @@ macro_rules! gapbs {
                 )
                 .unwrap();
 
-                test_llvm!(gapbs, $name, ["-g", "20",]);
+                test_llvm!(gapbs, $name, ["-g", "20"]);
             }
         }
     };

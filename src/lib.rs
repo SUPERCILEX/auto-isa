@@ -23,12 +23,16 @@ use rustix::{process::WaitOptions, runtime::Fork::Parent};
 
 use crate::{
     analysis::{find_non_local_memory_compute_units, Idiom},
+    extraction::extract_compute_units,
     instrumentation::instrument_compute_units,
+    shared::{EXTRACTION_COMPLETE, INSTRUMENTATION_COMPLETE},
     utils::{Edge, MEMORY_INSTRUCTIONS},
 };
 
 mod analysis;
+mod extraction;
 mod instrumentation;
+mod shared;
 mod utils;
 
 #[cfg(feature = "trace")]
@@ -71,29 +75,51 @@ impl LlvmModulePass for AutoIsaPass {
             return PreservedAnalyses::All;
         }
 
-        split_into_next_stage(&state, &idioms);
+        split_into_next_stage(&state, &idioms, module);
 
         instrument_compute_units(&state, module);
         PreservedAnalyses::None
     }
 }
 
-fn split_into_next_stage<'ctx, S: BuildHasher>(state: &State<'ctx, S>, idioms: &[Idiom<'ctx, S>]) {
-    let Parent(child) = unsafe { rustix::runtime::fork() }.unwrap() else {
-        return;
-    };
-    assert_eq!(
-        0,
-        rustix::process::waitpid(Some(child), WaitOptions::empty())
-            .unwrap()
-            .unwrap()
-            .exit_status()
-            .unwrap()
-    );
+fn split_into_next_stage<'ctx, S: BuildHasher + Default>(
+    state: &State<'ctx, S>,
+    idioms: &[Idiom<'ctx, S>],
+    module: &Module<'ctx>,
+) {
     {
-        let mut stdout =
-            ManuallyDrop::new(unsafe { File::from_raw_fd(rustix::stdio::raw_stdout()) });
-        stdout.write_all(&[0]).unwrap();
+        let Parent(instrument_pid) = unsafe { rustix::runtime::fork() }.unwrap() else {
+            return;
+        };
+        let Parent(extract_pid) = unsafe { rustix::runtime::fork() }.unwrap() else {
+            extract_compute_units(state, idioms, module);
+            std::process::exit(0);
+        };
+
+        let mut pending_completions = 2;
+        let mut wait = || {
+            if pending_completions == 0 {
+                return None;
+            }
+
+            let (pid, completion) = rustix::process::wait(WaitOptions::empty())
+                .unwrap()
+                .unwrap();
+            assert_eq!(0, completion.exit_status().unwrap());
+
+            let mut stdout = ManuallyDrop::new(unsafe { File::from_raw_fd(1) });
+            if pid == instrument_pid {
+                stdout.write_all(&[INSTRUMENTATION_COMPLETE]).unwrap();
+            } else if pid == extract_pid {
+                stdout.write_all(&[EXTRACTION_COMPLETE]).unwrap();
+            } else {
+                unreachable!();
+            }
+            pending_completions -= 1;
+
+            Some(pid)
+        };
+        while wait().is_some() {}
     }
 
     let dynamic_counts = read_dynamic_counts();
