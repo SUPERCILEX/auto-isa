@@ -6,7 +6,6 @@ use std::{
     ops::{Deref, DerefMut},
 };
 
-use either::Either;
 use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
     llvm_sys::prelude::LLVMValueRef,
@@ -186,10 +185,7 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     let mut if_not_phi = instruction
         .get_operands()
         .flatten()
-        .filter_map(|op| match op {
-            Either::Left(value) => value.as_instruction_value(),
-            Either::Right(_) => unreachable!(),
-        });
+        .filter_map(|op| op.unwrap_left().as_instruction_value());
     for instruction in if_phi
         .as_mut()
         .map(|i| i as &mut dyn Iterator<Item = InstructionValue>)
