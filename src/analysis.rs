@@ -17,7 +17,7 @@ use llvm_plugin::inkwell::{
 };
 
 use crate::{
-    utils::{Edge, InstructionId, StableEdge, VecPool, MEMORY_INSTRUCTIONS},
+    utils::{Edge, InstructionId, Pool, StableEdge, MEMORY_INSTRUCTIONS},
     State,
 };
 
@@ -28,12 +28,12 @@ struct Cache<'ctx, S> {
     path: Vec<InstructionValue<'ctx>>,
     memory_ops: HashSet<InstructionValue<'ctx>, S>,
 
-    ivv_pool: VecPool<InstructionId>,
+    ivv_pool: Pool<Vec<InstructionId>>,
     phi_graph: HashMap<InstructionId, Vec<InstructionId>, S>,
     full_graph: HashMap<InstructionId, Vec<InstructionId>, S>,
     phi_odometer: Vec<usize>,
     phi_edges: Vec<(InstructionId, Vec<InstructionId>)>,
-    seen_split_pool: VecPool<StableEdge>,
+    seen_split_pool: Pool<Vec<StableEdge>>,
     seen_split_idioms: HashSet<Vec<StableEdge>, S>,
 }
 

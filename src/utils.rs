@@ -38,13 +38,15 @@ impl StableEdge {
     }
 }
 
-pub struct VecPool<T>(Vec<Vec<T>>);
+pub struct Pool<T>(Vec<T>);
 
-impl<T> VecPool<T> {
-    pub fn pop(&mut self) -> Option<Vec<T>> {
+impl<T> Pool<T> {
+    pub fn pop(&mut self) -> Option<T> {
         self.0.pop()
     }
+}
 
+impl<T> Pool<Vec<T>> {
     pub fn release(&mut self, mut v: Vec<T>) {
         if v.capacity() == 0 {
             return;
@@ -54,7 +56,7 @@ impl<T> VecPool<T> {
     }
 }
 
-impl<T> Default for VecPool<T> {
+impl<T> Default for Pool<T> {
     fn default() -> Self {
         Self(Vec::new())
     }
