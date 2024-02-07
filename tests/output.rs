@@ -85,9 +85,9 @@ macro_rules! test_llvm {
                             "-O1",
                             "-S",
                             "--target=riscv64",
-                            "idioms.ll",
+                            concat!(stringify!($name), "-idioms.ll"),
                             "-o",
-                            "idioms.riscv",
+                            concat!(stringify!($name), "-idioms.asm"),
                         ])
                         .current_dir(dir)
                 )

@@ -272,7 +272,7 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
     cache.phi_graph.drain().collect_into(&mut cache.phi_edges);
     cache.phi_odometer.resize(cache.phi_edges.len(), 0);
 
-    // Hack because we scale as O(product of num outgoing phi edges)
+    // HACK because we scale as O(product of num outgoing phi edges)
     if cache
         .phi_edges
         .iter()
