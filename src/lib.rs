@@ -26,7 +26,7 @@ use crate::{
     extraction::extract_compute_units,
     instrumentation::instrument_compute_units,
     shared::{EXTRACTION_COMPLETE, INSTRUMENTATION_COMPLETE},
-    utils::{Edge, MEMORY_INSTRUCTIONS},
+    utils::{Edge, InstructionId, MEMORY_INSTRUCTIONS},
 };
 
 mod analysis;
@@ -62,7 +62,7 @@ struct AutoIsaPass {
 }
 
 pub struct State<'ctx, S> {
-    pub ids: HashMap<LLVMValueRef, u32, S>,
+    pub ids: HashMap<LLVMValueRef, InstructionId, S>,
     pub ids_index: Vec<InstructionValue<'ctx>>,
 }
 

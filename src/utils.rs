@@ -14,7 +14,10 @@ pub type InstructionId = u32;
 pub struct Edge<'ctx>(pub InstructionValue<'ctx>, pub InstructionValue<'ctx>);
 
 impl Edge<'_> {
-    pub fn to_stable<S: BuildHasher>(&self, ids: &HashMap<LLVMValueRef, u32, S>) -> StableEdge {
+    pub fn to_stable<S: BuildHasher>(
+        &self,
+        ids: &HashMap<LLVMValueRef, InstructionId, S>,
+    ) -> StableEdge {
         let Self(a, b) = self;
         StableEdge(ids[&a.as_value_ref()], ids[&b.as_value_ref()])
     }

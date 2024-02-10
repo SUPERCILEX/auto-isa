@@ -38,7 +38,7 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher>(
 fn count_mem_ops<'ctx, S: BuildHasher>(
     module: &Module<'ctx>,
     incr_fn: FunctionValue<'ctx>,
-    ids: &HashMap<LLVMValueRef, u32, S>,
+    ids: &HashMap<LLVMValueRef, InstructionId, S>,
     global_name_buf: &mut String,
 ) {
     let ctx = module.get_context();

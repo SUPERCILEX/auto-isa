@@ -171,7 +171,7 @@ fn find_idioms<'ctx, S: BuildHasher + Default + Clone>(
 
 fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     cache: &mut Cache<'ctx, S>,
-    ids: &HashMap<LLVMValueRef, u32, S>,
+    ids: &HashMap<LLVMValueRef, InstructionId, S>,
     instruction: InstructionValue<'ctx>,
 ) {
     if !cache.seen.insert(instruction.as_value_ref()) {
@@ -203,7 +203,10 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
     }
 }
 
-fn write_path_to_graph<S: BuildHasher>(cache: &mut Cache<S>, ids: &HashMap<LLVMValueRef, u32, S>) {
+fn write_path_to_graph<S: BuildHasher>(
+    cache: &mut Cache<S>,
+    ids: &HashMap<LLVMValueRef, InstructionId, S>,
+) {
     for edge in cache.path.windows(2).rev() {
         let &[from, to] = edge else {
             unreachable!();

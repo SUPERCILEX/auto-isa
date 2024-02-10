@@ -210,7 +210,7 @@ pub fn extract_compute_units<'ctx, S: BuildHasher + Default>(
 fn extract_params<'ctx, S: BuildHasher>(
     root: InstructionValue<'ctx>,
     full_graph: &HashMap<InstructionId, Vec<InstructionId>, S>,
-    ids: &HashMap<LLVMValueRef, u32, S>,
+    ids: &HashMap<LLVMValueRef, InstructionId, S>,
     ids_index: &[InstructionValue<'ctx>],
     seen: &mut HashSet<LLVMValueRef, S>,
     seen_params: &mut HashSet<LLVMValueRef, S>,
