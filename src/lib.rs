@@ -1,4 +1,5 @@
 #![feature(iter_collect_into)]
+#![feature(iter_next_chunk)]
 
 use std::{
     collections::{HashMap, HashSet},
@@ -77,12 +78,12 @@ impl LlvmModulePass for AutoIsaPass {
 
         split_into_next_stage(&state, &idioms, module);
 
-        instrument_compute_units(&state, module);
+        instrument_compute_units(&state, &idioms, module);
         PreservedAnalyses::None
     }
 }
 
-fn split_into_next_stage<'ctx, S: BuildHasher + Default>(
+fn split_into_next_stage<'ctx, S: BuildHasher + Default + Clone>(
     state: &State<'ctx, S>,
     idioms: &[Idiom<'ctx, S>],
     module: &Module<'ctx>,
@@ -122,13 +123,28 @@ fn split_into_next_stage<'ctx, S: BuildHasher + Default>(
         while wait().is_some() {}
     }
 
-    let dynamic_counts = read_dynamic_counts();
+    let dynamic_counts = read_dynamic_counts(idioms);
     print_compute_units(state, idioms, &dynamic_counts);
     std::process::exit(0);
 }
 
-fn read_dynamic_counts() -> HashMap<u32, u64> {
-    let mut dynamic_counts = HashMap::new();
+struct DynamicCounts<S> {
+    global_mem: HashMap<InstructionId, u64, S>,
+    idioms: Vec<Vec<HashMap<InstructionId, u64, S>>>,
+}
+
+fn read_dynamic_counts<S: BuildHasher + Default + Clone>(idioms: &[Idiom<S>]) -> DynamicCounts<S> {
+    #[derive(Copy, Clone, Debug)]
+    enum Kind {
+        Mem(InstructionId),
+        Input([usize; 3]),
+    }
+
+    let mut dynamic_counts = HashMap::default();
+    let mut idiom_counts = Vec::with_capacity(idioms.len());
+    for Idiom(cu) in idioms {
+        idiom_counts.push(vec![HashMap::default(); cu.len()]);
+    }
 
     let mut input = stdin().lock();
     let mut buf = String::new();
@@ -136,7 +152,7 @@ fn read_dynamic_counts() -> HashMap<u32, u64> {
     let mut skipped = 0;
 
     while input.read_line(&mut buf).unwrap() > 0 {
-        if let Some(id) = pending_counter {
+        if let Some(kind) = pending_counter {
             if skipped < 3 {
                 skipped += 1;
                 buf.clear();
@@ -144,29 +160,51 @@ fn read_dynamic_counts() -> HashMap<u32, u64> {
             }
             skipped = 0;
 
-            dynamic_counts.insert(id, str::parse::<u64>(&buf[..buf.len() - 1]).unwrap());
+            let count = str::parse::<u64>(&buf[..buf.len() - 1]).unwrap();
+            match kind {
+                Kind::Mem(id) => {
+                    dynamic_counts.insert(id, count);
+                }
+                Kind::Input([idiom_id, cu_id, instr_id]) => {
+                    idiom_counts[idiom_id][cu_id].insert(u32::try_from(instr_id).unwrap(), count);
+                }
+            }
             pending_counter = None;
         }
 
         if buf == ":ir\n" || buf.ends_with("\n\n") {
             buf.clear();
-        } else if buf.ends_with("# Func Hash:\n9223372036859619855\n") {
-            pending_counter = Some(str::parse::<u32>(&buf[4..buf.find('\n').unwrap()]).unwrap());
+        } else if buf.ends_with("# Func Hash:\n223372036859619000\n") {
+            pending_counter = Some(Kind::Mem(
+                str::parse::<u32>(&buf[4..buf.find('\n').unwrap()]).unwrap(),
+            ));
+        } else if buf.ends_with("# Func Hash:\n223372036859619001\n") {
+            let buf = &buf[7..buf.find('\n').unwrap()];
+            pending_counter = Some(Kind::Input(
+                buf.split('_')
+                    .map(str::parse::<usize>)
+                    .map(Result::unwrap)
+                    .next_chunk::<3>()
+                    .unwrap(),
+            ));
         }
     }
 
-    dynamic_counts
+    DynamicCounts {
+        global_mem: dynamic_counts,
+        idioms: idiom_counts,
+    }
 }
 
 #[allow(clippy::too_many_lines)]
 fn print_compute_units<'ctx, S: BuildHasher>(
     State { ids, ids_index }: &State<'ctx, S>,
     idioms: &[Idiom<'ctx, S>],
-    dynamic_counts: &HashMap<u32, u64>,
+    dynamic_counts: &DynamicCounts<S>,
 ) {
     let mut total_executed_loads = 0;
     let mut total_executed_stores = 0;
-    for (&id, count) in dynamic_counts {
+    for (&id, count) in &dynamic_counts.global_mem {
         match ids_index[usize::try_from(id).unwrap()].get_opcode() {
             InstructionOpcode::Load => {
                 total_executed_loads += count;
@@ -174,7 +212,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             InstructionOpcode::Store => {
                 total_executed_stores += count;
             }
-            _ => continue,
+            _ => unreachable!(),
         }
     }
     let total_executed_mem_ops = total_executed_loads
@@ -184,22 +222,19 @@ fn print_compute_units<'ctx, S: BuildHasher>(
     let idioms = {
         let mut idioms = idioms
             .iter()
-            .map(|roots| {
-                let dynamic_count = roots
-                    .0
-                    .iter()
-                    .map(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]])
-                    .sum::<u64>();
-                (roots, dynamic_count)
+            .zip(&dynamic_counts.idioms)
+            .map(|(idiom, counts)| {
+                let total = counts.iter().flat_map(|cu| cu.values()).sum::<u64>();
+                (idiom, counts, total)
             })
+            .enumerate()
             .collect::<Vec<_>>();
-        idioms.sort_by(
-            |(compute_unit_a, dynamic_count_a), (compute_unit_b, dynamic_count_b)| {
-                dynamic_count_a
-                    .cmp(dynamic_count_b)
-                    .then(compute_unit_a.0.len().cmp(&compute_unit_b.0.len()))
-            },
-        );
+        idioms.sort_by(|(_, (cu_a, _, total_a)), (_, (cu_b, _, total_b))| {
+            total_a
+                .cmp(total_b)
+                .then(cu_a.0.len().cmp(&cu_b.0.len()))
+                .reverse()
+        });
         idioms
     };
 
@@ -217,28 +252,23 @@ fn print_compute_units<'ctx, S: BuildHasher>(
     )
     .unwrap();
 
-    for (idiom_id, &(compute_units, dynamic_count)) in idioms.iter().rev().enumerate() {
-        macro_rules! captured_mem_ops {
-            ($iter:expr) => {{
-                let total = $iter
-                    .map(|instr| dynamic_counts[&ids[&instr.as_value_ref()]])
-                    .sum::<u64>();
-
-                if total_executed_mem_ops == 0 {
-                    (0, 0)
-                } else {
-                    let bps = total.checked_mul(1000).unwrap() / total_executed_mem_ops;
-                    (bps / 10, bps % 10)
-                }
-            }};
-        }
+    for &(idiom_id, (compute_units, counts, total_counts)) in &idioms {
+        let captured_mem_ops = |total: u64| {
+            if total_executed_mem_ops == 0 {
+                (0, 0)
+            } else {
+                let bps = total.checked_mul(1000).unwrap() / total_executed_mem_ops;
+                (bps / 10, bps % 10)
+            }
+        };
 
         writeln!(output, "subgraph {{").unwrap();
-        let mut first = !compute_units
-            .0
-            .iter()
-            .any(|cu| dynamic_counts[&ids[&cu.root.as_value_ref()]] >= 100);
-        for (compute_unit_id, cu) in compute_units.0.iter().enumerate() {
+        let mut first = total_counts
+            < u64::try_from(counts.len())
+                .unwrap()
+                .checked_mul(100)
+                .unwrap();
+        for (compute_unit_id, (cu, counts)) in compute_units.0.iter().zip(counts).enumerate() {
             for instr in compute_units.0.iter().flat_map(|cu| &cu.memory_ops) {
                 seen.insert(instr.as_value_ref());
             }
@@ -251,7 +281,8 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             };
             seen.clear();
 
-            if !first && dynamic_counts[&ids[&cu.root.as_value_ref()]] < 100 {
+            let total_counts = counts.values().sum::<u64>();
+            if !first && total_counts < 100 {
                 continue;
             }
             first = false;
@@ -272,9 +303,11 @@ fn print_compute_units<'ctx, S: BuildHasher>(
                             node.get_opcode(),
                         )
                         .unwrap();
-                        if MEMORY_INSTRUCTIONS.contains(&node.get_opcode()) {
-                            write!(output, "\\n{}", dynamic_counts[&ids[&node.as_value_ref()]])
-                                .unwrap();
+                        if MEMORY_INSTRUCTIONS.contains(&node.get_opcode())
+                            // TODO remove
+                            && node != cu.root
+                        {
+                            write!(output, "\\n{}", counts[&ids[&node.as_value_ref()]]).unwrap();
                         }
                         writeln!(output, "\"]").unwrap();
 
@@ -296,12 +329,12 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             }
             seen.clear();
 
-            let captured_memory_operations = captured_mem_ops!(cu.memory_ops.iter());
+            let captured_memory_operations = captured_mem_ops(counts.values().sum::<u64>());
             writeln!(
                 output,
                 "cluster=true\nlabel=\"Dynamic executions: {}\\nCaptured memory operations: \
                  {}.{}%\"",
-                dynamic_counts[&ids[&cu.root.as_value_ref()]],
+                dynamic_counts.global_mem[&ids[&cu.root.as_value_ref()]],
                 captured_memory_operations.0,
                 captured_memory_operations.1
             )
@@ -312,13 +345,12 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             writeln!(output, "}}").unwrap();
         }
 
-        let captured_memory_operations =
-            captured_mem_ops!(compute_units.0.iter().flat_map(|cu| &cu.memory_ops));
+        let captured_memory_operations = captured_mem_ops(total_counts);
 
         writeln!(
             output,
-            "cluster=true\nlabel=\"Static occurrences: {}\\nDynamic executions: \
-             {dynamic_count}\\nCaptured memory operations: {}.{}%\"\n}}",
+            "cluster=true\nlabel=\"Static occurrences: {}\\nMemory operations: \
+             {total_counts}\\nCaptured memory operations: {}.{}%\"\n}}",
             compute_units.0.len(),
             captured_memory_operations.0,
             captured_memory_operations.1
