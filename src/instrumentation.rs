@@ -1,7 +1,8 @@
-use std::{fmt::Write, hash::BuildHasher};
+use std::{collections::HashMap, fmt::Write, hash::BuildHasher};
 
 use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
+    llvm_sys::prelude::LLVMValueRef,
     module::Module,
     values::{AsValueRef, FunctionValue},
     AddressSpace,
@@ -28,7 +29,21 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher>(
         None,
     );
 
-    let mut global_name_buf = "prof_auto_isa_".to_string();
+    let mut buf = String::new();
+
+    count_mem_ops(module, incr_fn, ids, &mut buf);
+    buf.clear();
+}
+
+fn count_mem_ops<'ctx, S: BuildHasher>(
+    module: &Module<'ctx>,
+    incr_fn: FunctionValue<'ctx>,
+    ids: &HashMap<LLVMValueRef, u32, S>,
+    global_name_buf: &mut String,
+) {
+    let ctx = module.get_context();
+
+    global_name_buf.push_str("auto_isa_mem_");
     let base_name_len = global_name_buf.len();
     for instr in module
         .get_functions()
@@ -39,12 +54,12 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher>(
         let id = {
             let id = ids[&instr.as_value_ref()];
             write!(global_name_buf, "{id}").unwrap();
-            let id = &global_name_buf[base_name_len..];
+            let id = &global_name_buf[base_name_len - 4..];
 
             let value = ctx.const_string(id.as_bytes(), false);
-            let global = module.add_global(value.get_type(), None, &global_name_buf);
+            let global = module.add_global(value.get_type(), None, global_name_buf);
             global.set_initializer(&value);
-            global_name_buf.drain((global_name_buf.len() - id.len())..);
+            global_name_buf.drain(base_name_len..);
 
             global
         };
@@ -56,7 +71,8 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher>(
                 incr_fn,
                 &[
                     id.as_pointer_value().into(),
-                    ctx.i64_type().const_int(4_844_047, false).into(),
+                    #[allow(clippy::unreadable_literal)]
+                    ctx.i64_type().const_int(9223372036859619855, false).into(),
                     ctx.i32_type().const_int(1, false).into(),
                     ctx.i32_type().const_int(0, false).into(),
                 ],

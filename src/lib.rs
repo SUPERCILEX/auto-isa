@@ -150,8 +150,8 @@ fn read_dynamic_counts() -> HashMap<u32, u64> {
 
         if buf == ":ir\n" || buf.ends_with("\n\n") {
             buf.clear();
-        } else if buf.ends_with("# Func Hash:\n4844047\n") {
-            pending_counter = Some(str::parse::<u32>(&buf[..buf.find('\n').unwrap()]).unwrap());
+        } else if buf.ends_with("# Func Hash:\n9223372036859619855\n") {
+            pending_counter = Some(str::parse::<u32>(&buf[4..buf.find('\n').unwrap()]).unwrap());
         }
     }
 
