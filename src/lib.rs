@@ -364,9 +364,13 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             let captured_memory_operations = captured_mem_ops(counts.values().sum::<u64>());
             writeln!(
                 output,
-                "cluster=true\nlabel=\"Dynamic executions: {}\\nCaptured memory operations: \
-                 {}.{}%\"",
-                counts[&ids[&cu.root.as_value_ref()]],
+                "cluster=true\nlabel=\"Raw dynamic executions: {}\\nRaw memory operations: \
+                 {}\\nCaptured memory operations: {}.{}%\"",
+                dynamic_counts.global_mem[&ids[&cu.root.as_value_ref()]],
+                cu.memory_ops
+                    .iter()
+                    .map(|instr| dynamic_counts.global_mem[&ids[&instr.as_value_ref()]])
+                    .sum::<u64>(),
                 captured_memory_operations.0,
                 captured_memory_operations.1
             )
