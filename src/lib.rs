@@ -305,7 +305,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             .iter()
             .map(|&(i, total_counts)| (i, &compute_units.0[i], &counts[i], total_counts))
         {
-            for instr in compute_units.0.iter().flat_map(|cu| &cu.memory_ops) {
+            for instr in &cu.memory_ops {
                 seen.insert(instr.as_value_ref());
             }
             let uses_mem_instruction_from_previous_idioms = {
