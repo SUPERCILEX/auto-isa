@@ -218,6 +218,7 @@ label="Raw dynamic executions: 42688606\nRaw memory operations: 85377212\nCaptur
 color=red
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 10\nMemory operations: 768960320\nCaptured memory operations: 149.9%\nId: 0"
 }
 subgraph {
@@ -265,6 +266,7 @@ label="Raw dynamic executions: 42688606\nRaw memory operations: 42971312\nCaptur
 color=red
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 2\nMemory operations: 85942624\nCaptured memory operations: 16.7%\nId: 1"
 }
 }

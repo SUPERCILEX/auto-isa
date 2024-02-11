@@ -19,6 +19,7 @@ cluster=true
 label="Raw dynamic executions: 204700000\nRaw memory operations: 409400000\nCaptured memory operations: 49.9%"
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 409400000\nCaptured memory operations: 49.9%\nId: 0"
 }
 subgraph {
@@ -37,6 +38,7 @@ cluster=true
 label="Raw dynamic executions: 204700000\nRaw memory operations: 409400000\nCaptured memory operations: 49.9%"
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 409400000\nCaptured memory operations: 49.9%\nId: 1"
 }
 }

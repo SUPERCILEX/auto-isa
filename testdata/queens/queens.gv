@@ -49,6 +49,7 @@ label="Raw dynamic executions: 27358552\nRaw memory operations: 54351509\nCaptur
 color=red
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 2\nMemory operations: 6415580\nCaptured memory operations: 0.5%\nId: 6"
 }
 subgraph {
@@ -72,6 +73,7 @@ label="Raw dynamic executions: 55391321\nRaw memory operations: 82384278\nCaptur
 color=red
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 3207790\nCaptured memory operations: 0.2%\nId: 0"
 }
 subgraph {
@@ -88,6 +90,7 @@ cluster=true
 label="Raw dynamic executions: 365596\nRaw memory operations: 731192\nCaptured memory operations: 0.0%"
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 731192\nCaptured memory operations: 0.0%\nId: 3"
 }
 subgraph {
@@ -102,6 +105,7 @@ cluster=true
 label="Raw dynamic executions: 1\nRaw memory operations: 2\nCaptured memory operations: 0.0%"
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 3\nMemory operations: 6\nCaptured memory operations: 0.0%\nId: 4"
 }
 subgraph {
@@ -116,6 +120,7 @@ cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 1"
 }
 subgraph {
@@ -133,6 +138,7 @@ label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory oper
 color=red
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 2"
 }
 subgraph {
@@ -154,6 +160,7 @@ label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory oper
 color=red
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 5"
 }
 }

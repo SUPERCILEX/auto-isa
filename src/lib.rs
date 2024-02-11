@@ -396,7 +396,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
 
         writeln!(
             output,
-            "cluster=true\nlabel=\"Static occurrences: {}\\nMemory operations: \
+            "cluster=true\npenwidth=0\nlabel=\"Static occurrences: {}\\nMemory operations: \
              {total_counts}\\nCaptured memory operations: {}.{}%\\nId: {idiom_id}\"\n}}",
             compute_units.0.len(),
             captured_memory_operations.0,

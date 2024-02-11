@@ -27,6 +27,7 @@ cluster=true
 label="Raw dynamic executions: 100000\nRaw memory operations: 300001\nCaptured memory operations: 0.0%"
 }
 cluster=true
+penwidth=0
 label="Static occurrences: 1\nMemory operations: 4\nCaptured memory operations: 0.0%\nId: 0"
 }
 }
