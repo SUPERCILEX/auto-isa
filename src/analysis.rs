@@ -187,7 +187,10 @@ fn prune_duplicates<'ctx, S: BuildHasher + Default>(
                 seen.iter().collect_into(&mut instrs);
                 seen.clear();
 
-                seen2.insert(instrs)
+                seen2
+                    .replace(instrs)
+                    .map(|v| cache.ivv_pool.release(v))
+                    .is_none()
             },
         );
 
