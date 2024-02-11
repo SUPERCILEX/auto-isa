@@ -301,6 +301,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
                 .unwrap()
                 .checked_mul(100)
                 .unwrap();
+        let mut prev_cu_root = None;
         for (compute_unit_id, cu, counts, total_counts) in compute_unit_pointers
             .iter()
             .map(|&(i, total_counts)| (i, &compute_units.0[i], &counts[i], total_counts))
@@ -323,6 +324,16 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             first = false;
 
             writeln!(output, "subgraph {{").unwrap();
+            if let Some((prev_cu_id, instruction_id)) = prev_cu_root {
+                writeln!(
+                    output,
+                    "{{\nrank=max\n\"{idiom_id}_{compute_unit_id}\" [shape=point \
+                     style=invis]\n\"{idiom_id}_{compute_unit_id}\" -> \
+                     \"{idiom_id}_{prev_cu_id}_{instruction_id}\" [style=invis]\n}}",
+                )
+                .unwrap();
+            }
+            prev_cu_root = Some((compute_unit_id, ids[&cu.root.as_value_ref()]));
             for Edge(from, to) in &cu.edges {
                 let mut create = |&node: &InstructionValue| {
                     if seen.insert(node.as_value_ref()) {

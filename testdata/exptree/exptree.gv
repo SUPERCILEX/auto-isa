@@ -19,6 +19,11 @@ cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 44\nCaptured memory operations: 0.0%"
 }
 subgraph {
+{
+rank=max
+"7_3" [shape=point style=invis]
+"7_3" -> "7_8_301" [style=invis]
+}
 "7_3_256" [label="GetElementPtr"]
 "7_3_255" [label="Load\n60"]
 "7_3_256" -> "7_3_255"
@@ -31,6 +36,11 @@ cluster=true
 label="Raw dynamic executions: 60\nRaw memory operations: 120\nCaptured memory operations: 10.0%"
 }
 subgraph {
+{
+rank=max
+"7_4" [shape=point style=invis]
+"7_4" -> "7_3_257" [style=invis]
+}
 "7_4_258" [label="GetElementPtr"]
 "7_4_255" [label="Load\n60"]
 "7_4_258" -> "7_4_255"

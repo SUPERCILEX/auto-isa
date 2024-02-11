@@ -43,6 +43,11 @@ color=red
 }
 subgraph {
 {
+rank=max
+"0_1" [shape=point style=invis]
+"0_1" -> "0_0_37" [style=invis]
+}
+{
 rank=min
 "0_1_39" [label="Load\n268435456"]
 }
@@ -71,6 +76,11 @@ cluster=true
 label="Raw dynamic executions: 2048\nRaw memory operations: 4096\nCaptured memory operations: 0.0%"
 }
 subgraph {
+{
+rank=max
+"3_1" [shape=point style=invis]
+"3_1" -> "3_0_17" [style=invis]
+}
 "3_1_23" [label="GetElementPtr"]
 "3_1_22" [label="Load\n2048"]
 "3_1_23" -> "3_1_22"

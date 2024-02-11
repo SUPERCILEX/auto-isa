@@ -24,6 +24,11 @@ label="Raw dynamic executions: 42688606\nRaw memory operations: 42971312\nCaptur
 }
 subgraph {
 {
+rank=max
+"0_1" [shape=point style=invis]
+"0_1" -> "0_0_37" [style=invis]
+}
+{
 rank=min
 "0_1_47" [label="Load\n42688606"]
 }
@@ -39,6 +44,11 @@ cluster=true
 label="Raw dynamic executions: 42688606\nRaw memory operations: 42971312\nCaptured memory operations: 8.3%"
 }
 subgraph {
+{
+rank=max
+"0_2" [shape=point style=invis]
+"0_2" -> "0_1_47" [style=invis]
+}
 "0_2_54" [label="SExt"]
 "0_2_38" [label="Add"]
 "0_2_54" -> "0_2_38"
@@ -57,6 +67,11 @@ color=red
 }
 subgraph {
 {
+rank=max
+"0_3" [shape=point style=invis]
+"0_3" -> "0_2_56" [style=invis]
+}
+{
 rank=min
 "0_3_67" [label="Load\n42688606"]
 }
@@ -73,6 +88,11 @@ label="Raw dynamic executions: 42688606\nRaw memory operations: 85377212\nCaptur
 color=red
 }
 subgraph {
+{
+rank=max
+"0_4" [shape=point style=invis]
+"0_4" -> "0_3_67" [style=invis]
+}
 "0_4_76" [label="SExt"]
 "0_4_43" [label="Add"]
 "0_4_76" -> "0_4_43"
@@ -89,6 +109,11 @@ cluster=true
 label="Raw dynamic executions: 42688606\nRaw memory operations: 85377212\nCaptured memory operations: 16.6%"
 }
 subgraph {
+{
+rank=max
+"0_5" [shape=point style=invis]
+"0_5" -> "0_4_78" [style=invis]
+}
 "0_5_88" [label="SExt"]
 "0_5_53" [label="Add"]
 "0_5_88" -> "0_5_53"
@@ -105,6 +130,11 @@ cluster=true
 label="Raw dynamic executions: 42688606\nRaw memory operations: 85377212\nCaptured memory operations: 16.6%"
 }
 subgraph {
+{
+rank=max
+"0_6" [shape=point style=invis]
+"0_6" -> "0_5_90" [style=invis]
+}
 "0_6_101" [label="GetElementPtr"]
 "0_6_100" [label="SExt"]
 "0_6_101" -> "0_6_100"
@@ -123,6 +153,11 @@ color=red
 }
 subgraph {
 {
+rank=max
+"0_7" [shape=point style=invis]
+"0_7" -> "0_6_102" [style=invis]
+}
+{
 rank=min
 "0_7_114" [label="Load\n42688606"]
 }
@@ -139,6 +174,11 @@ label="Raw dynamic executions: 42688606\nRaw memory operations: 85377212\nCaptur
 color=red
 }
 subgraph {
+{
+rank=max
+"0_8" [shape=point style=invis]
+"0_8" -> "0_7_114" [style=invis]
+}
 "0_8_125" [label="GetElementPtr"]
 "0_8_124" [label="SExt"]
 "0_8_125" -> "0_8_124"
@@ -156,6 +196,11 @@ label="Raw dynamic executions: 42688606\nRaw memory operations: 85377212\nCaptur
 color=red
 }
 subgraph {
+{
+rank=max
+"0_9" [shape=point style=invis]
+"0_9" -> "0_8_126" [style=invis]
+}
 "0_9_137" [label="GetElementPtr"]
 "0_9_136" [label="SExt"]
 "0_9_137" -> "0_9_136"
@@ -196,6 +241,11 @@ label="Raw dynamic executions: 42688606\nRaw memory operations: 42971312\nCaptur
 color=red
 }
 subgraph {
+{
+rank=max
+"1_1" [shape=point style=invis]
+"1_1" -> "1_0_42" [style=invis]
+}
 "1_1_51" [label="GetElementPtr"]
 "1_1_50" [label="SExt"]
 "1_1_51" -> "1_1_50"

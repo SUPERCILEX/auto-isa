@@ -25,6 +25,11 @@ cluster=true
 label="Raw dynamic executions: 27358552\nRaw memory operations: 54351509\nCaptured memory operations: 0.2%"
 }
 subgraph {
+{
+rank=max
+"6_1" [shape=point style=invis]
+"6_1" -> "6_0_160" [style=invis]
+}
 "6_1_139" [label="SExt"]
 "6_1_138" [label="Add"]
 "6_1_139" -> "6_1_138"
