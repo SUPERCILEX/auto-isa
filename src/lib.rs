@@ -123,7 +123,7 @@ fn split_into_next_stage<'ctx, S: BuildHasher + Default + Clone>(
         while wait().is_some() {}
     }
 
-    let dynamic_counts = read_dynamic_counts(idioms);
+    let dynamic_counts = read_dynamic_counts(state, idioms);
     print_compute_units(state, idioms, &dynamic_counts);
     std::process::exit(0);
 }
@@ -133,11 +133,15 @@ struct DynamicCounts<S> {
     idioms: Vec<Vec<HashMap<InstructionId, u64, S>>>,
 }
 
-fn read_dynamic_counts<S: BuildHasher + Default + Clone>(idioms: &[Idiom<S>]) -> DynamicCounts<S> {
+fn read_dynamic_counts<S: BuildHasher + Default + Clone>(
+    State { ids, .. }: &State<S>,
+    idioms: &[Idiom<S>],
+) -> DynamicCounts<S> {
     #[derive(Copy, Clone, Debug)]
     enum Kind {
         Mem(InstructionId),
         Input([usize; 3]),
+        Output([usize; 2]),
     }
 
     let mut dynamic_counts = HashMap::default();
@@ -163,10 +167,21 @@ fn read_dynamic_counts<S: BuildHasher + Default + Clone>(idioms: &[Idiom<S>]) ->
             let count = str::parse::<u64>(&buf[..buf.len() - 1]).unwrap();
             match kind {
                 Kind::Mem(id) => {
-                    dynamic_counts.insert(id, count);
+                    assert!(dynamic_counts.insert(id, count).is_none());
                 }
                 Kind::Input([idiom_id, cu_id, instr_id]) => {
-                    idiom_counts[idiom_id][cu_id].insert(u32::try_from(instr_id).unwrap(), count);
+                    assert!(
+                        idiom_counts[idiom_id][cu_id]
+                            .insert(u32::try_from(instr_id).unwrap(), count)
+                            .is_none()
+                    );
+                }
+                Kind::Output([idiom_id, cu_id]) => {
+                    assert!(
+                        idiom_counts[idiom_id][cu_id]
+                            .insert(ids[&idioms[idiom_id].0[cu_id].root.as_value_ref()], count)
+                            .is_none()
+                    );
                 }
             }
             pending_counter = None;
@@ -185,6 +200,15 @@ fn read_dynamic_counts<S: BuildHasher + Default + Clone>(idioms: &[Idiom<S>]) ->
                     .map(str::parse::<usize>)
                     .map(Result::unwrap)
                     .next_chunk::<3>()
+                    .unwrap(),
+            ));
+        } else if buf.ends_with("# Func Hash:\n223372036859619002\n") {
+            let buf = &buf[8..buf.find('\n').unwrap()];
+            pending_counter = Some(Kind::Output(
+                buf.split('_')
+                    .map(str::parse::<usize>)
+                    .map(Result::unwrap)
+                    .next_chunk::<2>()
                     .unwrap(),
             ));
         }
@@ -303,10 +327,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
                             node.get_opcode(),
                         )
                         .unwrap();
-                        if MEMORY_INSTRUCTIONS.contains(&node.get_opcode())
-                            // TODO remove
-                            && node != cu.root
-                        {
+                        if MEMORY_INSTRUCTIONS.contains(&node.get_opcode()) {
                             write!(output, "\\n{}", counts[&ids[&node.as_value_ref()]]).unwrap();
                         }
                         writeln!(output, "\"]").unwrap();
@@ -334,7 +355,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
                 output,
                 "cluster=true\nlabel=\"Dynamic executions: {}\\nCaptured memory operations: \
                  {}.{}%\"",
-                dynamic_counts.global_mem[&ids[&cu.root.as_value_ref()]],
+                counts[&ids[&cu.root.as_value_ref()]],
                 captured_memory_operations.0,
                 captured_memory_operations.1
             )
@@ -350,7 +371,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
         writeln!(
             output,
             "cluster=true\nlabel=\"Static occurrences: {}\\nMemory operations: \
-             {total_counts}\\nCaptured memory operations: {}.{}%\"\n}}",
+             {total_counts}\\nCaptured memory operations: {}.{}%\\nId: {idiom_id}\"\n}}",
             compute_units.0.len(),
             captured_memory_operations.0,
             captured_memory_operations.1
