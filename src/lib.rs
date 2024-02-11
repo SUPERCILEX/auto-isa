@@ -276,6 +276,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
     )
     .unwrap();
 
+    let mut compute_unit_pointers = Vec::new();
     for &(idiom_id, (compute_units, counts, total_counts)) in &idioms {
         let captured_mem_ops = |total: u64| {
             if total_executed_mem_ops == 0 {
@@ -286,13 +287,24 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             }
         };
 
+        compute_unit_pointers.clear();
+        counts
+            .iter()
+            .map(|counts| counts.values().sum::<u64>())
+            .enumerate()
+            .collect_into(&mut compute_unit_pointers);
+        compute_unit_pointers.sort_by(|(_, a), (_, b)| a.cmp(b));
+
         writeln!(output, "subgraph {{").unwrap();
         let mut first = total_counts
             < u64::try_from(counts.len())
                 .unwrap()
                 .checked_mul(100)
                 .unwrap();
-        for (compute_unit_id, (cu, counts)) in compute_units.0.iter().zip(counts).enumerate() {
+        for (compute_unit_id, cu, counts, total_counts) in compute_unit_pointers
+            .iter()
+            .map(|&(i, total_counts)| (i, &compute_units.0[i], &counts[i], total_counts))
+        {
             for instr in compute_units.0.iter().flat_map(|cu| &cu.memory_ops) {
                 seen.insert(instr.as_value_ref());
             }
@@ -305,7 +317,6 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             };
             seen.clear();
 
-            let total_counts = counts.values().sum::<u64>();
             if !first && total_counts < 100 {
                 continue;
             }
