@@ -9,7 +9,9 @@ use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
     llvm_sys::prelude::LLVMValueRef,
     module::Module,
-    values::{AsValueRef, BasicMetadataValueEnum, FunctionValue, InstructionOpcode, PhiValue},
+    values::{
+        AsValueRef, BasicMetadataValueEnum, FunctionValue, InstructionOpcode, IntValue, PhiValue,
+    },
     AddressSpace,
 };
 
@@ -42,8 +44,24 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher + Default>(
     let mut buf = String::new();
 
     count_mem_ops(module, incr_fn, ids, &mut StringView::new(&mut buf));
-    count_input_ops(module, incr_fn, idioms, ids, &mut StringView::new(&mut buf));
-    count_output_ops(module, incr_fn, idioms, ids, &mut StringView::new(&mut buf));
+
+    let mut output_executions = Vec::with_capacity(idioms.len());
+    count_output_ops(
+        module,
+        incr_fn,
+        idioms,
+        ids,
+        &mut output_executions,
+        &mut StringView::new(&mut buf),
+    );
+    count_input_ops(
+        module,
+        incr_fn,
+        idioms,
+        ids,
+        &output_executions,
+        &mut StringView::new(&mut buf),
+    );
 }
 
 #[must_use]
@@ -145,12 +163,14 @@ fn count_input_ops<'ctx, S: BuildHasher>(
     incr_fn: FunctionValue<'ctx>,
     idioms: &[Idiom<'ctx, S>],
     ids: &HashMap<LLVMValueRef, InstructionId, S>,
+    output_executions: &[IntValue<'ctx>],
     global_name_buf: &mut String,
 ) {
     let ctx = module.get_context();
 
     global_name_buf.push_str("auto_isa_inputs_");
     let base_name_len = global_name_buf.len();
+    let mut i = 0;
     for (idiom_id, Idiom(cus)) in idioms.iter().enumerate() {
         for (
             cu_id,
@@ -170,6 +190,8 @@ fn count_input_ops<'ctx, S: BuildHasher>(
                 .unwrap()
                 .get_first_instruction()
                 .unwrap();
+            let output_activated = output_executions[i];
+            i += 1;
 
             for input in memory_ops.iter().filter(|&instr| instr != root) {
                 let mut buf = StringView::new(global_name_buf);
@@ -198,6 +220,13 @@ fn count_input_ops<'ctx, S: BuildHasher>(
                             ctx.bool_type(),
                             active,
                             &StringView::extend(&mut buf, "_activated"),
+                        )
+                        .unwrap();
+                    let activated = b
+                        .build_and(
+                            activated.into_int_value(),
+                            output_activated,
+                            &StringView::extend(&mut buf, "_both"),
                         )
                         .unwrap();
                     b.build_call(
@@ -249,6 +278,7 @@ fn count_output_ops<'ctx, S: BuildHasher + Default>(
     incr_fn: FunctionValue<'ctx>,
     idioms: &[Idiom<'ctx, S>],
     ids: &HashMap<LLVMValueRef, InstructionId, S>,
+    output_executions: &mut Vec<IntValue<'ctx>>,
     global_name_buf: &mut String,
 ) {
     let ctx = module.get_context();
@@ -359,6 +389,7 @@ fn count_output_ops<'ctx, S: BuildHasher + Default>(
                     )
                     .unwrap()
                 });
+            output_executions.push(activated);
 
             let value = ctx.const_string(buf[base_name_len - 8..].as_bytes(), false);
             let id = module.add_global(value.get_type(), None, &buf);
