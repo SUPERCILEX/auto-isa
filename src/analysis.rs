@@ -32,8 +32,6 @@ struct Cache<'ctx, S> {
     full_graph: HashMap<InstructionId, Vec<InstructionId>, S>,
     phi_odometer: Vec<usize>,
     phi_edges: Vec<(InstructionId, Vec<InstructionId>)>,
-    seen_split_pool: Pool<Vec<StableEdge>>,
-    seen_split_idioms: HashSet<Vec<StableEdge>, S>,
 }
 
 impl<'ctx, S> Cache<'ctx, S> {
@@ -48,8 +46,6 @@ impl<'ctx, S> Cache<'ctx, S> {
             full_graph,
             phi_odometer,
             phi_edges,
-            seen_split_idioms,
-            seen_split_pool,
         } = self;
 
         seen.clear();
@@ -69,9 +65,6 @@ impl<'ctx, S> Cache<'ctx, S> {
         drain!(full_graph.drain());
         drain!(phi_edges.drain(0..));
         phi_odometer.clear();
-        for v in seen_split_idioms.drain() {
-            seen_split_pool.release(v);
-        }
     }
 }
 
@@ -166,6 +159,41 @@ fn find_idioms<'ctx, S: BuildHasher + Default + Clone>(
                     edges: edges.iter().map(|e| e.to_edge(&state.ids_index)).collect(),
                 });
         });
+    }
+    prune_duplicates(state, idioms, &mut cache);
+}
+
+fn prune_duplicates<'ctx, S: BuildHasher + Default>(
+    State { ids, ids_index: _ }: &State<'ctx, S>,
+    idioms: &mut HashMap<EquivalenceGraph, Idiom<'ctx, S>, S>,
+    cache: &mut Cache<'ctx, S>,
+) {
+    let mut seen = HashSet::<_, S>::default();
+    let mut seen2 = HashSet::<_, S>::default();
+    for Idiom(cus) in idioms.values_mut() {
+        cus.retain_mut(
+            |ComputeUnit {
+                 edges,
+                 root,
+                 memory_ops: _,
+             }| {
+                seen.insert(ids[&root.as_value_ref()]);
+                edges
+                    .iter()
+                    .map(|Edge(_, to)| ids[&to.as_value_ref()])
+                    .collect_into(&mut seen);
+
+                let mut instrs = cache.ivv_pool.pop().unwrap_or_default();
+                seen.iter().collect_into(&mut instrs);
+                seen.clear();
+
+                seen2.insert(instrs)
+            },
+        );
+
+        for v in seen2.drain() {
+            cache.ivv_pool.release(v);
+        }
     }
 }
 
@@ -304,14 +332,7 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
                 &mut cache.memory_ops,
             );
 
-            let mut graph = cache.seen_split_pool.pop().unwrap_or_default();
-            cache.edges.iter().copied().collect_into(&mut graph);
-            if cache.seen_split_idioms.contains(&graph) {
-                cache.seen_split_pool.release(graph);
-            } else {
-                add(&cache.edges, cache.memory_ops.clone());
-                cache.seen_split_idioms.insert(graph);
-            }
+            add(&cache.edges, cache.memory_ops.clone());
         }
 
         let mut odometer_digit = cache.phi_odometer.len() - 1;
