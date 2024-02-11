@@ -7,148 +7,148 @@ label="Total loads executed: 992915882\nTotal stores executed: 191875965"
 }
 subgraph {
 subgraph {
+"6_0_139" [label="SExt"]
+"6_0_138" [label="Add"]
+"6_0_139" -> "6_0_138"
+{
+rank=min
+"6_0_160" [label="Store\n1603895"]
+}
+"6_0_146" [label="Phi"]
+"6_0_160" -> "6_0_146"
+"6_0_137" [label="Load\n1603895"]
+"6_0_138" -> "6_0_137"
+"6_0_140" [label="GetElementPtr"]
+"6_0_140" -> "6_0_139"
+"6_0_146" -> "6_0_140"
+cluster=true
+label="Raw dynamic executions: 27358552\nRaw memory operations: 54351509\nCaptured memory operations: 0.2%"
+}
+subgraph {
+"6_1_139" [label="SExt"]
+"6_1_138" [label="Add"]
+"6_1_139" -> "6_1_138"
+"6_1_137" [label="Load\n1603895"]
+"6_1_138" -> "6_1_137"
+"6_1_140" [label="GetElementPtr"]
+"6_1_140" -> "6_1_139"
+{
+rank=min
+"6_1_164" [label="Store\n1603895"]
+}
+"6_1_146" [label="Phi"]
+"6_1_164" -> "6_1_146"
+"6_1_146" -> "6_1_140"
+cluster=true
+label="Raw dynamic executions: 27358552\nRaw memory operations: 54351509\nCaptured memory operations: 0.2%"
+color=red
+}
+cluster=true
+label="Static occurrences: 2\nMemory operations: 6415580\nCaptured memory operations: 0.5%\nId: 6"
+}
+subgraph {
+subgraph {
 "0_0_139" [label="SExt"]
 "0_0_138" [label="Add"]
 "0_0_139" -> "0_0_138"
 {
 rank=min
-"0_0_156" [label="Load\n55391321"]
+"0_0_156" [label="Load\n1603895"]
 }
 "0_0_146" [label="Phi"]
 "0_0_156" -> "0_0_146"
-"0_0_137" [label="Load\n26992957"]
+"0_0_137" [label="Load\n1603895"]
 "0_0_138" -> "0_0_137"
 "0_0_140" [label="GetElementPtr"]
 "0_0_140" -> "0_0_139"
 "0_0_146" -> "0_0_140"
 cluster=true
-label="Dynamic executions: 55391321\nCaptured memory operations: 6.9%"
-}
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 55391321\nCaptured memory operations: 6.9%"
-}
-subgraph {
-subgraph {
-"1_0_139" [label="SExt"]
-"1_0_138" [label="Add"]
-"1_0_139" -> "1_0_138"
-{
-rank=min
-"1_0_160" [label="Store\n27358552"]
-}
-"1_0_146" [label="Phi"]
-"1_0_160" -> "1_0_146"
-"1_0_137" [label="Load\n26992957"]
-"1_0_138" -> "1_0_137"
-"1_0_140" [label="GetElementPtr"]
-"1_0_140" -> "1_0_139"
-"1_0_146" -> "1_0_140"
-cluster=true
-label="Dynamic executions: 27358552\nCaptured memory operations: 4.5%"
-color=red
-}
-subgraph {
-"1_1_139" [label="SExt"]
-"1_1_138" [label="Add"]
-"1_1_139" -> "1_1_138"
-"1_1_137" [label="Load\n26992957"]
-"1_1_138" -> "1_1_137"
-"1_1_140" [label="GetElementPtr"]
-"1_1_140" -> "1_1_139"
-{
-rank=min
-"1_1_164" [label="Store\n27358552"]
-}
-"1_1_146" [label="Phi"]
-"1_1_164" -> "1_1_146"
-"1_1_146" -> "1_1_140"
-cluster=true
-label="Dynamic executions: 27358552\nCaptured memory operations: 4.5%"
+label="Raw dynamic executions: 55391321\nRaw memory operations: 82384278\nCaptured memory operations: 0.2%"
 color=red
 }
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 54717104\nCaptured memory operations: 9.1%"
+label="Static occurrences: 1\nMemory operations: 3207790\nCaptured memory operations: 0.2%\nId: 0"
 }
 subgraph {
 subgraph {
-"2_0_121" [label="Add"]
-"2_0_120" [label="Load\n365596"]
-"2_0_121" -> "2_0_120"
+"3_0_121" [label="Add"]
+"3_0_120" [label="Load\n365596"]
+"3_0_121" -> "3_0_120"
 {
 rank=min
-"2_0_122" [label="Store\n365596"]
+"3_0_122" [label="Store\n365596"]
 }
-"2_0_122" -> "2_0_121"
+"3_0_122" -> "3_0_121"
 cluster=true
-label="Dynamic executions: 365596\nCaptured memory operations: 0.0%"
-}
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 365596\nCaptured memory operations: 0.0%"
-}
-subgraph {
-subgraph {
-{
-rank=min
-"3_0_1" [label="Store\n1"]
-}
-"3_0_0" [label="Load\n1"]
-"3_0_1" -> "3_0_0"
-cluster=true
-label="Dynamic executions: 1\nCaptured memory operations: 0.0%"
+label="Raw dynamic executions: 365596\nRaw memory operations: 731192\nCaptured memory operations: 0.0%"
 }
 cluster=true
-label="Static occurrences: 3\nDynamic executions: 3\nCaptured memory operations: 0.0%"
-}
-subgraph {
-subgraph {
-"4_0_20" [label="Phi"]
-"4_0_15" [label="GetElementPtr"]
-"4_0_20" -> "4_0_15"
-"4_0_26" [label="GetElementPtr"]
-"4_0_26" -> "4_0_20"
-{
-rank=min
-"4_0_27" [label="Load\n0"]
-}
-"4_0_27" -> "4_0_26"
-"4_0_11" [label="Load\n0"]
-"4_0_15" -> "4_0_11"
-cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
-}
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nMemory operations: 731192\nCaptured memory operations: 0.0%\nId: 3"
 }
 subgraph {
 subgraph {
 {
 rank=min
-"5_0_16" [label="Load\n0"]
+"4_0_1" [label="Store\n1"]
 }
+"4_0_0" [label="Load\n1"]
+"4_0_1" -> "4_0_0"
+cluster=true
+label="Raw dynamic executions: 1\nRaw memory operations: 2\nCaptured memory operations: 0.0%"
+}
+cluster=true
+label="Static occurrences: 3\nMemory operations: 6\nCaptured memory operations: 0.0%\nId: 4"
+}
+subgraph {
+subgraph {
+{
+rank=min
+"1_0_12" [label="Load\n0"]
+}
+"1_0_11" [label="Load\n0"]
+"1_0_12" -> "1_0_11"
+cluster=true
+label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
+}
+cluster=true
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 1"
+}
+subgraph {
+subgraph {
+{
+rank=min
+"2_0_16" [label="Load\n0"]
+}
+"2_0_15" [label="GetElementPtr"]
+"2_0_16" -> "2_0_15"
+"2_0_11" [label="Load\n0"]
+"2_0_15" -> "2_0_11"
+cluster=true
+label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
+color=red
+}
+cluster=true
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 2"
+}
+subgraph {
+subgraph {
+"5_0_20" [label="Phi"]
 "5_0_15" [label="GetElementPtr"]
-"5_0_16" -> "5_0_15"
+"5_0_20" -> "5_0_15"
+"5_0_26" [label="GetElementPtr"]
+"5_0_26" -> "5_0_20"
+{
+rank=min
+"5_0_27" [label="Load\n0"]
+}
+"5_0_27" -> "5_0_26"
 "5_0_11" [label="Load\n0"]
 "5_0_15" -> "5_0_11"
 cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
-}
-subgraph {
-subgraph {
-{
-rank=min
-"6_0_12" [label="Load\n0"]
-}
-"6_0_11" [label="Load\n0"]
-"6_0_12" -> "6_0_11"
-cluster=true
-label="Dynamic executions: 0\nCaptured memory operations: 0.0%"
-color=red
-}
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 0\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 5"
 }
 }

@@ -7,6 +7,28 @@ label="Total loads executed: 536875011\nTotal stores executed: 268439552"
 }
 subgraph {
 subgraph {
+"2_0_40" [label="FDiv"]
+"2_0_39" [label="Load\n268435456"]
+"2_0_40" -> "2_0_39"
+"2_0_37" [label="Load\n268435456"]
+"2_0_40" -> "2_0_37"
+"2_0_38" [label="GetElementPtr"]
+"2_0_28" [label="Load\n1"]
+"2_0_38" -> "2_0_28"
+{
+rank=min
+"2_0_41" [label="Store\n268435456"]
+}
+"2_0_41" -> "2_0_38"
+"2_0_41" -> "2_0_40"
+cluster=true
+label="Raw dynamic executions: 268435456\nRaw memory operations: 805306369\nCaptured memory operations: 99.9%"
+}
+cluster=true
+label="Static occurrences: 1\nMemory operations: 805306369\nCaptured memory operations: 99.9%\nId: 2"
+}
+subgraph {
+subgraph {
 {
 rank=min
 "0_0_37" [label="Load\n268435456"]
@@ -16,7 +38,8 @@ rank=min
 "0_0_29" [label="Load\n1"]
 "0_0_36" -> "0_0_29"
 cluster=true
-label="Dynamic executions: 268435456\nCaptured memory operations: 33.3%"
+label="Raw dynamic executions: 268435456\nRaw memory operations: 268435457\nCaptured memory operations: 33.3%"
+color=red
 }
 subgraph {
 {
@@ -28,77 +51,53 @@ rank=min
 "0_1_28" [label="Load\n1"]
 "0_1_38" -> "0_1_28"
 cluster=true
-label="Dynamic executions: 268435456\nCaptured memory operations: 33.3%"
+label="Raw dynamic executions: 268435456\nRaw memory operations: 268435457\nCaptured memory operations: 33.3%"
 color=red
 }
 cluster=true
-label="Static occurrences: 2\nDynamic executions: 536870912\nCaptured memory operations: 66.6%"
+label="Static occurrences: 2\nMemory operations: 536870914\nCaptured memory operations: 66.6%\nId: 0"
 }
 subgraph {
 subgraph {
-"1_0_40" [label="FDiv"]
-"1_0_39" [label="Load\n268435456"]
-"1_0_40" -> "1_0_39"
-"1_0_37" [label="Load\n268435456"]
-"1_0_40" -> "1_0_37"
-"1_0_38" [label="GetElementPtr"]
+"3_0_16" [label="GetElementPtr"]
+"3_0_15" [label="Load\n2048"]
+"3_0_16" -> "3_0_15"
+{
+rank=min
+"3_0_17" [label="Store\n2048"]
+}
+"3_0_17" -> "3_0_16"
+cluster=true
+label="Raw dynamic executions: 2048\nRaw memory operations: 4096\nCaptured memory operations: 0.0%"
+}
+subgraph {
+"3_1_23" [label="GetElementPtr"]
+"3_1_22" [label="Load\n2048"]
+"3_1_23" -> "3_1_22"
+{
+rank=min
+"3_1_24" [label="Store\n2048"]
+}
+"3_1_24" -> "3_1_23"
+cluster=true
+label="Raw dynamic executions: 2048\nRaw memory operations: 4096\nCaptured memory operations: 0.0%"
+}
+cluster=true
+label="Static occurrences: 2\nMemory operations: 8192\nCaptured memory operations: 0.0%\nId: 3"
+}
+subgraph {
+subgraph {
+{
+rank=min
+"1_0_48" [label="Load\n1"]
+}
 "1_0_28" [label="Load\n1"]
-"1_0_38" -> "1_0_28"
-{
-rank=min
-"1_0_41" [label="Store\n268435456"]
-}
-"1_0_41" -> "1_0_38"
-"1_0_41" -> "1_0_40"
+"1_0_48" -> "1_0_28"
 cluster=true
-label="Dynamic executions: 268435456\nCaptured memory operations: 99.9%"
+label="Raw dynamic executions: 1\nRaw memory operations: 2\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 268435456\nCaptured memory operations: 99.9%"
-}
-subgraph {
-subgraph {
-"2_0_16" [label="GetElementPtr"]
-"2_0_15" [label="Load\n2048"]
-"2_0_16" -> "2_0_15"
-{
-rank=min
-"2_0_17" [label="Store\n2048"]
-}
-"2_0_17" -> "2_0_16"
-cluster=true
-label="Dynamic executions: 2048\nCaptured memory operations: 0.0%"
-}
-subgraph {
-"2_1_23" [label="GetElementPtr"]
-"2_1_22" [label="Load\n2048"]
-"2_1_23" -> "2_1_22"
-{
-rank=min
-"2_1_24" [label="Store\n2048"]
-}
-"2_1_24" -> "2_1_23"
-cluster=true
-label="Dynamic executions: 2048\nCaptured memory operations: 0.0%"
-color=red
-}
-cluster=true
-label="Static occurrences: 2\nDynamic executions: 4096\nCaptured memory operations: 0.0%"
-}
-subgraph {
-subgraph {
-{
-rank=min
-"3_0_48" [label="Load\n1"]
-}
-"3_0_28" [label="Load\n1"]
-"3_0_48" -> "3_0_28"
-cluster=true
-label="Dynamic executions: 1\nCaptured memory operations: 0.0%"
-color=red
-}
-cluster=true
-label="Static occurrences: 1\nDynamic executions: 1\nCaptured memory operations: 0.0%"
+label="Static occurrences: 1\nMemory operations: 2\nCaptured memory operations: 0.0%\nId: 1"
 }
 }

@@ -23,9 +23,9 @@ rank=min
 "0_0_27" -> "0_0_26"
 "0_0_28" -> "0_0_27"
 cluster=true
-label="Dynamic executions: 4960000000\nCaptured memory operations: 100.0%"
+label="Raw dynamic executions: 4960000000\nRaw memory operations: 9920000000\nCaptured memory operations: 100.0%"
 }
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 4960000000\nCaptured memory operations: 100.0%"
+label="Static occurrences: 1\nMemory operations: 9920000000\nCaptured memory operations: 100.0%\nId: 0"
 }
 }

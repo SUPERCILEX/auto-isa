@@ -9,45 +9,45 @@ subgraph {
 subgraph {
 {
 rank=min
-"0_0_40" [label="Store\n100000"]
+"0_0_40" [label="Store\n50000"]
 }
 "0_0_39" [label="Phi"]
 "0_0_40" -> "0_0_39"
-"0_0_36" [label="Add"]
-"0_0_35" [label="Load\n50000"]
-"0_0_36" -> "0_0_35"
-"0_0_37" [label="Add"]
-"0_0_25" [label="Phi"]
-"0_0_37" -> "0_0_25"
-"0_0_21" [label="Load\n1"]
-"0_0_25" -> "0_0_21"
-"0_0_39" -> "0_0_37"
-"0_0_37" -> "0_0_36"
+"0_0_32" [label="Add"]
+"0_0_39" -> "0_0_32"
+"0_0_31" [label="Shl"]
+"0_0_32" -> "0_0_31"
+"0_0_30" [label="Load\n50000"]
+"0_0_31" -> "0_0_30"
 cluster=true
-label="Dynamic executions: 100000\nCaptured memory operations: 37.4%"
+label="Raw dynamic executions: 100000\nRaw memory operations: 150000\nCaptured memory operations: 24.9%"
 }
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 100000\nCaptured memory operations: 37.4%"
+label="Static occurrences: 1\nMemory operations: 100000\nCaptured memory operations: 24.9%\nId: 0"
 }
 subgraph {
 subgraph {
 {
 rank=min
-"1_0_40" [label="Store\n100000"]
+"1_0_40" [label="Store\n0"]
 }
 "1_0_39" [label="Phi"]
 "1_0_40" -> "1_0_39"
-"1_0_32" [label="Add"]
-"1_0_39" -> "1_0_32"
-"1_0_31" [label="Shl"]
-"1_0_32" -> "1_0_31"
-"1_0_30" [label="Load\n50000"]
-"1_0_31" -> "1_0_30"
+"1_0_36" [label="Add"]
+"1_0_35" [label="Load\n0"]
+"1_0_36" -> "1_0_35"
+"1_0_37" [label="Add"]
+"1_0_25" [label="Phi"]
+"1_0_37" -> "1_0_25"
+"1_0_21" [label="Load\n0"]
+"1_0_25" -> "1_0_21"
+"1_0_39" -> "1_0_37"
+"1_0_37" -> "1_0_36"
 cluster=true
-label="Dynamic executions: 100000\nCaptured memory operations: 37.4%"
+label="Raw dynamic executions: 100000\nRaw memory operations: 150001\nCaptured memory operations: 0.0%"
 color=red
 }
 cluster=true
-label="Static occurrences: 1\nDynamic executions: 100000\nCaptured memory operations: 37.4%"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 1"
 }
 }
