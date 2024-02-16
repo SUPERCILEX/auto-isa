@@ -5,9 +5,9 @@ edition = "2021"
 publish = false
 
 [dependencies]
-either = "1.9.0"
+either = "1.10.0"
 itoa = "1.0.10"
-llvm-plugin = { version = "0.4.1", features = ["llvm17-0"], path = "/home/asaveau/Desktop/wip/llvm-plugin-rs/llvm-plugin" }
+llvm-plugin = { version = "0.5.0", features = ["llvm17-0"] }
 rustc-hash = "1.1.0"
 rustix = { version = "0.38.31", features = ["runtime", "process", "stdio"] }
 tracy-client = { version = "0.17.0", optional = true }

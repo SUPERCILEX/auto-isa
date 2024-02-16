@@ -73,9 +73,9 @@ impl<'a> StringView<'a> {
     }
 
     pub fn extend(s: &'a mut String, e: &str) -> Self {
-        let before = s.len();
-        s.push_str(e);
-        Self(before, s)
+        let mut view = Self::new(s);
+        view.push_str(e);
+        view
     }
 }
 
