@@ -2025,7 +2025,6 @@ rank=min
 "1_0_199" -> "1_0_181"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
-color=red
 }
 cluster=true
 penwidth=0
@@ -2071,7 +2070,6 @@ rank=min
 "21_0_149" -> "21_0_148"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
-color=red
 }
 cluster=true
 penwidth=0

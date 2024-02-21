@@ -597,7 +597,6 @@ rank=min
 "12_11_1410" -> "12_11_1411"
 cluster=true
 label="Raw dynamic executions: 107614\nRaw memory operations: 215228\nCaptured memory operations: 0.0%"
-color=red
 }
 subgraph {
 {
@@ -617,7 +616,6 @@ rank=min
 "12_27_2084" -> "12_27_2073"
 cluster=true
 label="Raw dynamic executions: 1310560\nRaw memory operations: 1441616\nCaptured memory operations: 0.0%"
-color=red
 }
 subgraph {
 {
@@ -1096,7 +1094,6 @@ rank=min
 "42_5_2739" -> "42_5_2738"
 cluster=true
 label="Raw dynamic executions: 3575536\nRaw memory operations: 37129976\nCaptured memory operations: 0.0%"
-color=red
 }
 subgraph {
 {
@@ -1468,7 +1465,6 @@ rank=min
 "52_10_1706" -> "52_10_1705"
 cluster=true
 label="Raw dynamic executions: 131071\nRaw memory operations: 262142\nCaptured memory operations: 0.0%"
-color=red
 }
 subgraph {
 {
@@ -1843,7 +1839,6 @@ rank=min
 "21_4_567" -> "21_4_566"
 cluster=true
 label="Raw dynamic executions: 13673453\nRaw memory operations: 13673453\nCaptured memory operations: 0.1%"
-color=red
 }
 subgraph {
 {
@@ -4982,7 +4977,6 @@ rank=min
 "85_0_3236" -> "85_0_3225"
 cluster=true
 label="Raw dynamic executions: 1\nRaw memory operations: 4\nCaptured memory operations: 0.0%"
-color=red
 }
 cluster=true
 penwidth=0
@@ -5072,7 +5066,6 @@ rank=min
 "70_0_1576" -> "70_0_1535"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 107614\nCaptured memory operations: 0.0%"
-color=red
 }
 cluster=true
 penwidth=0
@@ -6436,7 +6429,6 @@ rank=min
 "3_0_3552" -> "3_0_3549"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
-color=red
 }
 cluster=true
 penwidth=0

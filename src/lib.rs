@@ -306,6 +306,11 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             .iter()
             .map(|&(i, total_counts)| (i, &compute_units.0[i], &counts[i], total_counts))
         {
+            if !first && total_counts < 100 {
+                continue;
+            }
+            first = false;
+
             for instr in &cu.memory_ops {
                 seen.insert(instr.as_value_ref());
             }
@@ -317,11 +322,6 @@ fn print_compute_units<'ctx, S: BuildHasher>(
                 overlap
             };
             seen.clear();
-
-            if !first && total_counts < 100 {
-                continue;
-            }
-            first = false;
 
             writeln!(output, "subgraph {{").unwrap();
             if let Some((prev_cu_id, instruction_id)) = prev_cu_root {

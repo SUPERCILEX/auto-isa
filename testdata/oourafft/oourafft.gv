@@ -4096,7 +4096,6 @@ rank=min
 "38_0_630" -> "38_0_629"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
-color=red
 }
 cluster=true
 penwidth=0
