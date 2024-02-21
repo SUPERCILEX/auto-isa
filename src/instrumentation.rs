@@ -209,7 +209,7 @@ fn count_input_ops<'ctx, S: BuildHasher>(
                 b.build_store(active, ctx.bool_type().const_zero()).unwrap();
 
                 b.position_before(input);
-                b.build_store(active, gen_is_not_stack_address(&ctx, &b, input))
+                b.build_store(active, gen_is_not_stack_address(&ctx, &b, *input))
                     .unwrap();
 
                 b.position_before(root);
@@ -378,7 +378,7 @@ fn count_output_ops<'ctx, S: BuildHasher + Default>(
                 .fold(
                     {
                         b.position_before(root);
-                        gen_is_not_stack_address(&ctx, &b, root)
+                        gen_is_not_stack_address(&ctx, &b, *root)
                     },
                     |and, active| {
                         b.position_before(root);
@@ -464,7 +464,7 @@ fn gen_incr_fn<'ctx>(
 fn gen_is_not_stack_address<'ctx>(
     ctx: &ContextRef<'ctx>,
     b: &Builder<'ctx>,
-    instr: &InstructionValue<'ctx>,
+    instr: InstructionValue<'ctx>,
 ) -> IntValue<'ctx> {
     let pointer = instr
         .get_operand(match instr.get_opcode() {
@@ -480,7 +480,7 @@ fn gen_is_not_stack_address<'ctx>(
         IntPredicate::ULT,
         pointer,
         ctx.i64_type()
-            .const_int(0x7f0000000000, false)
+            .const_int(0x7f00_0000_0000, false)
             .const_to_pointer(ctx.bool_type().ptr_type(AddressSpace::default())),
         "is_not_stack",
     )
