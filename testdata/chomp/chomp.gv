@@ -357,21 +357,6 @@ subgraph {
 subgraph {
 {
 rank=min
-"4_2_474" [label="Store\n65029"]
-}
-"4_2_473" [label="Load\n65029"]
-"4_2_474" -> "4_2_473"
-cluster=true
-label="Raw dynamic executions: 65029\nRaw memory operations: 130058\nCaptured memory operations: 0.0%"
-}
-subgraph {
-{
-rank=max
-"4_1" [shape=point style=invis]
-"4_1" -> "4_2_474" [style=invis]
-}
-{
-rank=min
 "4_1_388" [label="Store\n495495"]
 }
 "4_1_375" [label="Load\n173745"]
@@ -381,7 +366,7 @@ label="Raw dynamic executions: 495495\nRaw memory operations: 669240\nCaptured m
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 10\nMemory operations: 799306\nCaptured memory operations: 0.1%\nId: 4"
+label="Static occurrences: 10\nMemory operations: 669248\nCaptured memory operations: 0.1%\nId: 4"
 }
 subgraph {
 subgraph {
@@ -716,24 +701,6 @@ label="Static occurrences: 3\nMemory operations: 38610\nCaptured memory operatio
 }
 subgraph {
 subgraph {
-{
-rank=min
-"13_0_640" [label="Store\n6435"]
-}
-"13_0_636" [label="Load\n6435"]
-"13_0_640" -> "13_0_636"
-"13_0_639" [label="Load\n6435"]
-"13_0_640" -> "13_0_639"
-cluster=true
-label="Raw dynamic executions: 6435\nRaw memory operations: 19305\nCaptured memory operations: 0.0%"
-color=red
-}
-cluster=true
-penwidth=0
-label="Static occurrences: 1\nMemory operations: 19305\nCaptured memory operations: 0.0%\nId: 13"
-}
-subgraph {
-subgraph {
 "20_2_562" [label="Phi"]
 "20_2_678" [label="Phi"]
 "20_2_562" -> "20_2_678"
@@ -824,18 +791,19 @@ subgraph {
 subgraph {
 {
 rank=min
-"14_0_538" [label="Store\n6434"]
+"13_0_640" [label="Store\n6435"]
 }
-"14_0_537" [label="Sub"]
-"14_0_538" -> "14_0_537"
-"14_0_536" [label="Load\n6434"]
-"14_0_537" -> "14_0_536"
+"13_0_636" [label="Load\n6435"]
+"13_0_640" -> "13_0_636"
+"13_0_639" [label="Load\n0"]
+"13_0_640" -> "13_0_639"
 cluster=true
-label="Raw dynamic executions: 6434\nRaw memory operations: 12868\nCaptured memory operations: 0.0%"
+label="Raw dynamic executions: 6435\nRaw memory operations: 19305\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 12868\nCaptured memory operations: 0.0%\nId: 14"
+label="Static occurrences: 1\nMemory operations: 12870\nCaptured memory operations: 0.0%\nId: 13"
 }
 subgraph {
 subgraph {
@@ -1056,6 +1024,23 @@ color=red
 cluster=true
 penwidth=0
 label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 12"
+}
+subgraph {
+subgraph {
+{
+rank=min
+"14_0_538" [label="Store\n0"]
+}
+"14_0_537" [label="Sub"]
+"14_0_538" -> "14_0_537"
+"14_0_536" [label="Load\n0"]
+"14_0_537" -> "14_0_536"
+cluster=true
+label="Raw dynamic executions: 6434\nRaw memory operations: 12868\nCaptured memory operations: 0.0%"
+}
+cluster=true
+penwidth=0
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 14"
 }
 subgraph {
 subgraph {

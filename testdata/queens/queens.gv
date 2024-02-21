@@ -99,14 +99,14 @@ subgraph {
 rank=min
 "4_0_1" [label="Store\n1"]
 }
-"4_0_0" [label="Load\n1"]
+"4_0_0" [label="Load\n0"]
 "4_0_1" -> "4_0_0"
 cluster=true
 label="Raw dynamic executions: 1\nRaw memory operations: 2\nCaptured memory operations: 0.0%"
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 3\nMemory operations: 6\nCaptured memory operations: 0.0%\nId: 4"
+label="Static occurrences: 3\nMemory operations: 5\nCaptured memory operations: 0.0%\nId: 4"
 }
 subgraph {
 subgraph {

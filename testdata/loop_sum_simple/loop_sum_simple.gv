@@ -3,26 +3,26 @@ rankdir=BT
 subgraph {
 Stats [shape=plaintext]
 cluster=true
-label="Total loads executed: 200002\nTotal stores executed: 300001"
+label="Total loads executed: 200002\nTotal stores executed: 300000"
 }
 subgraph {
 subgraph {
-"0_0_31" [label="Add"]
-"0_0_30" [label="Add"]
-"0_0_31" -> "0_0_30"
+"0_0_27" [label="Add"]
+"0_0_24" [label="Load\n1"]
+"0_0_27" -> "0_0_24"
+"0_0_28" [label="Add"]
+"0_0_22" [label="Phi"]
+"0_0_28" -> "0_0_22"
+"0_0_18" [label="Load\n1"]
+"0_0_22" -> "0_0_18"
+"0_0_26" [label="Load\n1"]
+"0_0_27" -> "0_0_26"
+"0_0_28" -> "0_0_27"
 {
 rank=min
-"0_0_32" [label="Store\n1"]
+"0_0_29" [label="Store\n1"]
 }
-"0_0_32" -> "0_0_31"
-"0_0_27" [label="Load\n1"]
-"0_0_30" -> "0_0_27"
-"0_0_29" [label="Load\n1"]
-"0_0_30" -> "0_0_29"
-"0_0_25" [label="Phi"]
-"0_0_31" -> "0_0_25"
-"0_0_21" [label="Load\n1"]
-"0_0_25" -> "0_0_21"
+"0_0_29" -> "0_0_28"
 cluster=true
 label="Raw dynamic executions: 100000\nRaw memory operations: 300001\nCaptured memory operations: 0.0%"
 }

@@ -7,12 +7,15 @@ use std::{
 
 use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
+    builder::Builder,
+    context::ContextRef,
     llvm_sys::prelude::LLVMValueRef,
     module::Module,
     values::{
-        AsValueRef, BasicMetadataValueEnum, FunctionValue, InstructionOpcode, IntValue, PhiValue,
+        AsValueRef, BasicMetadataValueEnum, FunctionValue, InstructionOpcode, InstructionValue,
+        IntValue, PhiValue,
     },
-    AddressSpace,
+    AddressSpace, IntPredicate,
 };
 
 use crate::{
@@ -206,7 +209,7 @@ fn count_input_ops<'ctx, S: BuildHasher>(
                 b.build_store(active, ctx.bool_type().const_zero()).unwrap();
 
                 b.position_before(input);
-                b.build_store(active, ctx.bool_type().const_all_ones())
+                b.build_store(active, gen_is_not_stack_address(&ctx, &b, input))
                     .unwrap();
 
                 b.position_before(root);
@@ -372,23 +375,29 @@ fn count_output_ops<'ctx, S: BuildHasher + Default>(
 
                     active
                 })
-                .fold(ctx.bool_type().const_all_ones(), |and, active| {
-                    b.position_before(root);
-                    let activated = b
-                        .build_load(
-                            ctx.bool_type(),
-                            active,
-                            &StringView::extend(&mut buf2, "_activated"),
+                .fold(
+                    {
+                        b.position_before(root);
+                        gen_is_not_stack_address(&ctx, &b, root)
+                    },
+                    |and, active| {
+                        b.position_before(root);
+                        let activated = b
+                            .build_load(
+                                ctx.bool_type(),
+                                active,
+                                &StringView::extend(&mut buf2, "_activated"),
+                            )
+                            .unwrap();
+                        b.build_store(active, ctx.bool_type().const_zero()).unwrap();
+                        b.build_and(
+                            and,
+                            activated.into_int_value(),
+                            &StringView::extend(&mut buf2, "_activated_reduce"),
                         )
-                        .unwrap();
-                    b.build_store(active, ctx.bool_type().const_zero()).unwrap();
-                    b.build_and(
-                        and,
-                        activated.into_int_value(),
-                        &StringView::extend(&mut buf2, "_activated_reduce"),
-                    )
-                    .unwrap()
-                });
+                        .unwrap()
+                    },
+                );
             output_executions.push(activated);
 
             let value = ctx.const_string(buf[base_name_len - 8..].as_bytes(), false);
@@ -450,4 +459,30 @@ fn gen_incr_fn<'ctx>(
     b.build_return(None).unwrap();
 
     maybe_incr_fn
+}
+
+fn gen_is_not_stack_address<'ctx>(
+    ctx: &ContextRef<'ctx>,
+    b: &Builder<'ctx>,
+    instr: &InstructionValue<'ctx>,
+) -> IntValue<'ctx> {
+    let pointer = instr
+        .get_operand(match instr.get_opcode() {
+            InstructionOpcode::Load => 0,
+            InstructionOpcode::Store => 1,
+            _ => unimplemented!(),
+        })
+        .unwrap()
+        .unwrap_left()
+        .into_pointer_value();
+
+    b.build_int_compare(
+        IntPredicate::ULT,
+        pointer,
+        ctx.i64_type()
+            .const_int(0x7f0000000000, false)
+            .const_to_pointer(ctx.bool_type().ptr_type(AddressSpace::default())),
+        "is_not_stack",
+    )
+    .unwrap()
 }

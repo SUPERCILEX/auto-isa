@@ -8,13 +8,13 @@ label="Total loads executed: 100002\nTotal stores executed: 200001"
 subgraph {
 subgraph {
 "0_0_27" [label="Shl"]
-"0_0_25" [label="Load\n1"]
+"0_0_25" [label="Load\n0"]
 "0_0_27" -> "0_0_25"
 "0_0_28" [label="Select"]
 "0_0_26" [label="Add"]
 "0_0_28" -> "0_0_26"
 "0_0_21" [label="Phi"]
-"0_0_17" [label="Load\n1"]
+"0_0_17" [label="Load\n0"]
 "0_0_21" -> "0_0_17"
 "0_0_26" -> "0_0_25"
 "0_0_29" [label="Add"]
@@ -22,7 +22,7 @@ subgraph {
 "0_0_29" -> "0_0_21"
 {
 rank=min
-"0_0_30" [label="Store\n1"]
+"0_0_30" [label="Store\n0"]
 }
 "0_0_30" -> "0_0_29"
 "0_0_28" -> "0_0_27"
@@ -31,6 +31,6 @@ label="Raw dynamic executions: 100000\nRaw memory operations: 200001\nCaptured m
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 3\nCaptured memory operations: 0.0%\nId: 0"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 0"
 }
 }

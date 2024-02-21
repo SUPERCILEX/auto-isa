@@ -259,7 +259,7 @@ label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory oper
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 7\nMemory operations: 18\nCaptured memory operations: 1.5%\nId: 1"
+label="Static occurrences: 7\nMemory operations: 17\nCaptured memory operations: 1.4%\nId: 1"
 }
 subgraph {
 subgraph {

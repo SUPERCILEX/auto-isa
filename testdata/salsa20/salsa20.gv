@@ -8,7 +8,7 @@ label="Total loads executed: 1613758515\nTotal stores executed: 1613758513"
 subgraph {
 subgraph {
 "4_0_173" [label="Add"]
-"4_0_170" [label="Load\n537919504"]
+"4_0_170" [label="Load\n0"]
 "4_0_173" -> "4_0_170"
 "4_0_172" [label="Load\n537919504"]
 "4_0_173" -> "4_0_172"
@@ -18,11 +18,11 @@ rank=min
 }
 "4_0_175" -> "4_0_173"
 cluster=true
-label="Raw dynamic executions: 537919504\nRaw memory operations: 1613758512\nCaptured memory operations: 49.9%"
+label="Raw dynamic executions: 537919504\nRaw memory operations: 1613758512\nCaptured memory operations: 33.3%"
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 1613758512\nCaptured memory operations: 49.9%\nId: 4"
+label="Static occurrences: 1\nMemory operations: 1075839008\nCaptured memory operations: 33.3%\nId: 4"
 }
 subgraph {
 subgraph {
