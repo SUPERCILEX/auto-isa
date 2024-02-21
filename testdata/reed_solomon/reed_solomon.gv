@@ -45,7 +45,7 @@ label="Raw dynamic executions: 535646340\nRaw memory operations: 1606939020\nCap
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 4\nMemory operations: 1606939380\nCaptured memory operations: 26.6%\nId: 22"
+label="Static occurrences: 4\nMemory operations: 1606939380\nCaptured memory operations: 26.6%\nCumulative: 26.6%\nId: 22"
 }
 subgraph {
 subgraph {
@@ -115,7 +115,7 @@ label="Raw dynamic executions: 487681600\nRaw memory operations: 1099681600\nCap
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 6\nMemory operations: 1268242190\nCaptured memory operations: 21.0%\nId: 4"
+label="Static occurrences: 6\nMemory operations: 1268242190\nCaptured memory operations: 21.0%\nCumulative: 47.6%\nId: 4"
 }
 subgraph {
 subgraph {
@@ -241,7 +241,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 5\nMemory operations: 1197449451\nCaptured memory operations: 19.8%\nId: 2"
+label="Static occurrences: 5\nMemory operations: 1197449451\nCaptured memory operations: 19.8%\nCumulative: 67.5%\nId: 2"
 }
 subgraph {
 subgraph {
@@ -605,7 +605,7 @@ label="Raw dynamic executions: 38250000\nRaw memory operations: 76500000\nCaptur
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 26\nMemory operations: 166855800\nCaptured memory operations: 2.7%\nId: 14"
+label="Static occurrences: 26\nMemory operations: 166855800\nCaptured memory operations: 2.7%\nCumulative: 70.2%\nId: 14"
 }
 subgraph {
 subgraph {
@@ -695,7 +695,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 11\nMemory operations: 132379712\nCaptured memory operations: 2.1%\nId: 16"
+label="Static occurrences: 11\nMemory operations: 132379712\nCaptured memory operations: 2.1%\nCumulative: 72.4%\nId: 16"
 }
 subgraph {
 subgraph {
@@ -719,7 +719,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 107550000\nCaptured memory operations: 1.7%\nId: 3"
+label="Static occurrences: 1\nMemory operations: 107550000\nCaptured memory operations: 1.7%\nCumulative: 74.2%\nId: 3"
 }
 subgraph {
 subgraph {
@@ -735,7 +735,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 15\nMemory operations: 76500064\nCaptured memory operations: 1.2%\nId: 8"
+label="Static occurrences: 15\nMemory operations: 76500064\nCaptured memory operations: 1.2%\nCumulative: 75.5%\nId: 8"
 }
 subgraph {
 subgraph {
@@ -786,7 +786,7 @@ label="Raw dynamic executions: 28200000\nRaw memory operations: 56400000\nCaptur
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 3\nMemory operations: 58800000\nCaptured memory operations: 0.9%\nId: 23"
+label="Static occurrences: 3\nMemory operations: 58800000\nCaptured memory operations: 0.9%\nCumulative: 76.5%\nId: 23"
 }
 subgraph {
 subgraph {
@@ -817,7 +817,7 @@ label="Raw dynamic executions: 10235747\nRaw memory operations: 33114948\nCaptur
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 10235747\nCaptured memory operations: 0.1%\nId: 15"
+label="Static occurrences: 1\nMemory operations: 10235747\nCaptured memory operations: 0.1%\nCumulative: 76.6%\nId: 15"
 }
 subgraph {
 subgraph {
@@ -839,7 +839,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 403888\nCaptured memory operations: 0.0%\nId: 21"
+label="Static occurrences: 1\nMemory operations: 403888\nCaptured memory operations: 0.0%\nCumulative: 76.6%\nId: 21"
 }
 subgraph {
 subgraph {
@@ -866,7 +866,7 @@ label="Raw dynamic executions: 243901\nRaw memory operations: 732820\nCaptured m
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 243901\nCaptured memory operations: 0.0%\nId: 19"
+label="Static occurrences: 1\nMemory operations: 243901\nCaptured memory operations: 0.0%\nCumulative: 76.6%\nId: 19"
 }
 subgraph {
 subgraph {
@@ -892,7 +892,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 129222\nCaptured memory operations: 0.0%\nId: 18"
+label="Static occurrences: 2\nMemory operations: 129222\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 18"
 }
 subgraph {
 subgraph {
@@ -926,7 +926,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 100614\nCaptured memory operations: 0.0%\nId: 20"
+label="Static occurrences: 1\nMemory operations: 100614\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 20"
 }
 subgraph {
 subgraph {
@@ -955,7 +955,7 @@ label="Raw dynamic executions: 246\nRaw memory operations: 618\nCaptured memory 
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 378\nCaptured memory operations: 0.0%\nId: 6"
+label="Static occurrences: 2\nMemory operations: 378\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 6"
 }
 subgraph {
 subgraph {
@@ -981,7 +981,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 378\nCaptured memory operations: 0.0%\nId: 12"
+label="Static occurrences: 2\nMemory operations: 378\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 12"
 }
 subgraph {
 subgraph {
@@ -1005,7 +1005,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 240\nCaptured memory operations: 0.0%\nId: 5"
+label="Static occurrences: 2\nMemory operations: 240\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 5"
 }
 subgraph {
 subgraph {
@@ -1025,7 +1025,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 240\nCaptured memory operations: 0.0%\nId: 13"
+label="Static occurrences: 2\nMemory operations: 240\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 13"
 }
 subgraph {
 subgraph {
@@ -1042,7 +1042,7 @@ label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory oper
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 8\nCaptured memory operations: 0.0%\nId: 7"
+label="Static occurrences: 2\nMemory operations: 8\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 7"
 }
 subgraph {
 subgraph {
@@ -1061,7 +1061,7 @@ label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory oper
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 3\nMemory operations: 2\nCaptured memory operations: 0.0%\nId: 1"
+label="Static occurrences: 3\nMemory operations: 2\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 1"
 }
 subgraph {
 subgraph {
@@ -1081,7 +1081,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 4\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 9"
+label="Static occurrences: 4\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 9"
 }
 subgraph {
 subgraph {
@@ -1110,7 +1110,7 @@ label="Raw dynamic executions: 2305252\nRaw memory operations: 36355120\nCapture
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 4\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 24"
+label="Static occurrences: 4\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 24"
 }
 subgraph {
 subgraph {
@@ -1127,7 +1127,7 @@ label="Raw dynamic executions: 28200000\nRaw memory operations: 56400000\nCaptur
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 0"
+label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 0"
 }
 subgraph {
 subgraph {
@@ -1149,7 +1149,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 11"
+label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 11"
 }
 subgraph {
 subgraph {
@@ -1185,7 +1185,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 10"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 10"
 }
 subgraph {
 subgraph {
@@ -1202,7 +1202,7 @@ label="Raw dynamic executions: 2380590\nRaw memory operations: 4761180\nCaptured
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 17"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 17"
 }
 subgraph {
 subgraph {
@@ -1222,7 +1222,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 25"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 25"
 }
 subgraph {
 subgraph {
@@ -1251,6 +1251,6 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 26"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 76.7%\nId: 26"
 }
 }

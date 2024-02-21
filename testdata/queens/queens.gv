@@ -50,7 +50,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 6415580\nCaptured memory operations: 0.5%\nId: 6"
+label="Static occurrences: 2\nMemory operations: 6415580\nCaptured memory operations: 0.5%\nCumulative: 0.5%\nId: 6"
 }
 subgraph {
 subgraph {
@@ -74,7 +74,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 3207790\nCaptured memory operations: 0.2%\nId: 0"
+label="Static occurrences: 1\nMemory operations: 3207790\nCaptured memory operations: 0.2%\nCumulative: 0.8%\nId: 0"
 }
 subgraph {
 subgraph {
@@ -91,7 +91,7 @@ label="Raw dynamic executions: 365596\nRaw memory operations: 731192\nCaptured m
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 731192\nCaptured memory operations: 0.0%\nId: 3"
+label="Static occurrences: 1\nMemory operations: 731192\nCaptured memory operations: 0.0%\nCumulative: 0.8%\nId: 3"
 }
 subgraph {
 subgraph {
@@ -106,7 +106,7 @@ label="Raw dynamic executions: 1\nRaw memory operations: 2\nCaptured memory oper
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 3\nMemory operations: 5\nCaptured memory operations: 0.0%\nId: 4"
+label="Static occurrences: 3\nMemory operations: 5\nCaptured memory operations: 0.0%\nCumulative: 0.8%\nId: 4"
 }
 subgraph {
 subgraph {
@@ -121,7 +121,7 @@ label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory oper
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 1"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.8%\nId: 1"
 }
 subgraph {
 subgraph {
@@ -139,7 +139,7 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 2"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.8%\nId: 2"
 }
 subgraph {
 subgraph {
@@ -161,6 +161,6 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 5"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.8%\nId: 5"
 }
 }

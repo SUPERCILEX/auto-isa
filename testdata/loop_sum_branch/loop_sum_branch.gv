@@ -24,7 +24,7 @@ label="Raw dynamic executions: 100000\nRaw memory operations: 150000\nCaptured m
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 0"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.0%\nId: 0"
 }
 subgraph {
 subgraph {
@@ -50,6 +50,6 @@ color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nId: 1"
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.0%\nId: 1"
 }
 }

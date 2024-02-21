@@ -277,6 +277,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
     .unwrap();
 
     let mut compute_unit_pointers = Vec::new();
+    let mut cum_counts = 0;
     for &(idiom_id, (compute_units, counts, total_counts)) in &idioms {
         let captured_mem_ops = |total: u64| {
             if total_executed_mem_ops == 0 {
@@ -392,15 +393,20 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             writeln!(output, "}}").unwrap();
         }
 
+        cum_counts += total_counts;
         let captured_memory_operations = captured_mem_ops(total_counts);
+        let cum_captured_memory_operations = captured_mem_ops(cum_counts);
 
         writeln!(
             output,
             "cluster=true\npenwidth=0\nlabel=\"Static occurrences: {}\\nMemory operations: \
-             {total_counts}\\nCaptured memory operations: {}.{}%\\nId: {idiom_id}\"\n}}",
+             {total_counts}\\nCaptured memory operations: {}.{}%\\nCumulative: {}.{}%\\nId: \
+             {idiom_id}\"\n}}",
             compute_units.0.len(),
             captured_memory_operations.0,
-            captured_memory_operations.1
+            captured_memory_operations.1,
+            cum_captured_memory_operations.0,
+            cum_captured_memory_operations.1,
         )
         .unwrap();
     }
