@@ -8,12 +8,12 @@ use std::{
 use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
     builder::Builder,
-    context::ContextRef,
     llvm_sys::prelude::LLVMValueRef,
     module::Module,
+    types::FunctionType,
     values::{
-        AsValueRef, BasicMetadataValueEnum, FunctionValue, InstructionOpcode, InstructionValue,
-        IntValue, PhiValue,
+        AnyValue, AsValueRef, BasicMetadataValueEnum, FunctionValue, InstructionOpcode,
+        InstructionValue, IntValue, PhiValue, PointerValue,
     },
     AddressSpace, IntPredicate,
 };
@@ -44,6 +44,24 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher + Default>(
         None,
     );
 
+    let rsp_fn = {
+        let get_rsp_fn = ctx
+            .i64_type()
+            .ptr_type(AddressSpace::default())
+            .fn_type(&[], false);
+        let get_rsp = ctx.create_inline_asm(
+            get_rsp_fn,
+            "movq %rsp, $0; subq $$128, $0".to_string(),
+            "=r".to_string(),
+            false,
+            false,
+            None,
+            false,
+        );
+
+        (get_rsp_fn, get_rsp)
+    };
+
     let mut buf = String::new();
 
     count_mem_ops(module, incr_fn, ids, &mut StringView::new(&mut buf));
@@ -52,6 +70,7 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher + Default>(
     count_output_ops(
         module,
         incr_fn,
+        rsp_fn,
         idioms,
         ids,
         &mut output_executions,
@@ -60,6 +79,7 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher + Default>(
     count_input_ops(
         module,
         incr_fn,
+        rsp_fn,
         idioms,
         ids,
         &output_executions,
@@ -164,6 +184,7 @@ fn count_mem_ops<'ctx, S: BuildHasher>(
 fn count_input_ops<'ctx, S: BuildHasher>(
     module: &Module<'ctx>,
     incr_fn: FunctionValue<'ctx>,
+    rsp_fn: (FunctionType<'ctx>, PointerValue<'ctx>),
     idioms: &[Idiom<'ctx, S>],
     ids: &HashMap<LLVMValueRef, InstructionId, S>,
     output_executions: &[IntValue<'ctx>],
@@ -209,7 +230,7 @@ fn count_input_ops<'ctx, S: BuildHasher>(
                 b.build_store(active, ctx.bool_type().const_zero()).unwrap();
 
                 b.position_before(input);
-                b.build_store(active, gen_is_not_stack_address(&ctx, &b, *input))
+                b.build_store(active, gen_is_not_stack_address(&b, rsp_fn, *input))
                     .unwrap();
 
                 b.position_before(root);
@@ -279,6 +300,7 @@ impl<S> Cache<S> {
 fn count_output_ops<'ctx, S: BuildHasher + Default>(
     module: &Module<'ctx>,
     incr_fn: FunctionValue<'ctx>,
+    rsp_fn: (FunctionType<'ctx>, PointerValue<'ctx>),
     idioms: &[Idiom<'ctx, S>],
     ids: &HashMap<LLVMValueRef, InstructionId, S>,
     output_executions: &mut Vec<IntValue<'ctx>>,
@@ -378,7 +400,7 @@ fn count_output_ops<'ctx, S: BuildHasher + Default>(
                 .fold(
                     {
                         b.position_before(root);
-                        gen_is_not_stack_address(&ctx, &b, *root)
+                        gen_is_not_stack_address(&b, rsp_fn, *root)
                     },
                     |and, active| {
                         b.position_before(root);
@@ -462,8 +484,8 @@ fn gen_incr_fn<'ctx>(
 }
 
 fn gen_is_not_stack_address<'ctx>(
-    ctx: &ContextRef<'ctx>,
     b: &Builder<'ctx>,
+    (get_rsp_fn, get_rsp): (FunctionType<'ctx>, PointerValue<'ctx>),
     instr: InstructionValue<'ctx>,
 ) -> IntValue<'ctx> {
     let pointer = instr
@@ -476,13 +498,12 @@ fn gen_is_not_stack_address<'ctx>(
         .unwrap_left()
         .into_pointer_value();
 
-    b.build_int_compare(
-        IntPredicate::ULT,
-        pointer,
-        ctx.i64_type()
-            .const_int(0x7f00_0000_0000, false)
-            .const_to_pointer(ctx.bool_type().ptr_type(AddressSpace::default())),
-        "is_not_stack",
-    )
-    .unwrap()
+    let rsp = b
+        .build_indirect_call(get_rsp_fn, get_rsp, &[], "get_rsp")
+        .unwrap()
+        .as_any_value_enum()
+        .into_pointer_value();
+
+    b.build_int_compare(IntPredicate::ULT, pointer, rsp, "is_not_stack")
+        .unwrap()
 }
