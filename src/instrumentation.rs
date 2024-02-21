@@ -8,6 +8,7 @@ use std::{
 use llvm_plugin::inkwell::{
     basic_block::BasicBlock,
     builder::Builder,
+    context::ContextRef,
     llvm_sys::prelude::LLVMValueRef,
     module::Module,
     types::FunctionType,
@@ -51,7 +52,7 @@ pub fn instrument_compute_units<'ctx, S: BuildHasher + Default>(
             .fn_type(&[], false);
         let get_rsp = ctx.create_inline_asm(
             get_rsp_fn,
-            "movq %rsp, $0; subq $$128, $0".to_string(),
+            "movq %rsp, $0".to_string(),
             "=r".to_string(),
             false,
             false,
@@ -230,7 +231,7 @@ fn count_input_ops<'ctx, S: BuildHasher>(
                 b.build_store(active, ctx.bool_type().const_zero()).unwrap();
 
                 b.position_before(input);
-                b.build_store(active, gen_is_not_stack_address(&b, rsp_fn, *input))
+                b.build_store(active, gen_is_not_stack_address(&ctx, &b, rsp_fn, *input))
                     .unwrap();
 
                 b.position_before(root);
@@ -400,7 +401,7 @@ fn count_output_ops<'ctx, S: BuildHasher + Default>(
                 .fold(
                     {
                         b.position_before(root);
-                        gen_is_not_stack_address(&b, rsp_fn, *root)
+                        gen_is_not_stack_address(&ctx, &b, rsp_fn, *root)
                     },
                     |and, active| {
                         b.position_before(root);
@@ -484,6 +485,7 @@ fn gen_incr_fn<'ctx>(
 }
 
 fn gen_is_not_stack_address<'ctx>(
+    ctx: &ContextRef<'ctx>,
     b: &Builder<'ctx>,
     (get_rsp_fn, get_rsp): (FunctionType<'ctx>, PointerValue<'ctx>),
     instr: InstructionValue<'ctx>,
@@ -499,11 +501,43 @@ fn gen_is_not_stack_address<'ctx>(
         .into_pointer_value();
 
     let rsp = b
-        .build_indirect_call(get_rsp_fn, get_rsp, &[], "get_rsp")
-        .unwrap()
-        .as_any_value_enum()
-        .into_pointer_value();
+        .build_ptr_to_int(
+            b.build_indirect_call(get_rsp_fn, get_rsp, &[], "auto_isa_get_rsp")
+                .unwrap()
+                .as_any_value_enum()
+                .into_pointer_value(),
+            ctx.i64_type(),
+            "auto_isa_cast",
+        )
+        .unwrap();
+    let red_zone = b
+        .build_int_sub(
+            rsp,
+            ctx.i64_type().const_int(128, false),
+            "auto_isa_red_zone",
+        )
+        .unwrap();
+    let top = b
+        .build_int_add(
+            rsp,
+            ctx.i64_type().const_int(256 * (1 << 10), false),
+            "auto_isa_scratchpad_top",
+        )
+        .unwrap();
 
-    b.build_int_compare(IntPredicate::ULT, pointer, rsp, "is_not_stack")
-        .unwrap()
+    let pointer = b
+        .build_ptr_to_int(pointer, ctx.i64_type(), "auto_isa_cast")
+        .unwrap();
+    let floor = b
+        .build_int_compare(
+            IntPredicate::ULT,
+            pointer,
+            red_zone,
+            "auto_isa_above_red_zone",
+        )
+        .unwrap();
+    let ceil = b
+        .build_int_compare(IntPredicate::UGT, pointer, top, "auto_isa_below_scratchpad")
+        .unwrap();
+    b.build_or(floor, ceil, "auto_isa_is_not_stack").unwrap()
 }
