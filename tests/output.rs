@@ -176,19 +176,21 @@ macro_rules! test {
             let dir = concat!("testdata/", stringify!($name));
             create_dir_all(dir).unwrap();
 
-            Command::new("clang-17")
-                .args(["-O1", "-Wno-everything", "-fno-discard-value-names"])
-                .args(["-S", "-emit-llvm"])
-                .args([
-                    file_ext_!($name, $ext),
-                    "-o",
-                    concat!(stringify!($name), "/", file_ext_!($name, ".ll")),
-                ])
-                .current_dir("testdata")
-                .status()
-                .unwrap()
-                .exit_ok()
-                .unwrap();
+            dbg_command!(
+                Command::new("clang-17")
+                    .args(["-O1", "-Wno-everything", "-fno-discard-value-names"])
+                    .args(["-S", "-emit-llvm"])
+                    .args([
+                        file_ext_!($name, $ext),
+                        "-o",
+                        concat!(stringify!($name), "/", file_ext_!($name, ".ll")),
+                    ])
+                    .current_dir("testdata")
+            )
+            .status()
+            .unwrap()
+            .exit_ok()
+            .unwrap();
 
             test_llvm!($name, $name, [""; 0]);
         }
