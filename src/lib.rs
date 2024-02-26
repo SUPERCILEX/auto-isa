@@ -368,6 +368,7 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
                 .unwrap();
             }
 
+            cum_counts += total_counts;
             if !first && total_counts < 100 {
                 continue;
             }
@@ -455,7 +456,6 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
             writeln!(output, "}}").unwrap();
         }
 
-        cum_counts += total_counts;
         let captured_memory_operations = captured_mem_ops(total_counts);
         let cum_captured_memory_operations = captured_mem_ops(cum_counts);
 
