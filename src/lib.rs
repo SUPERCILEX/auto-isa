@@ -312,7 +312,7 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             }
             first = false;
 
-            for instr in &cu.memory_ops {
+            for instr in cu.memory_ops.iter().filter(|&&instr| instr != cu.root) {
                 seen.insert(instr.as_value_ref());
             }
             let uses_mem_instruction_from_previous_idioms = {

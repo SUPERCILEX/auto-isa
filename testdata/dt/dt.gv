@@ -40,7 +40,6 @@ rank=min
 "0_0_36" -> "0_0_29"
 cluster=true
 label="Raw dynamic executions: 268435456\nRaw memory operations: 268435457\nCaptured memory operations: 33.3%"
-color=red
 }
 subgraph {
 {
