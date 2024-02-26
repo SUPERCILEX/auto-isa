@@ -2,20 +2,22 @@
 #![feature(iter_next_chunk)]
 
 use std::{
-    collections::{HashMap, HashSet},
+    collections::{hash_map::Entry, HashMap, HashSet},
     fs::File,
     hash::{BuildHasher, BuildHasherDefault},
     io::{stdin, BufRead, BufWriter, Write},
     mem::ManuallyDrop,
     os::fd::FromRawFd,
+    path::Path,
 };
 
+use either::Either;
 use llvm_plugin::{
     inkwell::{
         basic_block::BasicBlock,
         llvm_sys::prelude::LLVMValueRef,
         module::Module,
-        values::{AsValueRef, FunctionValue, InstructionOpcode, InstructionValue},
+        values::{AsValueRef, BasicValue, FunctionValue, InstructionOpcode, InstructionValue},
     },
     LlvmModulePass, ModuleAnalysisManager, PassBuilder, PipelineParsing, PreservedAnalyses,
 };
@@ -27,7 +29,7 @@ use crate::{
     extraction::extract_compute_units,
     instrumentation::instrument_compute_units,
     shared::{EXTRACTION_COMPLETE, INSTRUMENTATION_COMPLETE},
-    utils::{Edge, InstructionId, MEMORY_INSTRUCTIONS},
+    utils::{Edge, InstructionId, Pool, StableEdge, MEMORY_INSTRUCTIONS},
 };
 
 mod analysis;
@@ -124,7 +126,7 @@ fn split_into_next_stage<'ctx, S: BuildHasher + Default + Clone>(
     }
 
     let dynamic_counts = read_dynamic_counts(state, idioms);
-    print_compute_units(state, idioms, &dynamic_counts);
+    print_compute_units(module, state, idioms, &dynamic_counts);
     std::process::exit(0);
 }
 
@@ -221,7 +223,8 @@ fn read_dynamic_counts<S: BuildHasher + Default + Clone>(
 }
 
 #[allow(clippy::too_many_lines)]
-fn print_compute_units<'ctx, S: BuildHasher>(
+fn print_compute_units<'ctx, S: BuildHasher + Default>(
+    module: &Module<'ctx>,
     State { ids, ids_index }: &State<'ctx, S>,
     idioms: &[Idiom<'ctx, S>],
     dynamic_counts: &DynamicCounts<S>,
@@ -262,11 +265,25 @@ fn print_compute_units<'ctx, S: BuildHasher>(
         idioms
     };
 
-    let mut all_time_seen = HashSet::new();
-    let mut seen = HashSet::new();
+    let mut all_time_seen = HashSet::<_, S>::default();
+    let mut seen = HashSet::default();
+    let mut seen_params = HashSet::default();
+    let mut ivv_pool = Pool::<Vec<InstructionId>>::default();
+    let mut full_graph = HashMap::<InstructionId, Vec<InstructionId>, S>::default();
 
     let mut stdout = ManuallyDrop::new(unsafe { File::from_raw_fd(rustix::stdio::raw_stdout()) });
     let mut output = BufWriter::new(&mut *stdout);
+
+    let mut csv = BufWriter::new(
+        File::create(Path::new(&*module.get_name().to_string_lossy()).with_extension("csv"))
+            .unwrap(),
+    );
+    writeln!(
+        csv,
+        "total_memory_ops,num_parameters,num_instructions,num_memory_instructions,\
+         memory_ops_in_idiom,id"
+    )
+    .unwrap();
 
     writeln!(output, "strict digraph {{\nrankdir=BT").unwrap();
     writeln!(
@@ -307,11 +324,56 @@ fn print_compute_units<'ctx, S: BuildHasher>(
             .iter()
             .map(|&(i, total_counts)| (i, &compute_units.0[i], &counts[i], total_counts))
         {
+            {
+                seen.clear();
+                seen.insert(cu.root.as_value_ref());
+                for Edge(_, to) in &cu.edges {
+                    seen.insert(to.as_value_ref());
+                }
+                let num_instructions = seen.len();
+
+                for e in &cu.edges {
+                    let StableEdge(from, to) = e.to_stable(ids);
+                    match full_graph.entry(from) {
+                        Entry::Occupied(mut e) => e.get_mut().push(to),
+                        Entry::Vacant(e) => {
+                            let mut outgoing = ivv_pool.pop().unwrap_or_default();
+                            outgoing.push(to);
+                            e.insert(outgoing);
+                        }
+                    }
+                }
+                let mut num_params = 0;
+                seen.clear();
+                seen_params.clear();
+                count_params(
+                    cu.root,
+                    &full_graph,
+                    ids,
+                    ids_index,
+                    &mut seen,
+                    &mut seen_params,
+                    &mut num_params,
+                );
+                for (_, v) in full_graph.drain() {
+                    ivv_pool.release(v);
+                }
+
+                writeln!(
+                    csv,
+                    "{total_executed_mem_ops},{num_params},{num_instructions},{},{total_counts},\
+                     {idiom_id}_{compute_unit_id}",
+                    cu.memory_ops.len()
+                )
+                .unwrap();
+            }
+
             if !first && total_counts < 100 {
                 continue;
             }
             first = false;
 
+            seen.clear();
             for instr in cu.memory_ops.iter().filter(|&&instr| instr != cu.root) {
                 seen.insert(instr.as_value_ref());
             }
@@ -411,6 +473,55 @@ fn print_compute_units<'ctx, S: BuildHasher>(
         .unwrap();
     }
     writeln!(output, "}}").unwrap();
+}
+
+fn count_params<'ctx, S: BuildHasher>(
+    root: InstructionValue<'ctx>,
+    full_graph: &HashMap<InstructionId, Vec<InstructionId>, S>,
+    ids: &HashMap<LLVMValueRef, InstructionId, S>,
+    ids_index: &[InstructionValue<'ctx>],
+    seen: &mut HashSet<LLVMValueRef, S>,
+    seen_params: &mut HashSet<LLVMValueRef, S>,
+    num_params: &mut u32,
+) {
+    if !seen.insert(root.as_value_ref()) {
+        return;
+    }
+
+    if root.get_opcode() == InstructionOpcode::Phi {
+        let next = &full_graph[&ids[&root.as_value_ref()]];
+        assert_eq!(next.len(), 1);
+        count_params(
+            ids_index[usize::try_from(next[0]).unwrap()],
+            full_graph,
+            ids,
+            ids_index,
+            seen,
+            seen_params,
+            num_params,
+        );
+    } else {
+        let targets = full_graph
+            .get(&ids[&root.as_value_ref()])
+            .map_or([].as_slice(), |v| &**v);
+        for value in root.get_operands().flatten().map(Either::unwrap_left) {
+            if value.as_instruction_value().is_some()
+                && targets.contains(&ids[&value.as_value_ref()])
+            {
+                count_params(
+                    value.as_instruction_value().unwrap(),
+                    full_graph,
+                    ids,
+                    ids_index,
+                    seen,
+                    seen_params,
+                    num_params,
+                );
+            } else if seen_params.insert(value.as_value_ref()) {
+                *num_params += 1;
+            }
+        }
+    }
 }
 
 fn build_state<'ctx>(module: &Module<'ctx>) -> State<'ctx, BuildHasherDefault<FxHasher>> {
