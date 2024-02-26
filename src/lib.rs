@@ -338,9 +338,10 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
             let uses_mem_instruction_from_previous_idioms = {
                 let mut overlap = false;
                 for &instr in &seen {
-                    if !all_time_seen.insert(instr) {
-                        overlap = true;
+                    if all_time_seen.insert(instr) {
                         deduplicated_total_counts += counts[&ids[&instr]];
+                    } else {
+                        overlap = true;
                     }
                 }
                 overlap
