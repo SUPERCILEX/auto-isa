@@ -324,6 +324,28 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
             .iter()
             .map(|&(i, total_counts)| (i, &compute_units.0[i], &counts[i], total_counts))
         {
+            cum_counts += total_counts;
+            if !first && total_counts < 100 {
+                continue;
+            }
+            first = false;
+
+            let mut deduplicated_total_counts = counts[&ids[&cu.root.as_value_ref()]];
+            seen.clear();
+            for instr in cu.memory_ops.iter().filter(|&&instr| instr != cu.root) {
+                seen.insert(instr.as_value_ref());
+            }
+            let uses_mem_instruction_from_previous_idioms = {
+                let mut overlap = false;
+                for &instr in &seen {
+                    if !all_time_seen.insert(instr) {
+                        overlap = true;
+                        deduplicated_total_counts += counts[&ids[&instr]];
+                    }
+                }
+                overlap
+            };
+
             {
                 seen.clear();
                 seen.insert(cu.root.as_value_ref());
@@ -361,30 +383,12 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
 
                 writeln!(
                     csv,
-                    "{total_executed_mem_ops},{num_params},{num_instructions},{},{total_counts},\
-                     {idiom_id}_{compute_unit_id}",
+                    "{total_executed_mem_ops},{num_params},{num_instructions},{},\
+                     {deduplicated_total_counts},{idiom_id}_{compute_unit_id}",
                     cu.memory_ops.len()
                 )
                 .unwrap();
             }
-
-            cum_counts += total_counts;
-            if !first && total_counts < 100 {
-                continue;
-            }
-            first = false;
-
-            seen.clear();
-            for instr in cu.memory_ops.iter().filter(|&&instr| instr != cu.root) {
-                seen.insert(instr.as_value_ref());
-            }
-            let uses_mem_instruction_from_previous_idioms = {
-                let mut overlap = false;
-                for &instr in &seen {
-                    overlap |= !all_time_seen.insert(instr);
-                }
-                overlap
-            };
             seen.clear();
 
             writeln!(output, "subgraph {{").unwrap();
