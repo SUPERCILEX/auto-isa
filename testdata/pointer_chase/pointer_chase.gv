@@ -7,6 +7,10 @@ label="Total loads executed: 0\nTotal stores executed: 0"
 }
 subgraph {
 subgraph {
+{
+rank=max
+"3_0" [shape=point style=invis]
+}
 "3_0_6" [label="GetElementPtr"]
 "3_0_5" [label="Phi"]
 "3_0_6" -> "3_0_5"
@@ -27,6 +31,10 @@ label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 
 subgraph {
 subgraph {
 {
+rank=max
+"0_0" [shape=point style=invis]
+}
+{
 rank=min
 "0_0_8" [label="Load\n0"]
 }
@@ -41,6 +49,10 @@ label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 
 }
 subgraph {
 subgraph {
+{
+rank=max
+"1_0" [shape=point style=invis]
+}
 "1_0_9" [label="GetElementPtr"]
 "1_0_7" [label="Load\n0"]
 "1_0_9" -> "1_0_7"
@@ -59,6 +71,10 @@ label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 
 }
 subgraph {
 subgraph {
+{
+rank=max
+"2_0" [shape=point style=invis]
+}
 {
 rank=min
 "2_0_13" [label="Store\n0"]

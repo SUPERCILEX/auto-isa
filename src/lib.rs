@@ -311,7 +311,7 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
             .map(|counts| counts.values().sum::<u64>())
             .enumerate()
             .collect_into(&mut compute_unit_pointers);
-        compute_unit_pointers.sort_by(|(_, a), (_, b)| a.cmp(b));
+        compute_unit_pointers.sort_by(|(_, a), (_, b)| a.cmp(b).reverse());
 
         writeln!(output, "subgraph {{").unwrap();
         let mut first = total_counts
@@ -319,7 +319,7 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
                 .unwrap()
                 .checked_mul(100)
                 .unwrap();
-        let mut prev_cu_root = None;
+        let mut prev_cu = None;
         for (compute_unit_id, cu, counts, total_counts) in compute_unit_pointers
             .iter()
             .map(|&(i, total_counts)| (i, &compute_units.0[i], &counts[i], total_counts))
@@ -392,16 +392,21 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
             seen.clear();
 
             writeln!(output, "subgraph {{").unwrap();
-            if let Some((prev_cu_id, instruction_id)) = prev_cu_root {
+            writeln!(
+                output,
+                "{{\nrank=max\n\"{idiom_id}_{compute_unit_id}\" [shape=point style=invis]\n}}",
+            )
+            .unwrap();
+            if let Some(prev_cu_id) = prev_cu {
+                let root_id = ids[&cu.root.as_value_ref()];
                 writeln!(
                     output,
-                    "{{\nrank=max\n\"{idiom_id}_{compute_unit_id}\" [shape=point \
-                     style=invis]\n\"{idiom_id}_{compute_unit_id}\" -> \
-                     \"{idiom_id}_{prev_cu_id}_{instruction_id}\" [style=invis]\n}}",
+                    "\"{idiom_id}_{prev_cu_id}\" -> \"{idiom_id}_{compute_unit_id}_{root_id}\" \
+                     [style=invis]",
                 )
                 .unwrap();
             }
-            prev_cu_root = Some((compute_unit_id, ids[&cu.root.as_value_ref()]));
+            prev_cu = Some(compute_unit_id);
             for Edge(from, to) in &cu.edges {
                 let mut create = |&node: &InstructionValue| {
                     if seen.insert(node.as_value_ref()) {

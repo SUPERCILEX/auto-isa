@@ -8,21 +8,8 @@ label="Total loads executed: 906\nTotal stores executed: 286"
 subgraph {
 subgraph {
 {
-rank=min
-"7_8_301" [label="Load\n0"]
-}
-"7_8_300" [label="GetElementPtr"]
-"7_8_301" -> "7_8_300"
-"7_8_280" [label="Load\n0"]
-"7_8_300" -> "7_8_280"
-cluster=true
-label="Raw dynamic executions: 0\nRaw memory operations: 44\nCaptured memory operations: 0.0%"
-}
-subgraph {
-{
 rank=max
 "7_3" [shape=point style=invis]
-"7_3" -> "7_8_301" [style=invis]
 }
 "7_3_256" [label="GetElementPtr"]
 "7_3_255" [label="Load\n60"]
@@ -39,8 +26,8 @@ subgraph {
 {
 rank=max
 "7_4" [shape=point style=invis]
-"7_4" -> "7_3_257" [style=invis]
 }
+"7_3" -> "7_4_259" [style=invis]
 "7_4_258" [label="GetElementPtr"]
 "7_4_255" [label="Load\n60"]
 "7_4_258" -> "7_4_255"
@@ -60,6 +47,10 @@ label="Static occurrences: 10\nMemory operations: 374\nCaptured memory operation
 subgraph {
 subgraph {
 {
+rank=max
+"10_0" [shape=point style=invis]
+}
+{
 rank=min
 "10_0_282" [label="Store\n29"]
 }
@@ -73,7 +64,6 @@ rank=min
 "10_0_281" -> "10_0_280"
 cluster=true
 label="Raw dynamic executions: 44\nRaw memory operations: 148\nCaptured memory operations: 7.2%"
-color=red
 }
 cluster=true
 penwidth=0
@@ -81,6 +71,10 @@ label="Static occurrences: 2\nMemory operations: 174\nCaptured memory operations
 }
 subgraph {
 subgraph {
+{
+rank=max
+"2_0" [shape=point style=invis]
+}
 "2_0_189" [label="GetElementPtr"]
 "2_0_184" [label="Load\n35"]
 "2_0_189" -> "2_0_184"
@@ -104,16 +98,21 @@ label="Static occurrences: 1\nMemory operations: 105\nCaptured memory operations
 }
 subgraph {
 subgraph {
-"3_0_224" [label="GetElementPtr"]
-"3_0_201" [label="Load\n6"]
-"3_0_224" -> "3_0_201"
+{
+rank=max
+"3_1" [shape=point style=invis]
+}
 {
 rank=min
-"3_0_225" [label="Store\n6"]
+"3_1_286" [label="Store\n44"]
 }
-"3_0_225" -> "3_0_224"
+"3_1_285" [label="GetElementPtr"]
+"3_1_286" -> "3_1_285"
+"3_1_280" [label="Load\n44"]
+"3_1_285" -> "3_1_280"
 cluster=true
-label="Raw dynamic executions: 6\nRaw memory operations: 12\nCaptured memory operations: 1.0%"
+label="Raw dynamic executions: 44\nRaw memory operations: 88\nCaptured memory operations: 7.3%"
+color=red
 }
 cluster=true
 penwidth=0
@@ -122,15 +121,19 @@ label="Static occurrences: 2\nMemory operations: 100\nCaptured memory operations
 subgraph {
 subgraph {
 {
-rank=min
-"6_1_364" [label="Store\n2"]
+rank=max
+"6_0" [shape=point style=invis]
 }
-"6_1_363" [label="Add"]
-"6_1_364" -> "6_1_363"
-"6_1_362" [label="Load\n2"]
-"6_1_363" -> "6_1_362"
+{
+rank=min
+"6_0_177" [label="Store\n46"]
+}
+"6_0_176" [label="Add"]
+"6_0_177" -> "6_0_176"
+"6_0_175" [label="Load\n46"]
+"6_0_176" -> "6_0_175"
 cluster=true
-label="Raw dynamic executions: 2\nRaw memory operations: 4\nCaptured memory operations: 0.3%"
+label="Raw dynamic executions: 46\nRaw memory operations: 92\nCaptured memory operations: 7.7%"
 }
 cluster=true
 penwidth=0
@@ -138,6 +141,10 @@ label="Static occurrences: 2\nMemory operations: 96\nCaptured memory operations:
 }
 subgraph {
 subgraph {
+{
+rank=max
+"4_0" [shape=point style=invis]
+}
 "4_0_210" [label="GetElementPtr"]
 "4_0_201" [label="Load\n6"]
 "4_0_210" -> "4_0_201"
@@ -150,7 +157,6 @@ rank=min
 "4_0_211" -> "4_0_209"
 cluster=true
 label="Raw dynamic executions: 8\nRaw memory operations: 22\nCaptured memory operations: 1.8%"
-color=red
 }
 cluster=true
 penwidth=0
@@ -158,6 +164,10 @@ label="Static occurrences: 3\nMemory operations: 66\nCaptured memory operations:
 }
 subgraph {
 subgraph {
+{
+rank=max
+"5_0" [shape=point style=invis]
+}
 "5_0_306" [label="Add"]
 "5_0_305" [label="Load\n15"]
 "5_0_306" -> "5_0_305"
@@ -188,6 +198,10 @@ label="Static occurrences: 1\nMemory operations: 60\nCaptured memory operations:
 }
 subgraph {
 subgraph {
+{
+rank=max
+"8_0" [shape=point style=invis]
+}
 "8_0_306" [label="Add"]
 "8_0_305" [label="Load\n15"]
 "8_0_306" -> "8_0_305"
@@ -218,6 +232,10 @@ label="Static occurrences: 1\nMemory operations: 60\nCaptured memory operations:
 }
 subgraph {
 subgraph {
+{
+rank=max
+"9_0" [shape=point style=invis]
+}
 "9_0_306" [label="Add"]
 "9_0_305" [label="Load\n14"]
 "9_0_306" -> "9_0_305"
@@ -249,13 +267,17 @@ label="Static occurrences: 1\nMemory operations: 56\nCaptured memory operations:
 subgraph {
 subgraph {
 {
-rank=min
-"1_0_26" [label="Store\n0"]
+rank=max
+"1_4" [shape=point style=invis]
 }
-"1_0_24" [label="Load\n0"]
-"1_0_26" -> "1_0_24"
+{
+rank=min
+"1_4_199" [label="Store\n6"]
+}
+"1_4_190" [label="Load\n6"]
+"1_4_199" -> "1_4_190"
 cluster=true
-label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
+label="Raw dynamic executions: 6\nRaw memory operations: 41\nCaptured memory operations: 1.0%"
 }
 cluster=true
 penwidth=0
@@ -263,6 +285,10 @@ label="Static occurrences: 7\nMemory operations: 17\nCaptured memory operations:
 }
 subgraph {
 subgraph {
+{
+rank=max
+"0_0" [shape=point style=invis]
+}
 "0_0_306" [label="Add"]
 "0_0_305" [label="Load\n0"]
 "0_0_306" -> "0_0_305"

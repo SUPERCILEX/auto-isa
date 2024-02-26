@@ -7,6 +7,10 @@ label="Total loads executed: 100002\nTotal stores executed: 200001"
 }
 subgraph {
 subgraph {
+{
+rank=max
+"0_0" [shape=point style=invis]
+}
 "0_0_27" [label="Shl"]
 "0_0_25" [label="Load\n0"]
 "0_0_27" -> "0_0_25"

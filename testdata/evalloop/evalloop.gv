@@ -8,6 +8,10 @@ label="Total loads executed: 614200001\nTotal stores executed: 204702048"
 subgraph {
 subgraph {
 {
+rank=max
+"0_0" [shape=point style=invis]
+}
+{
 rank=min
 "0_0_2" [label="Store\n204700000"]
 }
@@ -24,6 +28,10 @@ label="Static occurrences: 1\nMemory operations: 409400000\nCaptured memory oper
 }
 subgraph {
 subgraph {
+{
+rank=max
+"1_0" [shape=point style=invis]
+}
 {
 rank=min
 "1_0_20" [label="Load\n204700000"]

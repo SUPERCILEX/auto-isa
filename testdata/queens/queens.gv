@@ -7,6 +7,10 @@ label="Total loads executed: 992915882\nTotal stores executed: 191875965"
 }
 subgraph {
 subgraph {
+{
+rank=max
+"6_0" [shape=point style=invis]
+}
 "6_0_139" [label="SExt"]
 "6_0_138" [label="Add"]
 "6_0_139" -> "6_0_138"
@@ -28,8 +32,8 @@ subgraph {
 {
 rank=max
 "6_1" [shape=point style=invis]
-"6_1" -> "6_0_160" [style=invis]
 }
+"6_0" -> "6_1_164" [style=invis]
 "6_1_139" [label="SExt"]
 "6_1_138" [label="Add"]
 "6_1_139" -> "6_1_138"
@@ -54,6 +58,10 @@ label="Static occurrences: 2\nMemory operations: 6415580\nCaptured memory operat
 }
 subgraph {
 subgraph {
+{
+rank=max
+"0_0" [shape=point style=invis]
+}
 "0_0_139" [label="SExt"]
 "0_0_138" [label="Add"]
 "0_0_139" -> "0_0_138"
@@ -78,6 +86,10 @@ label="Static occurrences: 1\nMemory operations: 3207790\nCaptured memory operat
 }
 subgraph {
 subgraph {
+{
+rank=max
+"3_0" [shape=point style=invis]
+}
 "3_0_121" [label="Add"]
 "3_0_120" [label="Load\n365596"]
 "3_0_121" -> "3_0_120"
@@ -96,11 +108,15 @@ label="Static occurrences: 1\nMemory operations: 731192\nCaptured memory operati
 subgraph {
 subgraph {
 {
-rank=min
-"4_0_1" [label="Store\n1"]
+rank=max
+"4_1" [shape=point style=invis]
 }
-"4_0_0" [label="Load\n0"]
-"4_0_1" -> "4_0_0"
+{
+rank=min
+"4_1_75" [label="Store\n1"]
+}
+"4_1_64" [label="Load\n1"]
+"4_1_75" -> "4_1_64"
 cluster=true
 label="Raw dynamic executions: 1\nRaw memory operations: 2\nCaptured memory operations: 0.0%"
 }
@@ -110,6 +126,10 @@ label="Static occurrences: 3\nMemory operations: 5\nCaptured memory operations: 
 }
 subgraph {
 subgraph {
+{
+rank=max
+"1_0" [shape=point style=invis]
+}
 {
 rank=min
 "1_0_12" [label="Load\n0"]
@@ -125,6 +145,10 @@ label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 
 }
 subgraph {
 subgraph {
+{
+rank=max
+"2_0" [shape=point style=invis]
+}
 {
 rank=min
 "2_0_16" [label="Load\n0"]
@@ -143,6 +167,10 @@ label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 
 }
 subgraph {
 subgraph {
+{
+rank=max
+"5_0" [shape=point style=invis]
+}
 "5_0_20" [label="Phi"]
 "5_0_15" [label="GetElementPtr"]
 "5_0_20" -> "5_0_15"
