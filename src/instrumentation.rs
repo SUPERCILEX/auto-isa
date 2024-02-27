@@ -1,5 +1,5 @@
 use std::{
-    collections::{hash_map::Entry, HashMap},
+    collections::HashMap,
     fmt::{Debug, Formatter, Write},
     hash::BuildHasher,
     ops::{Deref, DerefMut},
@@ -21,7 +21,7 @@ use llvm_plugin::inkwell::{
 
 use crate::{
     analysis::{ComputeUnit, Idiom},
-    utils::{Edge, InstructionId, Pool, StableEdge, MEMORY_INSTRUCTIONS},
+    utils::{build_full_graph, Edge, InstructionId, Pool, MEMORY_INSTRUCTIONS},
     State,
 };
 
@@ -324,17 +324,11 @@ fn count_output_ops<'ctx, S: BuildHasher + Default>(
         ) in cus.iter().enumerate()
         {
             cache.reset();
-            for e in edges {
-                let StableEdge(from, to) = e.to_stable(ids);
-                match cache.full_graph.entry(from) {
-                    Entry::Occupied(mut e) => e.get_mut().push(to),
-                    Entry::Vacant(e) => {
-                        let mut outgoing = cache.ivv_pool.pop().unwrap_or_default();
-                        outgoing.push(to);
-                        e.insert(outgoing);
-                    }
-                }
-            }
+            build_full_graph(
+                edges.iter().map(|e| e.to_stable(ids)),
+                &mut cache.full_graph,
+                &mut cache.ivv_pool,
+            );
 
             let mut buf = StringView::new(global_name_buf);
             write!(buf, "{idiom_id}_{cu_id}").unwrap();

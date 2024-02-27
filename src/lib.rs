@@ -2,7 +2,7 @@
 #![feature(iter_next_chunk)]
 
 use std::{
-    collections::{hash_map::Entry, HashMap, HashSet},
+    collections::{HashMap, HashSet},
     fs::File,
     hash::{BuildHasher, BuildHasherDefault},
     io::{stdin, BufRead, BufWriter, Write},
@@ -29,7 +29,7 @@ use crate::{
     extraction::extract_compute_units,
     instrumentation::instrument_compute_units,
     shared::{EXTRACTION_COMPLETE, INSTRUMENTATION_COMPLETE},
-    utils::{Edge, InstructionId, Pool, StableEdge, MEMORY_INSTRUCTIONS},
+    utils::{build_full_graph, Edge, InstructionId, Pool, MEMORY_INSTRUCTIONS},
 };
 
 mod analysis;
@@ -355,17 +355,11 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
                 }
                 let num_instructions = seen.len();
 
-                for e in &cu.edges {
-                    let StableEdge(from, to) = e.to_stable(ids);
-                    match full_graph.entry(from) {
-                        Entry::Occupied(mut e) => e.get_mut().push(to),
-                        Entry::Vacant(e) => {
-                            let mut outgoing = ivv_pool.pop().unwrap_or_default();
-                            outgoing.push(to);
-                            e.insert(outgoing);
-                        }
-                    }
-                }
+                build_full_graph(
+                    cu.edges.iter().map(|e| e.to_stable(ids)),
+                    &mut full_graph,
+                    &mut ivv_pool,
+                );
                 let mut num_params = 0;
                 seen.clear();
                 seen_params.clear();

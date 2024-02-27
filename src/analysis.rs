@@ -1,5 +1,5 @@
 use std::{
-    collections::{hash_map::Entry, HashMap, HashSet},
+    collections::{HashMap, HashSet},
     fmt::Debug,
     hash::{BuildHasher, Hash},
     mem,
@@ -16,7 +16,7 @@ use llvm_plugin::inkwell::{
 };
 
 use crate::{
-    utils::{Edge, InstructionId, Pool, StableEdge, MEMORY_INSTRUCTIONS},
+    utils::{build_full_graph, Edge, InstructionId, Pool, StableEdge, MEMORY_INSTRUCTIONS},
     State,
 };
 
@@ -118,6 +118,14 @@ impl<'ctx, S> From<(&HashSet<StableEdge, S>, &[InstructionValue<'ctx>])> for Equ
 #[derive(Default)]
 pub struct Idiom<'ctx, S>(pub Vec<ComputeUnit<'ctx, S>>);
 
+impl<'ctx, S> Deref for Idiom<'ctx, S> {
+    type Target = [ComputeUnit<'ctx, S>];
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
 pub fn find_non_local_memory_compute_units<'ctx, S: BuildHasher + Default + Clone>(
     state: &State<'ctx, S>,
     module: &Module<'ctx>,
@@ -149,18 +157,32 @@ fn find_idioms<'ctx, S: BuildHasher + Default + Clone>(
         maybe_add_compute_unit(&mut cache, &state.ids, instr);
 
         split_idiom_on_phis(&mut cache, state, instr, &mut |edges, memory_ops| {
-            idioms
-                .entry(EquivalenceGraph::from((edges, &*state.ids_index)))
-                .or_default()
-                .0
-                .push(ComputeUnit {
-                    root: instr,
-                    memory_ops,
-                    edges: edges.iter().map(|e| e.to_edge(&state.ids_index)).collect(),
-                });
+            add_idiom(idioms, instr, &state.ids_index, edges, memory_ops);
         });
     }
     prune_duplicates(state, idioms, &mut cache);
+}
+
+fn add_idiom<'ctx, S: BuildHasher + Default>(
+    idioms: &mut HashMap<EquivalenceGraph, Idiom<'ctx, S>, S>,
+    root: InstructionValue<'ctx>,
+    ids_index: &[InstructionValue<'ctx>],
+    edges: &HashSet<StableEdge, S>,
+    memory_ops: HashSet<InstructionValue<'ctx>, S>,
+) {
+    if edges.is_empty() {
+        return;
+    }
+
+    idioms
+        .entry(EquivalenceGraph::from((edges, ids_index)))
+        .or_default()
+        .0
+        .push(ComputeUnit {
+            root,
+            memory_ops,
+            edges: edges.iter().map(|e| e.to_edge(ids_index)).collect(),
+        });
 }
 
 fn prune_duplicates<'ctx, S: BuildHasher + Default>(
@@ -226,7 +248,7 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
         let op = instruction.get_opcode();
         if op == InstructionOpcode::Load {
             cache.memory_ops.insert(instruction);
-            write_path_to_graph(cache, ids);
+            write_path_to_graph(&cache.path, &mut cache.edges, ids);
         } else if !matches!(op, InstructionOpcode::Call | InstructionOpcode::Invoke) {
             maybe_add_compute_unit(cache, ids, instruction);
         }
@@ -235,15 +257,16 @@ fn maybe_add_compute_unit<'ctx, S: BuildHasher>(
 }
 
 fn write_path_to_graph<S: BuildHasher>(
-    cache: &mut Cache<S>,
+    path: &[InstructionValue],
+    edges: &mut HashSet<StableEdge, S>,
     ids: &HashMap<LLVMValueRef, InstructionId, S>,
 ) {
-    for edge in cache.path.windows(2).rev() {
+    for edge in path.windows(2).rev() {
         let &[from, to] = edge else {
             unreachable!();
         };
 
-        if !cache.edges.insert(Edge(from, to).to_stable(ids)) {
+        if !edges.insert(Edge(from, to).to_stable(ids)) {
             break;
         }
     }
@@ -259,18 +282,13 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
         return;
     }
 
-    for &StableEdge(from, to) in &cache.edges {
-        if ids_index[usize::try_from(from).unwrap()].get_opcode() == InstructionOpcode::Phi {
-            match cache.phi_graph.entry(from) {
-                Entry::Occupied(mut e) => e.get_mut().push(to),
-                Entry::Vacant(e) => {
-                    let mut outgoing = cache.ivv_pool.pop().unwrap_or_default();
-                    outgoing.push(to);
-                    e.insert(outgoing);
-                }
-            }
-        }
-    }
+    build_full_graph(
+        cache.edges.iter().copied().filter(|&StableEdge(from, _)| {
+            ids_index[usize::try_from(from).unwrap()].get_opcode() == InstructionOpcode::Phi
+        }),
+        &mut cache.phi_graph,
+        &mut cache.ivv_pool,
+    );
 
     {
         let mut prune = cache.ivv_pool.pop().unwrap_or_default();
@@ -292,16 +310,11 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
         return;
     }
 
-    for &StableEdge(from, to) in &cache.edges {
-        match cache.full_graph.entry(from) {
-            Entry::Occupied(mut e) => e.get_mut().push(to),
-            Entry::Vacant(e) => {
-                let mut outgoing = cache.ivv_pool.pop().unwrap_or_default();
-                outgoing.push(to);
-                e.insert(outgoing);
-            }
-        }
-    }
+    build_full_graph(
+        cache.edges.iter().copied(),
+        &mut cache.full_graph,
+        &mut cache.ivv_pool,
+    );
 
     cache.phi_graph.drain().collect_into(&mut cache.phi_edges);
     cache.phi_odometer.resize(cache.phi_edges.len(), 0);
@@ -318,7 +331,7 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
         return;
     }
 
-    'outer: loop {
+    loop {
         {
             cache.edges.clear();
             cache.memory_ops.clear();
@@ -338,18 +351,29 @@ fn split_idiom_on_phis<'ctx, S: BuildHasher + Clone>(
             add(&cache.edges, cache.memory_ops.clone());
         }
 
-        let mut odometer_digit = cache.phi_odometer.len() - 1;
-        loop {
-            cache.phi_odometer[odometer_digit] += 1;
-            if cache.phi_odometer[odometer_digit] < cache.phi_edges[odometer_digit].1.len() {
-                break;
-            }
-            if odometer_digit == 0 {
-                break 'outer;
-            }
-            cache.phi_odometer[odometer_digit] = 0;
-            odometer_digit -= 1;
+        if did_odometer_overflow(&mut cache.phi_odometer, |digit: usize| {
+            cache.phi_edges[digit].1.len()
+        }) {
+            break;
         }
+    }
+}
+
+fn did_odometer_overflow(
+    odometer: &mut [usize],
+    mut max_of_digit: impl FnMut(usize) -> usize,
+) -> bool {
+    let mut odometer_digit = odometer.len() - 1;
+    loop {
+        odometer[odometer_digit] += 1;
+        if odometer[odometer_digit] < max_of_digit(odometer_digit) {
+            return false;
+        }
+        if odometer_digit == 0 {
+            return true;
+        }
+        odometer[odometer_digit] = 0;
+        odometer_digit -= 1;
     }
 }
 

@@ -1,4 +1,7 @@
-use std::{collections::HashMap, hash::BuildHasher};
+use std::{
+    collections::{hash_map::Entry, HashMap},
+    hash::BuildHasher,
+};
 
 use llvm_plugin::inkwell::{
     llvm_sys::prelude::LLVMValueRef,
@@ -62,5 +65,22 @@ impl<T> Pool<Vec<T>> {
 impl<T> Default for Pool<T> {
     fn default() -> Self {
         Self(Vec::new())
+    }
+}
+
+pub fn build_full_graph<S: BuildHasher>(
+    edges: impl IntoIterator<Item = StableEdge>,
+    g: &mut HashMap<InstructionId, Vec<InstructionId>, S>,
+    ivv_pool: &mut Pool<Vec<InstructionId>>,
+) {
+    for StableEdge(from, to) in edges {
+        match g.entry(from) {
+            Entry::Occupied(mut e) => e.get_mut().push(to),
+            Entry::Vacant(e) => {
+                let mut outgoing = ivv_pool.pop().unwrap_or_default();
+                outgoing.push(to);
+                e.insert(outgoing);
+            }
+        }
     }
 }

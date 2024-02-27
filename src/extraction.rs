@@ -1,5 +1,5 @@
 use std::{
-    collections::{hash_map::Entry, HashMap, HashSet},
+    collections::{HashMap, HashSet},
     ffi::CStr,
     hash::BuildHasher,
 };
@@ -21,7 +21,7 @@ use llvm_plugin::inkwell::{
 
 use crate::{
     analysis::{ComputeUnit, Idiom},
-    utils::{InstructionId, Pool, StableEdge},
+    utils::{build_full_graph, InstructionId, Pool},
     State,
 };
 
@@ -95,17 +95,11 @@ pub fn extract_compute_units<'ctx, S: BuildHasher + Default>(
     {
         cache.reset();
 
-        for e in edges {
-            let StableEdge(from, to) = e.to_stable(ids);
-            match cache.full_graph.entry(from) {
-                Entry::Occupied(mut e) => e.get_mut().push(to),
-                Entry::Vacant(e) => {
-                    let mut outgoing = cache.ivv_pool.pop().unwrap_or_default();
-                    outgoing.push(to);
-                    e.insert(outgoing);
-                }
-            }
-        }
+        build_full_graph(
+            edges.iter().map(|e| e.to_stable(ids)),
+            &mut cache.full_graph,
+            &mut cache.ivv_pool,
+        );
 
         extract_params(
             root,
