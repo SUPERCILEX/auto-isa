@@ -9,24 +9,24 @@ subgraph {
 subgraph {
 {
 rank=max
-"3_0" [shape=point style=invis]
+"4_0" [shape=point style=invis]
 }
-"3_0_6" [label="GetElementPtr"]
-"3_0_5" [label="Phi"]
-"3_0_6" -> "3_0_5"
-"3_0_15" [label="Load\n0"]
-"3_0_5" -> "3_0_15"
+"4_0_6" [label="GetElementPtr"]
+"4_0_5" [label="Phi"]
+"4_0_6" -> "4_0_5"
+"4_0_15" [label="Load\n0"]
+"4_0_5" -> "4_0_15"
 {
 rank=min
-"3_0_7" [label="Load\n0"]
+"4_0_7" [label="Load\n0"]
 }
-"3_0_7" -> "3_0_6"
+"4_0_7" -> "4_0_6"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.0%\nId: 3"
+label="Static occurrences: 2\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.0%\nId: 4"
 }
 subgraph {
 subgraph {
@@ -97,5 +97,31 @@ label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory oper
 cluster=true
 penwidth=0
 label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.0%\nId: 2"
+}
+subgraph {
+subgraph {
+{
+rank=max
+"3_0" [shape=point style=invis]
+}
+"3_0_11" [label="Add"]
+"3_0_8" [label="Load\n0"]
+"3_0_11" -> "3_0_8"
+{
+rank=min
+"3_0_13" [label="Store\n0"]
+}
+"3_0_12" [label="Add"]
+"3_0_13" -> "3_0_12"
+"3_0_10" [label="Load\n0"]
+"3_0_11" -> "3_0_10"
+"3_0_12" -> "3_0_11"
+cluster=true
+label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
+color=red
+}
+cluster=true
+penwidth=0
+label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.0%\nId: 3"
 }
 }

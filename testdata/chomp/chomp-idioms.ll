@@ -34,9 +34,9 @@ bb:
   ret i32 %4
 }
 
-define i32 @"4"(ptr %nrow, ptr %arrayidx) {
+define i32 @"4"(ptr %arrayidx2, ptr %arrayidx) {
 bb:
-  %0 = load i32, ptr %nrow, align 4, !tbaa !0
+  %0 = load i32, ptr %arrayidx2, align 4, !tbaa !0
   store i32 %0, ptr %arrayidx, align 4, !tbaa !0
   ret i32 %0
 }
@@ -84,12 +84,12 @@ bb:
   ret i32 %inc6
 }
 
-define ptr @"10"(ptr %search.0.in, i64 %0, i32 %1) {
+define i32 @"10"(ptr %state, i64 %indvars.iv.next.i) {
 bb:
-  %search.0 = load ptr, ptr %search.0.in, align 8, !tbaa !4
-  %state = getelementptr inbounds %struct._play, ptr %search.0, i64 %0, i32 1
-  %2 = load ptr, ptr %state, align 8, !tbaa !8
-  ret ptr %2
+  %0 = load ptr, ptr %state, align 8, !tbaa !8
+  %arrayidx.i = getelementptr inbounds i32, ptr %0, i64 %indvars.iv.next.i
+  %1 = load i32, ptr %arrayidx.i, align 4, !tbaa !0
+  ret i32 %1
 }
 
 define i32 @"11"(ptr %state.i, ptr %ncol, i64 %0) {

@@ -13,6 +13,16 @@ bb:
   ret i32 %add3
 }
 
+define i32 @"1"(ptr %arrayidx2, ptr %arrayidx, i32 %add378, ptr %output) {
+bb:
+  %0 = load i32, ptr %arrayidx2, align 4, !tbaa !0
+  %1 = load i32, ptr %arrayidx, align 4, !tbaa !0
+  %add = add nsw i32 %0, %1
+  %add3 = add nsw i32 %add, %add378
+  store i32 %add3, ptr %output, align 4, !tbaa !0
+  ret i32 %add3
+}
+
 !0 = !{!1, !1, i64 0}
 !1 = !{!"int", !2, i64 0}
 !2 = !{!"omnipotent char", !3, i64 0}

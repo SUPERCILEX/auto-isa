@@ -160,6 +160,7 @@ fn find_idioms<'ctx, S: BuildHasher + Default + Clone>(
             add_idiom(idioms, instr, &state.ids_index, edges, memory_ops);
         });
     }
+    generate_dropped_phi_idioms(state, idioms, &mut cache);
     prune_duplicates(state, idioms, &mut cache);
 }
 
@@ -183,6 +184,129 @@ fn add_idiom<'ctx, S: BuildHasher + Default>(
             memory_ops,
             edges: edges.iter().map(|e| e.to_edge(ids_index)).collect(),
         });
+}
+
+fn generate_dropped_phi_idioms<'ctx, S: BuildHasher + Default + Clone>(
+    State { ids, ids_index }: &State<'ctx, S>,
+    idioms: &mut HashMap<EquivalenceGraph, Idiom<'ctx, S>, S>,
+    cache: &mut Cache<'ctx, S>,
+) {
+    let mut phis = HashMap::<LLVMValueRef, usize, S>::default();
+    let mut temp_idioms = HashMap::default();
+    for &ComputeUnit {
+        root,
+        ref edges,
+        memory_ops: _,
+    } in idioms.values_mut().flat_map(|cus| &**cus)
+    {
+        let mut cache = CacheContext(cache);
+        let cache = &mut *cache;
+
+        edges
+            .iter()
+            .map(|Edge(_, to)| to)
+            .filter(|instr| instr.get_opcode() == InstructionOpcode::Phi)
+            .map(AsValueRef::as_value_ref)
+            .collect_into(&mut cache.seen);
+        if cache.seen.is_empty() {
+            continue;
+        }
+        phis.clear();
+        cache
+            .seen
+            .iter()
+            .enumerate()
+            .map(|(a, &b)| (b, a))
+            .collect_into(&mut phis);
+        cache.phi_odometer.resize(phis.len(), 0);
+
+        build_full_graph(
+            edges.iter().map(|e| e.to_stable(ids)),
+            &mut cache.full_graph,
+            &mut cache.ivv_pool,
+        );
+
+        loop {
+            cache.path.clear();
+            cache.memory_ops.clear();
+            cache.seen.clear();
+            cache.edges.clear();
+
+            cache.path.push(root);
+            cache.memory_ops.insert(root);
+            build_dropped_phis_compute_unit(
+                root,
+                &cache.full_graph,
+                &cache.phi_odometer,
+                &phis,
+                ids,
+                ids_index,
+                &mut cache.seen,
+                &mut cache.edges,
+                &mut cache.path,
+                &mut cache.memory_ops,
+            );
+            add_idiom(
+                &mut temp_idioms,
+                root,
+                ids_index,
+                &cache.edges,
+                cache.memory_ops.clone(),
+            );
+
+            if did_odometer_overflow(&mut cache.phi_odometer, |_| 1) {
+                break;
+            }
+        }
+    }
+    temp_idioms.into_iter().collect_into(idioms);
+}
+
+#[allow(clippy::too_many_arguments)]
+fn build_dropped_phis_compute_unit<'ctx, S: BuildHasher>(
+    root: InstructionValue<'ctx>,
+    full_graph: &HashMap<InstructionId, Vec<InstructionId>, S>,
+    phi_odometer: &[usize],
+    phi_mapping: &HashMap<LLVMValueRef, usize, S>,
+    ids: &HashMap<LLVMValueRef, InstructionId, S>,
+    ids_index: &[InstructionValue<'ctx>],
+    seen: &mut HashSet<LLVMValueRef, S>,
+    edges: &mut HashSet<StableEdge, S>,
+    path: &mut Vec<InstructionValue<'ctx>>,
+    memory_ops: &mut HashSet<InstructionValue<'ctx>, S>,
+) {
+    if !seen.insert(root.as_value_ref()) {
+        return;
+    }
+
+    for &root in &full_graph[&ids[&root.as_value_ref()]] {
+        let root = ids_index[usize::try_from(root).unwrap()];
+        if root.get_opcode() == InstructionOpcode::Phi
+            && phi_odometer[phi_mapping[&root.as_value_ref()]] == 0
+        {
+            continue;
+        }
+
+        path.push(root);
+        if root.get_opcode() == InstructionOpcode::Load {
+            memory_ops.insert(root);
+            write_path_to_graph(path, edges, ids);
+        } else {
+            build_dropped_phis_compute_unit(
+                root,
+                full_graph,
+                phi_odometer,
+                phi_mapping,
+                ids,
+                ids_index,
+                seen,
+                edges,
+                path,
+                memory_ops,
+            );
+        }
+        path.pop();
+    }
 }
 
 fn prune_duplicates<'ctx, S: BuildHasher + Default>(

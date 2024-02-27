@@ -84,10 +84,10 @@ bb:
   ret i32 %xor.i
 }
 
-define i32 @"8"(ptr %arrayidx28.i, ptr %gg) {
+define i32 @"8"(ptr %arrayidx165.i, ptr %arrayidx172.i) {
 bb:
-  %0 = load i32, ptr %arrayidx28.i, align 4, !tbaa !0
-  store i32 %0, ptr %gg, align 16, !tbaa !0
+  %0 = load i32, ptr %arrayidx165.i, align 4, !tbaa !0
+  store i32 %0, ptr %arrayidx172.i, align 4, !tbaa !0
   ret i32 %0
 }
 
@@ -223,7 +223,19 @@ bb:
   ret i32 %4
 }
 
-define i32 @"21"(ptr %index_of, i64 %0, ptr %arrayidx572.i, i32 %1) {
+define i32 @"21"(ptr %alpha_to, i64 %0, ptr %arrayidx553.i, i32 %1, i32 %rem581.i) {
+bb:
+  %2 = load i32, ptr %arrayidx553.i, align 4, !tbaa !0
+  %sub586.i = add i32 %2, %1
+  %add587.i = sub i32 %sub586.i, %rem581.i
+  %rem588.i = srem i32 %add587.i, %1
+  %idxprom589.i = sext i32 %rem588.i to i64
+  %arrayidx590.i = getelementptr inbounds [256 x i32], ptr %alpha_to, i64 %0, i64 %idxprom589.i
+  %3 = load i32, ptr %arrayidx590.i, align 4, !tbaa !0
+  ret i32 %3
+}
+
+define i32 @"22"(ptr %index_of, i64 %0, ptr %arrayidx572.i, i32 %1) {
 bb:
   %2 = load i32, ptr %arrayidx572.i, align 4, !tbaa !0
   %xor573.i = xor i32 %2, %1
@@ -233,7 +245,7 @@ bb:
   ret i32 %3
 }
 
-define i32 @"22"(ptr %arrayidx15.i, ptr %arrayidx20.i, ptr %arrayidx5.i) {
+define i32 @"23"(ptr %arrayidx15.i, ptr %arrayidx20.i, ptr %arrayidx5.i) {
 bb:
   %0 = load i32, ptr %arrayidx15.i, align 4, !tbaa !0
   %1 = load i32, ptr %arrayidx20.i, align 4, !tbaa !0
@@ -242,7 +254,7 @@ bb:
   ret i32 %xor.i77
 }
 
-define i32 @"23"(ptr %arrayidx, ptr %arrayidx2) {
+define i32 @"24"(ptr %arrayidx, ptr %arrayidx2) {
 bb:
   %0 = load i8, ptr %arrayidx, align 1, !tbaa !4
   %conv = zext i8 %0 to i32
@@ -250,7 +262,7 @@ bb:
   ret i32 %conv
 }
 
-define i32 @"24"(ptr %l.i, i64 %0, ptr %arrayidx100.i, ptr %arrayidx102.i, i32 %indvars.i, i32 %q.1.i) {
+define i32 @"25"(ptr %l.i, i64 %0, ptr %arrayidx100.i, ptr %arrayidx102.i, i32 %indvars.i, i32 %q.1.i) {
 bb:
   %1 = load i32, ptr %arrayidx100.i, align 4, !tbaa !0
   %2 = load i32, ptr %arrayidx102.i, align 4, !tbaa !0
@@ -262,7 +274,7 @@ bb:
   ret i32 %3
 }
 
-define i32 @"25"(ptr %arrayidx339.i, i32 %0, i32 %1) {
+define i32 @"26"(ptr %arrayidx339.i, i32 %0, i32 %1) {
 bb:
   %2 = load i32, ptr %arrayidx339.i, align 4, !tbaa !0
   %add344.i = add nsw i32 %2, %0

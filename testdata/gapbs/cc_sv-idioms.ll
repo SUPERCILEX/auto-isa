@@ -7,10 +7,6 @@ target triple = "riscv64"
 %"class.std::__cxx11::basic_string" = type { %"struct.std::__cxx11::basic_string<char>::_Alloc_hider", i64, %union.anon }
 %"struct.std::__cxx11::basic_string<char>::_Alloc_hider" = type { ptr }
 %union.anon = type { i64, [8 x i8] }
-%"class.std::basic_ios" = type { %"class.std::ios_base", ptr, i8, i8, ptr, ptr, ptr, ptr }
-%"class.std::ios_base" = type { ptr, i64, i64, i32, i32, i32, ptr, %"struct.std::ios_base::_Words", [8 x %"struct.std::ios_base::_Words"], i32, ptr, %"class.std::locale" }
-%"struct.std::ios_base::_Words" = type { ptr, i64 }
-%"class.std::locale" = type { ptr }
 
 define i64 @"1"(ptr %arrayidx.i59, ptr %agg.result, ptr %end_size_.i, ptr %degrees, i64 %0) {
 bb:
@@ -331,7 +327,31 @@ bb:
   ret i32 %2
 }
 
-define i64 @"27"(ptr %_M_string_length.i.i.i.i, ptr %cond.i31, i64 %sub.ptr.lhs.cast.i, ptr %this, i64 %0, i32 %1) {
+define i64 @"27"(ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %arrayidx.i57.2) {
+bb:
+  %0 = load i64, ptr %arrayidx.i58.1, align 8, !tbaa !0
+  %1 = load i64, ptr %arrayidx.i58, align 8, !tbaa !0
+  %add7 = add nsw i64 %1, %total.076
+  %add7.1 = add nsw i64 %0, %add7
+  store i64 %add7.1, ptr %arrayidx.i57.2, align 8, !tbaa !0
+  ret i64 %add7.1
+}
+
+define i64 @"28"(ptr %arrayidx.i25, i64 %0, ptr %arrayidx.i23, ptr %el, i64 %.omp.iv.028) {
+bb:
+  %1 = load ptr, ptr %el, align 8, !tbaa !38
+  %arrayidx.i = getelementptr inbounds %struct.EdgePair, ptr %1, i64 %.omp.iv.028
+  %2 = load i32, ptr %arrayidx.i23, align 4, !tbaa !10
+  %ref.tmp.sroa.0.0.insert.ext = zext i32 %2 to i64
+  %3 = load i32, ptr %arrayidx.i25, align 4, !tbaa !10
+  %ref.tmp.sroa.4.0.insert.ext = zext i32 %3 to i64
+  %ref.tmp.sroa.4.0.insert.shift = shl nuw i64 %ref.tmp.sroa.4.0.insert.ext, %0
+  %ref.tmp.sroa.0.0.insert.insert = or i64 %ref.tmp.sroa.4.0.insert.shift, %ref.tmp.sroa.0.0.insert.ext
+  store i64 %ref.tmp.sroa.0.0.insert.insert, ptr %arrayidx.i, align 4
+  ret i64 %ref.tmp.sroa.0.0.insert.insert
+}
+
+define i64 @"29"(ptr %_M_string_length.i.i.i.i, ptr %cond.i31, i64 %sub.ptr.lhs.cast.i, ptr %this, i64 %0, i32 %1) {
 bb:
   %2 = load ptr, ptr %this, align 8, !tbaa !16
   %sub.ptr.rhs.cast.i.i = ptrtoint ptr %2 to i64
@@ -343,7 +363,7 @@ bb:
   ret i64 %3
 }
 
-define i64 @"28"(ptr %arrayidx.i58, ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, i64 %add7, ptr %arrayidx.i57.1) {
+define i64 @"30"(ptr %arrayidx.i58, ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, i64 %add7, ptr %arrayidx.i57.1) {
 bb:
   %0 = load i64, ptr %arrayidx.i58, align 8, !tbaa !0
   %1 = load i64, ptr %arrayidx.i58.3, align 8, !tbaa !0
@@ -357,7 +377,7 @@ bb:
   ret i64 %add7
 }
 
-define i32 @"29"(ptr %num_nodes, i64 %0, ptr %length.i) {
+define i32 @"31"(ptr %num_nodes, i64 %0, ptr %length.i) {
 bb:
   %1 = load i64, ptr %num_nodes, align 8, !tbaa !0
   %add = add nsw i64 %1, %0
@@ -366,7 +386,7 @@ bb:
   ret i32 %conv.i
 }
 
-define i64 @"30"(ptr %_M_p.i.i.i, i64 %0) {
+define i64 @"32"(ptr %_M_p.i.i.i, i64 %0) {
 bb:
   %1 = load i64, ptr %_M_p.i.i.i, align 8, !tbaa !58
   %inc.i71 = add nuw nsw i64 %1, %0
@@ -375,7 +395,7 @@ bb:
   ret i64 %inc.i64
 }
 
-define i64 @"31"(ptr %v, i32 %0, i64 %1, i64 %agg.tmp93.sroa.0.0.insert.ext, ptr %end_size_.i.i) {
+define i64 @"33"(ptr %v, i32 %0, i64 %1, i64 %agg.tmp93.sroa.0.0.insert.ext, ptr %end_size_.i.i) {
 bb:
   %2 = load i32, ptr %v, align 4, !tbaa !60
   %sub = add nsw i32 %2, %0
@@ -387,7 +407,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.insert.insert
 }
 
-define i32 @"32"(ptr %__first, ptr %add.ptr.i.us, ptr %add.ptr2.i.us, i64 %sub1.i.us, i64 %mul.i.us, i64 %0, i64 %1) {
+define i32 @"34"(ptr %__first, ptr %add.ptr.i.us, ptr %add.ptr2.i.us, i64 %sub1.i.us, i64 %mul.i.us, i64 %0, i64 %1) {
 bb:
   %2 = load i32, ptr %add.ptr2.i.us, align 4, !tbaa !10
   %3 = load i32, ptr %add.ptr.i.us, align 4, !tbaa !10
@@ -400,7 +420,7 @@ bb:
   ret i32 %4
 }
 
-define i32 @"33"(ptr %e.sroa.4.0..sroa_idx, ptr %el, ptr %arrayidx.i) {
+define i32 @"35"(ptr %e.sroa.4.0..sroa_idx, ptr %el, ptr %arrayidx.i) {
 bb:
   %e.sroa.4.0.copyload = load i32, ptr %e.sroa.4.0..sroa_idx, align 4, !tbaa.struct !63
   %0 = load i64, ptr %arrayidx.i, align 8, !tbaa !0
@@ -410,7 +430,7 @@ bb:
   ret i32 %e.sroa.4.0.copyload
 }
 
-define i32 @"34"(ptr %end_size_.i, ptr %offsets, i64 %0, ptr %length.i138) {
+define i32 @"36"(ptr %end_size_.i, ptr %offsets, i64 %0, ptr %length.i138) {
 bb:
   %1 = load ptr, ptr %end_size_.i, align 8, !tbaa !64
   %sub.ptr.lhs.cast.i.i141 = ptrtoint ptr %1 to i64
@@ -423,7 +443,7 @@ bb:
   ret i32 %conv.i144
 }
 
-define ptr @"35"(ptr %out_index.i, ptr %num_nodes_.i) {
+define ptr @"37"(ptr %out_index.i, ptr %num_nodes_.i) {
 bb:
   %0 = load ptr, ptr %out_index.i, align 8, !tbaa !16, !noalias !65
   %1 = load i64, ptr %num_nodes_.i, align 8, !tbaa !68, !noalias !65
@@ -432,7 +452,7 @@ bb:
   ret ptr %2
 }
 
-define i32 @"36"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1) {
+define i32 @"38"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1) {
 bb:
   %2 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %3 = sub i64 %0, %2
@@ -444,7 +464,7 @@ bb:
   ret i32 %5
 }
 
-define i32 @"37"(ptr %call171, ptr %arrayidx.i548, ptr %arrayidx.i549) {
+define i32 @"39"(ptr %call171, ptr %arrayidx.i548, ptr %arrayidx.i549) {
 bb:
   %0 = load i32, ptr %arrayidx.i549, align 4, !tbaa !10
   %idx.ext = sext i32 %0 to i64
@@ -455,7 +475,7 @@ bb:
   ret i32 %2
 }
 
-define i32 @"38"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
+define i32 @"40"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
 bb:
   %3 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %4 = sub i64 %0, %3
@@ -468,7 +488,7 @@ bb:
   ret i32 %6
 }
 
-define i64 @"39"(ptr %add.ptr.i113, ptr %cond.i31.i.i.i, i64 %0, ptr %count_vector, i64 %1, i64 %2, i64 %3) {
+define i64 @"41"(ptr %add.ptr.i113, ptr %cond.i31.i.i.i, i64 %0, ptr %count_vector, i64 %1, i64 %2, i64 %3) {
 bb:
   %4 = load i64, ptr %add.ptr.i113, align 4
   %5 = load ptr, ptr %count_vector, align 8, !tbaa !16
@@ -489,7 +509,7 @@ bb:
   ret i64 %4
 }
 
-define i64 @"40"(ptr %v, i32 %0, i64 %1, i64 %agg.tmp93.sroa.0.0.insert.ext, ptr %end_size_.i.i) {
+define i64 @"42"(ptr %v, i32 %0, i64 %1, i64 %agg.tmp93.sroa.0.0.insert.ext, ptr %end_size_.i.i) {
 bb:
   %2 = load i32, ptr %v, align 4, !tbaa !60
   %sub = add nsw i32 %2, %0
@@ -501,7 +521,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.insert.insert
 }
 
-define i32 @"41"(ptr %degrees, ptr %.omp.lb, i64 %0) {
+define i32 @"43"(ptr %degrees, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %mul12 = shl i64 %1, %0
@@ -511,7 +531,7 @@ bb:
   ret i32 %3
 }
 
-define i64 @"42"(ptr %new_range.i.i, i64 %0) {
+define i64 @"44"(ptr %new_range.i.i, i64 %0) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %incdec.ptr.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre.i.i, i64 %0
@@ -519,7 +539,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i58.i.i.i.i
 }
 
-define ptr @"43"(ptr %_M_before_begin.i, ptr %retval.0.i, ptr %add.ptr, i64 %__bkt_count) {
+define ptr @"45"(ptr %_M_before_begin.i, ptr %retval.0.i, ptr %add.ptr, i64 %__bkt_count) {
 bb:
   %0 = load i32, ptr %add.ptr, align 4, !tbaa !10
   %conv.i.i.i = sext i32 %0 to i64
@@ -530,7 +550,7 @@ bb:
   ret ptr %1
 }
 
-define i8 @"44"(ptr %arrayidx.i17.i, ptr %agg.tmp32, ptr %num_trials_, i32 %0, i64 %idxprom1.i.i) {
+define i8 @"46"(ptr %arrayidx.i17.i, ptr %agg.tmp32, ptr %num_trials_, i32 %0, i64 %idxprom1.i.i) {
 bb:
   %1 = load ptr, ptr %agg.tmp32, align 8, !tbaa !26, !alias.scope !23
   %2 = load i32, ptr %num_trials_, align 4, !tbaa !29
@@ -543,7 +563,7 @@ bb:
   ret i8 %3
 }
 
-define ptr @"45"(ptr %call.i, ptr %end_size_.i, ptr %degrees, i64 %0, i64 %1, i64 %2, ptr %end_size_.i40) {
+define ptr @"47"(ptr %call.i, ptr %end_size_.i, ptr %degrees, i64 %0, i64 %1, i64 %2, ptr %end_size_.i40) {
 bb:
   %3 = load ptr, ptr %end_size_.i, align 8, !tbaa !7
   %sub.ptr.lhs.cast.i = ptrtoint ptr %3 to i64
@@ -558,7 +578,7 @@ bb:
   ret ptr %add.ptr.i
 }
 
-define i64 @"46"(ptr %arrayidx.i, i64 %0, ptr %offsets, ptr %__begin0.0640) {
+define i64 @"48"(ptr %arrayidx.i, i64 %0, ptr %offsets, ptr %__begin0.0640) {
 bb:
   %1 = load i64, ptr %arrayidx.i, align 8, !tbaa !0
   %inc = add nsw i64 %1, %0
@@ -570,7 +590,7 @@ bb:
   ret i64 %inc
 }
 
-define i64 @"47"(ptr %max_seen.i, i32 %0, ptr %num_nodes_) {
+define i64 @"49"(ptr %max_seen.i, i32 %0, ptr %num_nodes_) {
 bb:
   %1 = load i32, ptr %max_seen.i, align 4, !tbaa !10
   %add = add nsw i32 %1, %0
@@ -579,7 +599,7 @@ bb:
   ret i64 %conv
 }
 
-define ptr @"48"(ptr %new_range.i.i, ptr %end_size_.i, ptr %el, i64 %0, ptr %end_capacity_.i.i.i) {
+define ptr @"50"(ptr %new_range.i.i, ptr %end_size_.i, ptr %el, i64 %0, ptr %end_capacity_.i.i.i) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %sub.ptr.rhs.cast = ptrtoint ptr %.pre to i64
@@ -593,7 +613,7 @@ bb:
   ret ptr %add.ptr6.i.i
 }
 
-define i32 @"49"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2, i64 %3) {
+define i32 @"51"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2, i64 %3) {
 bb:
   %4 = load ptr, ptr %el, align 8, !tbaa !38
   %5 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -607,7 +627,7 @@ bb:
   ret i32 %7
 }
 
-define i64 @"50"(ptr %new_range.i.i, i64 %0) {
+define i64 @"52"(ptr %new_range.i.i, i64 %0) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %incdec.ptr13.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre.i.i, i64 %0
@@ -615,7 +635,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i73.i.i.i.i
 }
 
-define ptr @"51"(ptr %cond.i31.i.i.i, i64 %.sroa.speculated.i.i.i.i, i64 %0, ptr %count_vector, i64 %1, i64 %2, i64 %3, i64 %sub.ptr.div.i.i.i.i.i, i1 %cmp9.i.i.i.i, i64 %4, i64 %add.i.i.i.i, ptr %_M_end_of_storage.i.i277) {
+define ptr @"53"(ptr %cond.i31.i.i.i, i64 %.sroa.speculated.i.i.i.i, i64 %0, ptr %count_vector, i64 %1, i64 %2, i64 %3, i64 %sub.ptr.div.i.i.i.i.i, i1 %cmp9.i.i.i.i, i64 %4, i64 %add.i.i.i.i, ptr %_M_end_of_storage.i.i277) {
 bb:
   %5 = load ptr, ptr %count_vector, align 8, !tbaa !16
   %sub.ptr.rhs.cast.i.i.i.i.i = ptrtoint ptr %5 to i64
@@ -639,7 +659,7 @@ bb:
   ret ptr %add.ptr19.i.i.i
 }
 
-define i32 @"52"(ptr %comp, ptr %arrayidx.i3742) {
+define i32 @"54"(ptr %comp, ptr %arrayidx.i3742) {
 bb:
   %0 = load i32, ptr %arrayidx.i3742, align 4, !tbaa !10
   %conv13 = sext i32 %0 to i64
@@ -649,7 +669,7 @@ bb:
   ret i32 %2
 }
 
-define i64 @"53"(ptr %arrayidx.i268, i64 %0, ptr %label_source_pair.sroa.5.0.call43.sroa_idx, i64 %1) {
+define i64 @"55"(ptr %arrayidx.i268, i64 %0, ptr %label_source_pair.sroa.5.0.call43.sroa_idx, i64 %1) {
 bb:
   %label_source_pair.sroa.5.0.copyload = load i32, ptr %label_source_pair.sroa.5.0.call43.sroa_idx, align 4
   %conv46 = sext i32 %label_source_pair.sroa.5.0.copyload to i64
@@ -661,7 +681,7 @@ bb:
   ret i64 %or.i
 }
 
-define i32 @"54"(ptr %el, ptr %.omp.lb) {
+define i32 @"56"(ptr %el, ptr %.omp.lb) {
 bb:
   %0 = load ptr, ptr %el, align 8, !tbaa !38
   %1 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -670,7 +690,22 @@ bb:
   ret i32 %2
 }
 
-define i64 @"55"(ptr %arrayidx.i58.epil, i64 %total.076.epil, ptr %arrayidx.i57.epil) {
+define ptr @"57"(ptr %cond.i31.i.i.i, i64 %.sroa.speculated.i.i.i.i, i64 %sub.ptr.lhs.cast.i.i.i.i.i, ptr %count_vector, i64 %0, i64 %sub.ptr.div.i.i.i.i.i, i1 %cmp9.i.i.i.i, i64 %1, i64 %add.i.i.i.i, ptr %_M_end_of_storage.i.i277) {
+bb:
+  %2 = load ptr, ptr %count_vector, align 8, !tbaa !16
+  %sub.ptr.rhs.cast.i.i.i.i.i = ptrtoint ptr %2 to i64
+  %sub.ptr.sub.i.i.i.i.i = sub i64 %sub.ptr.lhs.cast.i.i.i.i.i, %sub.ptr.rhs.cast.i.i.i.i.i
+  %sub.ptr.div.i.i.i.i.i2 = ashr exact i64 %sub.ptr.sub.i.i.i.i.i, %0
+  %add.i.i.i.i4 = add i64 %.sroa.speculated.i.i.i.i, %sub.ptr.div.i.i.i.i.i
+  %cmp7.i.i.i.i = icmp ult i64 %add.i.i.i.i, %sub.ptr.div.i.i.i.i.i
+  %or.cond.i.i.i.i = or i1 %cmp7.i.i.i.i, %cmp9.i.i.i.i
+  %cond.i.i.i.i = select i1 %or.cond.i.i.i.i, i64 %1, i64 %add.i.i.i.i
+  %add.ptr19.i.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %cond.i31.i.i.i, i64 %cond.i.i.i.i
+  store ptr %add.ptr19.i.i.i, ptr %_M_end_of_storage.i.i277, align 8, !tbaa !70
+  ret ptr %add.ptr19.i.i.i
+}
+
+define i64 @"58"(ptr %arrayidx.i58.epil, i64 %total.076.epil, ptr %arrayidx.i57.epil) {
 bb:
   %0 = load i64, ptr %arrayidx.i58.epil, align 8, !tbaa !0
   %add7.epil = add nsw i64 %0, %total.076.epil
@@ -678,7 +713,7 @@ bb:
   ret i64 %add7.epil
 }
 
-define i32 @"56"(ptr %.omp.lb, ptr %comp, i64 %indvars.iv) {
+define i32 @"59"(ptr %.omp.lb, ptr %comp, i64 %indvars.iv) {
 bb:
   %0 = load i32, ptr %.omp.lb, align 4, !tbaa !10
   %1 = sext i32 %0 to i64
@@ -689,7 +724,7 @@ bb:
   ret i32 %2
 }
 
-define ptr @"57"(ptr %new_range.i.i, ptr %el, i64 %0, i64 %sub.ptr.rhs.cast, i64 %1, ptr %end_size_.i) {
+define ptr @"60"(ptr %new_range.i.i, ptr %el, i64 %0, i64 %sub.ptr.rhs.cast, i64 %1, ptr %end_size_.i) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
@@ -702,7 +737,7 @@ bb:
   ret ptr %add.ptr.i
 }
 
-define i32 @"58"(i32 %0, ptr %__p.022.i.i.i.i, i64 %1) {
+define i32 @"61"(i32 %0, ptr %__p.022.i.i.i.i, i64 %1) {
 bb:
   %2 = load ptr, ptr %__p.022.i.i.i.i, align 8, !tbaa !53
   %retval.1.i.i = getelementptr inbounds i8, ptr %2, i64 %1
@@ -710,7 +745,7 @@ bb:
   ret i32 %0
 }
 
-define i32 @"59"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.1659, ptr %arrayidx.i541) {
+define i32 @"62"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.1659, ptr %arrayidx.i541) {
 bb:
   %1 = load i64, ptr %arrayidx.i542, align 8, !tbaa !0
   %i200.0 = add nsw i64 %1, %0
@@ -723,7 +758,7 @@ bb:
   ret i32 %2
 }
 
-define i64 @"60"(ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %arrayidx.i57) {
+define i64 @"63"(ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %arrayidx.i57) {
 bb:
   %0 = load i64, ptr %arrayidx.i58.3, align 8, !tbaa !0
   %1 = load i64, ptr %arrayidx.i58.2, align 8, !tbaa !0
@@ -737,7 +772,7 @@ bb:
   ret i64 %add7.3
 }
 
-define i32 @"61"(ptr %call171, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %0, i64 %1, i64 %total_missing_inv.0649, ptr %arrayidx.i536) {
+define i32 @"64"(ptr %call171, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %0, i64 %1, i64 %total_missing_inv.0649, ptr %arrayidx.i536) {
 bb:
   %2 = load i64, ptr %arrayidx.i540, align 8, !tbaa !0
   %3 = load i32, ptr %arrayidx.i541, align 4, !tbaa !10
@@ -757,7 +792,7 @@ bb:
   ret i32 %7
 }
 
-define i64 @"62"(ptr %add.ptr.i.i.i.i.i, ptr %__first, ptr %add.ptr.i.i.i.i, ptr %add.ptr2.i.i.i.i, ptr %v.i.i.i.i.i.i, ptr %v3.i.i.i.i.i.i, i64 %sub1.i.i.i.i, i64 %mul.i.i.i.i, i64 %0) {
+define i64 @"65"(ptr %add.ptr.i.i.i.i.i, ptr %__first, ptr %add.ptr.i.i.i.i, ptr %add.ptr2.i.i.i.i, ptr %v.i.i.i.i.i.i, ptr %v3.i.i.i.i.i.i, i64 %sub1.i.i.i.i, i64 %mul.i.i.i.i, i64 %0) {
 bb:
   %1 = load i32, ptr %v3.i.i.i.i.i.i, align 4
   %2 = load i32, ptr %v.i.i.i.i.i.i, align 4
@@ -776,18 +811,18 @@ bb:
   ret i64 %5
 }
 
-define ptr @"63"(ptr %cond.i31, i64 %sub.ptr.lhs.cast.i, ptr %this, i64 %0, i32 %1, ptr %add.ptr) {
+define i64 @"66"(i64 %0, ptr %cond.i31, i64 %sub.ptr.lhs.cast.i, ptr %this, i64 %1, i32 %2) {
 bb:
-  %2 = load ptr, ptr %this, align 8, !tbaa !16
-  %sub.ptr.rhs.cast.i.i = ptrtoint ptr %2 to i64
+  %3 = load ptr, ptr %this, align 8, !tbaa !16
+  %sub.ptr.rhs.cast.i.i = ptrtoint ptr %3 to i64
   %sub.ptr.sub.i = sub i64 %sub.ptr.lhs.cast.i, %sub.ptr.rhs.cast.i.i
-  %sub.ptr.div.i = ashr exact i64 %sub.ptr.sub.i, %0
-  %3 = getelementptr inbounds %"class.std::__cxx11::basic_string", ptr %cond.i31, i64 %sub.ptr.div.i, i32 2
-  store ptr %3, ptr %add.ptr, align 8, !tbaa !71
-  ret ptr %3
+  %sub.ptr.div.i = ashr exact i64 %sub.ptr.sub.i, %1
+  %_M_string_length.i24.i.i.i = getelementptr inbounds %"class.std::__cxx11::basic_string", ptr %cond.i31, i64 %sub.ptr.div.i, i32 1
+  store i64 %0, ptr %_M_string_length.i24.i.i.i, align 8, !tbaa !57
+  ret i64 %0
 }
 
-define i64 @"64"(ptr %this, ptr %.omp.lb) {
+define i64 @"67"(ptr %this, ptr %.omp.lb) {
 bb:
   %0 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %1 = load ptr, ptr %this, align 8, !tbaa !38
@@ -796,7 +831,7 @@ bb:
   ret i64 %2
 }
 
-define <2 x i64> @"65"(ptr %0, <2 x i64> %1, <2 x i64> %2, ptr %rng, i64 %3, <2 x i64> %4, <2 x i64> %5, ptr %6, <2 x i64> %7, <2 x i64> %8, ptr %9) {
+define <2 x i64> @"68"(ptr %0, <2 x i64> %1, <2 x i64> %2, ptr %rng, i64 %3, <2 x i64> %4, <2 x i64> %5, ptr %6, <2 x i64> %7, <2 x i64> %8, ptr %9) {
 bb:
   %wide.load91 = load <2 x i64>, ptr %0, align 8, !tbaa !0
   %10 = load i64, ptr %rng, align 8, !tbaa !0
@@ -816,7 +851,18 @@ bb:
   ret <2 x i64> %20
 }
 
-define i32 @"66"(ptr %arrayidx212, ptr %call171, ptr %arrayidx.i539, i64 %0) {
+define <4 x i32> @"69"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.1659, i64 %1) {
+bb:
+  %2 = load i64, ptr %arrayidx.i542, align 8, !tbaa !0
+  %3 = add i64 %2, %0
+  %4 = sub nsw i64 %3, %total_missing_inv.1659
+  %5 = getelementptr inbounds i32, ptr %call171, i64 %4
+  %6 = getelementptr inbounds i32, ptr %5, i64 %1
+  %wide.load803 = load <4 x i32>, ptr %6, align 4, !tbaa !10
+  ret <4 x i32> %wide.load803
+}
+
+define i32 @"70"(ptr %arrayidx212, ptr %call171, ptr %arrayidx.i539, i64 %0) {
 bb:
   %1 = load i64, ptr %arrayidx.i539, align 8, !tbaa !0
   %sub183 = add nsw i64 %1, %0
@@ -826,7 +872,7 @@ bb:
   ret i32 %2
 }
 
-define <4 x i32> @"67"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.0649, ptr %arrayidx.i536, i64 %1) {
+define <4 x i32> @"71"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.0649, ptr %arrayidx.i536, i64 %1) {
 bb:
   %2 = load i64, ptr %arrayidx.i542, align 8, !tbaa !0
   %3 = add i64 %2, %0
@@ -840,7 +886,7 @@ bb:
   ret <4 x i32> %wide.load803
 }
 
-define i32 @"68"(i64 %indvars.iv699, ptr %incdec.ptr4.sink.i.i.i.i569, ptr %__first.addr.015.i.i563, ptr %call171, ptr %arrayidx.i550, i64 %sub.ptr.rhs.cast.i.i.i.i552, i64 %0, i64 %1) {
+define i32 @"72"(i64 %indvars.iv699, ptr %incdec.ptr4.sink.i.i.i.i569, ptr %__first.addr.015.i.i563, ptr %call171, ptr %arrayidx.i550, i64 %sub.ptr.rhs.cast.i.i.i.i552, i64 %0, i64 %1) {
 bb:
   %2 = load i64, ptr %arrayidx.i550, align 8, !tbaa !0
   %add.ptr271 = getelementptr inbounds i32, ptr %call171, i64 %2
@@ -858,7 +904,7 @@ bb:
   ret i32 %5
 }
 
-define <4 x i32> @"69"(<4 x i32> %0, ptr %init_val, i64 %1, ptr %this, ptr %.omp.lb, i64 %index) {
+define <4 x i32> @"73"(<4 x i32> %0, ptr %init_val, i64 %1, ptr %this, ptr %.omp.lb, i64 %index) {
 bb:
   %2 = load ptr, ptr %this, align 8, !tbaa !9
   %3 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -871,7 +917,7 @@ bb:
   ret <4 x i32> %broadcast.splat22
 }
 
-define <4 x i32> @"70"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.1659, ptr %arrayidx.i541, i64 %1) {
+define <4 x i32> @"74"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.1659, ptr %arrayidx.i541, i64 %1) {
 bb:
   %2 = load i64, ptr %arrayidx.i542, align 8, !tbaa !0
   %3 = add i64 %2, %0
@@ -885,7 +931,7 @@ bb:
   ret <4 x i32> %wide.load803
 }
 
-define i32 @"71"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
+define i32 @"75"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
 bb:
   %3 = load i32, ptr %init_val, align 4, !tbaa !10
   %4 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -899,7 +945,7 @@ bb:
   ret i32 %3
 }
 
-define i64 @"72"(i64 %val.coerce, ptr %new_range.i, ptr %end_size_.i, ptr %this, i64 %0) {
+define i64 @"76"(i64 %val.coerce, ptr %new_range.i, ptr %end_size_.i, ptr %this, i64 %0) {
 bb:
   %1 = load ptr, ptr %end_size_.i, align 8, !tbaa !40
   %sub.ptr.lhs.cast.i10.i = ptrtoint ptr %1 to i64
@@ -913,7 +959,7 @@ bb:
   ret i64 %val.coerce
 }
 
-define <8 x i32> @"73"(ptr %el, ptr %.omp.lb, i64 %index, i64 %0) {
+define <8 x i32> @"77"(ptr %el, ptr %.omp.lb, i64 %index, i64 %0) {
 bb:
   %1 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %offset.idx = add i64 %1, %index
@@ -924,7 +970,7 @@ bb:
   ret <8 x i32> %wide.vec44
 }
 
-define i64 @"74"(ptr %new_range.i.i, i64 %0, i64 %1) {
+define i64 @"78"(ptr %new_range.i.i, i64 %0, i64 %1) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %incdec.ptr13.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre.i.i, i64 %0
@@ -933,7 +979,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i.i.i
 }
 
-define i32 @"75"(ptr %__first, ptr %add.ptr.i.i.i.i, ptr %add.ptr2.i.i.i.i, i64 %sub1.i.i.i.i, i64 %mul.i.i.i.i, i64 %0, i64 %1) {
+define i32 @"79"(ptr %__first, ptr %add.ptr.i.i.i.i, ptr %add.ptr2.i.i.i.i, i64 %sub1.i.i.i.i, i64 %mul.i.i.i.i, i64 %0, i64 %1) {
 bb:
   %2 = load i32, ptr %add.ptr2.i.i.i.i, align 4, !tbaa !10
   %3 = load i32, ptr %add.ptr.i.i.i.i, align 4, !tbaa !10
@@ -948,7 +994,7 @@ bb:
   ret i32 %4
 }
 
-define ptr @"76"(ptr %neighs, ptr %arrayidx.i.prol, ptr %index, ptr %.omp.lb) {
+define ptr @"80"(ptr %neighs, ptr %arrayidx.i.prol, ptr %index, ptr %.omp.lb) {
 bb:
   %0 = load i32, ptr %.omp.lb, align 4, !tbaa !10
   %1 = sext i32 %0 to i64
@@ -961,7 +1007,7 @@ bb:
   ret ptr %add.ptr.prol
 }
 
-define ptr @"77"(ptr %new_range.i.i, ptr %0, ptr %el, i64 %1, i64 %sub.ptr.rhs.cast, i64 %2, ptr %end_size_.i) {
+define ptr @"81"(ptr %new_range.i.i, ptr %0, ptr %el, i64 %1, i64 %sub.ptr.rhs.cast, i64 %2, ptr %end_size_.i) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
@@ -980,7 +1026,7 @@ bb:
   ret ptr %add.ptr.i464
 }
 
-define ptr @"78"(ptr %neighs, ptr %arrayidx.i.1, ptr %index, ptr %.omp.lb, i64 %0) {
+define ptr @"82"(ptr %neighs, ptr %arrayidx.i.1, ptr %index, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load ptr, ptr %index, align 8, !tbaa !16
   %2 = load i32, ptr %.omp.lb, align 4, !tbaa !10
@@ -994,7 +1040,7 @@ bb:
   ret ptr %add.ptr.1
 }
 
-define i64 @"79"(ptr %arrayidx.i492.1, ptr %offsets, ptr %num_nodes_.i, i64 %0, i64 %1) {
+define i64 @"83"(ptr %arrayidx.i492.1, ptr %offsets, ptr %num_nodes_.i, i64 %0, i64 %1) {
 bb:
   %2 = load i64, ptr %arrayidx.i492.1, align 8, !tbaa !0
   %3 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -1006,7 +1052,7 @@ bb:
   ret i64 %2
 }
 
-define i32 @"80"(ptr %neighs, ptr %arrayidx.i522) {
+define i32 @"84"(ptr %neighs, ptr %arrayidx.i522) {
 bb:
   %0 = load ptr, ptr %neighs, align 8, !tbaa !16
   %1 = load i64, ptr %arrayidx.i522, align 8, !tbaa !0
@@ -1015,7 +1061,7 @@ bb:
   ret i32 %2
 }
 
-define i64 @"81"(ptr %_M_p.i.i.i, i64 %0) {
+define i64 @"85"(ptr %_M_p.i.i.i, i64 %0) {
 bb:
   %1 = load i64, ptr %_M_p.i.i.i, align 8, !tbaa !58
   %inc.i71 = add nuw nsw i64 %1, %0
@@ -1025,7 +1071,7 @@ bb:
   ret i64 %inc.i139
 }
 
-define i64 @"82"(ptr %__begin0.sroa.0.060, i64 %0, ptr %cond.i31.i.i.i, ptr %_M_finish.i38, i64 %1, i64 %sub.ptr.rhs.cast.i, i64 %2) {
+define i64 @"86"(ptr %__begin0.sroa.0.060, i64 %0, ptr %cond.i31.i.i.i, ptr %_M_finish.i38, i64 %1, i64 %sub.ptr.rhs.cast.i, i64 %2) {
 bb:
   %3 = load ptr, ptr %_M_finish.i38, align 8, !tbaa !36
   %incdec.ptr.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %3, i64 %1
@@ -1041,7 +1087,7 @@ bb:
   ret i64 %retval.sroa.0.0.insert.insert.i
 }
 
-define i32 @"83"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
+define i32 @"87"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
 bb:
   %3 = load ptr, ptr %el, align 8, !tbaa !38
   %4 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -1054,7 +1100,7 @@ bb:
   ret i32 %6
 }
 
-define i64 @"84"(ptr %arrayidx.i58.epil, i64 %total.076.epil, ptr %call.i4145, ptr %num_blocks) {
+define i64 @"88"(ptr %arrayidx.i58.epil, i64 %total.076.epil, ptr %call.i4145, ptr %num_blocks) {
 bb:
   %0 = load i64, ptr %arrayidx.i58.epil, align 8, !tbaa !0
   %add7.epil = add nsw i64 %0, %total.076.epil
@@ -1064,7 +1110,7 @@ bb:
   ret i64 %add7.epil
 }
 
-define i32 @"85"(ptr %retval.1.i.i, i32 %0, ptr %1, i64 %2) {
+define i32 @"89"(ptr %retval.1.i.i, i32 %0, ptr %1, i64 %2) {
 bb:
   %3 = load i32, ptr %retval.1.i.i, align 4, !tbaa !10
   %add = add nsw i32 %3, %0
@@ -1074,7 +1120,7 @@ bb:
   ret i32 %add
 }
 
-define i64 @"86"(ptr %.omp.lb, i64 %0, i64 %1, ptr %rng) {
+define i64 @"90"(ptr %.omp.lb, i64 %0, i64 %1, ptr %rng) {
 bb:
   %2 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %add10 = add i64 %2, %0
@@ -1083,7 +1129,7 @@ bb:
   ret i64 %rem.i.i.i
 }
 
-define ptr @"87"(ptr %new_range.i.i457, ptr %el, i64 %0, i64 %1, ptr %end_capacity_.i.i.i) {
+define ptr @"91"(ptr %new_range.i.i457, ptr %el, i64 %0, i64 %1, ptr %end_capacity_.i.i.i) {
 bb:
   %.pre.i.i476 = load ptr, ptr %new_range.i.i457, align 8, !tbaa !16
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
@@ -1098,7 +1144,7 @@ bb:
   ret ptr %add.ptr6.i.i478
 }
 
-define i64 @"88"(ptr %arrayidx.i, ptr %prefix, ptr %.omp.lb, i64 %0) {
+define i64 @"92"(ptr %arrayidx.i, ptr %prefix, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load i64, ptr %arrayidx.i, align 8, !tbaa !0
   %2 = load ptr, ptr %prefix, align 8
@@ -1109,7 +1155,7 @@ bb:
   ret i64 %1
 }
 
-define i64 @"89"(ptr %offsets, ptr %num_nodes_.i) {
+define i64 @"93"(ptr %offsets, ptr %num_nodes_.i) {
 bb:
   %0 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
   %.pre716.pre = load ptr, ptr %offsets, align 8, !tbaa !4
@@ -1118,7 +1164,7 @@ bb:
   ret i64 %1
 }
 
-define i32 @"90"(ptr %num_nodes_.i, i32 %0, ptr %.omp.ub) {
+define i32 @"94"(ptr %num_nodes_.i, i32 %0, ptr %.omp.ub) {
 bb:
   %1 = load i64, ptr %num_nodes_.i, align 8, !tbaa !68
   %conv = trunc i64 %1 to i32
@@ -1127,7 +1173,7 @@ bb:
   ret i32 %sub3
 }
 
-define i64 @"91"(ptr %rng, i64 %0, ptr %_M_p.i.i.i, i64 %1) {
+define i64 @"95"(ptr %rng, i64 %0, ptr %_M_p.i.i.i, i64 %1) {
 bb:
   %2 = load i64, ptr %_M_p.i.i.i, align 8, !tbaa !58
   %inc.i71 = add nuw nsw i64 %2, %1
@@ -1137,7 +1183,7 @@ bb:
   ret i64 %3
 }
 
-define i64 @"92"(ptr %arrayidx.i18.i, ptr %0, i64 %1, ptr %2) {
+define i64 @"96"(ptr %arrayidx.i18.i, ptr %0, i64 %1, ptr %2) {
 bb:
   %3 = load ptr, ptr %arrayidx.i18.i, align 8, !tbaa !16, !noalias !65
   %sub.ptr.lhs.cast.i19.i = ptrtoint ptr %3 to i64
@@ -1150,7 +1196,7 @@ bb:
   ret i64 %div.i.i
 }
 
-define i64 @"93"(ptr %add.ptr.i.i.i.i16, ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i) {
+define i64 @"97"(ptr %add.ptr.i.i.i.i16, ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i) {
 bb:
   %0 = load i64, ptr %add.ptr.i.i.i.i16, align 4
   %1 = load i32, ptr %v3.i.i.i.i.i, align 4
@@ -1167,7 +1213,7 @@ bb:
   ret i64 %0
 }
 
-define i32 @"94"(ptr %__first.addr.033.i.i, ptr %n_start.0.in, i64 %0) {
+define i32 @"98"(ptr %__first.addr.033.i.i, ptr %n_start.0.in, i64 %0) {
 bb:
   %n_start.0 = load ptr, ptr %n_start.0.in, align 8, !tbaa !16
   %incdec.ptr12.i.i.i.i = getelementptr inbounds i32, ptr %n_start.0, i64 %0
@@ -1176,7 +1222,7 @@ bb:
   ret i32 %1
 }
 
-define i64 @"95"(ptr %el, i64 %0) {
+define i64 @"99"(ptr %el, i64 %0) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr13.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -1184,14 +1230,14 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i73.i.i.i.i
 }
 
-define i64 @"96"(ptr %new_range.i.i) {
+define i64 @"100"(ptr %new_range.i.i) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %agg.tmp.sroa.0.0.copyload.i.i.i.i.i = load i64, ptr %.pre.i.i, align 4, !tbaa.struct !62
   ret i64 %agg.tmp.sroa.0.0.copyload.i.i.i.i.i
 }
 
-define i32 @"97"(ptr %neighs, ptr %arrayidx.i523) {
+define i32 @"101"(ptr %neighs, ptr %arrayidx.i523) {
 bb:
   %0 = load ptr, ptr %neighs, align 8, !tbaa !16
   %1 = load i64, ptr %arrayidx.i523, align 8, !tbaa !0
@@ -1200,7 +1246,7 @@ bb:
   ret i32 %2
 }
 
-define i32 @"98"(ptr %n_start.0.in, i64 %0, i64 %1, ptr %diffs, ptr %.omp.lb) {
+define i32 @"102"(ptr %n_start.0.in, i64 %0, i64 %1, ptr %diffs, ptr %.omp.lb) {
 bb:
   %n_start.0 = load ptr, ptr %n_start.0.in, align 8, !tbaa !16
   %incdec.ptr7.i.i = getelementptr inbounds i32, ptr %n_start.0, i64 %0
@@ -1217,9 +1263,9 @@ bb:
   ret i32 %conv22
 }
 
-define i64 @"99"(ptr %__first.addr.07.i.i.i.i.i.i.i, ptr %cond.i31.i.i.i, ptr %_M_finish.i.i114, i64 %0, i64 %1, ptr %count_vector, i64 %2, i64 %3) {
+define i64 @"103"(ptr %__first.addr.07.i.i.i.i.i.i.i, ptr %cond.i31.i.i.i, ptr %_M_finish.i.i114, i64 %0, i64 %1, ptr %count_vector, i64 %2, i64 %3) {
 bb:
-  %4 = load i64, ptr %__first.addr.07.i.i.i.i.i.i.i, align 4, !alias.scope !72, !noalias !75
+  %4 = load i64, ptr %__first.addr.07.i.i.i.i.i.i.i, align 4, !alias.scope !71, !noalias !74
   %5 = load ptr, ptr %count_vector, align 8, !tbaa !16
   %6 = ptrtoint ptr %5 to i64
   %7 = load ptr, ptr %_M_finish.i.i114, align 8, !tbaa !36
@@ -1232,11 +1278,11 @@ bb:
   %n.vec = and i64 %12, %3
   %13 = shl i64 %n.vec, %2
   %ind.end = getelementptr i8, ptr %cond.i31.i.i.i, i64 %13
-  store i64 %4, ptr %ind.end, align 4, !alias.scope !75, !noalias !72
+  store i64 %4, ptr %ind.end, align 4, !alias.scope !74, !noalias !71
   ret i64 %4
 }
 
-define ptr @"100"(ptr %new_range.i.i457, ptr %new_range.i.i, i64 %0, ptr %el, i64 %1, ptr %end_capacity_.i.i.i) {
+define ptr @"104"(ptr %new_range.i.i457, ptr %new_range.i.i, i64 %0, ptr %el, i64 %1, ptr %end_capacity_.i.i.i) {
 bb:
   %.pre.i.i476 = load ptr, ptr %new_range.i.i457, align 8, !tbaa !16
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
@@ -1251,7 +1297,7 @@ bb:
   ret ptr %add.ptr6.i.i478
 }
 
-define ptr @"101"(ptr %cond.i31.i.i.i, i64 %.sroa.speculated.i.i.i.i, ptr %_M_finish.i.i114, i64 %0, ptr %count_vector, i64 %1, i64 %sub.ptr.div.i.i.i.i.i, i1 %cmp9.i.i.i.i, i64 %2, i64 %add.i.i.i.i, ptr %_M_end_of_storage.i.i277) {
+define ptr @"105"(ptr %cond.i31.i.i.i, i64 %.sroa.speculated.i.i.i.i, ptr %_M_finish.i.i114, i64 %0, ptr %count_vector, i64 %1, i64 %sub.ptr.div.i.i.i.i.i, i1 %cmp9.i.i.i.i, i64 %2, i64 %add.i.i.i.i, ptr %_M_end_of_storage.i.i277) {
 bb:
   %3 = load ptr, ptr %count_vector, align 8, !tbaa !16
   %sub.ptr.rhs.cast.i.i.i.i.i = ptrtoint ptr %3 to i64
@@ -1269,7 +1315,7 @@ bb:
   ret ptr %add.ptr19.i.i.i
 }
 
-define i32 @"102"(ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i, i64 %0, i64 %1) {
+define i32 @"106"(ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i, i64 %0, i64 %1) {
 bb:
   %2 = load i32, ptr %v3.i.i.i.i.i, align 4
   %3 = load i32, ptr %v.i.i.i.i.i, align 4
@@ -1287,9 +1333,9 @@ bb:
   ret i32 %6
 }
 
-define ptr @"103"(ptr %cond.i31, i64 %.sroa.speculated.i, ptr %_M_finish.i.i, ptr %this, i64 %0, i64 %sub.ptr.div.i.i, i1 %cmp9.i, i64 %1, i64 %add.i, ptr %_M_end_of_storage) {
+define ptr @"107"(ptr %cond.i31, i64 %.sroa.speculated.i, ptr %_M_finish.i.i, ptr %this, i64 %0, i64 %sub.ptr.div.i.i, i1 %cmp9.i, i64 %1, i64 %add.i, ptr %_M_end_of_storage) {
 bb:
-  %2 = load ptr, ptr %_M_finish.i.i, align 8, !tbaa !77
+  %2 = load ptr, ptr %_M_finish.i.i, align 8, !tbaa !76
   %sub.ptr.lhs.cast.i.i = ptrtoint ptr %2 to i64
   %3 = load ptr, ptr %this, align 8, !tbaa !16
   %sub.ptr.rhs.cast.i.i = ptrtoint ptr %3 to i64
@@ -1300,20 +1346,20 @@ bb:
   %or.cond.i = or i1 %cmp7.i, %cmp9.i
   %cond.i = select i1 %or.cond.i, i64 %1, i64 %add.i
   %add.ptr19 = getelementptr inbounds %"class.std::__cxx11::basic_string", ptr %cond.i31, i64 %cond.i
-  store ptr %add.ptr19, ptr %_M_end_of_storage, align 8, !tbaa !78
+  store ptr %add.ptr19, ptr %_M_end_of_storage, align 8, !tbaa !77
   ret ptr %add.ptr19
 }
 
-define i32 @"104"(ptr %__i.sroa.0.042.i.ptr, i64 %0, ptr %second.i.i.i.i.i) {
+define i32 @"108"(ptr %__i.sroa.0.042.i.ptr, i64 %0, ptr %second.i.i.i.i.i) {
 bb:
   %1 = load i64, ptr %__i.sroa.0.042.i.ptr, align 4
   %__val.sroa.4.0.extract.shift.i = lshr i64 %1, %0
   %__val.sroa.4.0.extract.trunc.i = trunc i64 %__val.sroa.4.0.extract.shift.i to i32
-  store i32 %__val.sroa.4.0.extract.trunc.i, ptr %second.i.i.i.i.i, align 4, !tbaa !79
+  store i32 %__val.sroa.4.0.extract.trunc.i, ptr %second.i.i.i.i.i, align 4, !tbaa !78
   ret i32 %__val.sroa.4.0.extract.trunc.i
 }
 
-define <4 x i32> @"105"(ptr %0, ptr %call171, i64 %tail_index.0660, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %1, i64 %index800, i64 %2) {
+define <4 x i32> @"109"(ptr %0, ptr %call171, i64 %tail_index.0660, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %1, i64 %index800, i64 %2) {
 bb:
   %wide.load803 = load <4 x i32>, ptr %0, align 4, !tbaa !10
   %3 = load i64, ptr %arrayidx.i540, align 8, !tbaa !0
@@ -1334,7 +1380,7 @@ bb:
   ret <4 x i32> %wide.load803
 }
 
-define ptr @"106"(ptr %el, i64 %0, i64 %sub.ptr.rhs.cast, i64 %1, ptr %end_size_.i) {
+define ptr @"110"(ptr %el, i64 %0, i64 %sub.ptr.rhs.cast, i64 %1, ptr %end_size_.i) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr7.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -1346,7 +1392,7 @@ bb:
   ret ptr %add.ptr.i
 }
 
-define i32 @"107"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0, i64 %1) {
+define i32 @"111"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0, i64 %1) {
 bb:
   %2 = load i32, ptr %init_val, align 4, !tbaa !10
   %3 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -1359,26 +1405,36 @@ bb:
   ret i32 %2
 }
 
-define i8 @"108"(ptr %label) {
+define i8 @"112"(ptr %label) {
 bb:
-  %0 = load ptr, ptr %label, align 8, !tbaa !26, !noalias !81
+  %0 = load ptr, ptr %label, align 8, !tbaa !26, !noalias !80
   %1 = load i8, ptr %0, align 1, !tbaa !22
   ret i8 %1
 }
 
-define ptr @"109"(ptr %__args, ptr %cond.i31, i64 %sub.ptr.lhs.cast.i, ptr %this, i64 %0) {
+define i64 @"113"(ptr %__begin0.sroa.0.060, i64 %0, ptr %add.ptr.i.i.i) {
 bb:
-  %1 = load ptr, ptr %__args, align 8, !tbaa !26
-  %2 = load ptr, ptr %this, align 8, !tbaa !16
-  %sub.ptr.rhs.cast.i.i = ptrtoint ptr %2 to i64
-  %sub.ptr.sub.i = sub i64 %sub.ptr.lhs.cast.i, %sub.ptr.rhs.cast.i.i
-  %sub.ptr.div.i = ashr exact i64 %sub.ptr.sub.i, %0
-  %add.ptr = getelementptr inbounds %"class.std::__cxx11::basic_string", ptr %cond.i31, i64 %sub.ptr.div.i
-  store ptr %1, ptr %add.ptr, align 8, !tbaa !26
-  ret ptr %1
+  %1 = load i64, ptr %__begin0.sroa.0.060, align 4
+  %retval.sroa.2.0.insert.ext.i = shl i64 %1, %0
+  %kvp.sroa.5.0.extract.shift = lshr i64 %1, %0
+  %retval.sroa.0.0.insert.insert.i = or i64 %retval.sroa.2.0.insert.ext.i, %kvp.sroa.5.0.extract.shift
+  store i64 %retval.sroa.0.0.insert.insert.i, ptr %add.ptr.i.i.i, align 4
+  ret i64 %retval.sroa.0.0.insert.insert.i
 }
 
-define i64 @"110"(ptr %incdec.ptr126.i.i, ptr %el, i64 %0) {
+define i64 @"114"(ptr %add.ptr.i113, ptr %cond.i31.i.i.i, i64 %sub.ptr.lhs.cast.i.i.i.i.i, ptr %count_vector, i64 %0) {
+bb:
+  %1 = load i64, ptr %add.ptr.i113, align 4
+  %2 = load ptr, ptr %count_vector, align 8, !tbaa !16
+  %sub.ptr.rhs.cast.i.i.i.i.i = ptrtoint ptr %2 to i64
+  %sub.ptr.sub.i.i.i.i.i = sub i64 %sub.ptr.lhs.cast.i.i.i.i.i, %sub.ptr.rhs.cast.i.i.i.i.i
+  %sub.ptr.div.i.i.i.i.i = ashr exact i64 %sub.ptr.sub.i.i.i.i.i, %0
+  %add.ptr.i.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %cond.i31.i.i.i, i64 %sub.ptr.div.i.i.i.i.i
+  store i64 %1, ptr %add.ptr.i.i.i, align 4
+  ret i64 %1
+}
+
+define i64 @"115"(ptr %incdec.ptr126.i.i, ptr %el, i64 %0) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr5.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -1387,14 +1443,14 @@ bb:
   ret i64 %1
 }
 
-define ptr @"111"(ptr %index.i139, ptr %0) {
+define ptr @"116"(ptr %index.i139, ptr %0) {
 bb:
   %1 = load ptr, ptr %index.i139, align 8, !tbaa !16
   store ptr %1, ptr %0, align 8
   ret ptr %1
 }
 
-define i64 @"112"(ptr %arrayidx.i492.prol, ptr %offsets, ptr %num_nodes_.i, i64 %0) {
+define i64 @"117"(ptr %arrayidx.i492.prol, ptr %offsets, ptr %num_nodes_.i, i64 %0) {
 bb:
   %1 = load i64, ptr %arrayidx.i492.prol, align 8, !tbaa !0
   %2 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -1405,7 +1461,7 @@ bb:
   ret i64 %1
 }
 
-define i64 @"113"(ptr %arrayidx.i492, ptr %offsets, ptr %num_nodes_.i, i64 %0) {
+define i64 @"118"(ptr %arrayidx.i492, ptr %offsets, ptr %num_nodes_.i, i64 %0) {
 bb:
   %1 = load ptr, ptr %offsets, align 8
   %2 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -1416,7 +1472,7 @@ bb:
   ret i64 %4
 }
 
-define i64 @"114"(ptr %count_vector, ptr %_M_finish.i.i114, i64 %0, i64 %1, i64 %2, i64 %3) {
+define i64 @"119"(ptr %count_vector, ptr %_M_finish.i.i114, i64 %0, i64 %1, i64 %2, i64 %3) {
 bb:
   %4 = load ptr, ptr %count_vector, align 8, !tbaa !16
   %5 = ptrtoint ptr %4 to i64
@@ -1430,11 +1486,11 @@ bb:
   %n.vec = and i64 %11, %3
   %12 = shl i64 %n.vec, %2
   %ind.end280 = getelementptr i8, ptr %4, i64 %12
-  %13 = load i64, ptr %ind.end280, align 4, !alias.scope !72, !noalias !75
+  %13 = load i64, ptr %ind.end280, align 4, !alias.scope !71, !noalias !74
   ret i64 %13
 }
 
-define ptr @"115"(ptr %new_range.i.i457, ptr %0, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %1, ptr %el, ptr %end_capacity_.i.i.i) {
+define ptr @"120"(ptr %new_range.i.i457, ptr %0, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %1, ptr %el, ptr %end_capacity_.i.i.i) {
 bb:
   %.pre.i.i476 = load ptr, ptr %new_range.i.i457, align 8, !tbaa !16
   %.pre709 = load ptr, ptr %end_size_.i, align 8, !tbaa !40
@@ -1452,7 +1508,7 @@ bb:
   ret ptr %add.ptr6.i.i478
 }
 
-define i64 @"116"(i64 %lsum.035, ptr %arrayidx.i31, ptr %local_sums, ptr %.omp.lb) {
+define i64 @"121"(i64 %lsum.035, ptr %arrayidx.i31, ptr %local_sums, ptr %.omp.lb) {
 bb:
   %0 = load i32, ptr %arrayidx.i31, align 4, !tbaa !10
   %conv = sext i32 %0 to i64
@@ -1464,7 +1520,7 @@ bb:
   ret i64 %add15
 }
 
-define i32 @"117"(ptr %call171, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %0, i64 %1, i64 %total_missing_inv.1659) {
+define i32 @"122"(ptr %call171, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %0, i64 %1, i64 %total_missing_inv.1659) {
 bb:
   %2 = load i64, ptr %arrayidx.i540, align 8, !tbaa !0
   %3 = load i32, ptr %arrayidx.i541, align 4, !tbaa !10
@@ -1484,7 +1540,7 @@ bb:
   ret i32 %6
 }
 
-define i64 @"118"(ptr %end_size_.i, ptr %degrees, i64 %0, i64 %1, i64 %2, ptr %num_blocks) {
+define i64 @"123"(ptr %end_size_.i, ptr %degrees, i64 %0, i64 %1, i64 %2, ptr %num_blocks) {
 bb:
   %3 = load ptr, ptr %end_size_.i, align 8, !tbaa !7
   %sub.ptr.lhs.cast.i = ptrtoint ptr %3 to i64
@@ -1498,7 +1554,7 @@ bb:
   ret i64 %div38
 }
 
-define <4 x i32> @"119"(ptr %gep, <4 x i32> %0, <2 x i32> %1, ptr %gep123) {
+define <4 x i32> @"124"(ptr %gep, <4 x i32> %0, <2 x i32> %1, ptr %gep123) {
 bb:
   %wide.vec = load <4 x i32>, ptr %gep, align 4, !tbaa !10
   %strided.vec115 = shufflevector <4 x i32> %wide.vec, <4 x i32> %0, <2 x i32> <i32 1, i32 3>
@@ -1512,7 +1568,7 @@ bb:
   ret <4 x i32> %interleaved.vec
 }
 
-define i64 @"120"(ptr %arrayidx, ptr %new_range, ptr %.omp.lb) {
+define i64 @"125"(ptr %arrayidx, ptr %new_range, ptr %.omp.lb) {
 bb:
   %0 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %1 = load ptr, ptr %new_range, align 8, !tbaa !16
@@ -1522,7 +1578,7 @@ bb:
   ret i64 %2
 }
 
-define i32 @"121"(ptr %n_start.0.in, i64 %0) {
+define i32 @"126"(ptr %n_start.0.in, i64 %0) {
 bb:
   %n_start.0 = load ptr, ptr %n_start.0.in, align 8, !tbaa !16
   %incdec.ptr12.i.i.i.i = getelementptr inbounds i32, ptr %n_start.0, i64 %0
@@ -1530,7 +1586,7 @@ bb:
   ret i32 %1
 }
 
-define ptr @"122"(ptr %new_range.i.i457, ptr %0, ptr %el, i64 %1, i64 %sub.ptr.rhs.cast, i64 %2, ptr %end_size_.i) {
+define ptr @"127"(ptr %new_range.i.i457, ptr %0, ptr %el, i64 %1, i64 %sub.ptr.rhs.cast, i64 %2, ptr %end_size_.i) {
 bb:
   %.pre.i.i476 = load ptr, ptr %new_range.i.i457, align 8, !tbaa !16
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
@@ -1549,17 +1605,17 @@ bb:
   ret ptr %add.ptr.i464
 }
 
-define i32 @"123"(ptr %__i.sroa.0.042.i.ptr, ptr %__first.coerce) {
+define i32 @"128"(ptr %__i.sroa.0.042.i.ptr, ptr %__first.coerce) {
 bb:
   %0 = load i64, ptr %__i.sroa.0.042.i.ptr, align 4
   %__val.sroa.0.0.extract.trunc.i = trunc i64 %0 to i32
-  store i32 %__val.sroa.0.0.extract.trunc.i, ptr %__first.coerce, align 4, !tbaa !84
+  store i32 %__val.sroa.0.0.extract.trunc.i, ptr %__first.coerce, align 4, !tbaa !83
   ret i32 %__val.sroa.0.0.extract.trunc.i
 }
 
-define i64 @"124"(ptr %num_edges_, i64 %0, i64 %1, i64 %2, ptr %.omp.ub) {
+define i64 @"129"(ptr %num_edges_, i64 %0, i64 %1, i64 %2, ptr %.omp.ub) {
 bb:
-  %3 = load i64, ptr %num_edges_, align 8, !tbaa !85
+  %3 = load i64, ptr %num_edges_, align 8, !tbaa !84
   %sub3 = add nuw i64 %3, %0
   %div36 = lshr i64 %sub3, %1
   %sub4 = add nsw i64 %div36, %2
@@ -1567,7 +1623,7 @@ bb:
   ret i64 %sub4
 }
 
-define i32 @"125"(ptr %el, ptr %.omp.lb, i64 %0) {
+define i32 @"130"(ptr %el, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load ptr, ptr %el, align 8, !tbaa !38
   %2 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -1577,7 +1633,7 @@ bb:
   ret i32 %3
 }
 
-define i8 @"126"(ptr %0, ptr %opt_arg) {
+define i8 @"131"(ptr %0, ptr %opt_arg) {
 bb:
   %1 = load i8, ptr %0, align 8, !tbaa !22
   %2 = load ptr, ptr %opt_arg, align 8, !tbaa !26
@@ -1585,7 +1641,7 @@ bb:
   ret i8 %1
 }
 
-define i64 @"128"(ptr %v, i32 %0, i64 %1, i64 %agg.tmp93.sroa.0.0.insert.ext, ptr %new_range.i.i, ptr %end_size_.i.i, ptr %agg.result, i64 %2) {
+define i64 @"133"(ptr %v, i32 %0, i64 %1, i64 %agg.tmp93.sroa.0.0.insert.ext, ptr %new_range.i.i, ptr %end_size_.i.i, ptr %agg.result, i64 %2) {
 bb:
   %3 = load i32, ptr %v, align 4, !tbaa !60
   %sub = add nsw i32 %3, %0
@@ -1604,7 +1660,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.insert.insert
 }
 
-define i32 @"129"(ptr %call171, ptr %arrayidx.i547, ptr %arrayidx.i546) {
+define i32 @"134"(ptr %call171, ptr %arrayidx.i547, ptr %arrayidx.i546) {
 bb:
   %0 = load i64, ptr %arrayidx.i547, align 8, !tbaa !0
   %1 = load i32, ptr %arrayidx.i546, align 4, !tbaa !10
@@ -1615,7 +1671,7 @@ bb:
   ret i32 %2
 }
 
-define i64 @"130"(ptr %offsets, ptr %.omp.lb, i64 %0) {
+define i64 @"135"(ptr %offsets, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load ptr, ptr %offsets, align 8, !tbaa !4
   %2 = load i32, ptr %.omp.lb, align 4, !tbaa !10
@@ -1626,7 +1682,7 @@ bb:
   ret i64 %4
 }
 
-define i64 @"131"(ptr %__first.addr.033.i.i, ptr %el, i64 %0) {
+define i64 @"136"(ptr %__first.addr.033.i.i, ptr %el, i64 %0) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr13.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -1635,7 +1691,25 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i.i.i
 }
 
-define ptr @"132"(ptr %new_range.i.i457, ptr %0, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %1, ptr %el) {
+define <2 x i64> @"137"(ptr %0, <2 x i64> %1, <2 x i64> %vector.recur90, <2 x i64> %2, <2 x i64> %3, ptr %4, <2 x i64> %5, <2 x i64> %6, ptr %7) {
+bb:
+  %wide.load91 = load <2 x i64>, ptr %0, align 8, !tbaa !0
+  %8 = shufflevector <2 x i64> %vector.recur90, <2 x i64> %wide.load91, <2 x i32> <i32 1, i32 2>
+  %9 = and <2 x i64> %8, %2
+  %10 = and <2 x i64> %wide.load91, %1
+  %11 = or <2 x i64> %10, %9
+  %12 = lshr exact <2 x i64> %11, %3
+  %wide.load92 = load <2 x i64>, ptr %4, align 8, !tbaa !0
+  %13 = xor <2 x i64> %12, %wide.load92
+  %14 = and <2 x i64> %wide.load91, %3
+  %15 = icmp eq <2 x i64> %14, %5
+  %16 = select <2 x i1> %15, <2 x i64> %5, <2 x i64> %6
+  %17 = xor <2 x i64> %13, %16
+  store <2 x i64> %17, ptr %7, align 8, !tbaa !0
+  ret <2 x i64> %17
+}
+
+define ptr @"138"(ptr %new_range.i.i457, ptr %0, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %1, ptr %el) {
 bb:
   %.pre.i.i476 = load ptr, ptr %new_range.i.i457, align 8, !tbaa !16
   %.pre709 = load ptr, ptr %end_size_.i, align 8, !tbaa !40
@@ -1653,14 +1727,14 @@ bb:
   ret ptr %add.ptr.i464
 }
 
-define i32 @"133"(ptr %arrayidx.i7.i.i.phi.trans.insert) {
+define i32 @"139"(ptr %arrayidx.i7.i.i.phi.trans.insert) {
 bb:
   %.pre = load ptr, ptr %arrayidx.i7.i.i.phi.trans.insert, align 8, !tbaa !16
   %0 = load i32, ptr %.pre, align 4, !tbaa !10
   ret i32 %0
 }
 
-define i32 @"134"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
+define i32 @"140"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1, i64 %2) {
 bb:
   %3 = load ptr, ptr %el, align 8, !tbaa !38
   %4 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -1673,7 +1747,7 @@ bb:
   ret i32 %6
 }
 
-define ptr @"135"(ptr %cond.i31.i.i.i, i64 %.sroa.speculated.i.i.i.i, ptr %_M_finish.i38, i64 %0, i64 %sub.ptr.rhs.cast.i, i64 %1, i64 %sub.ptr.div.i, i1 %cmp9.i.i.i.i, i64 %2, i64 %add.i.i.i.i, ptr %_M_end_of_storage.i.i) {
+define ptr @"141"(ptr %cond.i31.i.i.i, i64 %.sroa.speculated.i.i.i.i, ptr %_M_finish.i38, i64 %0, i64 %sub.ptr.rhs.cast.i, i64 %1, i64 %sub.ptr.div.i, i1 %cmp9.i.i.i.i, i64 %2, i64 %add.i.i.i.i, ptr %_M_end_of_storage.i.i) {
 bb:
   %3 = load ptr, ptr %_M_finish.i38, align 8, !tbaa !36
   %incdec.ptr.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %3, i64 %0
@@ -1689,7 +1763,7 @@ bb:
   ret ptr %add.ptr19.i.i.i
 }
 
-define i64 @"136"(ptr %arrayidx.i208, i64 %0, i64 %1, i64 %2, i64 %3, i64 %xor.i211, i64 %4, i64 %5, i64 %xor4.i214, i64 %6, i64 %xor7.i217, ptr %num_nodes_, i64 %7, ptr %arrayidx.i72, i64 %xor.i75, i64 %xor4.i78, i64 %xor7.i81, i32 %8, ptr %el, ptr %.omp.lb) {
+define i64 @"142"(ptr %arrayidx.i208, i64 %0, i64 %1, i64 %2, i64 %3, i64 %xor.i211, i64 %4, i64 %5, i64 %xor4.i214, i64 %6, i64 %xor7.i217, ptr %num_nodes_, i64 %7, ptr %arrayidx.i72, i64 %xor.i75, i64 %xor4.i78, i64 %xor7.i81, i32 %8, ptr %el, ptr %.omp.lb) {
 bb:
   %9 = load i64, ptr %arrayidx.i72, align 8, !tbaa !0
   %shr.i73 = lshr i64 %9, %0
@@ -1719,7 +1793,7 @@ bb:
   %shr8.i218 = lshr i64 %xor7.i217, %6
   %xor9.i219 = xor i64 %shr8.i218, %xor7.i217
   %conv.i42 = trunc i64 %xor9.i219 to i32
-  %11 = load i64, ptr %num_nodes_, align 8, !tbaa !87
+  %11 = load i64, ptr %num_nodes_, align 8, !tbaa !86
   %12 = trunc i64 %11 to i32
   %rem.i52 = urem i32 %conv.i42, %8
   %ref.tmp16.sroa.4.0.insert.ext = zext i32 %rem.i52 to i64
@@ -1733,7 +1807,7 @@ bb:
   ret i64 %ref.tmp16.sroa.0.0.insert.insert
 }
 
-define i32 @"137"(ptr %e.sroa.5.0..sroa_idx, ptr %0, ptr %offsets, ptr %add.ptr, i64 %1) {
+define i32 @"143"(ptr %e.sroa.5.0..sroa_idx, ptr %0, ptr %offsets, ptr %add.ptr, i64 %1) {
 bb:
   %2 = load ptr, ptr %0, align 8, !tbaa !16
   %e.sroa.0.0.copyload = load i32, ptr %add.ptr, align 4, !tbaa.struct !62
@@ -1747,7 +1821,7 @@ bb:
   ret i32 %e.sroa.5.0.copyload
 }
 
-define i64 @"138"(ptr %offsets, ptr %num_nodes_.i, i32 %0) {
+define i64 @"144"(ptr %offsets, ptr %num_nodes_.i, i32 %0) {
 bb:
   %1 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
   %2 = trunc i64 %1 to i32
@@ -1759,15 +1833,15 @@ bb:
   ret i64 %5
 }
 
-define i64 @"139"(ptr %_M_string_length.i.i.i, i64 %call, ptr %__dnew.i.i.i) {
+define i64 @"145"(ptr %_M_string_length.i.i.i, i64 %call, ptr %__dnew.i.i.i) {
 bb:
-  %0 = load i64, ptr %_M_string_length.i.i.i, align 8, !tbaa !57, !noalias !88
+  %0 = load i64, ptr %_M_string_length.i.i.i, align 8, !tbaa !57, !noalias !87
   %sub.i.i.i = sub i64 %0, %call
-  store i64 %sub.i.i.i, ptr %__dnew.i.i.i, align 8, !tbaa !0, !noalias !88
+  store i64 %sub.i.i.i, ptr %__dnew.i.i.i, align 8, !tbaa !0, !noalias !87
   ret i64 %sub.i.i.i
 }
 
-define i64 @"140"(ptr %offsets, ptr %num_nodes_.i, i64 %0) {
+define i64 @"146"(ptr %offsets, ptr %num_nodes_.i, i64 %0) {
 bb:
   %1 = load ptr, ptr %offsets, align 8, !tbaa !4
   %2 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -1778,7 +1852,7 @@ bb:
   ret i64 %3
 }
 
-define i64 @"141"(ptr %el, i64 %0, i64 %1) {
+define i64 @"147"(ptr %el, i64 %0, i64 %1) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr13.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -1787,7 +1861,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i.i.i
 }
 
-define i32 @"142"(ptr %call171, ptr %arrayidx.i548, ptr %arrayidx.i549, ptr %arrayidx.i550, i64 %sub.ptr.rhs.cast.i.i.i.i552, i64 %0, i64 %1) {
+define i32 @"148"(ptr %call171, ptr %arrayidx.i548, ptr %arrayidx.i549, ptr %arrayidx.i550, i64 %sub.ptr.rhs.cast.i.i.i.i552, i64 %0, i64 %1) {
 bb:
   %2 = load i64, ptr %arrayidx.i550, align 8, !tbaa !0
   %add.ptr271 = getelementptr inbounds i32, ptr %call171, i64 %2
@@ -1805,7 +1879,7 @@ bb:
   ret i32 %5
 }
 
-define i32 @"143"(ptr %el, i64 %0) {
+define i32 @"149"(ptr %el, i64 %0) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr122.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -1813,9 +1887,9 @@ bb:
   ret i32 %1
 }
 
-define ptr @"146"(ptr %count, ptr %__begin1.0264, ptr %_M_bucket_count.i.i) {
+define ptr @"152"(ptr %count, ptr %__begin1.0264, ptr %_M_bucket_count.i.i) {
 bb:
-  %0 = load ptr, ptr %count, align 8, !tbaa !91
+  %0 = load ptr, ptr %count, align 8, !tbaa !90
   %1 = load i64, ptr %_M_bucket_count.i.i, align 8
   %2 = load i32, ptr %__begin1.0264, align 4, !tbaa !10
   %conv.i.i.i.i = sext i32 %2 to i64
@@ -1825,7 +1899,7 @@ bb:
   ret ptr %3
 }
 
-define i32 @"147"(ptr %__first, ptr %add.ptr.i.i.i.i, ptr %add.ptr2.i.i.i.i, i64 %sub1.i.i.i.i, i64 %mul.i.i.i.i) {
+define i32 @"153"(ptr %__first, ptr %add.ptr.i.i.i.i, ptr %add.ptr2.i.i.i.i, i64 %sub1.i.i.i.i, i64 %mul.i.i.i.i) {
 bb:
   %0 = load i32, ptr %add.ptr2.i.i.i.i, align 4, !tbaa !10
   %1 = load i32, ptr %add.ptr.i.i.i.i, align 4, !tbaa !10
@@ -1836,7 +1910,7 @@ bb:
   ret i32 %2
 }
 
-define i32 @"148"(ptr %n_start.0.in, i64 %0, i64 %1) {
+define i32 @"154"(ptr %n_start.0.in, i64 %0, i64 %1) {
 bb:
   %n_start.0 = load ptr, ptr %n_start.0.in, align 8, !tbaa !16
   %incdec.ptr12.i.i.i.i = getelementptr inbounds i32, ptr %n_start.0, i64 %0
@@ -1845,19 +1919,19 @@ bb:
   ret i32 %2
 }
 
-define ptr @"149"(ptr %__node, ptr %this, ptr %add.ptr.i, ptr %_M_bucket_count) {
+define ptr @"155"(ptr %__node, ptr %this, ptr %add.ptr.i, ptr %_M_bucket_count) {
 bb:
   %0 = load i32, ptr %add.ptr.i, align 4, !tbaa !10
   %conv.i.i.i.i.i = sext i32 %0 to i64
-  %1 = load i64, ptr %_M_bucket_count, align 8, !tbaa !92
+  %1 = load i64, ptr %_M_bucket_count, align 8, !tbaa !91
   %rem.i.i.i.i = urem i64 %conv.i.i.i.i.i, %1
-  %2 = load ptr, ptr %this, align 8, !tbaa !91
+  %2 = load ptr, ptr %this, align 8, !tbaa !90
   %arrayidx17.i = getelementptr inbounds ptr, ptr %2, i64 %rem.i.i.i.i
   store ptr %__node, ptr %arrayidx17.i, align 8, !tbaa !16
   ret ptr %__node
 }
 
-define i64 @"150"(ptr %add.ptr.i113, ptr %cond.i31.i.i.i, i64 %0, ptr %count_vector, i64 %1, i64 %2, i64 %3) {
+define i64 @"156"(ptr %add.ptr.i113, ptr %cond.i31.i.i.i, i64 %0, ptr %count_vector, i64 %1, i64 %2, i64 %3) {
 bb:
   %4 = load ptr, ptr %count_vector, align 8, !tbaa !16
   %5 = ptrtoint ptr %4 to i64
@@ -1873,7 +1947,7 @@ bb:
   ret i64 %10
 }
 
-define i64 @"151"(ptr %__begin0.sroa.0.060, i64 %0, ptr %_M_finish.i38, i64 %1) {
+define i64 @"157"(ptr %__begin0.sroa.0.060, i64 %0, ptr %_M_finish.i38, i64 %1) {
 bb:
   %2 = load ptr, ptr %_M_finish.i38, align 8, !tbaa !36
   %incdec.ptr.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %2, i64 %1
@@ -1885,7 +1959,7 @@ bb:
   ret i64 %retval.sroa.0.0.insert.insert.i
 }
 
-define <2 x i64> @"152"(ptr %0, <2 x i64> %1, <2 x i64> %2, <2 x i64> %3, ptr %4, <2 x i64> %5, <2 x i64> %6, ptr %7) {
+define <2 x i64> @"158"(ptr %0, <2 x i64> %1, <2 x i64> %2, <2 x i64> %3, ptr %4, <2 x i64> %5, <2 x i64> %6, ptr %7) {
 bb:
   %wide.load393 = load <2 x i64>, ptr %4, align 8, !tbaa !0
   %wide.load392 = load <2 x i64>, ptr %0, align 8, !tbaa !0
@@ -1903,7 +1977,7 @@ bb:
   ret <2 x i64> %17
 }
 
-define i64 @"153"(ptr %__first.addr.033.i.i, ptr %new_range.i.i, i64 %0) {
+define i64 @"159"(ptr %__first.addr.033.i.i, ptr %new_range.i.i, i64 %0) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %incdec.ptr13.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre.i.i, i64 %0
@@ -1912,16 +1986,16 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i.i.i
 }
 
-define i8 @"154"(i8 %0, ptr %ref.tmp, ptr %__dnew.i.i.i) {
+define i8 @"160"(i8 %0, ptr %ref.tmp, ptr %__dnew.i.i.i) {
 bb:
-  %1 = load i64, ptr %__dnew.i.i.i, align 8, !tbaa !0, !noalias !81
-  %2 = load ptr, ptr %ref.tmp, align 8, !tbaa !26, !alias.scope !81
+  %1 = load i64, ptr %__dnew.i.i.i, align 8, !tbaa !0, !noalias !80
+  %2 = load ptr, ptr %ref.tmp, align 8, !tbaa !26, !alias.scope !80
   %arrayidx.i.i.i.i = getelementptr inbounds i8, ptr %2, i64 %1
   store i8 %0, ptr %arrayidx.i.i.i.i, align 1, !tbaa !22
   ret i8 %0
 }
 
-define i32 @"155"(ptr %__first, ptr %add.ptr.i, ptr %add.ptr2.i, i64 %sub1.i, i64 %mul.i, i64 %0, i64 %1) {
+define i32 @"161"(ptr %__first, ptr %add.ptr.i, ptr %add.ptr2.i, i64 %sub1.i, i64 %mul.i, i64 %0, i64 %1) {
 bb:
   %2 = load i32, ptr %add.ptr2.i, align 4, !tbaa !10
   %3 = load i32, ptr %add.ptr.i, align 4, !tbaa !10
@@ -1934,7 +2008,17 @@ bb:
   ret i32 %4
 }
 
-define i64 @"156"(ptr %arrayidx.i25, i64 %0, ptr %arrayidx.i23, ptr %el, ptr %.omp.lb) {
+define i64 @"162"(ptr %arrayidx.i535, i64 %total_missing_inv.0649, ptr %offsets, i64 %indvars.iv691) {
+bb:
+  %.pre716.pre = load ptr, ptr %offsets, align 8, !tbaa !4
+  %arrayidx.i5352 = getelementptr inbounds i64, ptr %.pre716.pre, i64 %indvars.iv691
+  %0 = load i64, ptr %arrayidx.i535, align 8, !tbaa !0
+  %add152 = add nsw i64 %0, %total_missing_inv.0649
+  store i64 %add152, ptr %arrayidx.i535, align 8, !tbaa !0
+  ret i64 %add152
+}
+
+define i64 @"163"(ptr %arrayidx.i25, i64 %0, ptr %arrayidx.i23, ptr %el, ptr %.omp.lb) {
 bb:
   %1 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %2 = load ptr, ptr %el, align 8, !tbaa !38
@@ -1949,7 +2033,7 @@ bb:
   ret i64 %ref.tmp.sroa.0.0.insert.insert
 }
 
-define i64 @"157"(ptr %offsets, ptr %num_nodes_.i, i64 %0) {
+define i64 @"164"(ptr %offsets, ptr %num_nodes_.i, i64 %0) {
 bb:
   %1 = load ptr, ptr %offsets, align 8
   %2 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -1961,7 +2045,7 @@ bb:
   ret i64 %4
 }
 
-define ptr @"158"(ptr %el, ptr %0, i64 %1, i64 %sub.ptr.rhs.cast, i64 %2, ptr %end_size_.i) {
+define ptr @"165"(ptr %el, ptr %0, i64 %1, i64 %sub.ptr.rhs.cast, i64 %2, ptr %end_size_.i) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr7.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %1
@@ -1979,7 +2063,7 @@ bb:
   ret ptr %add.ptr.i464
 }
 
-define i64 @"159"(ptr %_M_p.i.i.i, i64 %0) {
+define i64 @"166"(ptr %_M_p.i.i.i, i64 %0) {
 bb:
   %1 = load i64, ptr %_M_p.i.i.i, align 8, !tbaa !58
   %inc.i71 = add nuw nsw i64 %1, %0
@@ -1988,7 +2072,7 @@ bb:
   ret i64 %inc.i207
 }
 
-define i32 @"160"(ptr %end_size_.i.i583, ptr %offsets, i64 %0, ptr %length.i581) {
+define i32 @"167"(ptr %end_size_.i.i583, ptr %offsets, i64 %0, ptr %length.i581) {
 bb:
   %1 = load ptr, ptr %offsets, align 8, !tbaa !4
   %sub.ptr.rhs.cast.i.i585 = ptrtoint ptr %1 to i64
@@ -2001,7 +2085,7 @@ bb:
   ret i32 %conv.i587
 }
 
-define <2 x i32> @"161"(ptr %degrees, ptr %.omp.lb, i64 %0, i64 %index, i64 %1) {
+define <2 x i32> @"168"(ptr %degrees, ptr %.omp.lb, i64 %0, i64 %index, i64 %1) {
 bb:
   %2 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %mul12 = shl i64 %2, %0
@@ -2013,24 +2097,24 @@ bb:
   ret <2 x i32> %wide.load41
 }
 
-define ptr @"162"(ptr %call.i, ptr %num_nodes_.i, ptr %end_size_.i) {
+define i32 @"169"(i32 %conv22, ptr %diffs, i64 %indvars.iv) {
 bb:
-  %0 = load i64, ptr %num_nodes_.i, align 8, !tbaa !68
-  %add.ptr.i = getelementptr inbounds i32, ptr %call.i, i64 %0
-  store ptr %add.ptr.i, ptr %end_size_.i, align 8, !tbaa !7
-  ret ptr %add.ptr.i
+  %0 = load ptr, ptr %diffs, align 8, !tbaa !9
+  %arrayidx.i99 = getelementptr inbounds i32, ptr %0, i64 %indvars.iv
+  store i32 %conv22, ptr %arrayidx.i99, align 4, !tbaa !10
+  ret i32 %conv22
 }
 
-define i32 @"163"(ptr %_M_finish.i38, i64 %0, i64 %1) {
+define i32 @"170"(ptr %_M_finish.i38, i64 %0, i64 %1) {
 bb:
   %2 = load ptr, ptr %_M_finish.i38, align 8, !tbaa !36
   %incdec.ptr.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %2, i64 %0
   %add.ptr.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %incdec.ptr.i.i, i64 %1
-  %3 = load i32, ptr %add.ptr.i.i, align 4, !tbaa !84
+  %3 = load i32, ptr %add.ptr.i.i, align 4, !tbaa !83
   ret i32 %3
 }
 
-define ptr @"164"(ptr %new_range.i.i, ptr %end_size_.i.i, ptr %agg.result, i64 %0) {
+define ptr @"171"(ptr %new_range.i.i, ptr %end_size_.i.i, ptr %agg.result, i64 %0) {
 bb:
   %1 = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %2 = load ptr, ptr %agg.result, align 8, !tbaa !38
@@ -2044,7 +2128,7 @@ bb:
   ret ptr %add.ptr.i.i149
 }
 
-define i64 @"165"(ptr %.omp.lb, i64 %0, i64 %1, i64 %2, i64 %3, i64 %4, i64 %__i.018.i, i64 %add.i, i64 %inc.i, ptr %arrayidx7.i.1) {
+define i64 @"172"(ptr %.omp.lb, i64 %0, i64 %1, i64 %2, i64 %3, i64 %4, i64 %__i.018.i, i64 %add.i, i64 %inc.i, ptr %arrayidx7.i.1) {
 bb:
   %5 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %add10 = add i64 %5, %0
@@ -2063,7 +2147,7 @@ bb:
   ret i64 %rem.i.i17.i.1
 }
 
-define ptr @"166"(ptr %retval.0.i, ptr %add.ptr, i64 %__bkt_count) {
+define ptr @"173"(ptr %retval.0.i, ptr %add.ptr, i64 %__bkt_count) {
 bb:
   %0 = load i32, ptr %add.ptr, align 4, !tbaa !10
   %conv.i.i.i = sext i32 %0 to i64
@@ -2073,7 +2157,7 @@ bb:
   ret ptr %1
 }
 
-define ptr @"167"(ptr %new_range.i.i, ptr %end_capacity_.i.i, ptr %agg.result, i64 %0) {
+define ptr @"174"(ptr %new_range.i.i, ptr %end_capacity_.i.i, ptr %agg.result, i64 %0) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %1 = load ptr, ptr %agg.result, align 8, !tbaa !38
@@ -2088,7 +2172,7 @@ bb:
   ret ptr %add.ptr6.i.i
 }
 
-define i64 @"168"(ptr %el, i64 %0) {
+define i64 @"175"(ptr %el, i64 %0) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -2096,7 +2180,18 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i58.i.i.i.i
 }
 
-define <8 x i32> @"169"(ptr %el, ptr %.omp.lb, i64 %index) {
+define i64 @"176"(ptr %v, i32 %0, i64 %1, i64 %agg.tmp93.sroa.0.0.insert.ext, ptr %2) {
+bb:
+  %3 = load i32, ptr %v, align 4, !tbaa !60
+  %sub = add nsw i32 %3, %0
+  %agg.tmp.sroa.2.0.insert.ext = zext i32 %sub to i64
+  %agg.tmp.sroa.2.0.insert.shift = shl nuw i64 %agg.tmp.sroa.2.0.insert.ext, %1
+  %agg.tmp.sroa.0.0.insert.insert = or i64 %agg.tmp.sroa.2.0.insert.shift, %agg.tmp93.sroa.0.0.insert.ext
+  store i64 %agg.tmp.sroa.0.0.insert.insert, ptr %2, align 4, !tbaa.struct !62
+  ret i64 %agg.tmp.sroa.0.0.insert.insert
+}
+
+define <8 x i32> @"177"(ptr %el, ptr %.omp.lb, i64 %index) {
 bb:
   %0 = load ptr, ptr %el, align 8, !tbaa !38
   %1 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -2106,16 +2201,16 @@ bb:
   ret <8 x i32> %wide.vec
 }
 
-define ptr @"170"(ptr %_ZSt4cout, ptr %vbase.offset.ptr.i, i64 %0, i32 %1) {
+define i32 @"178"(ptr %el, i64 %.omp.iv.040.ph, i64 %0) {
 bb:
-  %vbase.offset.i = load i64, ptr %vbase.offset.ptr.i, align 8
-  %add.ptr.i = getelementptr inbounds i8, ptr %_ZSt4cout, i64 %vbase.offset.i
-  %_M_ctype.i.i = getelementptr inbounds %"class.std::basic_ios", ptr %add.ptr.i, i64 %0, i32 5
-  %2 = load ptr, ptr %_M_ctype.i.i, align 8, !tbaa !93
-  ret ptr %2
+  %1 = load ptr, ptr %el, align 8, !tbaa !38
+  %add.ptr.prol = getelementptr inbounds %struct.EdgePair, ptr %1, i64 %.omp.iv.040.ph
+  %add.ptr.sroa_idx.prol = getelementptr inbounds i8, ptr %add.ptr.prol, i64 %0
+  %2 = load i32, ptr %add.ptr.sroa_idx.prol, align 4
+  ret i32 %2
 }
 
-define i64 @"171"(ptr %call.i253, ptr %label_source_pair.sroa.5.0.call43.sroa_idx, i64 %0) {
+define i64 @"179"(ptr %call.i253, ptr %label_source_pair.sroa.5.0.call43.sroa_idx, i64 %0) {
 bb:
   %label_source_pair.sroa.5.0.copyload = load i32, ptr %label_source_pair.sroa.5.0.call43.sroa_idx, align 4
   %conv46 = sext i32 %label_source_pair.sroa.5.0.copyload to i64
@@ -2125,15 +2220,16 @@ bb:
   ret i64 %1
 }
 
-define ptr @"172"(ptr %_M_finish.i.i, i64 %0, i32 %1) {
+define i32 @"180"(ptr %init_val, ptr %this, i64 %.omp.iv.018.prol) {
 bb:
-  %2 = load ptr, ptr %_M_finish.i.i, align 8, !tbaa !16
-  %3 = getelementptr inbounds %"class.std::__cxx11::basic_string", ptr %2, i64 %0, i32 2
-  store ptr %3, ptr %2, align 8, !tbaa !71
-  ret ptr %3
+  %0 = load i32, ptr %init_val, align 4, !tbaa !10
+  %1 = load ptr, ptr %this, align 8, !tbaa !9
+  %add.ptr.prol = getelementptr inbounds i32, ptr %1, i64 %.omp.iv.018.prol
+  store i32 %0, ptr %add.ptr.prol, align 4, !tbaa !10
+  ret i32 %0
 }
 
-define i32 @"173"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1) {
+define i32 @"181"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1) {
 bb:
   %2 = load ptr, ptr %el, align 8, !tbaa !38
   %3 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -2145,7 +2241,7 @@ bb:
   ret i32 %5
 }
 
-define i64 @"174"(i64 %local_total.039, ptr %arrayidx.i35, ptr %prefix, ptr %.omp.lb, i64 %0) {
+define i64 @"182"(i64 %local_total.039, ptr %arrayidx.i35, ptr %prefix, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load i32, ptr %arrayidx.i35, align 4, !tbaa !10
   %conv = sext i32 %1 to i64
@@ -2158,17 +2254,17 @@ bb:
   ret i64 %add19
 }
 
-define ptr @"175"(ptr %out_index_.i, ptr %.omp.lb) {
+define ptr @"183"(ptr %out_index_.i, ptr %.omp.lb) {
 bb:
   %0 = load i32, ptr %.omp.lb, align 4, !tbaa !10
   %1 = sext i32 %0 to i64
-  %2 = load ptr, ptr %out_index_.i, align 8, !tbaa !100, !noalias !101
+  %2 = load ptr, ptr %out_index_.i, align 8, !tbaa !92, !noalias !93
   %arrayidx.i7.i.i.phi.trans.insert = getelementptr inbounds ptr, ptr %2, i64 %1
   %.pre = load ptr, ptr %arrayidx.i7.i.i.phi.trans.insert, align 8, !tbaa !16
   ret ptr %.pre
 }
 
-define ptr @"176"(ptr %neighs, ptr %arrayidx.i, ptr %index, ptr %.omp.lb) {
+define ptr @"184"(ptr %neighs, ptr %arrayidx.i, ptr %index, ptr %.omp.lb) {
 bb:
   %0 = load i64, ptr %arrayidx.i, align 8, !tbaa !0
   %1 = load ptr, ptr %neighs, align 8, !tbaa !16
@@ -2181,16 +2277,16 @@ bb:
   ret ptr %add.ptr
 }
 
-define i8 @"177"(ptr %arrayidx17.i.i, ptr %ref.tmp, i64 %conv5.i) {
+define i8 @"185"(ptr %arrayidx17.i.i, ptr %ref.tmp, i64 %conv5.i) {
 bb:
-  %0 = load ptr, ptr %ref.tmp, align 8, !tbaa !26, !alias.scope !104
+  %0 = load ptr, ptr %ref.tmp, align 8, !tbaa !26, !alias.scope !96
   %arrayidx.i.i = getelementptr inbounds i8, ptr %0, i64 %conv5.i
-  %1 = load i8, ptr %arrayidx17.i.i, align 2, !tbaa !22, !noalias !104
+  %1 = load i8, ptr %arrayidx17.i.i, align 2, !tbaa !22, !noalias !96
   store i8 %1, ptr %arrayidx.i.i, align 1, !tbaa !22
   ret i8 %1
 }
 
-define i64 @"178"(ptr %add.ptr.i113, ptr %_M_finish.i.i114, i64 %0) {
+define i64 @"186"(ptr %add.ptr.i113, ptr %_M_finish.i.i114, i64 %0) {
 bb:
   %1 = load ptr, ptr %_M_finish.i.i114, align 8, !tbaa !36
   %incdec.ptr.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %1, i64 %0
@@ -2199,7 +2295,7 @@ bb:
   ret i64 %2
 }
 
-define ptr @"179"(ptr %cond.i31.i.i.i, ptr %_M_finish.i.i114, i64 %0, i64 %1, ptr %count_vector, i64 %2, i64 %3) {
+define ptr @"187"(ptr %cond.i31.i.i.i, ptr %_M_finish.i.i114, i64 %0, i64 %1, ptr %count_vector, i64 %2, i64 %3) {
 bb:
   %4 = load ptr, ptr %count_vector, align 8, !tbaa !16
   %5 = ptrtoint ptr %4 to i64
@@ -2218,7 +2314,7 @@ bb:
   ret ptr %incdec.ptr.i.i.i
 }
 
-define i32 @"180"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.0649, ptr %arrayidx.i536) {
+define i32 @"188"(ptr %call171, ptr %arrayidx.i542, i64 %0, i64 %total_missing_inv.0649, ptr %arrayidx.i536) {
 bb:
   %1 = load i64, ptr %arrayidx.i542, align 8, !tbaa !0
   %i200.0 = add nsw i64 %1, %0
@@ -2231,7 +2327,19 @@ bb:
   ret i32 %3
 }
 
-define i64 @"181"(ptr %arrayidx.i535, i64 %total_missing_inv.0649, ptr %arrayidx.i536, ptr %offsets, i64 %indvars.iv691) {
+define i64 @"189"(ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %arrayidx.i57.3) {
+bb:
+  %0 = load i64, ptr %arrayidx.i58.2, align 8, !tbaa !0
+  %1 = load i64, ptr %arrayidx.i58.1, align 8, !tbaa !0
+  %2 = load i64, ptr %arrayidx.i58, align 8, !tbaa !0
+  %add7 = add nsw i64 %2, %total.076
+  %add7.1 = add nsw i64 %1, %add7
+  %add7.2 = add nsw i64 %0, %add7.1
+  store i64 %add7.2, ptr %arrayidx.i57.3, align 8, !tbaa !0
+  ret i64 %add7.2
+}
+
+define i64 @"190"(ptr %arrayidx.i535, i64 %total_missing_inv.0649, ptr %arrayidx.i536, ptr %offsets, i64 %indvars.iv691) {
 bb:
   %.pre716.pre = load ptr, ptr %offsets, align 8, !tbaa !4
   %arrayidx.i5352 = getelementptr inbounds i64, ptr %.pre716.pre, i64 %indvars.iv691
@@ -2244,7 +2352,7 @@ bb:
   ret i64 %add152
 }
 
-define ptr @"182"(ptr %new_range.i.i, ptr %el, i64 %0, i64 %1, ptr %end_capacity_.i.i.i) {
+define ptr @"191"(ptr %new_range.i.i, ptr %el, i64 %0, i64 %1, ptr %end_capacity_.i.i.i) {
 bb:
   %2 = load ptr, ptr %el, align 8, !tbaa !38
   %sub.ptr.rhs.cast = ptrtoint ptr %2 to i64
@@ -2259,17 +2367,28 @@ bb:
   ret ptr %add.ptr6.i.i
 }
 
-define ptr @"183"(ptr %this, i64 %__code, ptr %_M_bucket_count) {
+define ptr @"192"(ptr %this, i64 %__code, ptr %_M_bucket_count) {
 bb:
-  %0 = load ptr, ptr %this, align 8, !tbaa !91
-  %1 = load i64, ptr %_M_bucket_count, align 8, !tbaa !92
+  %0 = load ptr, ptr %this, align 8, !tbaa !90
+  %1 = load i64, ptr %_M_bucket_count, align 8, !tbaa !91
   %rem.i.i.i = urem i64 %__code, %1
   %arrayidx.i = getelementptr inbounds ptr, ptr %0, i64 %rem.i.i.i
   %2 = load ptr, ptr %arrayidx.i, align 8, !tbaa !16
   ret ptr %2
 }
 
-define ptr @"184"(ptr %_M_before_begin.i, ptr %arrayidx) {
+define ptr @"193"(ptr %neighs, ptr %arrayidx.i.1, ptr %index, i64 %indvars.iv.next) {
+bb:
+  %0 = load ptr, ptr %index, align 8, !tbaa !16
+  %arrayidx.1 = getelementptr inbounds ptr, ptr %0, i64 %indvars.iv.next
+  %1 = load i64, ptr %arrayidx.i.1, align 8, !tbaa !0
+  %2 = load ptr, ptr %neighs, align 8, !tbaa !16
+  %add.ptr.1 = getelementptr inbounds i32, ptr %2, i64 %1
+  store ptr %add.ptr.1, ptr %arrayidx.1, align 8, !tbaa !16
+  ret ptr %add.ptr.1
+}
+
+define ptr @"194"(ptr %_M_before_begin.i, ptr %arrayidx) {
 bb:
   %0 = load ptr, ptr %arrayidx, align 8, !tbaa !16
   %1 = load ptr, ptr %_M_before_begin.i, align 8, !tbaa !48
@@ -2277,7 +2396,7 @@ bb:
   ret ptr %1
 }
 
-define i32 @"185"(ptr %arrayidx212, ptr %call171, i64 %tail_index.0660, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %0) {
+define i32 @"195"(ptr %arrayidx212, ptr %call171, i64 %tail_index.0660, ptr %arrayidx.i542, ptr %arrayidx.i540, ptr %arrayidx.i541, i64 %0) {
 bb:
   %1 = load i64, ptr %arrayidx.i540, align 8, !tbaa !0
   %2 = load i32, ptr %arrayidx.i541, align 4, !tbaa !10
@@ -2296,7 +2415,7 @@ bb:
   ret i32 %5
 }
 
-define i32 @"186"(ptr %el, i64 %0, i32 %1) {
+define i32 @"196"(ptr %el, i64 %0, i32 %1) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %v.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0, i32 1
@@ -2304,7 +2423,7 @@ bb:
   ret i32 %2
 }
 
-define i32 @"187"(ptr %0, i64 %1) {
+define i32 @"197"(ptr %0, i64 %1) {
 bb:
   %2 = load ptr, ptr %0, align 8, !tbaa !53
   %retval.1.i.i = getelementptr inbounds i8, ptr %2, i64 %1
@@ -2312,7 +2431,7 @@ bb:
   ret i32 %3
 }
 
-define <2 x i64> @"188"(ptr %0, <2 x i64> %1, <2 x i64> %2, ptr %.omp.lb, i64 %3, i64 %4, i64 %5, <2 x i64> %6, <2 x i64> %7, ptr %8, <2 x i64> %9, <2 x i64> %10, ptr %11) {
+define <2 x i64> @"198"(ptr %0, <2 x i64> %1, <2 x i64> %2, ptr %.omp.lb, i64 %3, i64 %4, i64 %5, <2 x i64> %6, <2 x i64> %7, ptr %8, <2 x i64> %9, <2 x i64> %10, ptr %11) {
 bb:
   %wide.load91 = load <2 x i64>, ptr %0, align 8, !tbaa !0
   %12 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -2334,7 +2453,7 @@ bb:
   ret <2 x i64> %22
 }
 
-define <2 x i64> @"189"(ptr %0, ptr %offsets, ptr %num_nodes_.i, i64 %1, i64 %index770, i64 %2) {
+define <2 x i64> @"199"(ptr %0, ptr %offsets, ptr %num_nodes_.i, i64 %1, i64 %index770, i64 %2) {
 bb:
   %3 = load ptr, ptr %offsets, align 8
   %4 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -2347,7 +2466,7 @@ bb:
   ret <2 x i64> %wide.load
 }
 
-define ptr @"190"(ptr %new_range.i.i, ptr %end_size_.i, ptr %el, i64 %0, ptr %end_capacity_.i.i.i) {
+define ptr @"200"(ptr %new_range.i.i, ptr %end_size_.i, ptr %el, i64 %0, ptr %end_capacity_.i.i.i) {
 bb:
   %1 = load ptr, ptr %el, align 8, !tbaa !38
   %sub.ptr.rhs.cast = ptrtoint ptr %1 to i64
@@ -2361,7 +2480,7 @@ bb:
   ret ptr %add.ptr6.i.i
 }
 
-define ptr @"191"(ptr %call.i5155, ptr %end_size_.i, ptr %degrees, i64 %0, i64 %1, ptr %end_size_.i53) {
+define ptr @"201"(ptr %call.i5155, ptr %end_size_.i, ptr %degrees, i64 %0, i64 %1, ptr %end_size_.i53) {
 bb:
   %2 = load ptr, ptr %end_size_.i, align 8, !tbaa !7
   %sub.ptr.lhs.cast.i47 = ptrtoint ptr %2 to i64
@@ -2375,7 +2494,7 @@ bb:
   ret ptr %add.ptr.i52
 }
 
-define ptr @"192"(ptr %_M_before_begin.i, ptr %retval.0.i, ptr %add.ptr, i64 %__bkt_count) {
+define ptr @"202"(ptr %_M_before_begin.i, ptr %retval.0.i, ptr %add.ptr, i64 %__bkt_count) {
 bb:
   %0 = load i32, ptr %add.ptr, align 4, !tbaa !10
   %conv.i.i.i = sext i32 %0 to i64
@@ -2385,7 +2504,7 @@ bb:
   ret ptr %_M_before_begin.i
 }
 
-define ptr @"193"(ptr %new_range.i.i, ptr %el, i64 %0, i64 %1, ptr %end_capacity_.i.i.i) {
+define ptr @"203"(ptr %new_range.i.i, ptr %el, i64 %0, i64 %1, ptr %end_capacity_.i.i.i) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %sub.ptr.rhs.cast = ptrtoint ptr %.pre to i64
@@ -2399,7 +2518,7 @@ bb:
   ret ptr %add.ptr6.i.i
 }
 
-define i64 @"194"(ptr %end_size_.i, ptr %this, i64 %0, i64 %1, ptr %.omp.ub) {
+define i64 @"204"(ptr %end_size_.i, ptr %this, i64 %0, i64 %1, ptr %.omp.ub) {
 bb:
   %2 = load ptr, ptr %this, align 8, !tbaa !38
   %sub.ptr.rhs.cast.i = ptrtoint ptr %2 to i64
@@ -2412,7 +2531,7 @@ bb:
   ret i64 %sub2
 }
 
-define i32 @"195"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0) {
+define i32 @"205"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load i32, ptr %init_val, align 4, !tbaa !10
   %2 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -2423,7 +2542,7 @@ bb:
   ret i32 %1
 }
 
-define i64 @"196"(i32 %shl19, ptr %arrayidx.i61, i64 %0, i64 %1, i64 %2, i64 %3, i64 %xor.i63, i64 %4, i64 %5, i64 %xor4.i, i64 %6, i64 %xor7.i, i32 %7, i32 %8, i32 %9, i32 %conv, i64 %10, i64 %ref.tmp30.sroa.0.0.insert.ext, ptr %el, ptr %.omp.lb) {
+define i64 @"206"(i32 %shl19, ptr %arrayidx.i61, i64 %0, i64 %1, i64 %2, i64 %3, i64 %xor.i63, i64 %4, i64 %5, i64 %xor4.i, i64 %6, i64 %xor7.i, i32 %7, i32 %8, i32 %9, i32 %conv, i64 %10, i64 %ref.tmp30.sroa.0.0.insert.ext, ptr %el, ptr %.omp.lb) {
 bb:
   %11 = load ptr, ptr %el, align 8, !tbaa !38
   %12 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -2454,20 +2573,20 @@ bb:
   ret i64 %ref.tmp30.sroa.0.0.insert.insert
 }
 
-define ptr @"197"(ptr %out_index_.i, ptr %.omp.lb, i64 %0) {
+define ptr @"207"(ptr %out_index_.i, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load i32, ptr %.omp.lb, align 4, !tbaa !10
   %2 = sext i32 %1 to i64
   %indvars.iv.next = add nsw i64 %2, %0
-  %3 = load ptr, ptr %out_index_.i, align 8, !tbaa !100, !noalias !101
+  %3 = load ptr, ptr %out_index_.i, align 8, !tbaa !92, !noalias !93
   %arrayidx.i.i.i = getelementptr inbounds ptr, ptr %3, i64 %indvars.iv.next
   %4 = load ptr, ptr %arrayidx.i.i.i, align 8, !tbaa !16
   ret ptr %4
 }
 
-define ptr @"198"(ptr %out_index_.i, ptr %it.sroa.0.0546, i32 %0) {
+define ptr @"208"(ptr %out_index_.i, ptr %it.sroa.0.0546, i32 %0) {
 bb:
-  %1 = load ptr, ptr %out_index_.i, align 8, !tbaa !100, !noalias !107
+  %1 = load ptr, ptr %out_index_.i, align 8, !tbaa !92, !noalias !99
   %2 = load i32, ptr %it.sroa.0.0546, align 4, !tbaa !10
   %add.i.i.i271 = add nsw i32 %2, %0
   %idxprom.i.i.i = sext i32 %add.i.i.i271 to i64
@@ -2476,7 +2595,7 @@ bb:
   ret ptr %3
 }
 
-define i64 @"199"(ptr %arrayidx3.i.i91, i64 %0, ptr %1, i64 %2, i64 %3, ptr %arrayidx7.i.i95, i64 %4, i64 %5, ptr %arrayidx.i.i88) {
+define i64 @"209"(ptr %arrayidx3.i.i91, i64 %0, ptr %1, i64 %2, i64 %3, ptr %arrayidx7.i.i95, i64 %4, i64 %5, ptr %arrayidx.i.i88) {
 bb:
   %6 = load i64, ptr %arrayidx3.i.i91, align 8, !tbaa !0
   %and8.i.i98 = and i64 %6, %2
@@ -2495,7 +2614,7 @@ bb:
   ret i64 %xor9.i.i101
 }
 
-define <2 x i64> @"200"(ptr %0, <2 x i64> %1, <2 x i64> %2, ptr %rng, i64 %3, <2 x i64> %4, <2 x i64> %5, ptr %6, <2 x i64> %7, <2 x i64> %8, ptr %9) {
+define <2 x i64> @"210"(ptr %0, <2 x i64> %1, <2 x i64> %2, ptr %rng, i64 %3, <2 x i64> %4, <2 x i64> %5, ptr %6, <2 x i64> %7, <2 x i64> %8, ptr %9) {
 bb:
   %wide.load393 = load <2 x i64>, ptr %6, align 8, !tbaa !0
   %.pre.i.i85 = load i64, ptr %rng, align 8, !tbaa !0
@@ -2515,23 +2634,23 @@ bb:
   ret <2 x i64> %19
 }
 
-define i64 @"201"(ptr %_ZSt4cout, i64 %0) {
+define <2 x i32> @"211"(ptr %degrees, i64 %offset.idx) {
 bb:
-  %vtable.i = load ptr, ptr %_ZSt4cout, align 8, !tbaa !110
-  %vbase.offset.ptr.i = getelementptr i8, ptr %vtable.i, i64 %0
-  %vbase.offset.i = load i64, ptr %vbase.offset.ptr.i, align 8
-  ret i64 %vbase.offset.i
+  %0 = load ptr, ptr %degrees, align 8, !tbaa !9
+  %1 = getelementptr inbounds i32, ptr %0, i64 %offset.idx
+  %wide.load = load <2 x i32>, ptr %1, align 4, !tbaa !10
+  ret <2 x i32> %wide.load
 }
 
-define i64 @"202"(ptr %_M_element_count, i64 %0) {
+define i64 @"212"(ptr %arrayidx.i58, i64 %total.076, ptr %arrayidx.i57.1) {
 bb:
-  %1 = load i64, ptr %_M_element_count, align 8, !tbaa !112
-  %inc = add i64 %1, %0
-  store i64 %inc, ptr %_M_element_count, align 8, !tbaa !112
-  ret i64 %inc
+  %0 = load i64, ptr %arrayidx.i58, align 8, !tbaa !0
+  %add7 = add nsw i64 %0, %total.076
+  store i64 %add7, ptr %arrayidx.i57.1, align 8, !tbaa !0
+  ret i64 %add7
 }
 
-define i32 @"203"(i64 %indvars.iv687, ptr %incdec.ptr4.sink.i.i.i.i, ptr %__first.addr.015.i.i, ptr %neighs, ptr %arrayidx.i524, i64 %sub.ptr.rhs.cast.i.i.i.i526, i64 %0, i64 %1) {
+define i32 @"213"(i64 %indvars.iv687, ptr %incdec.ptr4.sink.i.i.i.i, ptr %__first.addr.015.i.i, ptr %neighs, ptr %arrayidx.i524, i64 %sub.ptr.rhs.cast.i.i.i.i526, i64 %0, i64 %1) {
 bb:
   %2 = load i32, ptr %incdec.ptr4.sink.i.i.i.i, align 4, !tbaa !10
   %3 = sext i32 %2 to i64
@@ -2550,7 +2669,7 @@ bb:
   ret i32 %6
 }
 
-define i32 @"204"(i32 %0, ptr %call171, ptr %arrayidx.i548, i64 %1, ptr %arrayidx.i549) {
+define i32 @"214"(i32 %0, ptr %call171, ptr %arrayidx.i548, i64 %1, ptr %arrayidx.i549) {
 bb:
   %2 = load i32, ptr %arrayidx.i549, align 4, !tbaa !10
   %idx.ext = sext i32 %2 to i64
@@ -2562,7 +2681,7 @@ bb:
   ret i32 %0
 }
 
-define ptr @"205"(ptr %cond.i31.i.i.i, ptr %_M_finish.i38, i64 %0, i64 %1, i64 %2, i64 %3, i64 %4) {
+define ptr @"215"(ptr %cond.i31.i.i.i, ptr %_M_finish.i38, i64 %0, i64 %1, i64 %2, i64 %3, i64 %4) {
 bb:
   %5 = load ptr, ptr %_M_finish.i38, align 8, !tbaa !36
   %incdec.ptr.i.i = getelementptr inbounds %"struct.std::pair.8", ptr %5, i64 %0
@@ -2579,7 +2698,7 @@ bb:
   ret ptr %incdec.ptr.i.i.i
 }
 
-define i32 @"206"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1) {
+define i32 @"216"(ptr %el, ptr %.omp.lb, i64 %0, i64 %1) {
 bb:
   %2 = load ptr, ptr %el, align 8, !tbaa !38
   %3 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -2590,7 +2709,7 @@ bb:
   ret i32 %4
 }
 
-define i32 @"207"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0, i64 %1) {
+define i32 @"217"(ptr %init_val, ptr %this, ptr %.omp.lb, i64 %0, i64 %1) {
 bb:
   %2 = load i32, ptr %init_val, align 4, !tbaa !10
   %3 = load ptr, ptr %this, align 8, !tbaa !9
@@ -2603,14 +2722,14 @@ bb:
   ret i32 %2
 }
 
-define ptr @"208"(ptr %_M_before_begin.i) {
+define ptr @"218"(ptr %_M_before_begin.i) {
 bb:
   %0 = load ptr, ptr %_M_before_begin.i, align 8, !tbaa !48
   store ptr %0, ptr %_M_before_begin.i, align 8, !tbaa !48
   ret ptr %0
 }
 
-define i64 @"209"(ptr %rng, i64 %0, ptr %_M_p.i.i.i, i64 %1) {
+define i64 @"219"(ptr %rng, i64 %0, ptr %_M_p.i.i.i, i64 %1) {
 bb:
   %2 = load i64, ptr %_M_p.i.i.i, align 8, !tbaa !58
   %inc.i71 = add nuw nsw i64 %2, %1
@@ -2619,7 +2738,7 @@ bb:
   ret i64 %3
 }
 
-define i32 @"210"(ptr %el, ptr %.omp.lb, i64 %0) {
+define i32 @"220"(ptr %el, ptr %.omp.lb, i64 %0) {
 bb:
   %1 = load ptr, ptr %el, align 8, !tbaa !38
   %2 = load i64, ptr %.omp.lb, align 8, !tbaa !0
@@ -2629,7 +2748,7 @@ bb:
   ret i32 %3
 }
 
-define ptr @"211"(ptr %transpose, i8 %0, ptr %out_index_.i, ptr %in_index_.i, ptr %.omp.lb) {
+define ptr @"221"(ptr %transpose, i8 %0, ptr %out_index_.i, ptr %in_index_.i, ptr %.omp.lb) {
 bb:
   %1 = load i32, ptr %.omp.lb, align 4, !tbaa !10
   %2 = sext i32 %1 to i64
@@ -2643,7 +2762,18 @@ bb:
   ret ptr %n_start.0
 }
 
-define i64 @"212"(ptr %arrayidx.i.i, ptr %0, i64 %1, ptr %2) {
+define i8 @"222"(i8 %storemerge.i.i, ptr %agg.tmp32, ptr %num_trials_, i32 %0) {
+bb:
+  %1 = load ptr, ptr %agg.tmp32, align 8, !tbaa !26, !alias.scope !23
+  %2 = load i32, ptr %num_trials_, align 4, !tbaa !29
+  %__val.lobit.i = lshr i32 %2, %0
+  %conv5.i = zext i32 %__val.lobit.i to i64
+  %arrayidx.i.i = getelementptr inbounds i8, ptr %1, i64 %conv5.i
+  store i8 %storemerge.i.i, ptr %arrayidx.i.i, align 1, !tbaa !22
+  ret i8 %storemerge.i.i
+}
+
+define i64 @"223"(ptr %arrayidx.i.i, ptr %0, i64 %1, ptr %2) {
 bb:
   %3 = load ptr, ptr %0, align 8, !tbaa !16, !noalias !65
   %sub.ptr.rhs.cast.i.i = ptrtoint ptr %3 to i64
@@ -2655,7 +2785,7 @@ bb:
   ret i64 %sub.ptr.div.i.i
 }
 
-define i64 @"213"(ptr %rng, i64 %0, ptr %_M_p.i.i.i, i64 %1) {
+define i64 @"224"(ptr %rng, i64 %0, ptr %_M_p.i.i.i, i64 %1) {
 bb:
   %2 = load i64, ptr %_M_p.i.i.i, align 8, !tbaa !58
   %inc.i71 = add nuw nsw i64 %2, %1
@@ -2664,7 +2794,7 @@ bb:
   ret i64 %3
 }
 
-define i64 @"214"(ptr %offsets, ptr %num_nodes_.i, i64 %0) {
+define i64 @"225"(ptr %offsets, ptr %num_nodes_.i, i64 %0) {
 bb:
   %1 = load ptr, ptr %offsets, align 8
   %2 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -2676,7 +2806,7 @@ bb:
   ret i64 %4
 }
 
-define i64 @"216"(ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %call.i4145, ptr %num_blocks) {
+define i64 @"227"(ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %call.i4145, ptr %num_blocks) {
 bb:
   %0 = load i64, ptr %arrayidx.i58.3, align 8, !tbaa !0
   %1 = load i64, ptr %arrayidx.i58.2, align 8, !tbaa !0
@@ -2692,17 +2822,17 @@ bb:
   ret i64 %add7.3
 }
 
-define ptr @"217"(ptr %_M_before_begin.i, ptr %this, i64 %__code, ptr %_M_bucket_count) {
+define ptr @"228"(ptr %_M_before_begin.i, ptr %this, i64 %__code, ptr %_M_bucket_count) {
 bb:
-  %.pre.i = load ptr, ptr %this, align 8, !tbaa !91
-  %0 = load i64, ptr %_M_bucket_count, align 8, !tbaa !92
+  %.pre.i = load ptr, ptr %this, align 8, !tbaa !90
+  %0 = load i64, ptr %_M_bucket_count, align 8, !tbaa !91
   %rem.i.i.i = urem i64 %__code, %0
   %arrayidx20.i = getelementptr inbounds ptr, ptr %.pre.i, i64 %rem.i.i.i
   store ptr %_M_before_begin.i, ptr %arrayidx20.i, align 8, !tbaa !16
   ret ptr %_M_before_begin.i
 }
 
-define i32 @"218"(ptr %arrayidx.i3742, ptr %comp, ptr %.omp.lb) {
+define i32 @"229"(ptr %arrayidx.i3742, ptr %comp, ptr %.omp.lb) {
 bb:
   %0 = load ptr, ptr %comp, align 8, !tbaa !9
   %1 = load i32, ptr %.omp.lb, align 4, !tbaa !10
@@ -2713,7 +2843,7 @@ bb:
   ret i32 %3
 }
 
-define i32 @"219"(ptr %degrees, i64 %mul12, i64 %umin, ptr %.omp.lb, i64 %indvar, i64 %0, i64 %n.mod.vf) {
+define i32 @"230"(ptr %degrees, i64 %mul12, i64 %umin, ptr %.omp.lb, i64 %indvar, i64 %0, i64 %n.mod.vf) {
 bb:
   %1 = load i64, ptr %.omp.lb, align 8, !tbaa !0
   %2 = add i64 %1, %indvar
@@ -2727,7 +2857,7 @@ bb:
   ret i32 %6
 }
 
-define i32 @"220"(ptr %add.ptr.i.i, ptr %__first, ptr %add.ptr.i, ptr %add.ptr2.i, i64 %sub1.i, i64 %mul.i) {
+define i32 @"231"(ptr %add.ptr.i.i, ptr %__first, ptr %add.ptr.i, ptr %add.ptr2.i, i64 %sub1.i, i64 %mul.i) {
 bb:
   %0 = load i32, ptr %add.ptr.i.i, align 4, !tbaa !10
   %1 = load i32, ptr %add.ptr2.i, align 4, !tbaa !10
@@ -2739,21 +2869,21 @@ bb:
   ret i32 %0
 }
 
-define i64 @"221"(ptr %el) {
+define i64 @"232"(ptr %el) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %agg.tmp.sroa.0.0.copyload.i.i.i.i.i = load i64, ptr %.pre, align 4, !tbaa.struct !62
   ret i64 %agg.tmp.sroa.0.0.copyload.i.i.i.i.i
 }
 
-define i64 @"222"(ptr %_M_string_length.i.i.i, ptr %__dnew.i.i.i) {
+define i32 @"233"(ptr %add.ptr.i.i.i.i.i, ptr %add.ptr2.i.i.i.i.i) {
 bb:
-  %0 = load i64, ptr %_M_string_length.i.i.i, align 8, !tbaa !57, !noalias !81
-  store i64 %0, ptr %__dnew.i.i.i, align 8, !tbaa !0, !noalias !81
-  ret i64 %0
+  %0 = load i32, ptr %add.ptr.i.i.i.i.i, align 4, !tbaa !10
+  store i32 %0, ptr %add.ptr2.i.i.i.i.i, align 4, !tbaa !10
+  ret i32 %0
 }
 
-define i32 @"223"(ptr %neighs, ptr %arrayidx.i523, ptr %arrayidx.i524, i64 %sub.ptr.rhs.cast.i.i.i.i526, i64 %0, i64 %1) {
+define i32 @"234"(ptr %neighs, ptr %arrayidx.i523, ptr %arrayidx.i524, i64 %sub.ptr.rhs.cast.i.i.i.i526, i64 %0, i64 %1) {
 bb:
   %2 = load ptr, ptr %neighs, align 8, !tbaa !16
   %3 = load i64, ptr %arrayidx.i524, align 8, !tbaa !0
@@ -2769,7 +2899,7 @@ bb:
   ret i32 %5
 }
 
-define ptr @"224"(ptr %el, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %0) {
+define ptr @"235"(ptr %el, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %0) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %.pre709 = load ptr, ptr %end_size_.i, align 8, !tbaa !40
@@ -2781,7 +2911,7 @@ bb:
   ret ptr %add.ptr.i
 }
 
-define i64 @"225"(ptr %rng, i64 %0, ptr %arrayidx42.i.i124, i64 %1, i64 %2, ptr %arrayidx49.i.i128, i64 %3, i64 %4) {
+define i64 @"236"(ptr %rng, i64 %0, ptr %arrayidx42.i.i124, i64 %1, i64 %2, ptr %arrayidx49.i.i128, i64 %3, i64 %4) {
 bb:
   %5 = load i64, ptr %rng, align 8, !tbaa !0
   %and52.i.i131 = and i64 %5, %2
@@ -2799,7 +2929,7 @@ bb:
   ret i64 %xor55.i.i134
 }
 
-define i64 @"226"(ptr %__first.addr.07.i.i.i.i.i.i.i, ptr %cond.i31.i.i.i, ptr %_M_finish.i38, i64 %0, i64 %1, i64 %2, i64 %3, i64 %4) {
+define i64 @"237"(ptr %__first.addr.07.i.i.i.i.i.i.i, ptr %cond.i31.i.i.i, ptr %_M_finish.i38, i64 %0, i64 %1, i64 %2, i64 %3, i64 %4) {
 bb:
   %5 = load i64, ptr %__first.addr.07.i.i.i.i.i.i.i, align 4, !alias.scope !43, !noalias !46
   %6 = load ptr, ptr %_M_finish.i38, align 8, !tbaa !36
@@ -2816,7 +2946,7 @@ bb:
   ret i64 %5
 }
 
-define i64 @"227"(i64 %0, ptr %offsets, ptr %num_nodes_.i, i64 %1) {
+define i64 @"238"(i64 %0, ptr %offsets, ptr %num_nodes_.i, i64 %1) {
 bb:
   %2 = load ptr, ptr %offsets, align 8
   %3 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
@@ -2826,7 +2956,7 @@ bb:
   ret i64 %0
 }
 
-define <2 x i64> @"228"(ptr %__first, <2 x i64> %0) {
+define <2 x i64> @"239"(ptr %__first, <2 x i64> %0) {
 bb:
   %1 = load <2 x i64>, ptr %__first, align 4
   %2 = shufflevector <2 x i64> %1, <2 x i64> %0, <2 x i32> <i32 1, i32 0>
@@ -2834,7 +2964,7 @@ bb:
   ret <2 x i64> %2
 }
 
-define ptr @"229"(ptr %call.i134135, ptr %num_nodes, i64 %0, ptr %end_size_.i) {
+define ptr @"240"(ptr %call.i134135, ptr %num_nodes, i64 %0, ptr %end_size_.i) {
 bb:
   %1 = load i64, ptr %num_nodes, align 8, !tbaa !0
   %add = add nsw i64 %1, %0
@@ -2843,7 +2973,7 @@ bb:
   ret ptr %add.ptr.i
 }
 
-define i64 @"230"(ptr %offsets, ptr %.omp.lb) {
+define i64 @"241"(ptr %offsets, ptr %.omp.lb) {
 bb:
   %0 = load i32, ptr %.omp.lb, align 4, !tbaa !10
   %1 = sext i32 %0 to i64
@@ -2853,7 +2983,18 @@ bb:
   ret i64 %3
 }
 
-define <2 x i64> @"231"(ptr %offsets, ptr %num_nodes_.i, i64 %0, i64 %index770, i64 %1) {
+define i32 @"242"(ptr %end_size_.i.i583, i64 %sub.ptr.rhs.cast.i.i585, i64 %0, ptr %length.i581) {
+bb:
+  %1 = load ptr, ptr %end_size_.i.i583, align 8, !tbaa !64
+  %sub.ptr.lhs.cast.i.i584 = ptrtoint ptr %1 to i64
+  %sub.ptr.sub.i.i586 = sub i64 %sub.ptr.lhs.cast.i.i584, %sub.ptr.rhs.cast.i.i585
+  %2 = lshr exact i64 %sub.ptr.sub.i.i586, %0
+  %conv.i587 = trunc i64 %2 to i32
+  store i32 %conv.i587, ptr %length.i581, align 4, !tbaa !10
+  ret i32 %conv.i587
+}
+
+define <2 x i64> @"243"(ptr %offsets, ptr %num_nodes_.i, i64 %0, i64 %index770, i64 %1) {
 bb:
   %2 = load i64, ptr %num_nodes_.i, align 8, !tbaa !54
   %3 = and i64 %2, %0
@@ -2867,7 +3008,7 @@ bb:
   ret <2 x i64> %wide.load
 }
 
-define <4 x i32> @"232"(ptr %0, ptr %call171, ptr %arrayidx.i539, i64 %1, i64 %index800, i64 %2) {
+define <4 x i32> @"244"(ptr %0, ptr %call171, ptr %arrayidx.i539, i64 %1, i64 %index800, i64 %2) {
 bb:
   %wide.load803 = load <4 x i32>, ptr %0, align 4, !tbaa !10
   %3 = load i64, ptr %arrayidx.i539, align 8, !tbaa !0
@@ -2879,7 +3020,7 @@ bb:
   ret <4 x i32> %wide.load803
 }
 
-define i32 @"233"(ptr %arrayidx.i.i.i60, ptr %n_start.0.in, i64 %0, ptr %diffs, ptr %.omp.lb) {
+define i32 @"245"(ptr %arrayidx.i.i.i60, ptr %n_start.0.in, i64 %0, ptr %diffs, ptr %.omp.lb) {
 bb:
   %n_end.0 = load ptr, ptr %arrayidx.i.i.i60, align 8, !tbaa !16
   %sub.ptr.lhs.cast = ptrtoint ptr %n_end.0 to i64
@@ -2896,7 +3037,7 @@ bb:
   ret i32 %conv22
 }
 
-define i64 @"234"(ptr %arrayidx.i533, i64 %total_missing_inv.0649, ptr %arrayidx.i536, ptr %offsets, ptr %num_nodes_.i) {
+define i64 @"246"(ptr %arrayidx.i533, i64 %total_missing_inv.0649, ptr %arrayidx.i536, ptr %offsets, ptr %num_nodes_.i) {
 bb:
   %0 = load i64, ptr %arrayidx.i533, align 8, !tbaa !0
   %1 = load i32, ptr %arrayidx.i536, align 4, !tbaa !10
@@ -2910,17 +3051,29 @@ bb:
   ret i64 %add165
 }
 
-define i64 @"235"(ptr %_M_b.i, ptr %__param, i64 %0, ptr %_M_b.i32) {
+define i64 @"247"(ptr %_M_b.i, ptr %__param, i64 %0, ptr %_M_b.i32) {
 bb:
-  %1 = load i64, ptr %_M_b.i, align 8, !tbaa !113
-  %2 = load i64, ptr %__param, align 8, !tbaa !115
+  %1 = load i64, ptr %_M_b.i, align 8, !tbaa !102
+  %2 = load i64, ptr %__param, align 8, !tbaa !104
   %sub = sub i64 %1, %2
   %div31 = lshr i64 %sub, %0
-  store i64 %div31, ptr %_M_b.i32, align 8, !tbaa !113
+  store i64 %div31, ptr %_M_b.i32, align 8, !tbaa !102
   ret i64 %div31
 }
 
-define i64 @"236"(ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i) {
+define ptr @"248"(ptr %transpose, i8 %0, ptr %out_index_.i, ptr %in_index_.i, i64 %1) {
+bb:
+  %2 = load ptr, ptr %in_index_.i, align 8
+  %3 = load i8, ptr %transpose, align 1, !tbaa !12, !range !14, !noundef !15
+  %tobool.not = icmp eq i8 %3, %0
+  %4 = load ptr, ptr %out_index_.i, align 8
+  %.sink = select i1 %tobool.not, ptr %4, ptr %2
+  %arrayidx.i.i.i60 = getelementptr inbounds ptr, ptr %.sink, i64 %1
+  %n_end.0 = load ptr, ptr %arrayidx.i.i.i60, align 8, !tbaa !16
+  ret ptr %n_end.0
+}
+
+define i64 @"249"(ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i) {
 bb:
   %0 = load i32, ptr %v3.i.i.i.i.i, align 4
   %1 = load i32, ptr %v.i.i.i.i.i, align 4
@@ -2936,7 +3089,7 @@ bb:
   ret i64 %4
 }
 
-define i64 @"237"(ptr %add.ptr3.i.i.i, ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i) {
+define i64 @"250"(ptr %add.ptr3.i.i.i, ptr %__first, ptr %add.ptr.i.i.i, ptr %add.ptr2.i.i.i, ptr %v.i.i.i.i.i, ptr %v3.i.i.i.i.i, i64 %sub1.i.i.i, i64 %mul.i.i.i) {
 bb:
   %0 = load i32, ptr %v3.i.i.i.i.i, align 4
   %1 = load i32, ptr %v.i.i.i.i.i, align 4
@@ -2953,7 +3106,7 @@ bb:
   ret i64 %4
 }
 
-define i64 @"238"(ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %arrayidx.i57.epil) {
+define i64 @"251"(ptr %arrayidx.i58.3, ptr %arrayidx.i58.2, ptr %arrayidx.i58.1, ptr %arrayidx.i58, i64 %total.076, ptr %arrayidx.i57.epil) {
 bb:
   %0 = load i64, ptr %arrayidx.i58.3, align 8, !tbaa !0
   %1 = load i64, ptr %arrayidx.i58.2, align 8, !tbaa !0
@@ -2967,17 +3120,17 @@ bb:
   ret i64 %add7.3
 }
 
-define i8 @"239"(ptr %arrayidx.i17.i, ptr %ref.tmp, i64 %conv5.i, i64 %idxprom1.i.i) {
+define i8 @"252"(ptr %arrayidx.i17.i, ptr %ref.tmp, i64 %conv5.i, i64 %idxprom1.i.i) {
 bb:
-  %0 = load ptr, ptr %ref.tmp, align 8, !tbaa !26, !alias.scope !104
+  %0 = load ptr, ptr %ref.tmp, align 8, !tbaa !26, !alias.scope !96
   %arrayidx.i.i = getelementptr inbounds i8, ptr %0, i64 %conv5.i
   %arrayidx2.i.i = getelementptr inbounds i8, ptr %arrayidx.i.i, i64 %idxprom1.i.i
-  %1 = load i8, ptr %arrayidx.i17.i, align 1, !tbaa !22, !noalias !104
+  %1 = load i8, ptr %arrayidx.i17.i, align 1, !tbaa !22, !noalias !96
   store i8 %1, ptr %arrayidx2.i.i, align 1, !tbaa !22
   ret i8 %1
 }
 
-define i64 @"240"(ptr %el, i64 %0) {
+define i64 @"253"(ptr %el, i64 %0) {
 bb:
   %.pre = load ptr, ptr %el, align 8, !tbaa !38
   %incdec.ptr13.i.i.i.i = getelementptr inbounds %struct.EdgePair, ptr %.pre, i64 %0
@@ -2985,7 +3138,7 @@ bb:
   ret i64 %agg.tmp.sroa.0.0.copyload.i78.i.i.i.i
 }
 
-define i64 @"241"(ptr %_M_p.i.i.i, i64 %0) {
+define i64 @"254"(ptr %_M_p.i.i.i, i64 %0) {
 bb:
   %1 = load i64, ptr %_M_p.i.i.i, align 8, !tbaa !58
   %inc.i71 = add nuw nsw i64 %1, %0
@@ -2993,7 +3146,7 @@ bb:
   ret i64 %inc.i71
 }
 
-define ptr @"242"(ptr %new_range.i.i, ptr %0, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %1, ptr %el) {
+define ptr @"255"(ptr %new_range.i.i, ptr %0, ptr %end_size_.i, i64 %sub.ptr.rhs.cast, i64 %1, ptr %el) {
 bb:
   %.pre.i.i = load ptr, ptr %new_range.i.i, align 8, !tbaa !16
   %.pre709 = load ptr, ptr %end_size_.i, align 8, !tbaa !40
@@ -3082,48 +3235,37 @@ bb:
 !68 = !{!69, !1, i64 8}
 !69 = !{!"_ZTS8CSRGraphIiiLb1EE", !13, i64 0, !1, i64 8, !1, i64 16, !6, i64 24, !6, i64 32, !6, i64 40, !6, i64 48}
 !70 = !{!37, !6, i64 16}
-!71 = !{!28, !6, i64 0}
-!72 = !{!73}
-!73 = distinct !{!73, !74, !"_ZSt19__relocate_object_aISt4pairIiiES1_SaIS1_EEvPT_PT0_RT1_: %__orig"}
-!74 = distinct !{!74, !"_ZSt19__relocate_object_aISt4pairIiiES1_SaIS1_EEvPT_PT0_RT1_"}
-!75 = !{!76}
-!76 = distinct !{!76, !74, !"_ZSt19__relocate_object_aISt4pairIiiES1_SaIS1_EEvPT_PT0_RT1_: %__dest"}
-!77 = !{!35, !6, i64 8}
-!78 = !{!35, !6, i64 16}
-!79 = !{!80, !11, i64 4}
-!80 = !{!"_ZTSSt4pairIiiE", !11, i64 0, !11, i64 4}
-!81 = !{!82}
-!82 = distinct !{!82, !83, !"_ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_: %agg.result"}
-!83 = distinct !{!83, !"_ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_"}
-!84 = !{!80, !11, i64 0}
-!85 = !{!86, !1, i64 16}
-!86 = !{!"_ZTS9GeneratorIiiijLi32ESt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EEE", !11, i64 0, !1, i64 8, !1, i64 16}
-!87 = !{!86, !1, i64 8}
-!88 = !{!89}
-!89 = distinct !{!89, !90, !"_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6substrEmm: %agg.result"}
-!90 = distinct !{!90, !"_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6substrEmm"}
-!91 = !{!49, !6, i64 0}
-!92 = !{!49, !1, i64 8}
-!93 = !{!94, !6, i64 240}
-!94 = !{!"_ZTSSt9basic_iosIcSt11char_traitsIcEE", !95, i64 0, !6, i64 216, !2, i64 224, !13, i64 225, !6, i64 232, !6, i64 240, !6, i64 248, !6, i64 256}
-!95 = !{!"_ZTSSt8ios_base", !1, i64 8, !1, i64 16, !96, i64 24, !97, i64 28, !97, i64 32, !6, i64 40, !98, i64 48, !2, i64 64, !11, i64 192, !6, i64 200, !99, i64 208}
-!96 = !{!"_ZTSSt13_Ios_Fmtflags", !2, i64 0}
-!97 = !{!"_ZTSSt12_Ios_Iostate", !2, i64 0}
-!98 = !{!"_ZTSNSt8ios_base6_WordsE", !6, i64 0, !1, i64 8}
-!99 = !{!"_ZTSSt6locale", !6, i64 0}
-!100 = !{!69, !6, i64 24}
-!101 = !{!102}
-!102 = distinct !{!102, !103, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim: %agg.result"}
-!103 = distinct !{!103, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim"}
-!104 = !{!105}
-!105 = distinct !{!105, !106, !"_ZNSt7__cxx119to_stringEi: %agg.result"}
-!106 = distinct !{!106, !"_ZNSt7__cxx119to_stringEi"}
-!107 = !{!108}
-!108 = distinct !{!108, !109, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim: %agg.result"}
-!109 = distinct !{!109, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim"}
-!110 = !{!111, !111, i64 0}
-!111 = !{!"vtable pointer", !3, i64 0}
-!112 = !{!49, !1, i64 24}
-!113 = !{!114, !1, i64 8}
-!114 = !{!"_ZTSNSt24uniform_int_distributionImE10param_typeE", !1, i64 0, !1, i64 8}
-!115 = !{!114, !1, i64 0}
+!71 = !{!72}
+!72 = distinct !{!72, !73, !"_ZSt19__relocate_object_aISt4pairIiiES1_SaIS1_EEvPT_PT0_RT1_: %__orig"}
+!73 = distinct !{!73, !"_ZSt19__relocate_object_aISt4pairIiiES1_SaIS1_EEvPT_PT0_RT1_"}
+!74 = !{!75}
+!75 = distinct !{!75, !73, !"_ZSt19__relocate_object_aISt4pairIiiES1_SaIS1_EEvPT_PT0_RT1_: %__dest"}
+!76 = !{!35, !6, i64 8}
+!77 = !{!35, !6, i64 16}
+!78 = !{!79, !11, i64 4}
+!79 = !{!"_ZTSSt4pairIiiE", !11, i64 0, !11, i64 4}
+!80 = !{!81}
+!81 = distinct !{!81, !82, !"_ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_: %agg.result"}
+!82 = distinct !{!82, !"_ZStplIcSt11char_traitsIcESaIcEENSt7__cxx1112basic_stringIT_T0_T1_EERKS8_PKS5_"}
+!83 = !{!79, !11, i64 0}
+!84 = !{!85, !1, i64 16}
+!85 = !{!"_ZTS9GeneratorIiiijLi32ESt23mersenne_twister_engineImLm32ELm624ELm397ELm31ELm2567483615ELm11ELm4294967295ELm7ELm2636928640ELm15ELm4022730752ELm18ELm1812433253EEE", !11, i64 0, !1, i64 8, !1, i64 16}
+!86 = !{!85, !1, i64 8}
+!87 = !{!88}
+!88 = distinct !{!88, !89, !"_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6substrEmm: %agg.result"}
+!89 = distinct !{!89, !"_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6substrEmm"}
+!90 = !{!49, !6, i64 0}
+!91 = !{!49, !1, i64 8}
+!92 = !{!69, !6, i64 24}
+!93 = !{!94}
+!94 = distinct !{!94, !95, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim: %agg.result"}
+!95 = distinct !{!95, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim"}
+!96 = !{!97}
+!97 = distinct !{!97, !98, !"_ZNSt7__cxx119to_stringEi: %agg.result"}
+!98 = distinct !{!98, !"_ZNSt7__cxx119to_stringEi"}
+!99 = !{!100}
+!100 = distinct !{!100, !101, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim: %agg.result"}
+!101 = distinct !{!101, !"_ZNK8CSRGraphIiiLb1EE9out_neighEim"}
+!102 = !{!103, !1, i64 8}
+!103 = !{!"_ZTSNSt24uniform_int_distributionImE10param_typeE", !1, i64 0, !1, i64 8}
+!104 = !{!103, !1, i64 0}

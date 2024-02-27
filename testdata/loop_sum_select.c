@@ -19,8 +19,8 @@ int main(int argc, char *argv[]) {
       a[i] = rand();
   }
 
-  int result = 0;
-  loop_sum(a, &result, 100000);
-  printf("Sum: %d\n", result);
+  int* result = malloc(sizeof(int));
+  loop_sum(a, result, 100000);
+  printf("Sum: %d\n", *result);
   return 0;
 }

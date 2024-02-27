@@ -3,7 +3,35 @@ rankdir=BT
 subgraph {
 Stats [shape=plaintext]
 cluster=true
-label="Total loads executed: 100002\nTotal stores executed: 200001"
+label="Total loads executed: 100002\nTotal stores executed: 200000"
+}
+subgraph {
+subgraph {
+{
+rank=max
+"1_0" [shape=point style=invis]
+}
+"1_0_26" [label="Add"]
+"1_0_25" [label="Select"]
+"1_0_26" -> "1_0_25"
+"1_0_24" [label="Shl"]
+"1_0_22" [label="Load\n100000"]
+"1_0_24" -> "1_0_22"
+"1_0_23" [label="Add"]
+"1_0_23" -> "1_0_22"
+"1_0_25" -> "1_0_23"
+{
+rank=min
+"1_0_27" [label="Store\n100000"]
+}
+"1_0_27" -> "1_0_26"
+"1_0_25" -> "1_0_24"
+cluster=true
+label="Raw dynamic executions: 100000\nRaw memory operations: 200000\nCaptured memory operations: 66.6%"
+}
+cluster=true
+penwidth=0
+label="Static occurrences: 1\nMemory operations: 200000\nCaptured memory operations: 66.6%\nCumulative: 66.6%\nId: 1"
 }
 subgraph {
 subgraph {
@@ -11,30 +39,31 @@ subgraph {
 rank=max
 "0_0" [shape=point style=invis]
 }
-"0_0_27" [label="Shl"]
-"0_0_25" [label="Load\n0"]
-"0_0_27" -> "0_0_25"
-"0_0_28" [label="Select"]
+"0_0_25" [label="Select"]
+"0_0_23" [label="Add"]
+"0_0_25" -> "0_0_23"
 "0_0_26" [label="Add"]
-"0_0_28" -> "0_0_26"
-"0_0_21" [label="Phi"]
-"0_0_17" [label="Load\n0"]
-"0_0_21" -> "0_0_17"
+"0_0_18" [label="Phi"]
+"0_0_26" -> "0_0_18"
 "0_0_26" -> "0_0_25"
-"0_0_29" [label="Add"]
-"0_0_29" -> "0_0_28"
-"0_0_29" -> "0_0_21"
+"0_0_24" [label="Shl"]
+"0_0_22" [label="Load\n1"]
+"0_0_24" -> "0_0_22"
+"0_0_23" -> "0_0_22"
+"0_0_14" [label="Load\n1"]
+"0_0_18" -> "0_0_14"
 {
 rank=min
-"0_0_30" [label="Store\n0"]
+"0_0_27" [label="Store\n1"]
 }
-"0_0_30" -> "0_0_29"
-"0_0_28" -> "0_0_27"
+"0_0_27" -> "0_0_26"
+"0_0_25" -> "0_0_24"
 cluster=true
 label="Raw dynamic executions: 100000\nRaw memory operations: 200001\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 penwidth=0
-label="Static occurrences: 1\nMemory operations: 0\nCaptured memory operations: 0.0%\nCumulative: 0.0%\nId: 0"
+label="Static occurrences: 1\nMemory operations: 3\nCaptured memory operations: 0.0%\nCumulative: 66.6%\nId: 0"
 }
 }

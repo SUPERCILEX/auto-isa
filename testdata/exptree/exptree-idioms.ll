@@ -36,20 +36,20 @@ bb:
   ret i32 %2
 }
 
-define i32 @"3"(i32 %0, ptr %solution, i64 %idxprom14.i, i32 %1) {
+define i32 @"3"(i32 %working1.0, ptr %combList, i64 %idxprom62) {
 bb:
-  %2 = load ptr, ptr %solution, align 8, !tbaa !0
-  %operation16.i = getelementptr inbounds %struct.Comb, ptr %2, i64 %idxprom14.i, i32 2
-  store i32 %0, ptr %operation16.i, align 4, !tbaa !8
-  ret i32 %0
+  %0 = load ptr, ptr %combList, align 8, !tbaa !0
+  %arrayidx63 = getelementptr inbounds %struct.Comb, ptr %0, i64 %idxprom62
+  store i32 %working1.0, ptr %arrayidx63, align 4, !tbaa !8
+  ret i32 %working1.0
 }
 
 define i32 @"4"(ptr %arrayidx.i, ptr %solution, i64 %indvars.iv.i) {
 bb:
   %0 = load ptr, ptr %solution, align 8, !tbaa !0
   %arrayidx2.i = getelementptr inbounds %struct.Comb, ptr %0, i64 %indvars.iv.i
-  %1 = load i32, ptr %arrayidx.i, align 4, !tbaa !9
-  store i32 %1, ptr %arrayidx2.i, align 4, !tbaa !9
+  %1 = load i32, ptr %arrayidx.i, align 4, !tbaa !8
+  store i32 %1, ptr %arrayidx2.i, align 4, !tbaa !8
   ret i32 %1
 }
 
@@ -78,7 +78,7 @@ define i32 @"7"(ptr %combList, i64 %indvars.iv.i) {
 bb:
   %0 = load ptr, ptr %combList, align 8, !tbaa !0
   %arrayidx.i = getelementptr inbounds %struct.Comb, ptr %0, i64 %indvars.iv.i
-  %1 = load i32, ptr %arrayidx.i, align 4, !tbaa !9
+  %1 = load i32, ptr %arrayidx.i, align 4, !tbaa !8
   ret i32 %1
 }
 
@@ -108,12 +108,23 @@ bb:
   ret i32 %mul.i
 }
 
-define i32 @"10"(ptr %arrayidx32, ptr %combList, i64 %idxprom62) {
+define i32 @"10"(i32 %retval.0.i, ptr %workList, ptr %listLength, i32 %searchDepth) {
+bb:
+  %0 = load ptr, ptr %workList, align 8, !tbaa !0
+  %1 = load i32, ptr %listLength, align 4, !tbaa !4
+  %add73 = add nsw i32 %1, %searchDepth
+  %idxprom74 = sext i32 %add73 to i64
+  %arrayidx75 = getelementptr inbounds i32, ptr %0, i64 %idxprom74
+  store i32 %retval.0.i, ptr %arrayidx75, align 4, !tbaa !4
+  ret i32 %retval.0.i
+}
+
+define i32 @"11"(ptr %arrayidx32, ptr %combList, i64 %idxprom62) {
 bb:
   %0 = load i32, ptr %arrayidx32, align 4, !tbaa !4
   %1 = load ptr, ptr %combList, align 8, !tbaa !0
   %arrayidx63 = getelementptr inbounds %struct.Comb, ptr %1, i64 %idxprom62
-  store i32 %0, ptr %arrayidx63, align 4, !tbaa !9
+  store i32 %0, ptr %arrayidx63, align 4, !tbaa !8
   ret i32 %0
 }
 
@@ -125,5 +136,4 @@ bb:
 !5 = !{!"int", !2, i64 0}
 !6 = !{!7, !5, i64 4}
 !7 = !{!"", !5, i64 0, !5, i64 4, !5, i64 8}
-!8 = !{!7, !5, i64 8}
-!9 = !{!7, !5, i64 0}
+!8 = !{!7, !5, i64 0}
