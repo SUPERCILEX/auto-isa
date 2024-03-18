@@ -11,17 +11,13 @@ def process_csv(csv_file):
 
 def plot_cdf(data):
     plt.figure(figsize=(10, 6))
-    max_stable_index = 0  # Initialize max_stable_index to keep track of overall x-axis cutoff
     for filename, cdf_values in sorted(data.items()):
-        # Find the point at which the line stops changing
-        max_stable_index = max(max_stable_index, cdf_values.argmax())
         plt.plot(np.array(cdf_values.index), np.array(cdf_values.values), label=os.path.splitext(filename)[0])
 
     plt.xlabel('Number of parameters')
     plt.ylabel('Captured memory operations (%)')
     plt.legend()
     plt.xticks(data[list(data.keys())[0]].index)
-    plt.xlim(0, max_stable_index)
     plt.title('CDF of captured memory operation by parameter count')
     plt.grid(True)
     plt.savefig('docs/cdf-param-count.svg', format='svg')
@@ -36,7 +32,6 @@ def plot_cdf(data):
     plt.ylabel('Captured memory operations')
     plt.legend()
     plt.xticks(data[list(data.keys())[0]].index)
-    plt.xlim(0, max_stable_index)
     plt.title('Normalized CDF of captured memory operation by parameter count')
     plt.grid(True)
     plt.savefig('docs/cdf-param-count-normalized.svg', format='svg')
