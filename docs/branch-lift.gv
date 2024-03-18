@@ -1,0 +1,33 @@
+strict digraph {
+rankdir=BT
+
+subgraph cluster_pre_split {
+L1 [label="Load"]
+L2 [label="Load"]
+B [label="Branch"]
+S [label="Store"]
+
+S -> B
+B -> L1
+B -> L2
+}
+
+subgraph cluster_split_a {
+L1a [label="Load"]
+S1 [label="Store"]
+
+S1 -> L1a
+}
+
+subgraph cluster_split_b {
+L2b [label="Load"]
+S2 [label="Store"]
+
+S2 -> L2b
+}
+
+Bs [label="Branch"]
+Bs -> S1
+Bs -> S2
+
+}

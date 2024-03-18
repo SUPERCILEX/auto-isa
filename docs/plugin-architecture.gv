@@ -1,0 +1,12 @@
+strict digraph {
+    node [shape=box]
+
+    "Compile program to LLVM IR" -> "Identify idioms"
+    "Identify idioms" -> "Generate idiom IR"
+    "Generate idiom IR" -> "Compile to RISC-V"
+    "Identify idioms" -> "Generate instrumentation"
+    "Generate instrumentation" -> "Run instrumented program"
+    "Run instrumented program" -> "Analyze dynamic memory traffic"
+    "Identify idioms" -> "Analyze dynamic memory traffic"
+    "Analyze dynamic memory traffic" -> "Generate reports"
+}

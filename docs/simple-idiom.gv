@@ -1,0 +1,9 @@
+strict digraph {
+    rankdir=BT
+    
+    0 [label=Load]
+    1 [label=Load]
+    Add -> 0
+    Add -> 1
+    Store -> Add
+}
