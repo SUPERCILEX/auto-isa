@@ -376,13 +376,15 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
                     ivv_pool.release(v);
                 }
 
-                writeln!(
-                    csv,
-                    "{total_executed_mem_ops},{num_params},{num_instructions},{},\
-                     {deduplicated_total_counts},{idiom_id}_{compute_unit_id}",
-                    cu.memory_ops.len()
-                )
-                .unwrap();
+                if deduplicated_total_counts != 0 {
+                    writeln!(
+                        csv,
+                        "{total_executed_mem_ops},{num_params},{num_instructions},{},\
+                         {deduplicated_total_counts},{idiom_id}_{compute_unit_id}",
+                        cu.memory_ops.len()
+                    )
+                    .unwrap();
+                }
             }
             seen.clear();
 
