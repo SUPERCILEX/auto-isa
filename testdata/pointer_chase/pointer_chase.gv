@@ -42,6 +42,7 @@ rank=min
 "0_0_8" -> "0_0_7"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 penwidth=0
@@ -93,6 +94,7 @@ rank=min
 "2_0_12" -> "2_0_4"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
+color=red
 }
 cluster=true
 penwidth=0

@@ -330,9 +330,9 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
             }
             first = false;
 
-            let mut deduplicated_total_counts = counts[&ids[&cu.root.as_value_ref()]];
+            let mut deduplicated_total_counts = 0;
             seen.clear();
-            for instr in cu.memory_ops.iter().filter(|&&instr| instr != cu.root) {
+            for instr in &cu.memory_ops {
                 seen.insert(instr.as_value_ref());
             }
             let uses_mem_instruction_from_previous_idioms = {

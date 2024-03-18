@@ -2412,6 +2412,7 @@ rank=min
 "39_2_731" -> "39_2_730"
 cluster=true
 label="Raw dynamic executions: 18000268\nRaw memory operations: 38250573\nCaptured memory operations: 0.4%"
+color=red
 }
 subgraph {
 {
@@ -2463,6 +2464,7 @@ rank=min
 "39_0_342" -> "39_0_320"
 cluster=true
 label="Raw dynamic executions: 18000120\nRaw memory operations: 38250255\nCaptured memory operations: 0.4%"
+color=red
 }
 cluster=true
 penwidth=0
