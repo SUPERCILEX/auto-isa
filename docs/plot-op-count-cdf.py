@@ -35,7 +35,7 @@ def plot_cdf_from_directory(directory):
 
     # Customize plot
     plt.xscale('log')
-    plt.xlabel('Number of idioms')
+    plt.xlabel('Number of idiom instances')
     plt.ylabel('Captured memory operations (%)')
     plt.title('CDF of captured memory operations')
     plt.legend()
@@ -59,7 +59,7 @@ def plot_cdf_from_directory(directory):
 
     # Customize plot
     plt.xscale('log')
-    plt.xlabel('Number of idioms')
+    plt.xlabel('Number of idiom instances')
     plt.ylabel('Captured memory operations')
     plt.title('Normalized CDF of captured memory operations')
     plt.legend()
