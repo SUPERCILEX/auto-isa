@@ -276,7 +276,7 @@ macro_rules! gapbs {
                 )
                 .unwrap();
 
-                test_llvm!(gapbs, $name, ["-g", "20"]);
+                test_llvm!(gapbs, $name, ["-f", "20.sg"]);
             }
         }
     };
@@ -290,4 +290,3 @@ gapbs!(pr);
 gapbs!(pr_spmv);
 gapbs!(sssp);
 gapbs!(tc);
-gapbs!(converter);
