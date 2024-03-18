@@ -281,7 +281,7 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
     writeln!(
         csv,
         "total_memory_ops,num_parameters,num_instructions,num_memory_instructions,\
-         memory_ops_in_idiom,id"
+         memory_ops_in_idiom,idiom_id,compute_unit_id"
     )
     .unwrap();
 
@@ -380,7 +380,7 @@ fn print_compute_units<'ctx, S: BuildHasher + Default>(
                     writeln!(
                         csv,
                         "{total_executed_mem_ops},{num_params},{num_instructions},{},\
-                         {deduplicated_total_counts},{idiom_id}_{compute_unit_id}",
+                         {deduplicated_total_counts},{idiom_id},{compute_unit_id}",
                         cu.memory_ops.len()
                     )
                     .unwrap();
