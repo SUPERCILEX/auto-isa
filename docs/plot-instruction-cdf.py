@@ -16,7 +16,6 @@ def plot_cdf(data):
         # Find the point at which the line stops changing
         max_stable_index = max(max_stable_index, cdf_values.argmax())
         plt.plot(np.array(cdf_values.index), np.array(cdf_values.values), label=os.path.splitext(filename)[0])
-    max_stable_index = 17
 
     plt.xlabel('Number of instructions')
     plt.ylabel('Captured memory operations (%)')
