@@ -7,6 +7,5 @@ strict digraph {
     "Identify idioms" -> "Generate instrumentation"
     "Generate instrumentation" -> "Run instrumented program"
     "Run instrumented program" -> "Analyze dynamic memory traffic"
-    "Identify idioms" -> "Analyze dynamic memory traffic"
     "Analyze dynamic memory traffic" -> "Generate reports"
 }
