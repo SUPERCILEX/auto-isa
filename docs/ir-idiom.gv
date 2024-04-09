@@ -1,0 +1,27 @@
+strict digraph {
+rankdir=BT
+{
+rank=min
+"40" [label="Store"]
+}
+"39" [label="%storemerge"]
+"40" -> "39"
+"36" [label="%add4"]
+"35" [label="Load"]
+"36" -> "35"
+"37" [label="%add5"]
+"25" [label="%storemerge1112"]
+"37" -> "25"
+"21" [label="Load"]
+"25" -> "21"
+"39" -> "37"
+"37" -> "36"
+
+"40" -> "39"
+"32" [label="%add"]
+"39" -> "32"
+"31" [label="%mul"]
+"32" -> "31"
+"30" [label="Load"]
+"31" -> "30"
+}
