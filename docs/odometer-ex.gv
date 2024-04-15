@@ -1,0 +1,22 @@
+strict digraph {
+rankdir=BT
+
+"Branch 1" -> "Load 1"
+"Branch 1" -> "Load 3"
+"Branch 2" -> "Branch 1"
+"Branch 2" -> "Load 2"
+"Branch 2" -> "Load 6"
+"Store" -> "Add"
+"Add" -> "Branch 2"
+"Add" -> "Branch 3"
+"Branch 3" -> "Load 4"
+"Branch 3" -> "Load 5"
+
+"Load 1" [label="Load" style=bold]
+"Load 2" [label="Load" style=bold]
+"Load 3" [label="Load"]
+"Load 4" [label="Load"]
+"Load 5" [label="Load" style=bold]
+"Load 6" [label="Load"]
+
+}
