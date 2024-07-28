@@ -2,7 +2,22 @@
 source_filename = "dt-idioms"
 target triple = "riscv64"
 
-define double @"0"(ptr %dvec2, i64 %i.012.i) {
+define double @"0"(ptr %dvec1) {
+bb:
+  %0 = load ptr, ptr %dvec1, align 8, !tbaa !0
+  %1 = load double, ptr %0, align 8, !tbaa !4
+  ret double %1
+}
+
+define double @"1"(double %mul, ptr %dvec1, i64 %i.018) {
+bb:
+  %0 = load ptr, ptr %dvec1, align 8, !tbaa !0
+  %arrayidx = getelementptr inbounds double, ptr %0, i64 %i.018
+  store double %mul, ptr %arrayidx, align 8, !tbaa !4
+  ret double %mul
+}
+
+define double @"2"(ptr %dvec2, i64 %i.012.i) {
 bb:
   %0 = load ptr, ptr %dvec2, align 8, !tbaa !0
   %arrayidx.i = getelementptr inbounds double, ptr %0, i64 %i.012.i
@@ -10,30 +25,15 @@ bb:
   ret double %1
 }
 
-define double @"1"(ptr %dvec1) {
+define double @"3"(ptr %arrayidx4.i, ptr %arrayidx.i, ptr %dvec1, i64 %i.012.i) {
 bb:
-  %0 = load ptr, ptr %dvec1, align 8, !tbaa !0
-  %1 = load double, ptr %0, align 8, !tbaa !4
-  ret double %1
-}
-
-define double @"2"(ptr %arrayidx4.i, ptr %arrayidx.i, ptr %dvec1, i64 %i.012.i) {
-bb:
-  %0 = load ptr, ptr %dvec1, align 8, !tbaa !0
-  %arrayidx4.i2 = getelementptr inbounds double, ptr %0, i64 %i.012.i
+  %0 = load double, ptr %arrayidx.i, align 8, !tbaa !4, !alias.scope !6, !noalias !9
   %1 = load double, ptr %arrayidx4.i, align 8, !tbaa !4, !alias.scope !9, !noalias !6
-  %2 = load double, ptr %arrayidx.i, align 8, !tbaa !4, !alias.scope !6, !noalias !9
-  %div.i = fdiv double %1, %2
+  %div.i = fdiv double %1, %0
+  %2 = load ptr, ptr %dvec1, align 8, !tbaa !0
+  %arrayidx4.i2 = getelementptr inbounds double, ptr %2, i64 %i.012.i
   store double %div.i, ptr %arrayidx4.i, align 8, !tbaa !4, !alias.scope !9, !noalias !6
   ret double %div.i
-}
-
-define double @"3"(double %mul, ptr %dvec1, i64 %i.018) {
-bb:
-  %0 = load ptr, ptr %dvec1, align 8, !tbaa !0
-  %arrayidx = getelementptr inbounds double, ptr %0, i64 %i.018
-  store double %mul, ptr %arrayidx, align 8, !tbaa !4
-  ret double %mul
 }
 
 !0 = !{!1, !1, i64 0}

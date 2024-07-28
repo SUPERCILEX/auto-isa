@@ -11,20 +11,20 @@ subgraph {
 rank=max
 "0_0" [shape=point style=invis]
 }
-"0_0_29" [label="Or"]
-"0_0_28" [label="Select"]
-"0_0_29" -> "0_0_28"
+"0_0_26" [label="Add"]
+"0_0_25" [label="Load\n4960000000"]
+"0_0_26" -> "0_0_25"
 {
 rank=min
 "0_0_31" [label="Store\n4960000000"]
 }
+"0_0_29" [label="Or"]
 "0_0_31" -> "0_0_29"
-"0_0_25" [label="Load\n4960000000"]
-"0_0_29" -> "0_0_25"
-"0_0_26" [label="Add"]
-"0_0_26" -> "0_0_25"
+"0_0_28" [label="Select"]
+"0_0_29" -> "0_0_28"
 "0_0_27" [label="ICmp"]
 "0_0_27" -> "0_0_26"
+"0_0_29" -> "0_0_25"
 "0_0_28" -> "0_0_27"
 cluster=true
 label="Raw dynamic executions: 4960000000\nRaw memory operations: 9920000000\nCaptured memory operations: 100.0%"

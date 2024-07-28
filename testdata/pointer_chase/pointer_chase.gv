@@ -54,14 +54,18 @@ subgraph {
 rank=max
 "1_0" [shape=point style=invis]
 }
-"1_0_9" [label="GetElementPtr"]
-"1_0_7" [label="Load\n0"]
-"1_0_9" -> "1_0_7"
+"1_0_12" [label="Add"]
+"1_0_11" [label="Add"]
+"1_0_12" -> "1_0_11"
 {
 rank=min
-"1_0_10" [label="Load\n0"]
+"1_0_13" [label="Store\n0"]
 }
-"1_0_10" -> "1_0_9"
+"1_0_13" -> "1_0_12"
+"1_0_10" [label="Load\n0"]
+"1_0_11" -> "1_0_10"
+"1_0_8" [label="Load\n0"]
+"1_0_11" -> "1_0_8"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
 color=red
@@ -76,22 +80,22 @@ subgraph {
 rank=max
 "2_0" [shape=point style=invis]
 }
+"2_0_12" [label="Add"]
+"2_0_11" [label="Add"]
+"2_0_12" -> "2_0_11"
+"2_0_4" [label="Phi"]
+"2_0_12" -> "2_0_4"
 {
 rank=min
 "2_0_13" [label="Store\n0"]
 }
-"2_0_12" [label="Add"]
 "2_0_13" -> "2_0_12"
-"2_0_11" [label="Add"]
-"2_0_8" [label="Load\n0"]
-"2_0_11" -> "2_0_8"
 "2_0_10" [label="Load\n0"]
 "2_0_11" -> "2_0_10"
-"2_0_4" [label="Phi"]
+"2_0_8" [label="Load\n0"]
+"2_0_11" -> "2_0_8"
 "2_0_2" [label="Load\n0"]
 "2_0_4" -> "2_0_2"
-"2_0_12" -> "2_0_11"
-"2_0_12" -> "2_0_4"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
 color=red
@@ -106,18 +110,14 @@ subgraph {
 rank=max
 "3_0" [shape=point style=invis]
 }
-"3_0_11" [label="Add"]
-"3_0_8" [label="Load\n0"]
-"3_0_11" -> "3_0_8"
 {
 rank=min
-"3_0_13" [label="Store\n0"]
-}
-"3_0_12" [label="Add"]
-"3_0_13" -> "3_0_12"
 "3_0_10" [label="Load\n0"]
-"3_0_11" -> "3_0_10"
-"3_0_12" -> "3_0_11"
+}
+"3_0_9" [label="GetElementPtr"]
+"3_0_10" -> "3_0_9"
+"3_0_7" [label="Load\n0"]
+"3_0_9" -> "3_0_7"
 cluster=true
 label="Raw dynamic executions: 0\nRaw memory operations: 0\nCaptured memory operations: 0.0%"
 color=red

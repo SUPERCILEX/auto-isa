@@ -17,14 +17,14 @@ rank=max
 "1_0_24" [label="Shl"]
 "1_0_22" [label="Load\n100000"]
 "1_0_24" -> "1_0_22"
-"1_0_23" [label="Add"]
-"1_0_23" -> "1_0_22"
-"1_0_25" -> "1_0_23"
 {
 rank=min
 "1_0_27" [label="Store\n100000"]
 }
 "1_0_27" -> "1_0_26"
+"1_0_23" [label="Add"]
+"1_0_25" -> "1_0_23"
+"1_0_23" -> "1_0_22"
 "1_0_25" -> "1_0_24"
 cluster=true
 label="Raw dynamic executions: 100000\nRaw memory operations: 200000\nCaptured memory operations: 66.6%"
@@ -39,25 +39,25 @@ subgraph {
 rank=max
 "0_0" [shape=point style=invis]
 }
-"0_0_25" [label="Select"]
-"0_0_23" [label="Add"]
-"0_0_25" -> "0_0_23"
 "0_0_26" [label="Add"]
-"0_0_18" [label="Phi"]
-"0_0_26" -> "0_0_18"
+"0_0_25" [label="Select"]
 "0_0_26" -> "0_0_25"
 "0_0_24" [label="Shl"]
 "0_0_22" [label="Load\n1"]
 "0_0_24" -> "0_0_22"
-"0_0_23" -> "0_0_22"
-"0_0_14" [label="Load\n1"]
-"0_0_18" -> "0_0_14"
 {
 rank=min
 "0_0_27" [label="Store\n1"]
 }
 "0_0_27" -> "0_0_26"
+"0_0_23" [label="Add"]
+"0_0_25" -> "0_0_23"
+"0_0_23" -> "0_0_22"
+"0_0_18" [label="Phi"]
+"0_0_26" -> "0_0_18"
 "0_0_25" -> "0_0_24"
+"0_0_14" [label="Load\n1"]
+"0_0_18" -> "0_0_14"
 cluster=true
 label="Raw dynamic executions: 100000\nRaw memory operations: 200001\nCaptured memory operations: 0.0%"
 color=red

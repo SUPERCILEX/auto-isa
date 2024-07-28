@@ -8,7 +8,7 @@ publish = false
 either = "1.13.0"
 itoa = "1.0.11"
 llvm-plugin = { version = "0.5.0", features = ["llvm17-0"] }
-rustc-hash = "1.1.0"
+rustc-hash = "2.0.0"
 rustix = { version = "0.38.34", features = ["runtime", "process", "stdio"] }
 tracy-client = { version = "0.17.1", optional = true }
 
