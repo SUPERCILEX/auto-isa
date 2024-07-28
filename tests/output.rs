@@ -240,15 +240,16 @@ fn graphs() {
             .args(["main.cpp", "-o", "graphs.ll"])
             .current_dir("testdata/graphs")
     )
-    .status()
-    .unwrap()
-    .exit_ok()
-    .unwrap();
+        .status()
+        .unwrap()
+        .exit_ok()
+        .unwrap();
 
     test_llvm!(
         graphs,
         graphs,
         [
+            // Download from https://snap.stanford.edu/data/ego-Gplus.html
             "gplus_combined.txt",
             "116601386475273901307",
             "112922373559516660837",
@@ -278,7 +279,15 @@ macro_rules! gapbs {
                 )
                 .unwrap();
 
-                test_llvm!(gapbs, $name, ["-f", "20.sg"]);
+                test_llvm!(
+                     gapbs,
+                     $name,
+                     [
+                         "-f",
+                         // Create with ./converter -w -g 20 -b ../20.sg
+                         "20.sg"
+                     ]
+                 );
             }
         }
     };
