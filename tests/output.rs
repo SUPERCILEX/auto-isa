@@ -283,8 +283,13 @@ macro_rules! gapbs {
                      $name,
                      [
                          "-f",
-                         // Create with ./converter -w -g 20 -b ../20.sg
-                         "20.sg"
+                         if stringify!($name) == "sssp" {
+                             // Create with ./converter -w -g 20 -b ../20.wsg
+                             "20.wsg"
+                         } else {
+                             // Create with ./converter -g 20 -b ../20.sg
+                             "20.sg"
+                         }
                      ]
                  );
             }
