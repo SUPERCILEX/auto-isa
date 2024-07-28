@@ -131,6 +131,8 @@ macro_rules! test_llvm {
                 .current_dir(dir)
         )
         .status()
+        .unwrap()
+        .exit_ok()
         .unwrap();
 
         dbg_command!(
