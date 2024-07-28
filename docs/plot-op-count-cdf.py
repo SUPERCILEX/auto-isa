@@ -41,7 +41,7 @@ def plot_cdf_from_directory(directory):
     plt.title('CDF of captured memory operations')
     plt.legend()
     plt.grid(True)
-    plt.savefig('docs/cdf-op-count.svg', format='svg')
+    plt.savefig('docs/paper/cdf-op-count.svg', format='svg')
     plt.close()  # Close the plot to avoid overlapping with the next plot
 
     # Plot normalized CDF for each CSV file
@@ -65,7 +65,7 @@ def plot_cdf_from_directory(directory):
     plt.title('Normalized CDF of captured memory operations')
     plt.legend()
     plt.grid(True)
-    plt.savefig('docs/cdf-op-count-normalized.svg', format='svg')
+    plt.savefig('docs/paper/cdf-op-count-normalized.svg', format='svg')
 
 directory_path = 'testdata/gapbs'
 plot_cdf_from_directory(directory_path)

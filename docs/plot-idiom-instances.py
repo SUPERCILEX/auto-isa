@@ -54,4 +54,4 @@ for i, file in enumerate(csv_files):
 plt.tight_layout()
 
 # Show plot
-plt.savefig('docs/idiom-instance-breakdown.svg', format='svg')
+plt.savefig('docs/paper/idiom-instance-breakdown.svg', format='svg')

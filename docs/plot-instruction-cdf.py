@@ -21,7 +21,7 @@ def plot_cdf(data):
     plt.xticks(data[list(data.keys())[0]].index)
     plt.title('CDF of captured memory operation by instruction count')
     plt.grid(True)
-    plt.savefig('docs/cdf-instruction-count.svg', format='svg')
+    plt.savefig('docs/paper/cdf-instruction-count.svg', format='svg')
 
     # Create a separate plot for normalized data
     plt.figure(figsize=(10, 6))
@@ -35,7 +35,7 @@ def plot_cdf(data):
     plt.xticks(data[list(data.keys())[0]].index)
     plt.title('Normalized CDF of captured memory operation by instruction count')
     plt.grid(True)
-    plt.savefig('docs/cdf-instruction-count-normalized.svg', format='svg')
+    plt.savefig('docs/paper/cdf-instruction-count-normalized.svg', format='svg')
 
 def main(directory):
     data = {}

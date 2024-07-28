@@ -51,4 +51,4 @@ for i, txt in enumerate(file_names):
     plt.text(total_memory_ops_values[i] * 1.1, num_rows_values[i], txt, fontsize=10, va='top')
 
 plt.tight_layout()
-plt.savefig('docs/total-memory-ops.svg', format='svg')
+plt.savefig('docs/paper/total-memory-ops.svg', format='svg')
