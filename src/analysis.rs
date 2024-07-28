@@ -262,7 +262,6 @@ fn generate_dropped_phi_idioms<'ctx, S: BuildHasher + Default + Clone>(
     temp_idioms.into_iter().collect_into(idioms);
 }
 
-#[allow(clippy::too_many_arguments)]
 fn build_dropped_phis_compute_unit<'ctx, S: BuildHasher>(
     root: InstructionValue<'ctx>,
     full_graph: &HashMap<InstructionId, Vec<InstructionId>, S>,
@@ -501,7 +500,6 @@ fn did_odometer_overflow(
     }
 }
 
-#[allow(clippy::too_many_arguments)]
 fn build_filtered_compute_unit<'ctx, S: BuildHasher>(
     root: InstructionId,
     full_graph: &HashMap<InstructionId, Vec<InstructionId>, S>,

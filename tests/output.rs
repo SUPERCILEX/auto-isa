@@ -173,7 +173,6 @@ macro_rules! test_llvm {
 macro_rules! test {
     ($name:ident, $ext:expr) => {
         #[test]
-        #[allow(clippy::too_many_lines)]
         fn $name() {
             let dir = concat!("testdata/", stringify!($name));
             create_dir_all(dir).unwrap();

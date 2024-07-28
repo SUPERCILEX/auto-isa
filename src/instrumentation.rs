@@ -297,7 +297,6 @@ impl<S> Cache<S> {
     }
 }
 
-#[allow(clippy::too_many_lines)]
 fn count_output_ops<'ctx, S: BuildHasher + Default>(
     module: &Module<'ctx>,
     incr_fn: FunctionValue<'ctx>,

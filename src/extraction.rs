@@ -64,7 +64,6 @@ impl<'ctx, S> Cache<'ctx, S> {
     }
 }
 
-#[allow(clippy::too_many_lines)]
 pub fn extract_compute_units<'ctx, S: BuildHasher + Default>(
     State { ids, ids_index }: &State<'ctx, S>,
     idioms: &[Idiom<'ctx, S>],
@@ -250,7 +249,6 @@ fn extract_params<'ctx, S: BuildHasher>(
     }
 }
 
-#[allow(clippy::too_many_arguments)]
 fn add_instructions<'ctx, S: BuildHasher>(
     root: InstructionId,
     full_graph: &HashMap<InstructionId, Vec<InstructionId>, S>,

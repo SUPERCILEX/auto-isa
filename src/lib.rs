@@ -222,7 +222,6 @@ fn read_dynamic_counts<S: BuildHasher + Default + Clone>(
     }
 }
 
-#[allow(clippy::too_many_lines)]
 fn print_compute_units<'ctx, S: BuildHasher + Default>(
     module: &Module<'ctx>,
     State { ids, ids_index }: &State<'ctx, S>,
