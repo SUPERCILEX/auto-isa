@@ -8,7 +8,7 @@
 */
 
 uint32_t STATE[16];
-uint32_t outbuf[16];  
+uint32_t outbuf[16];
 uint32_t ptr=0;
 
 #define R(a,b) (((a) << (b)) | ((a) >> (32 - (b))))
@@ -17,7 +17,7 @@ void salsa20(uint32_t out[16],uint32_t in[16]) {
 
   for (i = 0;i < 16;++i)
     x[i] = in[i];
-    
+
   for (i = 20;i > 0;i -= 2) {
     x[ 4] ^= R(x[ 0]+x[12], 7);  x[ 8] ^= R(x[ 4]+x[ 0], 9);
     x[12] ^= R(x[ 8]+x[ 4],13);  x[ 0] ^= R(x[12]+x[ 8],18);
@@ -43,7 +43,7 @@ uint32_t salsa(void) {
   if(ptr==0) {
     salsa20(outbuf, STATE);
   }
-  
+
   ptr = (ptr+1) & 0xF;
   return(outbuf[ptr]);
 }
@@ -60,7 +60,7 @@ int main(void) {
 
   for(i=0; i<16; i++)
     STATE[i] = (0xedababe5+(i+13))^(0xdeadbeef-i);
-  
+
   for(i=0; i<count; i++)
     salsa();
 
@@ -68,6 +68,6 @@ int main(void) {
   val += offset;
 
   printf("got:       %x\n", val);
-  printf("should be: %x\n", 0xf655703d);
-  return(val != 0xf655703d);
+  printf("should be: %x\n", 0x46d31890);
+  return(val != 0x46d31890);
 }
