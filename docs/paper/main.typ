@@ -2,13 +2,13 @@
 
 #show: ieee.with(
   conference: "micro",
-  title: [AutoISA: Automatically Designing Instruction Sets],
+  title: [AutoISA: Automatically Designing Instruction Set Extensions],
   abstract: [
     Modern rack-scale computer systems consist of thousands of processing devices.
     Typically heterogeneous, with unique ISAs for CPUs, GPUs, ML accelerators and possibly more esoteric devices such as PIM and in-network compute.
     Classically, architects design the Instruction Set Architecture (ISA) for each of these devices in a forward directed manner: envision an ISA and build it, port software to it, then revise and expand that ISA over time.
-    This paper describes our work in designing ISAs automatically and in the reverse direction: starting from the applications we wish to run on our computer system, we envision a blank ISA for each processing device, compile applications to fundamental operations (add, mul, or, etc.), and then automatically identify a useful ISA.
-    
+    This paper describes our work in designing ISAs automatically and in the reverse direction: starting from the applications we wish to run on our computer system, we envision a blank base ISA for each processing device, compile applications to fundamental operations (add, mul, or, etc.), and then automatically identify a useful ISA extension.
+
     Applied to the task of in-(or near-)memory acceleration, we find two surprising results: (1) only around a dozen complex instructions are necessary to accelerate 90-100% of an application's optimizable memory operations (which for most of our applications is 70-90% of their memory traffic); and (2) there is substantial commonality in instructions generated across different applications.
     Approximately half of the top-5 code patterns are shared across all applications.
     Both of these results are encouraging as it means we can build simple, small processing devices for large distributed systems and focus our attention on designing for this much smaller and targeted ISA.
@@ -28,6 +28,7 @@
 
 #import "@preview/algo:0.3.3": algo, i, d, comment, code
 
+#let todo(content) = [#text(fill: red)[TODO]\(#emph(content))]
 #set figure(placement: auto)
 #show emoji.checkmark.box: set text(font: "Twitter Color Emoji")
 #show emoji.checkmark.heavy: set text(font: "Twitter Color Emoji")
@@ -56,7 +57,7 @@ We narrow the work to this focus because: (1) while architects have studied this
 The remainder of the paper focuses primarily on accelerating memory operations in shared memory systems.
 We,
 - provide the context for memory acceleration,
-- detail the process through which candidate instructions for an ISA are found with a step-by-step break down of our compiler plugin, 
+- detail the process through which candidate instructions for an ISA are found with a step-by-step break down of our compiler plugin,
 - analyze the results on a shared memory benchmark suite,
 - and conclude with our thoughts on pushing our approach to ISA design beyond memory acceleration.
 
@@ -65,21 +66,22 @@ We,
 While our method for creating ISAs from application code is general, this paper presents work that is focused on designing ISAs for a Partitioned Global Address Space (PGAS) supercomputer.  We focus on graph algorithms which have relatively low spatial and temporal locality; a large fraction of cores in this cluster can be left idle waiting for memory operations to complete.
 Counter intuitively, however, even graph algorithms have substantial amounts of locality when they are actually implemented in real programming languages.
 The threaded runtime necessary to support the entire application means a large fraction of instructions are runtime and thread local (eg. call stack).
-To summarize, most memory operations and compute instructions will be local to a compute node; however, most stalls and actual CPU time spent in a large system, are due to non-local memory access stalls that are intrinsic to algorithmic behavior and cannot be avoided.  
+To summarize, most memory operations and compute instructions will be local to a compute node; however, most stalls and actual CPU time spent in a large system, are due to non-local memory access stalls that are intrinsic to algorithmic behavior and cannot be avoided.
 
 We use a simplified performance model to guide our compiler work.  Executing one RISC-V instruction costs latency $1$; accessing node-local memory costs latency $100$; and accessing remote memory costs latency $1000$.
 The reader can safely assume nanosecond as the base unit (e.g. a CPU clock speed of 1GHz).
 
 When the cost (latency and/or energy) of data movement vastly exceeds the cost of compute, optimizing ISAs for data movement is beneficial.
 For example, consider something as straightforward as `++a[i]`, where `a[i]` is off-node.
-Moving data to compute requires a fetch, an increment and a writeback, for $~2202$ cycles, given the simplified latency model presented in the previous section.
+Moving data to compute requires a fetch, an increment and a write-back, for $~2202$ cycles, given the simplified latency model presented in the previous section.
 Moving compute to data lowers this cost to between $~202$ to $~1202$ depending on the parallelization, synchronization and consistency model.
+In addition to latency improvements, the reduced inter-node communication offers energy and bandwidth savings that may be more important for overall system performance when data center power is the limiting factor.
 
 Consider three more complex examples:
 + two arrays $a, b$ with a transformation $b_i = f(a_i)$ where $f$ is an element-wise mapping (such as the identity for copies).
-  Fetch and writeback overhead are especially pronounced for simple $f$, more so when $a$ and $b$ are not stored on the compute node.
-  Suppose $f$ takes $50$ cycles: each loop iteration must fetch $a_i$, run $f$, and writeback to $b_i$, for a total of $2050$ cycles (ignoring the amortized cost of loading the $a$ and $b$ pointers).
-  Should the two arrays be local, the latency would be reduced to $250$ cycles.
+  Fetch and write-back overhead are especially pronounced for simple $f$, more so when $a$ and $b$ are not stored on the compute node.
+  Suppose $f$ takes $50$ cycles: each loop iteration must fetch $a_i$, run $f$, and write-back to $b_i$, for a total of $2050$ cycles (ignoring the amortized cost of loading the $a$ and $b$ pointers).
+  Should the two arrays be local, the latency per iteration would be reduced to $250$ cycles.
 + a 2D vector, e.g. `struct vec { capacity, len, data: *struct vec }`.
   Each element in the top-level array contains pointers to the sub-arrays, leading to indirect accesses whose intermediary data is not necessarily needed.
   For example, there is no need to move `vec.data[42]` off-node to read `vec.data[42].data[88]`.
@@ -100,6 +102,11 @@ Examining the load dependent loads, we find that a core must send and receive fo
 //Load dependent stores are similar except that in some consistency models, they need not wait for confirmation that the store was committed (hence could use a minimum of 3 packets).
 Near-memory compute with the capability to execute these application patterns can reduce by 50% or 25% the number of remote memory operations (@round-trip-requests and @triangle-requests).
 
+Importantly, all idioms can take advantage of the savings in @round-trip-requests and @triangle-requests so long as their data is not on a core-local stack.
+The node's memory controller will bundle any available arguments with the idiom before routing it to the next node to do the same, repeating this process until all arguments are available at which time the idiom can be executed on the last node in the chain.
+As the idiom gets filled, argument memory addresses are replaced with their data (using a filled argument bit).
+Bouncing the idiom from node to node is efficient so long as the bandwidth costs of doing so are cheaper than the extra packets data requests would generate; if the system is bandwidth constrained, a node can choose to execute the idiom normally by requesting data from remote nodes, while another option could be to implement dynamic sub-idiom extraction and execute small chunks of the idiom in parallel.
+
 == Why automation?
 
 The best way to get the day-to-day programmer to take full advantage of hardware capabilities is to develop frameworks and automation that exploit the hardware for them.
@@ -107,7 +114,7 @@ Consider the success of machine learning frameworks' ability to bring GPU progra
 Many programmers have never vectorized code, let alone written a compute shader---abstracting away these hardware optimizations has made machine learning accessible to the masses.
 Rather than require the programmer to think of their memory-to-compute locality and drop down into assembly or compiler intrinsics to use potentially obtuse remote compute operations, we argue the most effective approach is to automate their discovery, implementation, and use.
 Our goal is therefore to find any pattern of dependent memory operations and compute and emit a compiled program in such a way that it can automatically utilize remote compute and memory access capabilities.
-We'll then trim these instructions down to a realistically implementable set that provides broad application coverage.
+Since we find that these patterns are broadly shared across applications, we wish to define an ISA for them.
 
 = ISA Extraction
 
@@ -191,11 +198,11 @@ In our test program IR, the terminating load has two dependencies with some inte
   ```llvm
   define @PageRankPullGS(...) {
   ...
-  
+
   invoke.cont7.lr.ph:
     %7 = load ptr, ptr %outgoing_contrib
     ...
-  
+
   for.body:
     %20 = load i32, ptr %__begin3.078
     %conv13 = sext i32 %20 to i64
@@ -238,6 +245,7 @@ Note that only dependencies beginning with a load and terminating with another m
 
 Idioms with branches are split along every possible combination of paths out of each branch.
 This process is described later in @edge-cases.
+In compiler terms, the lack of branching makes each idiom a basic block whose original branching can be restored by a phi choosing the idiom that executed.
 
 After an idiom is found, its equivalence class is determined to place it in the correct group, where equivalence is defined by comparing a sorted edge list of instruction types (e.g. `(Store, Add)`).
 This allows us to find multiple static occurrences of a particular idiom that is used in different places throughout a program.
@@ -297,7 +305,7 @@ These idioms can now be executed remotely with a RISC-V core and/or some idioms 
 
 == Feedback Directed Compilation
 
-After identifying idioms, we would like to understand their relative value.  
+After identifying idioms, we would like to understand their relative value.
 To this end, we need a few pieces of information: (1) How many times were the idioms executed? (2) How many times were the memory operations within the idiom executed? (3) How many memory operations were executed overall in the test program?
 We use a feedback directed profiling step to gather this information.
 //Dynamic execution counts enable us to calculate a notion of captured memory traffic.
@@ -507,6 +515,7 @@ This is encouraging because it means hardware architects have an opportunity to 
 ]) <cdf-params>
 
 We also find that high impact idioms (i.e. idioms that account for a significant fraction of a program's memory operations) have minimal complexity, both as measured by the number of instructions contained within the idiom (@cdf-instrs) and as measured by the number of parameters required to call the idiom (@cdf-params).
+@cdf-instrs and @cdf-params demonstrate that a program whose memory instructions are replaced by idioms will dynamically execute most of its memory operations through idioms as the number of idiom instructions and parameters grows.
 Requiring few instructions to execute an idiom means increased throughput at the remote memory executor while using few parameters means the networking costs of sending the idiom execution request to its target will be minimal.
 Depending upon how idiom execution is implemented, fewer instructions can also translate into reduced networking costs.
 
@@ -514,6 +523,8 @@ Depending upon how idiom execution is implemented, fewer instructions can also t
 
 == Idioms are Shared Across Kernels
 
+// #todo[Check whether or not top idioms change with graph property changes. Feedback: How sensitive is the number of idioms to properties of graphs used as an input to the studied benchmarks?]
+// I gave this a quick look and it doesn't seem like it makes much of a difference. Some number go up, some down. Would need to figure out how to incorporate this in the graphs.
 #figure(caption: [
   The deduplicated top five idioms from each kernel and whether or not they are present in the kernel.
   Legend: #emoji.checkmark.box the idiom is contained within the kernel, #emoji.checkmark.heavy the idiom can be transformed to match an idiom in the kernel, #emoji.crossmark the idiom is not contained within the kernel. Fill: the fraction of the kernel's captured memory operations by this idiom.
@@ -577,8 +588,10 @@ Depending upon how idiom execution is implemented, fewer instructions can also t
 ] <idiom-commonality>
 
 We find that idioms tend to be either widely shared across programs or unique to a given program (@idiom-commonality).
-Of the idioms that are unique, we note that they tend to differ by a small number of instructions and could potentially be transformed to minimize unique idioms.
+Small idioms are both shared more across programs and represent a more substantial portion of each program's memory operations.
+Of the idioms that are unique, we find that they tend to differ by a small number of instructions and could potentially be transformed to minimize unique idioms.
 For example, the third and forth idiom differ only by an add instruction---when trying to minimize the number of idioms, the one with the add instruction could be kept while the other idiom is discarded as it can add zero to achieve its original behavior.
+We note that these findings are likely domain specific---we expect other application domains to have different sets of shared idioms partially disjoint from the GAP benchmark suite.
 
 == Possible Hardware Implementations <hardware_impls>
 
@@ -601,6 +614,7 @@ For example, the third and forth idiom differ only by an add instruction---when 
 There are two main implementation possibilities: to specialize or not to specialize.
 Implementation A develops specialized instructions to match idioms while implementation B accepts arbitrary code sequences that begin and end with memory operations.
 A specialized client can talk to a generalized remote (via translation), but the converse is not true (@impl-matrix).
+#todo[Feedback: The implementation discussion in Section IV.D is perplexing to this reader. One might assume that "specialized" means FPGA, ASIC, PIM-based, etc. while "generalized" typically means CPU. If so, a few more words about what the assumptions are for the various classifications. Is a specialized client able to execute the entire application? What does "talk to" mean in the context of this section?]
 
 Specializing in clients or remotes means a limited set of code patterns can be offloaded, but as we have seen this is not necessarily as restrictive as one might think.
 All of our benchmark kernels use indirect loads (the first idiom in @idiom-commonality), so a custom instruction that implements that idiom would be valuable.
@@ -612,6 +626,9 @@ Using a core instead of specialized hardware implementations may increase latenc
 That said, our analysis assumes the latency of a remote memory operation is an order of magnitude larger than local memory operations in which case a small increase in latency should have few noticeable effects.
 The decrease in throughput could be solved with additional RISC-V cores executing in parallel at the remote, but this is not ideal and might need software cooperation to avoid overloading remote memory controllers.
 For clients, a generalized implementation means additional networking costs as the idiom's instructions must be sent to the remote---a compact instruction representation and compression should alleviate these concerns.
+
+To decide where an idiom should execute, we take advantage of the fact that idioms which depend on the stack are blocked (both through static analysis and with runtime checks of the load/store addresses).
+Thus, in a manycore architecture with a cache per core solely for the stack, we are free to route idioms to the node's memory controller for execution where the memory locations of each address used in the idiom are known and thus the idiom can be sent to the best node for execution.
 
 = Related Work
 
@@ -668,6 +685,7 @@ Through analysis of kernels in the GAP benchmark suite, we have uncovered severa
 Looking ahead, future research could explore broader applications of our approach beyond shared memory architectures, as well as address remaining challenges such as the dynamic runtime characteristics of idioms and optimizing overhead in remote execution.
 In summary, our work represents a step forward for ISA design.
 
+#colbreak()
 = Appendix <appendix>
 
 #figure(placement: none, caption: [Example global memory operation execution count instrumentation.], rect(width: 100%)[
