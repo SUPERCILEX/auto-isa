@@ -114,7 +114,7 @@ Consider the success of machine learning frameworks' ability to bring GPU progra
 Many programmers have never vectorized code, let alone written a compute shader---abstracting away these hardware optimizations has made machine learning accessible to the masses.
 Rather than require the programmer to think of their memory-to-compute locality and drop down into assembly or compiler intrinsics to use potentially obtuse remote compute operations, we argue the most effective approach is to automate their discovery, implementation, and use.
 Our goal is therefore to find any pattern of dependent memory operations and compute and emit a compiled program in such a way that it can automatically utilize remote compute and memory access capabilities.
-Since we find that these patterns are broadly shared across applications, we wish to define an ISA for them.
+We'll then trim these instructions down to a realistically implementable set that provides broad application coverage.
 
 = ISA Extraction
 
@@ -487,7 +487,7 @@ For example, consider using a register value obtained from an external source (e
 Thus, we offer normalized plots of captured memory operations to focus on growth rates in addition to the raw plots.
 
 Based on @total-memory-operations, there does not appear to be a correlation between the number of memory operations in a kernel and the fraction of captured memory operations.
-`sssp` has few memory operations and few idiom replacement opportunities, but `tc` provides a counterexample with the most memory operations and still a small replacement fraction (though perhaps it is an outlier).
+`tc` does provide a counterexample with the most memory operations and still a small replacement fraction, but it is most likely an outlier.
 The other kernels do not show a preference either way.
 
 #figure(image("idiom-instance-breakdown.svg"), caption: [
@@ -501,7 +501,6 @@ This result is both surprising and encouraging.
 It is surprising because one would think that complex programs would have many different code patterns that interact with memory, while it turns out that only a select few of those patterns account for the vast majority of a program's total memory operations.
 This is encouraging because it means hardware architects have an opportunity to offer a small selection of remotely executable memory instruction sequences that will have a significant impact on the given program.
 
-#colbreak() // MANUAL_LAYOUT
 == High Impact Idioms are Simple
 
 #figure(stack(image("cdf-instruction-count-normalized.svg"), image("cdf-instruction-count.svg")), caption: [
@@ -564,7 +563,7 @@ Depending upon how idiom execution is implemented, fewer instructions can also t
   ),
   idiom("top-5/top-5.gv.svg"), yes-val(0.003888946507080159), yes-val(0.6770017680111391), yes-val(0.49736664370324524), yes-val(0.38410196775306576), yes-val(0.06361789923884788), yes-val(0.04198947440122185), yes, yes-val(0.013160298575657292),
   idiom("top-5/top-5.gv.2.svg"), yes, close-val(0.0346873102368307), yes-val(0.062339537299681495), yes, yes-val(0.012732282185463085), yes-val(0.012211419040510926), yes-val(0.029473684210526315), yes-val(0.12072520463750229),
-  idiom("top-5/top-5.gv.6.svg"), yes-val(0.6878386156935263), yes-val(0.059832992153305876), yes-val(0.1487940015771168), yes-val(0.2806816411848212), yes-val(0.8514632428604002), yes-val(0.8421757329330534), yes, yes-val(0.10568815445018259),
+  idiom("top-5/top-5.gv.6.svg"), yes-val(0.6878386156935263), yes-val(0.059832992153305876), yes-val(0.1487940015771168), yes-val(0.2806816411848212), yes-val(0.8514632428604002), yes-val(0.8421757329330534), yes-val(0.6363484592367769), yes-val(0.10568815445018259),
   idiom("top-5/top-5.gv.7.svg"), yes-val(0.006628931753563458), yes-val(0.0007216543596120157), close-val(0.008843577018184437), yes, yes, yes, no, yes,
   idiom("top-5/top-5.gv.8.svg"), close, yes-val(0.025142484045564857), close, close, close, close, no, close,
   idiom("top-5/top-5.gv.3.svg"), yes, yes-val(0.007705983329628649), yes, yes, yes, yes, yes, yes,
@@ -582,7 +581,7 @@ Depending upon how idiom execution is implemented, fewer instructions can also t
     answer(pct: 1 - (0.38410196775306576 + 0.2806816411848212))[],
     answer(pct: 1 - (0.8514632428604002 + 0.06361789923884788 + 0.012732282185463085 + 0.011625911098849999))[],
     answer(pct: 1 - (0.04198947440122185 + 0.012211419040510926 + 0.8421757329330534 + 0.02465914654357427))[],
-    answer(pct: 1 - (0.029473684210526315 + 0.009122807017543859 + 0.0035087719298245615))[],
+    answer(pct: 1 - (0.029473684210526315 + 0.009122807017543859 + 0.0035087719298245615 + 0.6363484592367769))[],
     answer(pct: 1 - (0.12072520463750229 + 0.013160298575657292 + 0.10568815445018259 + 0.007420438917934822 + 0.0008565925537197043 + 0.008929466261665825))[],
 )
 ] <idiom-commonality>
@@ -595,26 +594,9 @@ We note that these findings are likely domain specific---we expect other applica
 
 == Possible Hardware Implementations <hardware_impls>
 
-#figure(caption: [
-  Hardware implementation matrix for clients vs. remotes.
-])[
-#let yes = table.cell(align: horizon)[#emoji.checkmark.box]
-#let no = table.cell(align: horizon)[#emoji.crossmark]
-
-#table(
-  columns: (auto, 1fr, 1fr),
-  table.header(
-    table.cell(stroke: none)[], [*Specialized client*], [*Generalized client*],
-  ),
-  [*Specialized remote*], yes, no,
-  [*Generalized remote*], yes, yes,
-)
-] <impl-matrix>
-
 There are two main implementation possibilities: to specialize or not to specialize.
-Implementation A develops specialized instructions to match idioms while implementation B accepts arbitrary code sequences that begin and end with memory operations.
-A specialized client can talk to a generalized remote (via translation), but the converse is not true (@impl-matrix).
-#todo[Feedback: The implementation discussion in Section IV.D is perplexing to this reader. One might assume that "specialized" means FPGA, ASIC, PIM-based, etc. while "generalized" typically means CPU. If so, a few more words about what the assumptions are for the various classifications. Is a specialized client able to execute the entire application? What does "talk to" mean in the context of this section?]
+Implementation A can only run pre-defined idioms (via an ASIC or FPGA for example) while implementation B accepts arbitrary code sequences that begin and end with memory operations (via a CPU that doesn't need to jump).
+A specialized client (supporting a fixed set of idioms) can execute idioms on a generalized remote (via microcode), but the converse is not true.
 
 Specializing in clients or remotes means a limited set of code patterns can be offloaded, but as we have seen this is not necessarily as restrictive as one might think.
 All of our benchmark kernels use indirect loads (the first idiom in @idiom-commonality), so a custom instruction that implements that idiom would be valuable.
@@ -630,6 +612,7 @@ For clients, a generalized implementation means additional networking costs as t
 To decide where an idiom should execute, we take advantage of the fact that idioms which depend on the stack are blocked (both through static analysis and with runtime checks of the load/store addresses).
 Thus, in a manycore architecture with a cache per core solely for the stack, we are free to route idioms to the node's memory controller for execution where the memory locations of each address used in the idiom are known and thus the idiom can be sent to the best node for execution.
 
+#colbreak() // MANUAL_LAYOUT
 = Related Work
 
 The problem of accelerating applications through specialization has been attacked from many different angles.
@@ -639,7 +622,7 @@ Non-invasive software optimization, requiring no changes from the programmer, ar
 For example, auto vectorization (written about by Kennedy and Allen @wolfe1995high) is a great non-invasive feature in modern compilers (e.g. in GCC @naishlos2004autovectorization and LLVM @finkel2012autovectorization).
 Stanford @suif (and others @Banerjee1995ThePC @Anderson1995DataAC) originally developed compiler optimizations to automatically parallelize code for improved multiprocessor performance.
 Harel et al. @Harel2019SourcetoSourcePC compared production automatic parallelizing compilers.
-The Alembic project @holt2014alembic built on Grappa @nelson2015latency relied on moving regions of code to execute closer to their data rather than optimize the code itself.
+The Alembic project @holt2014alembic built on Grappa @nelson2015latency relied on moving regions of code to execute closer to their data rather than optimize the code itself and BitCODE @lu2022bring had similar ideas.
 Our approach is a natural continuation: having exhausted code optimizations, we also seek to move compute closer data, but do so in a more granular way than Alembic and strive to be as transparent as auto vectorization.
 
 Invasive software optimizations require effort from the programmer, but can offer more substantial performance gains than generic automatic approaches.
@@ -649,10 +632,17 @@ PANDORA @Stitt2020PANDORA converts exact algorithms into higher performance appr
 Our work can be considered non-invasive: with the right hardware support, we are able to transparently rewrite programs to effectively use the hardware's memory offloading capabilities.
 Moreover, a hardware implementation willing to spend its area budget could detect idioms dynamically in the instruction stream, in which case software need not be involved at all.
 However, our current approach works best with runtime profiling which could be considered an invasive step even though there are no user visible code changes.
+It is worth noting that software frameworks like Galois @pingali2011tao complement our efforts as we accelerate their memory operations.
 
 The solution space for hardware is much more flexible, so various techniques have been explored.
-The NYU Ultra @nyuUltra introduced remote fetch-and-add instructions to accelerate synchronization (this idea has been extended for RISC-V with remote AMO operations @remoteAmo).
-Processors in memory and a compiler @fujiki2018memory for such hardware were built to exploit massive parallelism.
+Prefetching remains an active area of research.
+Ayers et al. @ayers2020classifying identified idioms in assembly that generate load addresses, and found similarly low instructions counts needed to cover applications (see their Figure 5).
+APT-GET @jamilan2022apt also found low correlation between static and dynamic memory loads, and achieved effective speedups on graph algorithms.
+There also exist graph specific hardware accelerated traversal and prefetching techniques such as HATS @mukkara2018exploiting.
+However, prefetching still incurs the energy costs of moving data around (and additional costs on misprediction) while losing effectiveness as latency increases from DRAM scales (\~100ns) to inter-node scales (\~1-10µs).
+Next, GraphPulse @rahman2020graphpulse and Graphicionado @ham2016graphicionado implement high performance graph application accelerators, however their approaches prescribe a programming model and do not scale to multiple machines.
+Continuing, the NYU Ultra @nyuUltra introduced remote fetch-and-add instructions to accelerate synchronization (this idea has been extended for RISC-V with remote AMO operations @remoteAmo).
+Processors in memory @dai2018graphh and a compiler @fujiki2018memory for such hardware were built to exploit massive parallelism.
 Application-specific instruction-set processors design @goodwin2003automatic @autoCI @FINDER is closest to our approach though more focused on accelerating compute.
 Hoffmann et al. @asips developed a DSL to describe hardware for the purpose of automatically generating a compiler toolchain for application specific ISAs.
 Our work is more general than hand-crafted hardware instructions, less restrictive than PIMs, and not as upending as full blown ASIP.
@@ -685,7 +675,6 @@ Through analysis of kernels in the GAP benchmark suite, we have uncovered severa
 Looking ahead, future research could explore broader applications of our approach beyond shared memory architectures, as well as address remaining challenges such as the dynamic runtime characteristics of idioms and optimizing overhead in remote execution.
 In summary, our work represents a step forward for ISA design.
 
-#colbreak()
 = Appendix <appendix>
 
 #figure(placement: none, caption: [Example global memory operation execution count instrumentation.], rect(width: 100%)[
@@ -699,6 +688,45 @@ In summary, our work represents a step forward for ISA design.
   <TERMINATING OP>
   ```
 ]) <mem-op-count-ir>
+#figure(placement: none, caption: [Example stack address detection instrumentation.], rect(width: 100%)[
+  #set text(size: 0.85em)
+  #set par(justify: false)
+  ```llvm
+  %get_rsp = call ptr asm "movq %rsp, $0", "=r"()
+  %rsp_cast = ptrtoint ptr %get_rsp to i64
+  %red_zone = sub i64 %rsp_cast, 128
+  %scratchpad_top = add i64 %rsp_cast, 262144
+
+  %cast = ptrtoint ptr %target_op to i64
+  %above_red_zone = icmp ult i64 %cast, %red_zone
+  %below_scratchpad = icmp ugt i64 %cast, %scratchpad_top
+  %is_not_stack = or i1 %above_red_zone, %below_scratchpad
+  ```
+]) <stack-heuristic-ir>
+#figure(placement: none, caption: [Example originating load execution count instrumentation.], rect(width: 100%)[
+  #set text(size: 0.85em)
+  #set par(justify: false)
+  ```llvm
+@inputs_0_0_30 = global [13 x i8] c"inputs_0_0_30"
+...
+entry:
+  %active = alloca i1
+  ; Initialize a flag for each input
+  store i1 false, ptr %active
+
+if.then:
+  ; Set flag
+  store i1 true, ptr %active
+  <ORIGINATING LOAD>
+
+for.inc:
+  %inputs_activated = load i1, ptr %active
+  %both = and i1 %inputs_activated, %outputs_activated
+  call void @instr_maybe(i1 %both)
+  ; Reset flag
+  store i1 false, ptr %active
+  ```
+]) <input-count-ir>
 #figure(placement: none, caption: [Example idiom execution count instrumentation.], rect(width: 100%)[
   #set text(size: 0.85em)
   #set par(justify: false)
@@ -750,42 +778,3 @@ no:
 }
   ```
 ]) <idiom-count-ir>
-#figure(placement: none, caption: [Example originating load execution count instrumentation.], rect(width: 100%)[
-  #set text(size: 0.85em)
-  #set par(justify: false)
-  ```llvm
-@inputs_0_0_30 = global [13 x i8] c"inputs_0_0_30"
-...
-entry:
-  %active = alloca i1
-  ; Initialize a flag for each input
-  store i1 false, ptr %active
-
-if.then:
-  ; Set flag
-  store i1 true, ptr %active
-  <ORIGINATING LOAD>
-
-for.inc:
-  %inputs_activated = load i1, ptr %active
-  %both = and i1 %inputs_activated, %outputs_activated
-  call void @instr_maybe(i1 %both)
-  ; Reset flag
-  store i1 false, ptr %active
-  ```
-]) <input-count-ir>
-#figure(placement: none, caption: [Example stack address detection instrumentation.], rect(width: 100%)[
-  #set text(size: 0.85em)
-  #set par(justify: false)
-  ```llvm
-  %get_rsp = call ptr asm "movq %rsp, $0", "=r"()
-  %rsp_cast = ptrtoint ptr %get_rsp to i64
-  %red_zone = sub i64 %rsp_cast, 128
-  %scratchpad_top = add i64 %rsp_cast, 262144
-
-  %cast = ptrtoint ptr %target_op to i64
-  %above_red_zone = icmp ult i64 %cast, %red_zone
-  %below_scratchpad = icmp ugt i64 %cast, %scratchpad_top
-  %is_not_stack = or i1 %above_red_zone, %below_scratchpad
-  ```
-]) <stack-heuristic-ir>
