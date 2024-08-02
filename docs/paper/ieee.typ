@@ -32,7 +32,7 @@
 
   // Set the body font.
   set text(
-    font: if conference == "micro" { "Times" } else { "STIX Two Text" },
+    font: if conference == "micro" or conference == "hpca" { "Times" } else { "STIX Two Text" },
     size: 10pt,
   )
 
@@ -41,6 +41,8 @@
     paper: "us-letter",
     margin: if conference == "a4" {
       (x: 41.5pt, top: 80.51pt, bottom: 89.51pt)
+    } else if conference == "hpca" {
+      (x: 0.7in, top: 0.7in, bottom: 1in)
     } else {
       (
         x: (50pt / 216mm) * 100%,
@@ -158,7 +160,7 @@
 
   // Start two column mode and configure paragraph properties.
   show: columns.with(2, gutter: 12pt)
-  set par(justify: true, first-line-indent: 1em)
+  set par(justify: true, first-line-indent: 1em, leading: 0.0825in)
   show par: set block(spacing: 0.65em)
 
   // Display abstract and index terms.

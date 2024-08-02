@@ -1,7 +1,7 @@
 #import "ieee.typ": *
 
 #show: ieee.with(
-  conference: "micro",
+  conference: "hpca",
   title: [AutoISA: Automatically Designing Instruction Set Extensions],
   abstract: [
     Modern rack-scale computer systems consist of thousands of processing devices.
@@ -474,7 +474,7 @@ This means our analysis slightly undercounts as there could be overlapping but d
   Bottom: raw variation, showing how much of the program's unfiltered memory operations are captured.
 ]) <cdf-idioms>
 
-#figure(stack(/*MANUAL_LAYOUT*/v(1em), image("total-memory-ops.svg")), caption: [
+#figure(stack(/*MANUAL_LAYOUT*/v(2.1em), image("total-memory-ops.svg")), caption: [
   The raw count of total memory operations executed in a given kernel vs. the number of idiom replacements.
   Kernel size is proportional to captured memory operations.
 ]) <total-memory-operations>
@@ -612,7 +612,6 @@ For clients, a generalized implementation means additional networking costs as t
 To decide where an idiom should execute, we take advantage of the fact that idioms which depend on the stack are blocked (both through static analysis and with runtime checks of the load/store addresses).
 Thus, in a manycore architecture with a cache per core solely for the stack, we are free to route idioms to the node's memory controller for execution where the memory locations of each address used in the idiom are known and thus the idiom can be sent to the best node for execution.
 
-#colbreak() // MANUAL_LAYOUT
 = Related Work
 
 The problem of accelerating applications through specialization has been attacked from many different angles.
@@ -688,21 +687,6 @@ In summary, our work represents a step forward for ISA design.
   <TERMINATING OP>
   ```
 ]) <mem-op-count-ir>
-#figure(placement: none, caption: [Example stack address detection instrumentation.], rect(width: 100%)[
-  #set text(size: 0.85em)
-  #set par(justify: false)
-  ```llvm
-  %get_rsp = call ptr asm "movq %rsp, $0", "=r"()
-  %rsp_cast = ptrtoint ptr %get_rsp to i64
-  %red_zone = sub i64 %rsp_cast, 128
-  %scratchpad_top = add i64 %rsp_cast, 262144
-
-  %cast = ptrtoint ptr %target_op to i64
-  %above_red_zone = icmp ult i64 %cast, %red_zone
-  %below_scratchpad = icmp ugt i64 %cast, %scratchpad_top
-  %is_not_stack = or i1 %above_red_zone, %below_scratchpad
-  ```
-]) <stack-heuristic-ir>
 #figure(placement: none, caption: [Example originating load execution count instrumentation.], rect(width: 100%)[
   #set text(size: 0.85em)
   #set par(justify: false)
@@ -727,6 +711,21 @@ for.inc:
   store i1 false, ptr %active
   ```
 ]) <input-count-ir>
+#figure(placement: none, caption: [Example stack address detection instrumentation.], rect(width: 100%)[
+  #set text(size: 0.85em)
+  #set par(justify: false)
+  ```llvm
+  %get_rsp = call ptr asm "movq %rsp, $0", "=r"()
+  %rsp_cast = ptrtoint ptr %get_rsp to i64
+  %red_zone = sub i64 %rsp_cast, 128
+  %scratchpad_top = add i64 %rsp_cast, 262144
+
+  %cast = ptrtoint ptr %target_op to i64
+  %above_red_zone = icmp ult i64 %cast, %red_zone
+  %below_scratchpad = icmp ugt i64 %cast, %scratchpad_top
+  %is_not_stack = or i1 %above_red_zone, %below_scratchpad
+  ```
+]) <stack-heuristic-ir>
 #figure(placement: none, caption: [Example idiom execution count instrumentation.], rect(width: 100%)[
   #set text(size: 0.85em)
   #set par(justify: false)
